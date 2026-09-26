@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Inversion-channel diamond MOSFET (Kanazawa/AIST, 2016)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Inversion-channel diamond MOSFET (Kanazawa/AIST, 2016)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">p-channel inversion on an n-type (P-doped) body: normally off, like a silicon MOSFET.</text>
+<rect x="30.0" y="330.0" width="470.0" height="64.0" rx="0" fill="#dfe8f3" fill-opacity="1.0"/>
+<rect x="30.0" y="250.0" width="470.0" height="80.0" rx="0" fill="#9ec7f0" fill-opacity="1.0"/>
+<polygon points="60.0,250.0 190.0,250.0 186.0,296.0 64.0,296.0" fill="#f29fc8" fill-opacity="1.0"/>
+<polygon points="340.0,250.0 470.0,250.0 466.0,296.0 344.0,296.0" fill="#f29fc8" fill-opacity="1.0"/>
+<rect x="190.0" y="250.0" width="150.0" height="5.0" rx="0" fill="#ff9ad5" fill-opacity="1.0"/>
+<rect x="186.0" y="238.0" width="158.0" height="12.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="196.0" y="180.0" width="138.0" height="58.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<polyline points="265.0,209.0 522.0,209.0 540.0,209.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="209.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="213.0" fill="#e8ecf1" font-size="12.5">Gate</text>
+<polyline points="265.0,244.0 522.0,244.0 540.0,244.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="244.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="248.0" fill="#e8ecf1" font-size="12.5">Al₂O₃ on OH-terminated (111) surface</text>
+<polyline points="265.0,252.5 522.0,274.0 540.0,274.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="252.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="278.0" fill="#e8ecf1" font-size="12.5">Inversion hole channel (−V_G)</text>
+<polyline points="125.0,273.0 522.0,304.0 540.0,304.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="125.0" cy="273.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="308.0" fill="#e8ecf1" font-size="12.5">p⁺ source (heavy boron)</text>
+<polyline points="405.0,273.0 522.0,334.0 540.0,334.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="405.0" cy="273.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="338.0" fill="#e8ecf1" font-size="12.5">p⁺ drain</text>
+<polyline points="265.0,290.0 522.0,364.0 540.0,364.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="290.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="368.0" fill="#e8ecf1" font-size="12.5">n-type body (phosphorus-doped)</text>
+<polyline points="265.0,362.0 522.0,394.0 540.0,394.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="362.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="398.0" fill="#e8ecf1" font-size="12.5">Diamond substrate (Ib or IIa)</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Matsumoto et al., Sci. Rep. 2016: first inversion-type diamond MOSFET</text>
+</svg>

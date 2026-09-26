@@ -51,6 +51,22 @@ MAT = {
     "bspdn": ("#d9825b", "Backside power rail"),
     "wall": ("#cfd6e0", "Dielectric wall"),
     "void": ("#1a2029", ""),
+    "igzo": ("#9fd67a", "IGZO oxide channel"),
+    "glass": ("#6d7f99", "Glass / polyimide substrate"),
+    "organic": ("#c9a0dc", "Organic semiconductor film"),
+    "box": ("#8fcfd4", "Buried oxide (BOX)"),
+    "ferro": ("#e07fb0", "Ferroelectric Hf₀.₅Zr₀.₅O₂"),
+    "fg": ("#c95c50", "Floating gate (poly-Si)"),
+    "trap": ("#c3d27a", "Charge-trap SiN"),
+    "pdia": ("#f29fc8", "p⁺ boron-doped diamond"),
+    "ndia": ("#9ec7f0", "n-type diamond (P or N doped)"),
+    "driftdia": ("#e6dcef", "p⁻ diamond drift layer"),
+    "nv": ("#e25f6a", "Nitrogen atom"),
+    "carbon": ("#aab3c0", "Carbon atom"),
+    "island": ("#e2b650", "Metal island (dot)"),
+    "indium": ("#b9c3cd", "Indium alloy dot"),
+    "ndrift": ("#5a5f7a", "n⁻ drift region"),
+    "heat": ("#e66767", ""),
 }
 
 W, H = 840, 420
@@ -470,6 +486,298 @@ def mos2_interface() -> Drawing:
     return d
 
 
+# ---------------------------------------------------------------------------
+# Diamond devices
+# ---------------------------------------------------------------------------
+
+def diamond_inversion_mosfet() -> Drawing:
+    d = Drawing("Inversion-channel diamond MOSFET (Kanazawa/AIST, 2016)", "p-channel inversion on an n-type (P-doped) body: normally off, like a silicon MOSFET.")
+    d.rect(30, 330, 470, 64, "diamond", "Diamond substrate (Ib or IIa)")
+    d.rect(30, 250, 470, 80, "ndia", "n-type body (phosphorus-doped)")
+    d.poly([(60, 250), (190, 250), (186, 296), (64, 296)], "pdia", "p⁺ source (heavy boron)")
+    d.poly([(340, 250), (470, 250), (466, 296), (344, 296)], "pdia", "p⁺ drain")
+    d.rect(190, 250, 150, 5, "dhg", "Inversion hole channel (−V_G)")
+    d.rect(186, 238, 158, 12, "oxide", "Al₂O₃ on OH-terminated (111) surface")
+    d.rect(196, 180, 138, 58, "metal", "Gate")
+    d.note(265, 408, "Matsumoto et al., Sci. Rep. 2016: first inversion-type diamond MOSFET", size=11)
+    return d
+
+
+def diamond_vertical_mosfet() -> Drawing:
+    d = Drawing("Vertical 2DHG diamond trench MOSFET (Waseda, 2024)", "Hole gas on the C–H trench sidewall; current flows down to a p⁺ substrate drain.")
+    d.rect(30, 350, 470, 44, "au", "Drain metal")
+    d.rect(30, 300, 470, 50, "pdia", "p⁺ substrate (drain)")
+    d.rect(30, 240, 470, 60, "driftdia", "p⁻ drift layer")
+    d.rect(30, 150, 170, 90, "ndia", "Nitrogen-doped blocking layer")
+    d.rect(330, 150, 170, 90, "ndia", False)
+    d.rect(30, 136, 170, 14, "pdia", "p⁺ source contact layer", ly=143)
+    d.rect(330, 136, 170, 14, "pdia", False)
+    d.rect(200, 136, 5, 110, "dhg", "2D hole gas on trench wall")
+    d.rect(325, 136, 5, 110, "dhg", False)
+    d.poly([(205, 136), (325, 136), (325, 250), (205, 250)], "oxide", "Al₂O₃ gate insulator", lx=265, ly=244)
+    d.rect(218, 110, 94, 132, "metal", "Trench gate")
+    d.line(202, 250, 202, 300, INK, 2, "4 4"); d.line(328, 250, 328, 300, INK, 2, "4 4")
+    d.note(265, 408, "Oi et al., IEEE EDL 2024: 0.7 A from one device, −1.5 A from two in parallel", size=11)
+    return d
+
+
+def gan_on_diamond() -> Drawing:
+    d = Drawing("GaN-on-diamond HEMT", "Swap the SiC substrate for CVD diamond a few tens of nm below the channel to pull heat out.")
+    d.rect(30, 300, 470, 94, "diamond", "CVD polycrystalline diamond (~20 W/cm·K)")
+    d.rect(30, 290, 470, 10, "spacer", "Thin SiN / AlN bonding interlayer")
+    d.rect(30, 236, 470, 54, "gan", "GaN channel (~1 µm)")
+    d.rect(30, 234, 470, 4, "deg", "2DEG")
+    d.rect(30, 212, 470, 22, "algan", "AlGaN barrier")
+    d.rect(60, 184, 90, 28, "au", "Source")
+    d.rect(380, 184, 90, 28, "au", "Drain")
+    d.rect(250, 174, 30, 38, "metal", "Gate")
+    for x in (230, 265, 300):
+        d.line(x, 240, x, 380, "#e66767", 2, "5 4")
+    d.note(265, 408, "Hot spot sits ~1 µm from diamond; thermal boundary resistance at the interface is the key figure", size=11)
+    return d
+
+
+def nv_center() -> Drawing:
+    d = Drawing("Nitrogen-vacancy (NV) centre in diamond", "A nitrogen atom beside a missing carbon: a spin you can set with green light and read by red glow at room temperature.")
+    d.rect(40, 90, 450, 300, "void", False, rx=10)
+    xs = [70 + i * 52 for i in range(9)]
+    ys = [120 + j * 48 for j in range(6)]
+    for j, y in enumerate(ys):
+        for i, x in enumerate(xs):
+            if (i, j) in ((4, 2), (5, 3)):
+                continue
+            ox = 26 if j % 2 else 0
+            if x + ox > 480:
+                continue
+            d.circle(x + ox, y, 9, "carbon", None)
+    d.circle(xs[4] + 0, ys[2], 12, "nv", "Nitrogen atom (substitutional)")
+    d.shapes.append(("circle", xs[5] + 26, ys[3], 12, "#10141a"))
+    d.line(xs[5] + 14, ys[3], xs[5] + 38, ys[3], MUTED, 1.5, "3 3")
+    d.labels.append((xs[5] + 26, ys[3], "Vacancy (missing carbon)"))
+    d.labels.append((xs[0], ys[0], "Carbon lattice"))
+    d.line(120, 400, 250, 250, "#3aa66e", 3)
+    d.note(118, 412, "532 nm green pump", size=11, color="#3aa66e")
+    d.line(330, 262, 450, 400, "#e66767", 3, "6 4")
+    d.note(440, 412, "637–800 nm red fluorescence", size=11, color="#e66767")
+    return d
+
+
+def diamond_transfer_doping() -> Drawing:
+    d = Drawing("Surface transfer doping of H-terminated diamond", "Band picture: an acceptor on the surface sits below diamond's valence band, so electrons leave and holes stay.")
+    x0, x1, xs_ = 40, 380, 470
+    # conduction and valence bands bending up near the surface (x1)
+    cb = [(x0, 130)] + [(x0 + t, 130 - 60 * (t / (x1 - x0)) ** 6) for t in range(0, x1 - x0 + 1, 10)]
+    vb = [(x, y + 190) for x, y in cb]
+    d.shapes.append(("line", x0, 130, x1, 130, MUTED, 1, "2 4"))
+    for a, b in zip(cb[:-1], cb[1:]):
+        d.line(a[0], a[1], b[0], b[1], "#3f7fe0", 3)
+    for a, b in zip(vb[:-1], vb[1:]):
+        d.line(a[0], a[1], b[0], b[1], "#e07f3f", 3)
+    d.labels.append((140, 130, "Conduction band E_C"))
+    d.labels.append((140, 320, "Valence band E_V (bends up)"))
+    d.line(x0, 282, xs_ + 20, 282, "#e2b650", 1.5, "6 4")
+    d.labels.append((80, 282, "Fermi level E_F"))
+    d.rect(x1, 90, 8, 300, "spacer", "C–H surface dipole (negative electron affinity)")
+    d.rect(x1 + 8, 90, 90, 300, "void", False)
+    d.rect(x1 + 20, 279, 60, 6, "p", "Acceptor LUMO (NO₂, MoO₃, V₂O₅), below E_V")
+    for y in (264, 272):
+        d.circle(x1 - 10, y, 4.5, "dhg", None)
+    d.labels.append((x1 - 10, 268, "2D hole gas, ~1e13 cm⁻², within ~1 nm"))
+    d.note(200, 408, "Strobel et al., Nature 2004; Maier et al., PRL 2000", size=11)
+    return d
+
+
+def diamond_schottky() -> Drawing:
+    d = Drawing("Pseudo-vertical diamond Schottky diode", "Lightly doped drift layer on a heavily doped layer; blocks kilovolts in principle at µm thicknesses.")
+    d.rect(30, 330, 470, 64, "diamond", "Insulating diamond substrate")
+    d.rect(30, 280, 470, 50, "pdia", "p⁺ boron layer (~1e20 cm⁻³)")
+    d.rect(140, 180, 250, 100, "driftdia", "p⁻ drift layer (~1e15–16 cm⁻³)")
+    d.rect(180, 160, 170, 20, "metal", "Schottky metal (Mo, Pt, Zr)")
+    d.rect(50, 260, 70, 20, "au", "Ohmic contact (Ti/Pt/Au)")
+    d.rect(410, 260, 70, 20, "au", False)
+    d.line(265, 190, 265, 270, INK, 2, "4 4")
+    return d
+
+
+# ---------------------------------------------------------------------------
+# Niche and forgotten devices
+# ---------------------------------------------------------------------------
+
+def jfet() -> Drawing:
+    d = Drawing("Junction FET (Shockley 1952)", "A reverse-biased p–n gate widens its depletion region and pinches the channel. No oxide needed.")
+    d.rect(30, 320, 470, 74, "si", "Substrate")
+    d.rect(60, 190, 410, 130, "n", "n-type channel bar", opacity=0.75)
+    d.rect(190, 170, 150, 28, "p", "p⁺ top gate")
+    d.rect(190, 310, 150, 22, "p", "p⁺ bottom gate / substrate junction")
+    d.poly([(180, 198), (350, 198), (330, 238), (200, 238)], "void", "Depletion region (grows with −V_G)", lx=265, ly=222)
+    d.poly([(200, 310), (330, 310), (320, 282), (210, 282)], "void", False)
+    d.rect(60, 150, 50, 40, "al", "Source"); d.rect(420, 150, 50, 40, "al", "Drain")
+    return d
+
+
+def alloy_junction() -> Drawing:
+    d = Drawing("Alloy-junction transistor (1950s)", "Indium pellets melted into both faces of a thin n-germanium die form p-regions: a PNP transistor.")
+    d.rect(60, 210, 410, 80, "ge", "n-type germanium base wafer")
+    d.poly([(200, 210), (330, 210), (310, 240), (220, 240)], "p", "p-type regrown region (emitter)")
+    d.poly([(170, 290), (360, 290), (330, 262), (200, 262)], "p", "p-type regrown region (collector)")
+    d.circle(265, 190, 30, "indium", "Indium dot (emitter)")
+    d.circle(265, 318, 38, "indium", "Indium dot (collector, larger)")
+    d.rect(420, 180, 40, 30, "al", "Base tab")
+    d.note(265, 408, "Base width set by how deep the indium dissolves: ~10 µm", size=11)
+    return d
+
+
+def igzo_tft() -> Drawing:
+    d = Drawing("IGZO thin-film transistor (displays, Flex-RV)", "Amorphous indium–gallium–zinc oxide on glass or plastic, made below ~350 °C.")
+    d.rect(30, 330, 470, 64, "glass", "Glass or polyimide substrate")
+    d.rect(180, 300, 170, 30, "metal", "Bottom gate (Mo)")
+    d.rect(140, 280, 250, 20, "oxide", "SiO₂ gate insulator")
+    d.rect(150, 262, 230, 18, "igzo", "a-IGZO channel (~20–50 nm)")
+    d.rect(120, 232, 90, 40, "al", "Source")
+    d.rect(320, 232, 90, 40, "al", "Drain")
+    d.rect(210, 244, 110, 18, "spacer", "Etch-stop / passivation")
+    d.note(265, 408, "Nomura et al., Nature 2004; Ozer et al., Nature 2024 (Flex-RV, 0.6 µm IGZO)", size=11)
+    return d
+
+
+def organic_tft() -> Drawing:
+    d = Drawing("Organic thin-film transistor (1986 →)", "A polymer or small-molecule semiconductor printed or evaporated at room temperature.")
+    d.rect(30, 330, 470, 64, "glass", "Plastic foil")
+    d.rect(170, 300, 190, 30, "metal", "Gate")
+    d.rect(120, 272, 290, 28, "oxide", "Polymer dielectric")
+    d.rect(120, 246, 290, 26, "organic", "Organic semiconductor (e.g. pentacene, P3HT)")
+    d.rect(130, 216, 90, 30, "au", "Au source (top contact)")
+    d.rect(310, 216, 90, 30, "au", "Au drain")
+    d.note(265, 408, "Tsumura, Koezuka & Ando, APL 1986: polythiophene FET", size=11)
+    return d
+
+
+def igbt() -> Drawing:
+    d = Drawing("Insulated-gate bipolar transistor (IGBT)", "A MOSFET that injects holes from a p⁺ collector: bipolar current with a voltage-driven gate.")
+    d.rect(30, 350, 470, 44, "au", "Collector metal")
+    d.rect(30, 318, 470, 32, "p", "p⁺ collector (hole injector)")
+    d.rect(30, 200, 470, 118, "ndrift", "n⁻ drift region (conductivity-modulated)")
+    d.rect(30, 160, 160, 60, "pwell", "p-body")
+    d.rect(340, 160, 160, 60, "pwell", False)
+    d.rect(60, 160, 100, 16, "n", "n⁺ emitter")
+    d.rect(370, 160, 100, 16, "n", False)
+    d.rect(150, 148, 230, 12, "oxide", "Gate oxide")
+    d.rect(160, 110, 210, 38, "poly", "Gate")
+    d.note(265, 408, "Trains, wind turbines, EV inverters: 600 V to 6.5 kV", size=11)
+    return d
+
+
+def fdsoi() -> Drawing:
+    d = Drawing("Fully depleted SOI (FD-SOI / UTBB)", "A ~7 nm silicon film on a ~25 nm buried oxide: the thin body stays fully depleted; the substrate is a back gate.")
+    d.rect(30, 300, 470, 94, "si", "Silicon handle (back gate)")
+    d.rect(30, 266, 470, 34, "box", "Buried oxide (BOX), ~25 nm")
+    d.rect(30, 252, 470, 14, "si_ch", "Ultrathin Si film, ~7 nm")
+    d.poly([(70, 252), (200, 252), (200, 214), (70, 214)], "n", "Raised epitaxial S/D")
+    d.poly([(330, 252), (460, 252), (460, 214), (330, 214)], "n", False)
+    d.rect(212, 242, 106, 10, "highk", "HKMG stack")
+    d.rect(216, 180, 98, 62, "metal", "Gate")
+    d.note(265, 408, "Used in 28 nm and 22 nm FD-SOI for low-power IoT and RF", size=11)
+    return d
+
+
+def junctionless() -> Drawing:
+    d = Drawing("Junctionless nanowire transistor (Colinge 2010)", "Source, channel and drain doped the same: the gate simply squeezes the wire until it empties.")
+    d.rect(30, 320, 470, 74, "si", "Substrate")
+    d.rect(30, 300, 470, 20, "box", "Buried oxide")
+    d.rect(60, 250, 410, 30, "n", "Uniformly n⁺ silicon nanowire")
+    d.rect(200, 232, 130, 66, "highk", "Gate dielectric", opacity=0.9)
+    d.rect(210, 212, 110, 30, "metal", "Gate (wraps the wire)")
+    d.rect(210, 288, 110, 12, "metal", False)
+    return d
+
+
+def vtfet() -> Drawing:
+    d = Drawing("Vertical transport FET (IBM + Samsung, 2021)", "Current flows up through a vertical fin; gate length no longer eats horizontal pitch.")
+    d.rect(30, 330, 470, 64, "si", "Substrate")
+    d.rect(60, 300, 410, 30, "n", "Bottom source/drain")
+    d.rect(60, 290, 410, 10, "sti", "Bottom spacer")
+    for x in (150, 330):
+        d.rect(x, 150, 40, 150, "si_ch", "Vertical Si fin (channel)" if x == 150 else False)
+        d.rect(x - 14, 180, 68, 100, "metal", "Gate wraps fin sides" if x == 150 else False, opacity=0.8)
+        d.rect(x - 10, 130, 60, 28, "n", "Top source/drain" if x == 150 else False)
+    d.line(170, 290, 170, 160, INK, 2, "4 4")
+    return d
+
+
+def tfet() -> Drawing:
+    d = Drawing("Tunnel FET (band-to-band tunnelling)", "p⁺ source, intrinsic channel, n⁺ drain: the gate lets electrons tunnel from the source valence band.")
+    d.rect(30, 320, 470, 74, "si", "Substrate")
+    d.rect(30, 300, 470, 20, "box", "Buried oxide")
+    d.rect(60, 252, 140, 48, "p", "p⁺ source")
+    d.rect(200, 252, 130, 48, "si_ch", "Intrinsic channel")
+    d.rect(330, 252, 140, 48, "n", "n⁺ drain")
+    d.rect(196, 240, 138, 12, "highk", "High-k")
+    d.rect(200, 180, 130, 60, "metal", "Gate")
+    d.line(190, 276, 214, 276, "#ffe066", 3)
+    d.labels.append((202, 276, "Tunnelling junction (sub-60 mV/dec)"))
+    d.note(265, 408, "Ionescu & Riel, Nature 2011; on-current is the open problem", size=11)
+    return d
+
+
+def ncfet() -> Drawing:
+    d = _ncfet_base()
+    return d
+
+
+def _ncfet_base() -> Drawing:
+    d = Drawing("Negative-capacitance FET / FeFET", "A ferroelectric layer in the gate stack: steeper switching (NC) or non-volatile memory (FeFET).")
+    d.rect(40, 250, 440, 140, "si", "Silicon")
+    d.poly([(70, 250), (200, 250), (196, 292), (74, 292)], "n", "n⁺ source")
+    d.poly([(320, 250), (450, 250), (446, 292), (324, 292)], "n", "n⁺ drain")
+    d.rect(196, 244, 128, 6, "oxide", "Interfacial SiO₂")
+    d.rect(196, 226, 128, 18, "ferro")
+    d.rect(200, 170, 120, 56, "metal", "Gate metal")
+    d.note(265, 408, "Salahuddin & Datta 2008 (NC); ferroelectric HfO₂: Böscke et al. 2011", size=11)
+    return d
+
+
+def flash_fg() -> Drawing:
+    d = Drawing("Floating-gate flash cell (Kahng & Sze 1967)", "Electrons tunnel onto an isolated gate and stay for years, shifting V_T: one bit.")
+    d.rect(40, 250, 440, 140, "si", "p-type silicon")
+    d.poly([(70, 250), (200, 250), (196, 292), (74, 292)], "n", "n⁺ source")
+    d.poly([(320, 250), (450, 250), (446, 292), (324, 292)], "n", "n⁺ drain")
+    d.rect(196, 242, 128, 8, "oxide", "Tunnel oxide (~8 nm)")
+    d.rect(200, 210, 120, 32, "fg")
+    d.rect(196, 198, 128, 12, "highk", "ONO inter-poly dielectric")
+    d.rect(200, 150, 120, 48, "metal", "Control gate (word line)")
+    for x in (225, 255, 285):
+        d.circle(x, 226, 5, "n", None)
+    return d
+
+
+def nand3d() -> Drawing:
+    d = Drawing("3D NAND string (BiCS, 2007 →)", "Word-line layers stacked 200+ high; a vertical polysilicon channel pierces them all.")
+    d.rect(30, 360, 470, 34, "si", "Substrate / source line")
+    for k in range(9):
+        y = 330 - k * 26
+        d.rect(40, y, 450, 16, "metal", "Word-line layers (W)" if k == 0 else False)
+        d.rect(40, y + 16, 450, 10, "oxide", "Inter-layer oxide" if k == 0 else False)
+    d.rect(220, 94, 90, 266, "trap", "Charge-trap SiN (ONO)")
+    d.rect(236, 94, 58, 266, "si_ch", "Vertical poly-Si channel")
+    d.rect(254, 94, 22, 266, "oxide", "Core oxide", opacity=0.8)
+    d.rect(230, 72, 70, 22, "cu", "Bit-line contact")
+    return d
+
+
+def set_transistor() -> Drawing:
+    d = Drawing("Single-electron transistor (Fulton & Dolan 1987)", "A tiny island between two tunnel barriers: current flows one electron at a time (Coulomb blockade).")
+    d.rect(40, 330, 450, 64, "si", "Substrate")
+    d.rect(60, 230, 140, 60, "al", "Source lead")
+    d.rect(330, 230, 140, 60, "al", "Drain lead")
+    d.rect(200, 250, 12, 20, "oxide", "Tunnel barrier")
+    d.rect(318, 250, 12, 20, "oxide", False)
+    d.rect(212, 236, 106, 48, "island")
+    d.rect(225, 150, 80, 36, "metal", "Gate (capacitively coupled)")
+    d.line(265, 186, 265, 236, MUTED, 1.5, "3 3")
+    d.note(265, 408, "Island charging energy e²/2C must beat kT: tens of nm at cryo, ~1 nm at room temperature", size=11)
+    return d
+
+
 ARCHS = {
     "point_contact": point_contact, "bjt": bjt, "planar_bjt": planar_bjt,
     "planar_mosfet_metal": planar_mosfet_metal, "planar_mosfet_poly": planar_mosfet_poly,
@@ -478,6 +786,11 @@ ARCHS = {
     "nanostack": nanostack, "cfet": cfet, "mos2": mos2, "gan_hemt": gan_hemt,
     "gaas_phemt": gaas_phemt, "diamond_fet": diamond_fet, "sic_mosfet": sic_mosfet, "cnt_fet": cnt_fet,
     "mos2_interface": mos2_interface,
+    "diamond_inversion_mosfet": diamond_inversion_mosfet, "diamond_vertical_mosfet": diamond_vertical_mosfet,
+    "gan_on_diamond": gan_on_diamond, "nv_center": nv_center, "diamond_transfer_doping": diamond_transfer_doping,
+    "diamond_schottky": diamond_schottky, "jfet": jfet, "alloy_junction": alloy_junction, "igzo_tft": igzo_tft,
+    "organic_tft": organic_tft, "igbt": igbt, "fdsoi": fdsoi, "junctionless": junctionless, "vtfet": vtfet,
+    "tfet": tfet, "ncfet": ncfet, "flash_fg": flash_fg, "nand3d": nand3d, "set_transistor": set_transistor,
 }
 
 

@@ -1,8 +1,8 @@
 # References
 
-176 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
+219 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
 
-**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration)
+**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic)
 
 ## History
 
@@ -185,42 +185,91 @@
 147. `maier2000` — F. Maier, M. Riedel, B. Mantel, J. Ristein, L. Ley, "Origin of Surface Conductivity in Diamond," Phys. Rev. Lett. 85, 3472 (2000). [doi:10.1103/PhysRevLett.85.3472](https://doi.org/10.1103/PhysRevLett.85.3472)
 148. `kawarada2017` — H. Kawarada et al., "Durability-Enhanced Two-Dimensional Hole Gas of C-H Diamond Surface for Complementary Power Inverter Applications," Scientific Reports 7, 42368 (2017). [doi:10.1038/srep42368](https://doi.org/10.1038/srep42368)
 149. `donato2020` — N. Donato et al., "Diamond Power Devices: State of the Art, Modelling, Figures of Merit and Future Perspective," J. Phys. D: Appl. Phys. 53, 093001 (2020). [doi:10.1088/1361-6463/ab4eab](https://doi.org/10.1088/1361-6463/ab4eab)
+150. `koizumi1997` — S. Koizumi, M. Kamo, Y. Sato, H. Ozaki, T. Inuzuka, "Growth and Characterization of Phosphorous Doped {111} Homoepitaxial Diamond Thin Films," Appl. Phys. Lett. 71, 1065 (1997). [doi:10.1063/1.119729](https://doi.org/10.1063/1.119729)
+151. `strobel2004` — P. Strobel, M. Riedel, J. Ristein, L. Ley, "Surface Transfer Doping of Diamond," Nature 430, 439 (2004). [doi:10.1038/nature02751](https://doi.org/10.1038/nature02751)
+152. `matsumoto2016` — T. Matsumoto et al., "Inversion Channel Diamond Metal-Oxide-Semiconductor Field-Effect Transistor with Normally Off Characteristics," Scientific Reports 6, 31585 (2016). [doi:10.1038/srep31585](https://doi.org/10.1038/srep31585)
+153. `schreck2017` — M. Schreck, S. Gsell, R. Brescia, M. Fischer, "Ion Bombardment Induced Buried Lateral Growth: The Key Mechanism for the Synthesis of Single Crystal Diamond Wafers," Scientific Reports 7, 44462 (2017). [doi:10.1038/srep44462](https://doi.org/10.1038/srep44462)
+154. `df2023` — Semiconductor Today, "Diamond Foundry Creates First 100mm Single-Crystal Diamond Wafer" (heteroepitaxy; 6 Nov 2023). [link](https://www.semiconductor-today.com/news_items/2023/nov/diamond-foundry-061123.shtml)
+155. `orbray_wafers` — Orbray, "Diamond Wafers: Production Technologies and Applications" (heteroepitaxial diamond on sapphire, inch-scale wafers). [link](https://orbray.com/magazine_en/archives/3456)
+156. `oi2024` — N. Oi et al., vertical p-channel diamond MOSFETs with 0.7 A single-device drain current, IEEE Electron Device Lett. (Aug 2024); summary in Semiconductor Today, "High-Current Vertical Diamond MOSFETs." [doi:10.1109/LED.2024.3427423](https://doi.org/10.1109/LED.2024.3427423)
+157. `jvstb2025_4266` — "High Off-State Voltage (4266 V) Diamond Metal Oxide Semiconductor Field Effect Transistors," J. Vac. Sci. Technol. B 43(4), 042201 (2025). [link](https://pubs.aip.org/avs/jvb/article/43/4/042201/3347764/High-off-state-voltage-4266-V-diamond-metal-oxide)
+158. `apl2025_17kv` — "Normally-Off Boron-Doped Diamond MOSFETs with a Breakdown Voltage over 1.7 kV," Appl. Phys. Lett. 127(4), 042601 (2025). [link](https://pubs.aip.org/aip/apl/article/127/4/042601/3356215/Normally-off-boron-doped-diamond-MOSFETs-with-a)
+159. `modulation3326` — "3326-V Modulation-Doped Diamond MOSFETs" (2022), ResearchGate record. [link](https://www.researchgate.net/publication/361180454_3326-V_Modulation-Doped_Diamond_MOSFETs)
+160. `pds2025` — DIGITIMES, "Japanese Startup Pushes Diamond Semiconductors toward Commercialization in EVs and Satellites" (Power Diamond Systems, Waseda spin-out; SEMICON Japan 2025 demo; JAXA collaboration), Dec 2025. [link](https://www.digitimes.com/news/a20251224PD232/diamond-semiconductors-startup-jaxa-2025.html)
+161. `compoundsemi_pds` — Compound Semiconductor, "Japanese Start-Up Demos Diamond MOSFET Breakthroughs." [link](https://compoundsemiconductor.net/article/123734/Japanese_start-up_demos_diamond_MOSFET_breakthroughs)
+162. `felbinger2007` — J. G. Felbinger et al., "Comparison of GaN HEMTs on Diamond and SiC Substrates," IEEE Electron Device Lett. 28(11), 948 (2007). [link](https://ieeexplore.ieee.org/document/4367547/)
+163. `gan_diamond_tbr` — "Thermal Boundary Resistance Reduction by Interfacial Nanopatterning for GaN-on-Diamond Electronics Applications," ACS Appl. Electron. Mater. (2025). [doi:10.1021/acsaelm.5c00119](https://doi.org/10.1021/acsaelm.5c00119)
+164. `gan_diamond_tbr2021` — "Record-Low Thermal Boundary Resistance between Diamond and GaN-on-SiC for Enabling Radiofrequency Device Cooling," ACS Appl. Mater. Interfaces (2021). [doi:10.1021/acsami.1c13833](https://doi.org/10.1021/acsami.1c13833)
+165. `doherty2013` — M. W. Doherty et al., "The Nitrogen-Vacancy Colour Centre in Diamond," Physics Reports 528, 1 (2013). [doi:10.1016/j.physrep.2013.02.001](https://doi.org/10.1016/j.physrep.2013.02.001)
+166. `csmantech2024` — "Progress in Diamond MOSFET Technologies," CS MANTECH 2024 digest. [link](https://csmantech.org/wp-content/uploads/2024/06/4.1.2.2024-Progress-in-Diamond-MOSFET-Technologies-.pdf)
+167. `hterm_review2025` — "Hydrogen-Terminated and Oxygen-Terminated Diamond Metal-Oxide-Semiconductor Field-Effect Transistors," Functional Diamond (2025). [doi:10.1080/26941112.2025.2551496](https://doi.org/10.1080/26941112.2025.2551496)
+168. `mpcvd_review2026` — "Advances and Challenges in Single Crystal Diamond Growth via Microwave Plasma Chemical Vapor Deposition," Functional Diamond (2026). [doi:10.1080/26941112.2026.2669069](https://doi.org/10.1080/26941112.2026.2669069)
+169. `heteroepi_review2024` — "Recent Progress on Heteroepitaxial Growth of Single Crystal Diamond Films," Electron (Wiley, 2024). [doi:10.1002/elt2.70](https://doi.org/10.1002/elt2.70)
+170. `pen_diamond` — Power Electronics News, "The Quest to Make Diamond as Available as Silicon." [link](https://www.powerelectronicsnews.com/the-quest-to-make-diamond-as-available-as-silicon/)
 
 ## Beyond CMOS
 
-150. `likharev1991` — K. K. Likharev, V. K. Semenov, "RSFQ Logic/Memory Family: A New Josephson-Junction Technology for Sub-Terahertz-Clock-Frequency Digital Systems," IEEE Trans. Appl. Supercond. 1(1), 3 (1991). [doi:10.1109/77.80745](https://doi.org/10.1109/77.80745)
-151. `han2012` — J.-W. Han, J. S. Oh, M. Meyyappan, "Vacuum Nanoelectronics: Back to the Future?—Gate Insulated Nanoscale Vacuum Channel Transistor," Appl. Phys. Lett. 100, 213505 (2012). [doi:10.1063/1.4717751](https://doi.org/10.1063/1.4717751)
+171. `likharev1991` — K. K. Likharev, V. K. Semenov, "RSFQ Logic/Memory Family: A New Josephson-Junction Technology for Sub-Terahertz-Clock-Frequency Digital Systems," IEEE Trans. Appl. Supercond. 1(1), 3 (1991). [doi:10.1109/77.80745](https://doi.org/10.1109/77.80745)
+172. `han2012` — J.-W. Han, J. S. Oh, M. Meyyappan, "Vacuum Nanoelectronics: Back to the Future?—Gate Insulated Nanoscale Vacuum Channel Transistor," Appl. Phys. Lett. 100, 213505 (2012). [doi:10.1063/1.4717751](https://doi.org/10.1063/1.4717751)
 
 ## Chip data
 
-152. `apple_a11` — Wikipedia, "Apple A11" (4.3 billion transistors, TSMC 10 nm FinFET). [link](https://en.wikipedia.org/wiki/Apple_A11)
-153. `apple_a12` — Wikipedia, "Apple A12" (6.9 billion transistors, TSMC N7); see also Tom's Hardware launch coverage. [link](https://en.wikipedia.org/wiki/Apple_A12)
-154. `phonearena_n5` — PhoneArena, TSMC 5 nm density (171.3 MTr/mm²) and A14 (11.8B) / M1 (16B) transistor counts. [link](https://www.phonearena.com/news/apple-a16-bionic-chip-could-use-4nm-process-node-by-2022_id128506)
-155. `apple_m1max` — Apple Newsroom, "Introducing M1 Pro and M1 Max" (57 billion transistors), Oct 2021. [link](https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/)
-156. `apple_m3` — Apple Newsroom, "Apple Unveils M3, M3 Pro, and M3 Max" (M3 Max: 92 billion transistors, 3 nm), Oct 2023. [link](https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/)
-157. `nvidia_h100` — Wikipedia, "Hopper (microarchitecture)" (H100: 80 billion transistors, TSMC 4N, 814 mm²). [link](https://en.wikipedia.org/wiki/Hopper_(microarchitecture))
-158. `nvidia_blackwell` — Wikipedia, "Blackwell (microarchitecture)" (B200: 208 billion transistors across two dies, TSMC 4NP). [link](https://en.wikipedia.org/wiki/Blackwell_(microarchitecture))
-159. `cerebras_wse3` — Cerebras, WSE-3 announcement (4 trillion transistors, 46,225 mm²), March 2024. [link](https://www.cerebras.ai/press-release/cerebras-announces-third-generation-wafer-scale-engine)
+173. `apple_a11` — Wikipedia, "Apple A11" (4.3 billion transistors, TSMC 10 nm FinFET). [link](https://en.wikipedia.org/wiki/Apple_A11)
+174. `apple_a12` — Wikipedia, "Apple A12" (6.9 billion transistors, TSMC N7); see also Tom's Hardware launch coverage. [link](https://en.wikipedia.org/wiki/Apple_A12)
+175. `phonearena_n5` — PhoneArena, TSMC 5 nm density (171.3 MTr/mm²) and A14 (11.8B) / M1 (16B) transistor counts. [link](https://www.phonearena.com/news/apple-a16-bionic-chip-could-use-4nm-process-node-by-2022_id128506)
+176. `apple_m1max` — Apple Newsroom, "Introducing M1 Pro and M1 Max" (57 billion transistors), Oct 2021. [link](https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/)
+177. `apple_m3` — Apple Newsroom, "Apple Unveils M3, M3 Pro, and M3 Max" (M3 Max: 92 billion transistors, 3 nm), Oct 2023. [link](https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/)
+178. `nvidia_h100` — Wikipedia, "Hopper (microarchitecture)" (H100: 80 billion transistors, TSMC 4N, 814 mm²). [link](https://en.wikipedia.org/wiki/Hopper_(microarchitecture))
+179. `nvidia_blackwell` — Wikipedia, "Blackwell (microarchitecture)" (B200: 208 billion transistors across two dies, TSMC 4NP). [link](https://en.wikipedia.org/wiki/Blackwell_(microarchitecture))
+180. `cerebras_wse3` — Cerebras, WSE-3 announcement (4 trillion transistors, 46,225 mm²), March 2024. [link](https://www.cerebras.ai/press-release/cerebras-announces-third-generation-wafer-scale-engine)
 
 ## Image sources
 
-160. `commons_dies` — Wikimedia Commons, Category: Intel microprocessor dies (Pauli Rautakorpi and others). [link](https://commons.wikimedia.org/wiki/Category:Intel_microprocessor_dies)
-161. `rautakorpi` — Pauli Rautakorpi (User:Birdman86), die-shot collection on Wikimedia Commons, CC BY 3.0. [link](https://commons.wikimedia.org/wiki/User:Birdman86)
-162. `fritzchens` — Fritzchens Fritz, die-shot album on Flickr (CC0 public-domain dedication). [link](https://www.flickr.com/photos/130561288@N04/albums/72157650403404920/)
-163. `commons_transistors` — Wikimedia Commons, Category: Early transistors. [link](https://commons.wikimedia.org/wiki/Category:Early_transistors)
+181. `commons_dies` — Wikimedia Commons, Category: Intel microprocessor dies (Pauli Rautakorpi and others). [link](https://commons.wikimedia.org/wiki/Category:Intel_microprocessor_dies)
+182. `rautakorpi` — Pauli Rautakorpi (User:Birdman86), die-shot collection on Wikimedia Commons, CC BY 3.0. [link](https://commons.wikimedia.org/wiki/User:Birdman86)
+183. `fritzchens` — Fritzchens Fritz, die-shot album on Flickr (CC0 public-domain dedication). [link](https://www.flickr.com/photos/130561288@N04/albums/72157650403404920/)
+184. `commons_transistors` — Wikimedia Commons, Category: Early transistors. [link](https://commons.wikimedia.org/wiki/Category:Early_transistors)
 
 ## Design inspiration
 
-164. `inspo_reactbits` — DavidHDev, react-bits — animated React components. [link](https://github.com/DavidHDev/react-bits)
-165. `inspo_magicui` — magicuidesign, magicui — animated components for design engineers. [link](https://github.com/magicuidesign/magicui)
-166. `inspo_animateui` — Animate UI — animated React components. [link](https://animate-ui.com/)
-167. `inspo_motionprimitives` — ibelick, motion-primitives — animated UI kit. [link](https://github.com/ibelick/motion-primitives)
-168. `inspo_fluid` — PavelDoGreat, WebGL-Fluid-Simulation. [link](https://github.com/PavelDoGreat/WebGL-Fluid-Simulation)
-169. `inspo_folio` — Bruno Simon, folio-2019 (three.js portfolio). [link](https://github.com/brunosimon/folio-2019)
-170. `inspo_gsap` — GreenSock, GSAP animation platform (used here with ScrollTrigger). [link](https://github.com/greensock/GSAP)
-171. `inspo_remotion` — remotion-dev, Remotion — programmatic video with React. [link](https://github.com/remotion-dev/remotion)
-172. `inspo_llmviz` — B. Bycroft, llm-viz — 3D visualization of a GPT-style LLM. [link](https://github.com/bbycroft/llm-viz)
-173. `inspo_transformer` — Polo Club (Georgia Tech), Transformer Explainer. [link](https://github.com/poloclub/transformer-explainer)
-174. `inspo_godseye` — bilawalsidhu, gods-eye-view — 3D globe spatial-intelligence viewer. [link](https://github.com/bilawalsidhu/gods-eye-view)
-175. `inspo_worldmonitor` — koala73, worldmonitor — real-time global intelligence dashboard. [link](https://github.com/koala73/worldmonitor)
-176. `threejs` — three.js — JavaScript 3D library (used for the architecture explorer). [link](https://threejs.org/)
+185. `inspo_reactbits` — DavidHDev, react-bits — animated React components. [link](https://github.com/DavidHDev/react-bits)
+186. `inspo_magicui` — magicuidesign, magicui — animated components for design engineers. [link](https://github.com/magicuidesign/magicui)
+187. `inspo_animateui` — Animate UI — animated React components. [link](https://animate-ui.com/)
+188. `inspo_motionprimitives` — ibelick, motion-primitives — animated UI kit. [link](https://github.com/ibelick/motion-primitives)
+189. `inspo_fluid` — PavelDoGreat, WebGL-Fluid-Simulation. [link](https://github.com/PavelDoGreat/WebGL-Fluid-Simulation)
+190. `inspo_folio` — Bruno Simon, folio-2019 (three.js portfolio). [link](https://github.com/brunosimon/folio-2019)
+191. `inspo_gsap` — GreenSock, GSAP animation platform (used here with ScrollTrigger). [link](https://github.com/greensock/GSAP)
+192. `inspo_remotion` — remotion-dev, Remotion — programmatic video with React. [link](https://github.com/remotion-dev/remotion)
+193. `inspo_llmviz` — B. Bycroft, llm-viz — 3D visualization of a GPT-style LLM. [link](https://github.com/bbycroft/llm-viz)
+194. `inspo_transformer` — Polo Club (Georgia Tech), Transformer Explainer. [link](https://github.com/poloclub/transformer-explainer)
+195. `inspo_godseye` — bilawalsidhu, gods-eye-view — 3D globe spatial-intelligence viewer. [link](https://github.com/bilawalsidhu/gods-eye-view)
+196. `inspo_worldmonitor` — koala73, worldmonitor — real-time global intelligence dashboard. [link](https://github.com/koala73/worldmonitor)
+197. `threejs` — three.js — JavaScript 3D library (used for the architecture explorer). [link](https://threejs.org/)
+
+## Niche devices
+
+198. `shockley1952` — W. Shockley, "A Unipolar 'Field-Effect' Transistor," Proc. IRE 40, 1365 (1952). [doi:10.1109/JRPROC.1952.273964](https://doi.org/10.1109/JRPROC.1952.273964)
+199. `bradley1953` — W. E. Bradley, "The Surface-Barrier Transistor: Part I—Principles of the Surface-Barrier Transistor," Proc. IRE 41, 1702 (1953). (Philco)
+200. `esaki1958` — L. Esaki, "New Phenomenon in Narrow Germanium p-n Junctions," Phys. Rev. 109, 603 (1958). [doi:10.1103/PhysRev.109.603](https://doi.org/10.1103/PhysRev.109.603)
+201. `weimer1962` — P. K. Weimer, "The TFT—A New Thin-Film Transistor," Proc. IRE 50, 1462 (1962). [doi:10.1109/JRPROC.1962.288190](https://doi.org/10.1109/JRPROC.1962.288190)
+202. `kahng1967` — D. Kahng, S. M. Sze, "A Floating Gate and Its Application to Memory Devices," Bell Syst. Tech. J. 46, 1288 (1967). [doi:10.1002/j.1538-7305.1967.tb01738.x](https://doi.org/10.1002/j.1538-7305.1967.tb01738.x)
+203. `boyle1970` — W. S. Boyle, G. E. Smith, "Charge Coupled Semiconductor Devices," Bell Syst. Tech. J. 49, 587 (1970). [doi:10.1002/j.1538-7305.1970.tb01790.x](https://doi.org/10.1002/j.1538-7305.1970.tb01790.x)
+204. `baliga1982igt` — B. J. Baliga, "Creation of the Insulated Gate Bipolar Transistor," in 75th Anniversary of the Transistor, Wiley-IEEE Press (2023); original insulated-gate rectifier reported at IEDM 1982. [doi:10.1002/9781394202478.ch25](https://doi.org/10.1002/9781394202478.ch25)
+205. `tsumura1986` — A. Tsumura, H. Koezuka, T. Ando, "Macromolecular Electronic Device: Field-Effect Transistor with a Polythiophene Thin Film," Appl. Phys. Lett. 49, 1210 (1986). [doi:10.1063/1.97417](https://doi.org/10.1063/1.97417)
+206. `nomura2004` — K. Nomura et al., "Room-Temperature Fabrication of Transparent Flexible Thin-Film Transistors Using Amorphous Oxide Semiconductors," Nature 432, 488 (2004). [doi:10.1038/nature03090](https://doi.org/10.1038/nature03090)
+207. `ozer2024` — E. Ozer et al., "Bendable Non-Silicon RISC-V Microprocessor" (Flex-RV, 0.6 µm IGZO TFTs on polyimide), Nature 634, 341 (2024). [doi:10.1038/s41586-024-07976-y](https://doi.org/10.1038/s41586-024-07976-y)
+208. `colinge2010` — J.-P. Colinge et al., "Nanowire Transistors without Junctions," Nature Nanotechnology 5, 225 (2010). [doi:10.1038/nnano.2010.15](https://doi.org/10.1038/nnano.2010.15)
+209. `tanaka2007` — H. Tanaka et al., "Bit Cost Scalable Technology with Punch and Plug Process for Ultra High Density Flash Memory," VLSI Technology Symp. (2007). [doi:10.1109/VLSIT.2007.4339708](https://doi.org/10.1109/VLSIT.2007.4339708)
+210. `vtfet2021` — IBM Newsroom, "IBM and Samsung Unveil Semiconductor Breakthrough That Defies Conventional Design" (vertical transport FET, VTFET), Dec 2021. [link](https://newsroom.ibm.com/2021-12-14-IBM-and-Samsung-Unveil-Semiconductor-Breakthrough-That-Defies-Conventional-Design)
+211. `colinge_soi` — J.-P. Colinge, Silicon-on-Insulator Technology: Materials to VLSI, 3rd ed., Springer (2004). [doi:10.1007/978-1-4419-9106-5](https://doi.org/10.1007/978-1-4419-9106-5)
+
+## Steep-slope & exotic
+
+212. `ionescu2011` — A. M. Ionescu, H. Riel, "Tunnel Field-Effect Transistors as Energy-Efficient Electronic Switches," Nature 479, 329 (2011). [doi:10.1038/nature10679](https://doi.org/10.1038/nature10679)
+213. `salahuddin2008` — S. Salahuddin, S. Datta, "Use of Negative Capacitance to Provide Voltage Amplification for Low Power Nanoscale Devices," Nano Letters 8, 405 (2008). [doi:10.1021/nl071804g](https://doi.org/10.1021/nl071804g)
+214. `boscke2011` — T. S. Böscke et al., "Ferroelectricity in Hafnium Oxide Thin Films," Appl. Phys. Lett. 99, 102903 (2011). [doi:10.1063/1.3634052](https://doi.org/10.1063/1.3634052)
+215. `fulton1987` — T. A. Fulton, G. J. Dolan, "Observation of Single-Electron Charging Effects in Small Tunnel Junctions," Phys. Rev. Lett. 59, 109 (1987). [doi:10.1103/PhysRevLett.59.109](https://doi.org/10.1103/PhysRevLett.59.109)
+216. `datta1990` — S. Datta, B. Das, "Electronic Analog of the Electro-Optic Modulator," Appl. Phys. Lett. 56, 665 (1990). [doi:10.1063/1.102730](https://doi.org/10.1063/1.102730)
+217. `strukov2008` — D. B. Strukov, G. S. Snider, D. R. Stewart, R. S. Williams, "The Missing Memristor Found," Nature 453, 80 (2008). [doi:10.1038/nature06932](https://doi.org/10.1038/nature06932)
+218. `kane1961` — E. O. Kane, "Theory of Tunneling," J. Appl. Phys. 32, 83 (1961). [doi:10.1063/1.1735965](https://doi.org/10.1063/1.1735965)
+219. `chua1971` — L. Chua, "Memristor—The Missing Circuit Element," IEEE Trans. Circuit Theory 18(5), 507 (1971). [doi:10.1109/TCT.1971.1083337](https://doi.org/10.1109/TCT.1971.1083337)

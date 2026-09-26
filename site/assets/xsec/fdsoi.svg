@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Fully depleted SOI (FD-SOI / UTBB)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Fully depleted SOI (FD-SOI / UTBB)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">A ~7 nm silicon film on a ~25 nm buried oxide: the thin body stays fully depleted; the substrate is a back gate.</text>
+<rect x="30.0" y="300.0" width="470.0" height="94.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="30.0" y="266.0" width="470.0" height="34.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="30.0" y="252.0" width="470.0" height="14.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<polygon points="70.0,252.0 200.0,252.0 200.0,214.0 70.0,214.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<polygon points="330.0,252.0 460.0,252.0 460.0,214.0 330.0,214.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="212.0" y="242.0" width="106.0" height="10.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="216.0" y="180.0" width="98.0" height="62.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<polyline points="265.0,211.0 522.0,211.0 540.0,211.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="211.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="215.0" fill="#e8ecf1" font-size="12.5">Gate</text>
+<polyline points="135.0,233.0 522.0,241.0 540.0,241.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="135.0" cy="233.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="245.0" fill="#e8ecf1" font-size="12.5">Raised epitaxial S/D</text>
+<polyline points="265.0,247.0 522.0,271.0 540.0,271.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="247.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="275.0" fill="#e8ecf1" font-size="12.5">HKMG stack</text>
+<polyline points="265.0,259.0 522.0,301.0 540.0,301.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="259.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="305.0" fill="#e8ecf1" font-size="12.5">Ultrathin Si film, ~7 nm</text>
+<polyline points="265.0,283.0 522.0,331.0 540.0,331.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="283.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="335.0" fill="#e8ecf1" font-size="12.5">Buried oxide (BOX), ~25 nm</text>
+<polyline points="265.0,347.0 522.0,361.0 540.0,361.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="347.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="365.0" fill="#e8ecf1" font-size="12.5">Silicon handle (back gate)</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Used in 28 nm and 22 nm FD-SOI for low-power IoT and RF</text>
+</svg>

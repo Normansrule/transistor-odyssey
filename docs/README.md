@@ -14,6 +14,9 @@
 | 10 | [Compound semiconductors: GaAs, InP, GaN, SiC, Ga₂O₃](10-compound-semiconductors.md) | 1966–2026 | ![](../figures/cross_sections/gan_hemt.svg) |
 | 11 | [Diamond, carbon nanotubes and beyond-CMOS](11-diamond-and-beyond.md) | 1989–2026 | ![](../figures/cross_sections/diamond_fet.svg) |
 | 12 | [How the simulations work](12-simulation.md) | — | ![](../figures/iv_families.png) |
-| 13 | [Glossary](13-glossary.md) | — | |
+| 13 | [Diamond electronics in depth](13-diamond-electronics.md) | 1989–2026 | ![](../figures/dopant_ionization.png) |
+| 14 | [Niche and forgotten transistors](14-niche-and-forgotten.md) | 1952–2024 | ![](../figures/cross_sections/igzo_tft.svg) |
+| 15 | [Steep-slope and exotic switches](15-steep-slope-and-exotic.md) | 1958–2026 | ![](../figures/steep_slope.png) |
+| 16 | [Glossary](16-glossary.md) | — | |
 
 Citations are written as an at-sign key in square brackets, e.g. `[@kilby1976]`. Every key resolves to an entry in [REFERENCES.md](../REFERENCES.md) (search the page for the key); `tests/test_data.py` fails if one does not.

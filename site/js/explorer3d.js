@@ -12,6 +12,7 @@ const M = {
   gan: ['#3aa6cf', 'GaN channel layer'], algan: ['#86cfe6', 'AlGaN barrier'], sic: ['#b8964f', 'SiC substrate'],
   buffer: ['#8fcfd4', 'AlN / buffer'], oxide: ['#8fcfd4', 'Bonding oxide'], bspdn: ['#d9825b', 'Backside power rail'],
   poly: ['#c95c50', 'Poly-Si gate'],
+  diamond: ['#dfe8f3', 'Single-crystal diamond'], dhg: ['#ff9ad5', '2D hole gas (C–H surface)'], al2o3: ['#8fcfd4', 'Al₂O₃ gate insulator / acceptor'],
 };
 
 // [material, cx, cy, cz, sx, sy, sz, explodeLevel, opacity]
@@ -60,6 +61,14 @@ const ARCH = {
       ['au', -2.8, 0.4, 0, 1.6, 0.64, 3.4, 2], ['au', 2.8, 0.4, 0, 1.6, 0.64, 3.4, 2],
       ['alox', 0, 0.11, 0, 3.8, 0.06, 3.4, 2.5], ['highk', 0, 0.24, 0, 3.8, 0.2, 3.4, 3], ['metal', 0, 0.75, 0, 3.2, 0.8, 3.2, 4]],
     paths: [{ y: 0.04, z: [-1.5, 1.5], x: [-3.4, 3.4] }],
+  },
+  diamond: {
+    label: 'Diamond FET', preset: null, holes: true,
+    caption: 'Hydrogen-terminated diamond FET: a 2D hole gas forms under the C–H surface, stabilized by Al₂O₃. Negative gate voltage strengthens it; positive depletes it.',
+    boxes: [['diamond', 0, -0.9, 0, 8, 1.8, 4, 0, 0.92], ['dhg', 0, 0.02, 0, 8, 0.04, 4, 1],
+      ['au', -2.9, 0.3, 0, 1.6, 0.56, 3.4, 2], ['au', 2.9, 0.3, 0, 1.6, 0.56, 3.4, 2],
+      ['al2o3', 0, 0.16, 0, 4.2, 0.24, 3.6, 2.5], ['metal', 0, 0.6, 0, 3.2, 0.64, 3.2, 3.5]],
+    paths: [{ y: 0.02, z: [-1.6, 1.6], x: [3.8, -3.8] }],
   },
   hemt: {
     label: 'GaN HEMT', preset: null,
@@ -116,7 +125,7 @@ export function initExplorer(DATA) {
     meshes = [];
     for (const [mat, cx, cy, cz, sx, sy, sz, lvl, op = 1] of A.boxes) {
       const col = new THREE.Color(M[mat][0]);
-      const glow = mat === 'chan' || mat === 'deg';
+      const glow = mat === 'chan' || mat === 'deg' || mat === 'dhg';
       const material = new THREE.MeshStandardMaterial({ color: col, roughness: mat === 'metal' || mat === 'au' || mat === 'cu' ? 0.35 : 0.7, metalness: mat === 'metal' || mat === 'au' || mat === 'cu' ? 0.55 : 0.05,
         transparent: op < 1, opacity: op, emissive: glow ? col : new THREE.Color(0x000000), emissiveIntensity: glow ? 0.9 : 0, depthWrite: op >= 1 });
       const mesh = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), material);
@@ -127,8 +136,9 @@ export function initExplorer(DATA) {
       group.add(mesh); meshes.push(mesh);
     }
     const seen = new Map(); for (const [mat] of A.boxes) if (!seen.has(M[mat][1])) seen.set(M[mat][1], M[mat][0]);
-    legend.innerHTML = [...seen].map(([n, c]) => `<div><i style="background:${c}"></i>${n}</div>`).join('') + '<div><i style="background:#ffe066;border-radius:50%"></i>Carriers (animated)</div>';
+    legend.innerHTML = [...seen].map(([n, c]) => `<div><i style="background:${c}"></i>${n}</div>`).join('') + `<div><i style="background:${A.holes ? '#ff9ad5' : '#ffe066'};border-radius:50%"></i>${A.holes ? 'Holes' : 'Electrons'} (animated)</div>`;
     caption.textContent = A.caption;
+    pMat.color.set(A.holes ? 0xff9ad5 : 0xffe066);
     parts.forEach(p => { p.path = (Math.random() * A.paths.length) | 0; });
     applyExplode(); updateFlow();
   }
@@ -145,6 +155,9 @@ export function initExplorer(DATA) {
       vgOut.textContent = vg.toFixed(2) + ' V';
       const ion = id(p, p.VDD, p.VDD), ioff = id(p, 0, p.VDD), i = id(p, vg, p.VDD);
       flow = Math.min(Math.max(Math.log10(i / ioff) / Math.log10(ion / ioff), 0), 1);
+    } else if (A.holes) { // diamond p-channel: slider maps +3 V … −6 V, threshold near +1 V
+      const vg = 3 - 9 * v; vgOut.textContent = vg.toFixed(2) + ' V';
+      flow = Math.min(Math.max((1 - vg) / 7, 0), 1) ** 0.8;
     } else { // HEMT: slider maps −6 V … +1 V, pinch-off near −4.5 V
       const vg = -6 + 7 * v; vgOut.textContent = vg.toFixed(2) + ' V';
       flow = Math.min(Math.max((vg + 4.5) / 5.5, 0), 1) ** 0.8;
@@ -160,9 +173,9 @@ export function initExplorer(DATA) {
     mouse.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
     ray.setFromCamera(mouse, camera);
     const hit = ray.intersectObjects(meshes, false)[0];
-    meshes.forEach(m => { if (!['chan', 'deg'].includes(m.userData.mat)) m.material.emissiveIntensity = 0; });
+    meshes.forEach(m => { if (!['chan', 'deg', 'dhg'].includes(m.userData.mat)) m.material.emissiveIntensity = 0; });
     if (hit) {
-      const m = hit.object; if (!['chan', 'deg'].includes(m.userData.mat)) { m.material.emissive = new THREE.Color(0xf2b84b); m.material.emissiveIntensity = 0.25; }
+      const m = hit.object; if (!['chan', 'deg', 'dhg'].includes(m.userData.mat)) { m.material.emissive = new THREE.Color(0xf2b84b); m.material.emissiveIntensity = 0.25; }
       tipEl.textContent = m.userData.name; tipEl.hidden = false; tipEl.style.left = (e.clientX - r.left) + 'px'; tipEl.style.top = (e.clientY - r.top) + 'px';
     } else tipEl.hidden = true;
   });
@@ -183,7 +196,7 @@ export function initExplorer(DATA) {
     if (visible) {
       const A = ARCH[arch]; const e = +exIn.value;
       const active = Math.round(N * flow);
-      const CH = ['sich', 'chan', 'deg', 'mos2'];
+      const CH = ['sich', 'chan', 'deg', 'mos2', 'dhg'];
       const lifts = A.paths.map(P => {
         const yy = Array.isArray(P.y) ? P.y[1] : P.y; let best = null, bd = 9;
         for (const m of meshes) { const d = Math.abs(m.userData.base - yy) + Math.abs(m.position.x - (P.x[0] + P.x[1]) / 2) * 0.01; if (CH.includes(m.userData.mat) && d < bd) { bd = d; best = m; } }

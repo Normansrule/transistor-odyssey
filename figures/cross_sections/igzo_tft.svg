@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="IGZO thin-film transistor (displays, Flex-RV)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">IGZO thin-film transistor (displays, Flex-RV)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Amorphous indium–gallium–zinc oxide on glass or plastic, made below ~350 °C.</text>
+<rect x="30.0" y="330.0" width="470.0" height="64.0" rx="0" fill="#6d7f99" fill-opacity="1.0"/>
+<rect x="180.0" y="300.0" width="170.0" height="30.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="140.0" y="280.0" width="250.0" height="20.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="150.0" y="262.0" width="230.0" height="18.0" rx="0" fill="#9fd67a" fill-opacity="1.0"/>
+<rect x="120.0" y="232.0" width="90.0" height="40.0" rx="0" fill="#b9c3cd" fill-opacity="1.0"/>
+<rect x="320.0" y="232.0" width="90.0" height="40.0" rx="0" fill="#b9c3cd" fill-opacity="1.0"/>
+<rect x="210.0" y="244.0" width="110.0" height="18.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<polyline points="165.0,252.0 522.0,218.0 540.0,218.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="165.0" cy="252.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="222.0" fill="#e8ecf1" font-size="12.5">Source</text>
+<polyline points="365.0,252.0 522.0,248.0 540.0,248.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="365.0" cy="252.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="252.0" fill="#e8ecf1" font-size="12.5">Drain</text>
+<polyline points="265.0,253.0 522.0,278.0 540.0,278.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="253.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="282.0" fill="#e8ecf1" font-size="12.5">Etch-stop / passivation</text>
+<polyline points="265.0,271.0 522.0,308.0 540.0,308.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="271.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="312.0" fill="#e8ecf1" font-size="12.5">a-IGZO channel (~20–50 nm)</text>
+<polyline points="265.0,290.0 522.0,338.0 540.0,338.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="290.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="342.0" fill="#e8ecf1" font-size="12.5">SiO₂ gate insulator</text>
+<polyline points="265.0,315.0 522.0,368.0 540.0,368.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="315.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="372.0" fill="#e8ecf1" font-size="12.5">Bottom gate (Mo)</text>
+<polyline points="265.0,362.0 522.0,398.0 540.0,398.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="362.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="402.0" fill="#e8ecf1" font-size="12.5">Glass or polyimide substrate</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Nomura et al., Nature 2004; Ozer et al., Nature 2024 (Flex-RV, 0.6 µm IGZO)</text>
+</svg>

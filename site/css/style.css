@@ -71,11 +71,11 @@ p { margin: 0; }
 .brand svg { width: 24px; height: 24px; }
 .nav-links { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
 .nav-links::-webkit-scrollbar { display: none; }
-.nav-links a { color: var(--ink-2); text-decoration: none; font-size: 14px; padding: 6px 10px; border-radius: 999px; white-space: nowrap; transition: color .2s, background .2s; }
+.nav-links a { color: var(--ink-2); text-decoration: none; font-size: 13.5px; padding: 6px 8px; border-radius: 999px; white-space: nowrap; transition: color .2s, background .2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--ink); background: var(--surface-2); }
 .nav-gh { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line-2); padding: 6px 12px; border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 13px; white-space: nowrap; }
 .nav-gh:hover { border-color: var(--amber); color: var(--amber-2); }
-@media (max-width: 860px) { .nav-links { display: none; } .nav-gh { margin-left: auto; } }
+@media (max-width: 1100px) { .nav-links { display: none; } .nav-gh { margin-left: auto; } }
 
 /* ---------- hero ---------- */
 .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); isolation: isolate; }
@@ -349,3 +349,37 @@ footer a:hover { color: var(--amber-2); }
 .reveal { transition: transform .8s var(--ease), opacity .8s var(--ease); }
 .js .reveal.pre { transform: translateY(16px); }
 @media (prefers-reduced-motion: reduce) { .js .reveal.pre { transform: none; } }
+
+/* ---------- diamond lab ---------- */
+.tiles-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 720px) { .tiles-3 { grid-template-columns: 1fr; } }
+#dopLegend { display: flex; gap: 16px; flex-wrap: wrap; }
+#dopLegend span { display: inline-flex; align-items: center; gap: 8px; }
+#dopLegend i { width: 14px; height: 3px; border-radius: 2px; }
+.dia-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 960px) { .dia-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .dia-grid { grid-template-columns: 1fr; } }
+.dia-fig { margin: 0; padding: 12px; display: grid; gap: 10px; align-content: start; }
+.dia-fig img { border-radius: var(--r); background: #10141a; }
+.dia-fig figcaption { font-size: 13.5px; color: var(--ink-2); }
+.dia-timeline { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 1px solid var(--line-2); display: grid; gap: 18px; }
+.dia-item { display: grid; grid-template-columns: 64px 1fr; gap: 14px; position: relative; }
+.dia-item::before { content: ""; position: absolute; left: -24px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: #f29fc8; box-shadow: 0 0 0 3px var(--bg); }
+.dia-year { font: 600 18px var(--display); color: var(--amber); font-variant-numeric: tabular-nums; }
+.dia-item b { font-size: 15px; }
+.dia-item p { font-size: 14px; color: var(--ink-2); margin: 2px 0 6px; }
+
+/* ---------- niche atlas ---------- */
+.niche-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+.ncard { padding: 14px; display: grid; gap: 8px; align-content: start; }
+.ncard img { border-radius: var(--r); background: #10141a; border: 1px solid var(--line); }
+.ncard h3 { font-size: 18px; }
+.nmeta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.nyear { font: 600 22px var(--display); font-variant-numeric: tabular-nums; }
+.ncat { font: 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ncard p { font-size: 14px; color: var(--ink-2); }
+.pill { font: 600 11px var(--mono); padding: 3px 8px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+.pill.mainstream { color: #0ca30c; border-color: rgba(12,163,12,.5); }
+.pill.niche { color: #7fd3d0; border-color: rgba(127,211,208,.45); }
+.pill.research { color: #f2b84b; border-color: rgba(242,184,75,.5); }
+.pill.museum { color: var(--ink-2); border-color: var(--line-2); }

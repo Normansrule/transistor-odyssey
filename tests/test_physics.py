@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "sim"))
-from transistor_sim import mosfet, hemt, materials, scaling, bjt  # noqa: E402
+from transistor_sim import mosfet, hemt, materials, scaling, bjt, dopants, steep  # noqa: E402
 
 
 def test_ideal_subthreshold_limit():
@@ -107,3 +107,32 @@ def test_bjt_60mv_per_decade():
     decades = math.log10(ic[i2] / ic[i1])
     mv_per_dec = (vbe[i2] - vbe[i1]) / decades * 1e3
     assert mv_per_dec == pytest.approx(59.5, abs=1.5)
+
+
+def test_boron_ionization_silicon_vs_diamond():
+    si = dopants.ionized_fraction(dopants.DOPANTS["Si:B"], 1e17, 300.0)
+    dia = dopants.ionized_fraction(dopants.DOPANTS["C:B"], 1e17, 300.0)
+    assert si > 0.8          # essentially fully ionized
+    assert dia < 0.02        # well under 2 % (literature: ~0.1-1 %)
+    hot = dopants.ionized_fraction(dopants.DOPANTS["C:B"], 1e17, 600.0)
+    assert hot > 10 * dia    # heating helps diamond a lot
+
+
+def test_diamond_donor_depths_ordered():
+    p300 = dopants.ionized_fraction(dopants.DOPANTS["C:P"], 1e17, 300.0)
+    n300 = dopants.ionized_fraction(dopants.DOPANTS["C:N"], 1e17, 300.0)
+    b300 = dopants.ionized_fraction(dopants.DOPANTS["C:B"], 1e17, 300.0)
+    assert n300 < p300 < b300
+
+
+def test_tfet_beats_boltzmann_but_ideal_mosfet_cannot():
+    v = np.linspace(0, 0.8, 801)
+    assert steep.min_swing(v, steep.tfet_current(v)) < 59.5
+    ideal = mosfet.preset("2011_22nm_finfet", n=1.0, eta=0.0, Rs_ohm_um=0)
+    ss = mosfet.metrics(ideal)["SS_mV_dec"]
+    assert ss == pytest.approx(59.5, abs=1.5)
+
+
+def test_tfet_on_current_is_low():
+    # The known TFET weakness: far less drive than a FinFET at similar voltage
+    assert float(steep.tfet_current(0.7)) < 0.1 * mosfet.metrics(mosfet.PRESETS["2011_22nm_finfet"])["Ion_uA_um"] * 1e-6

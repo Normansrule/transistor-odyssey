@@ -8,6 +8,8 @@ In practice, dopants sit deep in the gap (boron 0.37 eV, phosphorus 0.57 eV), so
 
 ![Diamond FET](../figures/cross_sections/diamond_fet.svg)
 
+**Chapter 13 goes much deeper**: doping physics with a simulation, transfer doping, inversion and vertical MOSFETs, kilovolt records, wafers and GaN-on-diamond. Chapters 14 and 15 cover other niche and exotic switches.
+
 Where diamond already ships: heat spreaders (GaN-on-diamond), radiation detectors, and nitrogen-vacancy centres for quantum sensing. Large, cheap, low-defect wafers are the missing piece.
 
 ## Carbon nanotubes

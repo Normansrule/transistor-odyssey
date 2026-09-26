@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Floating-gate flash cell (Kahng &amp; Sze 1967)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Floating-gate flash cell (Kahng &amp; Sze 1967)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Electrons tunnel onto an isolated gate and stay for years, shifting V_T: one bit.</text>
+<rect x="40.0" y="250.0" width="440.0" height="140.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<polygon points="70.0,250.0 200.0,250.0 196.0,292.0 74.0,292.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<polygon points="320.0,250.0 450.0,250.0 446.0,292.0 324.0,292.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="196.0" y="242.0" width="128.0" height="8.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="200.0" y="210.0" width="120.0" height="32.0" rx="0" fill="#c95c50" fill-opacity="1.0"/>
+<rect x="196.0" y="198.0" width="128.0" height="12.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="200.0" y="150.0" width="120.0" height="48.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<circle cx="225.0" cy="226.0" r="5.0" fill="#3f7fe0"/>
+<circle cx="255.0" cy="226.0" r="5.0" fill="#3f7fe0"/>
+<circle cx="285.0" cy="226.0" r="5.0" fill="#3f7fe0"/>
+<polyline points="260.0,174.0 522.0,174.0 540.0,174.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="174.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="178.0" fill="#e8ecf1" font-size="12.5">Control gate (word line)</text>
+<polyline points="260.0,204.0 522.0,204.0 540.0,204.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="204.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="208.0" fill="#e8ecf1" font-size="12.5">ONO inter-poly dielectric</text>
+<polyline points="260.0,226.0 522.0,234.0 540.0,234.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="226.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="238.0" fill="#e8ecf1" font-size="12.5">Floating gate (poly-Si)</text>
+<polyline points="260.0,246.0 522.0,264.0 540.0,264.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="246.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="268.0" fill="#e8ecf1" font-size="12.5">Tunnel oxide (~8 nm)</text>
+<polyline points="135.0,271.0 522.0,294.0 540.0,294.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="135.0" cy="271.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="298.0" fill="#e8ecf1" font-size="12.5">n⁺ source</text>
+<polyline points="385.0,271.0 522.0,324.0 540.0,324.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="385.0" cy="271.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="328.0" fill="#e8ecf1" font-size="12.5">n⁺ drain</text>
+<polyline points="260.0,320.0 522.0,354.0 540.0,354.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="320.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="358.0" fill="#e8ecf1" font-size="12.5">p-type silicon</text>
+</svg>

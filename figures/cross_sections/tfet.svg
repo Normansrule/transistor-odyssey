@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Tunnel FET (band-to-band tunnelling)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Tunnel FET (band-to-band tunnelling)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">p⁺ source, intrinsic channel, n⁺ drain: the gate lets electrons tunnel from the source valence band.</text>
+<rect x="30.0" y="320.0" width="470.0" height="74.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="30.0" y="300.0" width="470.0" height="20.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="60.0" y="252.0" width="140.0" height="48.0" rx="0" fill="#e07f3f" fill-opacity="1.0"/>
+<rect x="200.0" y="252.0" width="130.0" height="48.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="330.0" y="252.0" width="140.0" height="48.0" rx="0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="196.0" y="240.0" width="138.0" height="12.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="200.0" y="180.0" width="130.0" height="60.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<line x1="190.0" y1="276.0" x2="214.0" y2="276.0" stroke="#ffe066" stroke-width="3" stroke-linecap="round"/>
+<polyline points="265.0,210.0 522.0,182.0 540.0,182.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="210.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="186.0" fill="#e8ecf1" font-size="12.5">Gate</text>
+<polyline points="265.0,246.0 522.0,218.0 540.0,218.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="246.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="222.0" fill="#e8ecf1" font-size="12.5">High-k</text>
+<polyline points="130.0,276.0 522.0,248.0 540.0,248.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="130.0" cy="276.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="252.0" fill="#e8ecf1" font-size="12.5">p⁺ source</text>
+<polyline points="265.0,276.0 522.0,278.0 540.0,278.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="276.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="282.0" fill="#e8ecf1" font-size="12.5">Intrinsic channel</text>
+<polyline points="400.0,276.0 522.0,308.0 540.0,308.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="400.0" cy="276.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="312.0" fill="#e8ecf1" font-size="12.5">n⁺ drain</text>
+<polyline points="202.0,276.0 522.0,338.0 540.0,338.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="202.0" cy="276.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="342.0" fill="#e8ecf1" font-size="12.5">Tunnelling junction (sub-60 mV/dec)</text>
+<polyline points="265.0,310.0 522.0,368.0 540.0,368.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="310.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="372.0" fill="#e8ecf1" font-size="12.5">Buried oxide</text>
+<polyline points="265.0,357.0 522.0,398.0 540.0,398.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="357.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="402.0" fill="#e8ecf1" font-size="12.5">Substrate</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Ionescu &amp; Riel, Nature 2011; on-current is the open problem</text>
+</svg>

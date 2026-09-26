@@ -37,7 +37,7 @@ def _collect_refs(node, out):
 
 def test_all_data_refs_resolve():
     used = set()
-    for name in ("chips.json", "timeline.json", "materials.json"):
+    for name in ("chips.json", "timeline.json", "materials.json", "niche.json", "diamond.json"):
         _collect_refs(load(name), used)
     missing = sorted(u for u in used if u not in REFS)
     assert not missing, missing
@@ -76,3 +76,12 @@ def test_nodes_csv():
     assert len(rows) >= 20
     years = [int(r["year"]) for r in rows]
     assert years == sorted(years)
+
+
+def test_niche_archs_exist():
+    import sys
+    sys.path.insert(0, str(ROOT / "sim"))
+    from transistor_sim.crosssection import ARCHS
+    for dev in load("niche.json")["devices"]:
+        assert dev["arch"] in ARCHS, dev["id"]
+        assert dev["status"] in {"museum", "niche", "mainstream", "research"}

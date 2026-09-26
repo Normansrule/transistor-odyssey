@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Negative-capacitance FET / FeFET">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Negative-capacitance FET / FeFET</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">A ferroelectric layer in the gate stack: steeper switching (NC) or non-volatile memory (FeFET).</text>
+<rect x="40.0" y="250.0" width="440.0" height="140.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<polygon points="70.0,250.0 200.0,250.0 196.0,292.0 74.0,292.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<polygon points="320.0,250.0 450.0,250.0 446.0,292.0 324.0,292.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="196.0" y="244.0" width="128.0" height="6.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="196.0" y="226.0" width="128.0" height="18.0" rx="0" fill="#e07fb0" fill-opacity="1.0"/>
+<rect x="200.0" y="170.0" width="120.0" height="56.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<polyline points="260.0,198.0 522.0,198.0 540.0,198.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="198.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="202.0" fill="#e8ecf1" font-size="12.5">Gate metal</text>
+<polyline points="260.0,235.0 522.0,235.0 540.0,235.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="235.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="239.0" fill="#e8ecf1" font-size="12.5">Ferroelectric Hf₀.₅Zr₀.₅O₂</text>
+<polyline points="260.0,247.0 522.0,265.0 540.0,265.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="247.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="269.0" fill="#e8ecf1" font-size="12.5">Interfacial SiO₂</text>
+<polyline points="135.0,271.0 522.0,295.0 540.0,295.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="135.0" cy="271.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="299.0" fill="#e8ecf1" font-size="12.5">n⁺ source</text>
+<polyline points="385.0,271.0 522.0,325.0 540.0,325.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="385.0" cy="271.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="329.0" fill="#e8ecf1" font-size="12.5">n⁺ drain</text>
+<polyline points="260.0,320.0 522.0,355.0 540.0,355.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="260.0" cy="320.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="359.0" fill="#e8ecf1" font-size="12.5">Silicon</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Salahuddin &amp; Datta 2008 (NC); ferroelectric HfO₂: Böscke et al. 2011</text>
+</svg>

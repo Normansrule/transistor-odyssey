@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Single-electron transistor (Fulton &amp; Dolan 1987)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Single-electron transistor (Fulton &amp; Dolan 1987)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">A tiny island between two tunnel barriers: current flows one electron at a time (Coulomb blockade).</text>
+<rect x="40.0" y="330.0" width="450.0" height="64.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="60.0" y="230.0" width="140.0" height="60.0" rx="0" fill="#b9c3cd" fill-opacity="1.0"/>
+<rect x="330.0" y="230.0" width="140.0" height="60.0" rx="0" fill="#b9c3cd" fill-opacity="1.0"/>
+<rect x="200.0" y="250.0" width="12.0" height="20.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="318.0" y="250.0" width="12.0" height="20.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="212.0" y="236.0" width="106.0" height="48.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="225.0" y="150.0" width="80.0" height="36.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<line x1="265.0" y1="186.0" x2="265.0" y2="236.0" stroke="#8a94a3" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 3"/>
+<polyline points="265.0,168.0 522.0,168.0 540.0,168.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="168.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="172.0" fill="#e8ecf1" font-size="12.5">Gate (capacitively coupled)</text>
+<polyline points="130.0,260.0 522.0,260.0 540.0,260.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="130.0" cy="260.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="264.0" fill="#e8ecf1" font-size="12.5">Source lead</text>
+<polyline points="400.0,260.0 522.0,290.0 540.0,290.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="400.0" cy="260.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="294.0" fill="#e8ecf1" font-size="12.5">Drain lead</text>
+<polyline points="206.0,260.0 522.0,320.0 540.0,320.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="206.0" cy="260.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="324.0" fill="#e8ecf1" font-size="12.5">Tunnel barrier</text>
+<polyline points="265.0,260.0 522.0,350.0 540.0,350.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="260.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="354.0" fill="#e8ecf1" font-size="12.5">Metal island (dot)</text>
+<polyline points="265.0,362.0 522.0,380.0 540.0,380.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="362.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="384.0" fill="#e8ecf1" font-size="12.5">Substrate</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Island charging energy e²/2C must beat kT: tens of nm at cryo, ~1 nm at room temperature</text>
+</svg>

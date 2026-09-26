@@ -145,12 +145,6 @@
    "url": "https://www.computerhistory.org/siliconengine/"
   },
   {
-   "id": "visual6502",
-   "cat": "Simulation",
-   "cite": "G. James, B. Silverman, B. Silverman, \"Visualizing a Classic CPU in Action: The 6502,\" ACM SIGGRAPH 2010 Talks; transistor-level simulator at visual6502.org.",
-   "url": "http://www.visual6502.org/"
-  },
-  {
    "id": "shirriff",
    "cat": "History",
    "cite": "K. Shirriff, Righto.com — die-level reverse engineering of the 4004, 8008, 8086, 386 and others.",
@@ -161,6 +155,112 @@
    "cat": "History",
    "cite": "K. Shirriff, \"The Surprising Story of the First Microprocessors,\" IEEE Spectrum (2016).",
    "url": "https://spectrum.ieee.org/the-surprising-story-of-the-first-microprocessors"
+  },
+  {
+   "id": "visual6502",
+   "cat": "Simulation",
+   "cite": "G. James, B. Silverman, B. Silverman, \"Visualizing a Classic CPU in Action: The 6502,\" ACM SIGGRAPH 2010 Talks; transistor-level simulator at visual6502.org.",
+   "url": "http://www.visual6502.org/"
+  },
+  {
+   "id": "nagel1973",
+   "cat": "Simulation",
+   "cite": "L. W. Nagel, D. O. Pederson, \"SPICE (Simulation Program with Integrated Circuit Emphasis),\" UC Berkeley ERL Memo M382 (1973).",
+   "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/1973/22871.html"
+  },
+  {
+   "id": "nagel1975",
+   "cat": "Simulation",
+   "cite": "IEEE Milestone: SPICE (Simulation Program with Integrated Circuit Emphasis), 1969-1970. Engineering and Technology History Wiki.",
+   "url": "https://ethw.org/Milestones:SPICE_(Simulation_Program_with_Integrated_Circuit_Emphasis),_1969-1970"
+  },
+  {
+   "id": "ngspice",
+   "cat": "Simulation",
+   "cite": "ngspice — open-source mixed-signal circuit simulator.",
+   "url": "https://ngspice.sourceforge.io/"
+  },
+  {
+   "id": "klayout",
+   "cat": "Simulation",
+   "cite": "KLayout — layout viewer and editor (GDSII/OASIS).",
+   "url": "https://www.klayout.de/"
+  },
+  {
+   "id": "magic",
+   "cat": "Simulation",
+   "cite": "Magic VLSI Layout Tool (J. Ousterhout et al., UC Berkeley, 1980s; maintained by R. T. Edwards).",
+   "url": "http://opencircuitdesign.com/magic/"
+  },
+  {
+   "id": "openroad",
+   "cat": "Simulation",
+   "cite": "The OpenROAD Project — open RTL-to-GDS flow.",
+   "url": "https://theopenroadproject.org/"
+  },
+  {
+   "id": "gdstk",
+   "cat": "Simulation",
+   "cite": "L. H. Gabrielli, gdstk — Python/C++ library for GDSII and OASIS.",
+   "url": "https://github.com/heitzmann/gdstk"
+  },
+  {
+   "id": "sky130",
+   "cat": "Simulation",
+   "cite": "SkyWater / Google, SKY130 open-source 130 nm PDK.",
+   "url": "https://github.com/google/skywater-pdk"
+  },
+  {
+   "id": "gf180",
+   "cat": "Simulation",
+   "cite": "GlobalFoundries / Google, GF180MCU open-source 180 nm PDK.",
+   "url": "https://github.com/google/gf180mcu-pdk"
+  },
+  {
+   "id": "ihp_sg13g2",
+   "cat": "Simulation",
+   "cite": "IHP, SG13G2 open-source 130 nm SiGe BiCMOS PDK.",
+   "url": "https://github.com/IHP-GmbH/IHP-Open-PDK"
+  },
+  {
+   "id": "tinytapeout",
+   "cat": "Simulation",
+   "cite": "Tiny Tapeout — shared-shuttle ASIC tapeouts for education.",
+   "url": "https://tinytapeout.com/"
+  },
+  {
+   "id": "devsim",
+   "cat": "Simulation",
+   "cite": "DEVSIM — open-source TCAD semiconductor device simulator.",
+   "url": "https://devsim.org/"
+  },
+  {
+   "id": "suprem",
+   "cat": "Simulation",
+   "cite": "D. A. Antoniadis, S. E. Hansen, R. W. Dutton, \"SUPREM II — A Program for IC Process Modeling and Simulation,\" Stanford Electronics Laboratories Tech. Rep. 5019-2 (1978)."
+  },
+  {
+   "id": "pisces",
+   "cat": "Simulation",
+   "cite": "M. R. Pinto, C. S. Rafferty, R. W. Dutton, \"PISCES-II: Poisson and Continuity Equation Solver,\" Stanford Electronics Laboratories (1984)."
+  },
+  {
+   "id": "nanohub",
+   "cat": "Simulation",
+   "cite": "nanoHUB.org — MOSFET, FinFET, nanowire and 2D-FET simulation tools (Purdue / NCN).",
+   "url": "https://nanohub.org/"
+  },
+  {
+   "id": "sentaurus",
+   "cat": "Simulation",
+   "cite": "Synopsys Sentaurus TCAD (industry process and device simulation).",
+   "url": "https://www.synopsys.com/manufacturing/tcad.html"
+  },
+  {
+   "id": "stam1999",
+   "cat": "Simulation",
+   "cite": "J. Stam, \"Stable Fluids,\" Proc. SIGGRAPH '99, 121 (1999) — algorithm behind the site's WebGL fluid hero.",
+   "doi": "10.1145/311535.311548"
   },
   {
    "id": "moore1965",
@@ -786,6 +886,132 @@
    "doi": "10.1088/1361-6463/ab4eab"
   },
   {
+   "id": "koizumi1997",
+   "cat": "Diamond",
+   "cite": "S. Koizumi, M. Kamo, Y. Sato, H. Ozaki, T. Inuzuka, \"Growth and Characterization of Phosphorous Doped {111} Homoepitaxial Diamond Thin Films,\" Appl. Phys. Lett. 71, 1065 (1997).",
+   "doi": "10.1063/1.119729"
+  },
+  {
+   "id": "strobel2004",
+   "cat": "Diamond",
+   "cite": "P. Strobel, M. Riedel, J. Ristein, L. Ley, \"Surface Transfer Doping of Diamond,\" Nature 430, 439 (2004).",
+   "doi": "10.1038/nature02751"
+  },
+  {
+   "id": "matsumoto2016",
+   "cat": "Diamond",
+   "cite": "T. Matsumoto et al., \"Inversion Channel Diamond Metal-Oxide-Semiconductor Field-Effect Transistor with Normally Off Characteristics,\" Scientific Reports 6, 31585 (2016).",
+   "doi": "10.1038/srep31585"
+  },
+  {
+   "id": "schreck2017",
+   "cat": "Diamond",
+   "cite": "M. Schreck, S. Gsell, R. Brescia, M. Fischer, \"Ion Bombardment Induced Buried Lateral Growth: The Key Mechanism for the Synthesis of Single Crystal Diamond Wafers,\" Scientific Reports 7, 44462 (2017).",
+   "doi": "10.1038/srep44462"
+  },
+  {
+   "id": "df2023",
+   "cat": "Diamond",
+   "cite": "Semiconductor Today, \"Diamond Foundry Creates First 100mm Single-Crystal Diamond Wafer\" (heteroepitaxy; 6 Nov 2023).",
+   "url": "https://www.semiconductor-today.com/news_items/2023/nov/diamond-foundry-061123.shtml"
+  },
+  {
+   "id": "orbray_wafers",
+   "cat": "Diamond",
+   "cite": "Orbray, \"Diamond Wafers: Production Technologies and Applications\" (heteroepitaxial diamond on sapphire, inch-scale wafers).",
+   "url": "https://orbray.com/magazine_en/archives/3456"
+  },
+  {
+   "id": "oi2024",
+   "cat": "Diamond",
+   "cite": "N. Oi et al., vertical p-channel diamond MOSFETs with 0.7 A single-device drain current, IEEE Electron Device Lett. (Aug 2024); summary in Semiconductor Today, \"High-Current Vertical Diamond MOSFETs.\"",
+   "doi": "10.1109/LED.2024.3427423"
+  },
+  {
+   "id": "jvstb2025_4266",
+   "cat": "Diamond",
+   "cite": "\"High Off-State Voltage (4266 V) Diamond Metal Oxide Semiconductor Field Effect Transistors,\" J. Vac. Sci. Technol. B 43(4), 042201 (2025).",
+   "url": "https://pubs.aip.org/avs/jvb/article/43/4/042201/3347764/High-off-state-voltage-4266-V-diamond-metal-oxide"
+  },
+  {
+   "id": "apl2025_17kv",
+   "cat": "Diamond",
+   "cite": "\"Normally-Off Boron-Doped Diamond MOSFETs with a Breakdown Voltage over 1.7 kV,\" Appl. Phys. Lett. 127(4), 042601 (2025).",
+   "url": "https://pubs.aip.org/aip/apl/article/127/4/042601/3356215/Normally-off-boron-doped-diamond-MOSFETs-with-a"
+  },
+  {
+   "id": "modulation3326",
+   "cat": "Diamond",
+   "cite": "\"3326-V Modulation-Doped Diamond MOSFETs\" (2022), ResearchGate record.",
+   "url": "https://www.researchgate.net/publication/361180454_3326-V_Modulation-Doped_Diamond_MOSFETs"
+  },
+  {
+   "id": "pds2025",
+   "cat": "Diamond",
+   "cite": "DIGITIMES, \"Japanese Startup Pushes Diamond Semiconductors toward Commercialization in EVs and Satellites\" (Power Diamond Systems, Waseda spin-out; SEMICON Japan 2025 demo; JAXA collaboration), Dec 2025.",
+   "url": "https://www.digitimes.com/news/a20251224PD232/diamond-semiconductors-startup-jaxa-2025.html"
+  },
+  {
+   "id": "compoundsemi_pds",
+   "cat": "Diamond",
+   "cite": "Compound Semiconductor, \"Japanese Start-Up Demos Diamond MOSFET Breakthroughs.\"",
+   "url": "https://compoundsemiconductor.net/article/123734/Japanese_start-up_demos_diamond_MOSFET_breakthroughs"
+  },
+  {
+   "id": "felbinger2007",
+   "cat": "Diamond",
+   "cite": "J. G. Felbinger et al., \"Comparison of GaN HEMTs on Diamond and SiC Substrates,\" IEEE Electron Device Lett. 28(11), 948 (2007).",
+   "url": "https://ieeexplore.ieee.org/document/4367547/"
+  },
+  {
+   "id": "gan_diamond_tbr",
+   "cat": "Diamond",
+   "cite": "\"Thermal Boundary Resistance Reduction by Interfacial Nanopatterning for GaN-on-Diamond Electronics Applications,\" ACS Appl. Electron. Mater. (2025).",
+   "doi": "10.1021/acsaelm.5c00119"
+  },
+  {
+   "id": "gan_diamond_tbr2021",
+   "cat": "Diamond",
+   "cite": "\"Record-Low Thermal Boundary Resistance between Diamond and GaN-on-SiC for Enabling Radiofrequency Device Cooling,\" ACS Appl. Mater. Interfaces (2021).",
+   "doi": "10.1021/acsami.1c13833"
+  },
+  {
+   "id": "doherty2013",
+   "cat": "Diamond",
+   "cite": "M. W. Doherty et al., \"The Nitrogen-Vacancy Colour Centre in Diamond,\" Physics Reports 528, 1 (2013).",
+   "doi": "10.1016/j.physrep.2013.02.001"
+  },
+  {
+   "id": "csmantech2024",
+   "cat": "Diamond",
+   "cite": "\"Progress in Diamond MOSFET Technologies,\" CS MANTECH 2024 digest.",
+   "url": "https://csmantech.org/wp-content/uploads/2024/06/4.1.2.2024-Progress-in-Diamond-MOSFET-Technologies-.pdf"
+  },
+  {
+   "id": "hterm_review2025",
+   "cat": "Diamond",
+   "cite": "\"Hydrogen-Terminated and Oxygen-Terminated Diamond Metal-Oxide-Semiconductor Field-Effect Transistors,\" Functional Diamond (2025).",
+   "doi": "10.1080/26941112.2025.2551496"
+  },
+  {
+   "id": "mpcvd_review2026",
+   "cat": "Diamond",
+   "cite": "\"Advances and Challenges in Single Crystal Diamond Growth via Microwave Plasma Chemical Vapor Deposition,\" Functional Diamond (2026).",
+   "doi": "10.1080/26941112.2026.2669069"
+  },
+  {
+   "id": "heteroepi_review2024",
+   "cat": "Diamond",
+   "cite": "\"Recent Progress on Heteroepitaxial Growth of Single Crystal Diamond Films,\" Electron (Wiley, 2024).",
+   "doi": "10.1002/elt2.70"
+  },
+  {
+   "id": "pen_diamond",
+   "cat": "Diamond",
+   "cite": "Power Electronics News, \"The Quest to Make Diamond as Available as Silicon.\"",
+   "url": "https://www.powerelectronicsnews.com/the-quest-to-make-diamond-as-available-as-silicon/"
+  },
+  {
    "id": "likharev1991",
    "cat": "Beyond CMOS",
    "cite": "K. K. Likharev, V. K. Semenov, \"RSFQ Logic/Memory Family: A New Josephson-Junction Technology for Sub-Terahertz-Clock-Frequency Digital Systems,\" IEEE Trans. Appl. Supercond. 1(1), 3 (1991).",
@@ -796,106 +1022,6 @@
    "cat": "Beyond CMOS",
    "cite": "J.-W. Han, J. S. Oh, M. Meyyappan, \"Vacuum Nanoelectronics: Back to the Future?—Gate Insulated Nanoscale Vacuum Channel Transistor,\" Appl. Phys. Lett. 100, 213505 (2012).",
    "doi": "10.1063/1.4717751"
-  },
-  {
-   "id": "nagel1973",
-   "cat": "Simulation",
-   "cite": "L. W. Nagel, D. O. Pederson, \"SPICE (Simulation Program with Integrated Circuit Emphasis),\" UC Berkeley ERL Memo M382 (1973).",
-   "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/1973/22871.html"
-  },
-  {
-   "id": "nagel1975",
-   "cat": "Simulation",
-   "cite": "IEEE Milestone: SPICE (Simulation Program with Integrated Circuit Emphasis), 1969-1970. Engineering and Technology History Wiki.",
-   "url": "https://ethw.org/Milestones:SPICE_(Simulation_Program_with_Integrated_Circuit_Emphasis),_1969-1970"
-  },
-  {
-   "id": "ngspice",
-   "cat": "Simulation",
-   "cite": "ngspice — open-source mixed-signal circuit simulator.",
-   "url": "https://ngspice.sourceforge.io/"
-  },
-  {
-   "id": "klayout",
-   "cat": "Simulation",
-   "cite": "KLayout — layout viewer and editor (GDSII/OASIS).",
-   "url": "https://www.klayout.de/"
-  },
-  {
-   "id": "magic",
-   "cat": "Simulation",
-   "cite": "Magic VLSI Layout Tool (J. Ousterhout et al., UC Berkeley, 1980s; maintained by R. T. Edwards).",
-   "url": "http://opencircuitdesign.com/magic/"
-  },
-  {
-   "id": "openroad",
-   "cat": "Simulation",
-   "cite": "The OpenROAD Project — open RTL-to-GDS flow.",
-   "url": "https://theopenroadproject.org/"
-  },
-  {
-   "id": "gdstk",
-   "cat": "Simulation",
-   "cite": "L. H. Gabrielli, gdstk — Python/C++ library for GDSII and OASIS.",
-   "url": "https://github.com/heitzmann/gdstk"
-  },
-  {
-   "id": "sky130",
-   "cat": "Simulation",
-   "cite": "SkyWater / Google, SKY130 open-source 130 nm PDK.",
-   "url": "https://github.com/google/skywater-pdk"
-  },
-  {
-   "id": "gf180",
-   "cat": "Simulation",
-   "cite": "GlobalFoundries / Google, GF180MCU open-source 180 nm PDK.",
-   "url": "https://github.com/google/gf180mcu-pdk"
-  },
-  {
-   "id": "ihp_sg13g2",
-   "cat": "Simulation",
-   "cite": "IHP, SG13G2 open-source 130 nm SiGe BiCMOS PDK.",
-   "url": "https://github.com/IHP-GmbH/IHP-Open-PDK"
-  },
-  {
-   "id": "tinytapeout",
-   "cat": "Simulation",
-   "cite": "Tiny Tapeout — shared-shuttle ASIC tapeouts for education.",
-   "url": "https://tinytapeout.com/"
-  },
-  {
-   "id": "devsim",
-   "cat": "Simulation",
-   "cite": "DEVSIM — open-source TCAD semiconductor device simulator.",
-   "url": "https://devsim.org/"
-  },
-  {
-   "id": "suprem",
-   "cat": "Simulation",
-   "cite": "D. A. Antoniadis, S. E. Hansen, R. W. Dutton, \"SUPREM II — A Program for IC Process Modeling and Simulation,\" Stanford Electronics Laboratories Tech. Rep. 5019-2 (1978)."
-  },
-  {
-   "id": "pisces",
-   "cat": "Simulation",
-   "cite": "M. R. Pinto, C. S. Rafferty, R. W. Dutton, \"PISCES-II: Poisson and Continuity Equation Solver,\" Stanford Electronics Laboratories (1984)."
-  },
-  {
-   "id": "nanohub",
-   "cat": "Simulation",
-   "cite": "nanoHUB.org — MOSFET, FinFET, nanowire and 2D-FET simulation tools (Purdue / NCN).",
-   "url": "https://nanohub.org/"
-  },
-  {
-   "id": "sentaurus",
-   "cat": "Simulation",
-   "cite": "Synopsys Sentaurus TCAD (industry process and device simulation).",
-   "url": "https://www.synopsys.com/manufacturing/tcad.html"
-  },
-  {
-   "id": "stam1999",
-   "cat": "Simulation",
-   "cite": "J. Stam, \"Stable Fluids,\" Proc. SIGGRAPH '99, 121 (1999) — algorithm behind the site's WebGL fluid hero.",
-   "doi": "10.1145/311535.311548"
   },
   {
    "id": "apple_a11",
@@ -1046,6 +1172,137 @@
    "cat": "Design inspiration",
    "cite": "three.js — JavaScript 3D library (used for the architecture explorer).",
    "url": "https://threejs.org/"
+  },
+  {
+   "id": "shockley1952",
+   "cat": "Niche devices",
+   "cite": "W. Shockley, \"A Unipolar 'Field-Effect' Transistor,\" Proc. IRE 40, 1365 (1952).",
+   "doi": "10.1109/JRPROC.1952.273964"
+  },
+  {
+   "id": "bradley1953",
+   "cat": "Niche devices",
+   "cite": "W. E. Bradley, \"The Surface-Barrier Transistor: Part I—Principles of the Surface-Barrier Transistor,\" Proc. IRE 41, 1702 (1953). (Philco)"
+  },
+  {
+   "id": "esaki1958",
+   "cat": "Niche devices",
+   "cite": "L. Esaki, \"New Phenomenon in Narrow Germanium p-n Junctions,\" Phys. Rev. 109, 603 (1958).",
+   "doi": "10.1103/PhysRev.109.603"
+  },
+  {
+   "id": "weimer1962",
+   "cat": "Niche devices",
+   "cite": "P. K. Weimer, \"The TFT—A New Thin-Film Transistor,\" Proc. IRE 50, 1462 (1962).",
+   "doi": "10.1109/JRPROC.1962.288190"
+  },
+  {
+   "id": "kahng1967",
+   "cat": "Niche devices",
+   "cite": "D. Kahng, S. M. Sze, \"A Floating Gate and Its Application to Memory Devices,\" Bell Syst. Tech. J. 46, 1288 (1967).",
+   "doi": "10.1002/j.1538-7305.1967.tb01738.x"
+  },
+  {
+   "id": "boyle1970",
+   "cat": "Niche devices",
+   "cite": "W. S. Boyle, G. E. Smith, \"Charge Coupled Semiconductor Devices,\" Bell Syst. Tech. J. 49, 587 (1970).",
+   "doi": "10.1002/j.1538-7305.1970.tb01790.x"
+  },
+  {
+   "id": "baliga1982igt",
+   "cat": "Niche devices",
+   "cite": "B. J. Baliga, \"Creation of the Insulated Gate Bipolar Transistor,\" in 75th Anniversary of the Transistor, Wiley-IEEE Press (2023); original insulated-gate rectifier reported at IEDM 1982.",
+   "doi": "10.1002/9781394202478.ch25"
+  },
+  {
+   "id": "tsumura1986",
+   "cat": "Niche devices",
+   "cite": "A. Tsumura, H. Koezuka, T. Ando, \"Macromolecular Electronic Device: Field-Effect Transistor with a Polythiophene Thin Film,\" Appl. Phys. Lett. 49, 1210 (1986).",
+   "doi": "10.1063/1.97417"
+  },
+  {
+   "id": "nomura2004",
+   "cat": "Niche devices",
+   "cite": "K. Nomura et al., \"Room-Temperature Fabrication of Transparent Flexible Thin-Film Transistors Using Amorphous Oxide Semiconductors,\" Nature 432, 488 (2004).",
+   "doi": "10.1038/nature03090"
+  },
+  {
+   "id": "ozer2024",
+   "cat": "Niche devices",
+   "cite": "E. Ozer et al., \"Bendable Non-Silicon RISC-V Microprocessor\" (Flex-RV, 0.6 µm IGZO TFTs on polyimide), Nature 634, 341 (2024).",
+   "doi": "10.1038/s41586-024-07976-y"
+  },
+  {
+   "id": "colinge2010",
+   "cat": "Niche devices",
+   "cite": "J.-P. Colinge et al., \"Nanowire Transistors without Junctions,\" Nature Nanotechnology 5, 225 (2010).",
+   "doi": "10.1038/nnano.2010.15"
+  },
+  {
+   "id": "tanaka2007",
+   "cat": "Niche devices",
+   "cite": "H. Tanaka et al., \"Bit Cost Scalable Technology with Punch and Plug Process for Ultra High Density Flash Memory,\" VLSI Technology Symp. (2007).",
+   "doi": "10.1109/VLSIT.2007.4339708"
+  },
+  {
+   "id": "vtfet2021",
+   "cat": "Niche devices",
+   "cite": "IBM Newsroom, \"IBM and Samsung Unveil Semiconductor Breakthrough That Defies Conventional Design\" (vertical transport FET, VTFET), Dec 2021.",
+   "url": "https://newsroom.ibm.com/2021-12-14-IBM-and-Samsung-Unveil-Semiconductor-Breakthrough-That-Defies-Conventional-Design"
+  },
+  {
+   "id": "colinge_soi",
+   "cat": "Niche devices",
+   "cite": "J.-P. Colinge, Silicon-on-Insulator Technology: Materials to VLSI, 3rd ed., Springer (2004).",
+   "doi": "10.1007/978-1-4419-9106-5"
+  },
+  {
+   "id": "ionescu2011",
+   "cat": "Steep-slope & exotic",
+   "cite": "A. M. Ionescu, H. Riel, \"Tunnel Field-Effect Transistors as Energy-Efficient Electronic Switches,\" Nature 479, 329 (2011).",
+   "doi": "10.1038/nature10679"
+  },
+  {
+   "id": "salahuddin2008",
+   "cat": "Steep-slope & exotic",
+   "cite": "S. Salahuddin, S. Datta, \"Use of Negative Capacitance to Provide Voltage Amplification for Low Power Nanoscale Devices,\" Nano Letters 8, 405 (2008).",
+   "doi": "10.1021/nl071804g"
+  },
+  {
+   "id": "boscke2011",
+   "cat": "Steep-slope & exotic",
+   "cite": "T. S. Böscke et al., \"Ferroelectricity in Hafnium Oxide Thin Films,\" Appl. Phys. Lett. 99, 102903 (2011).",
+   "doi": "10.1063/1.3634052"
+  },
+  {
+   "id": "fulton1987",
+   "cat": "Steep-slope & exotic",
+   "cite": "T. A. Fulton, G. J. Dolan, \"Observation of Single-Electron Charging Effects in Small Tunnel Junctions,\" Phys. Rev. Lett. 59, 109 (1987).",
+   "doi": "10.1103/PhysRevLett.59.109"
+  },
+  {
+   "id": "datta1990",
+   "cat": "Steep-slope & exotic",
+   "cite": "S. Datta, B. Das, \"Electronic Analog of the Electro-Optic Modulator,\" Appl. Phys. Lett. 56, 665 (1990).",
+   "doi": "10.1063/1.102730"
+  },
+  {
+   "id": "strukov2008",
+   "cat": "Steep-slope & exotic",
+   "cite": "D. B. Strukov, G. S. Snider, D. R. Stewart, R. S. Williams, \"The Missing Memristor Found,\" Nature 453, 80 (2008).",
+   "doi": "10.1038/nature06932"
+  },
+  {
+   "id": "kane1961",
+   "cat": "Steep-slope & exotic",
+   "cite": "E. O. Kane, \"Theory of Tunneling,\" J. Appl. Phys. 32, 83 (1961).",
+   "doi": "10.1063/1.1735965"
+  },
+  {
+   "id": "chua1971",
+   "cat": "Steep-slope & exotic",
+   "cite": "L. Chua, \"Memristor—The Missing Circuit Element,\" IEEE Trans. Circuit Theory 18(5), 507 (1971).",
+   "doi": "10.1109/TCT.1971.1083337"
   }
  ]
 }

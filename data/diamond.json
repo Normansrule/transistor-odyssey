@@ -1,0 +1,22 @@
+{
+  "_about": "Diamond electronics milestones and device records. Numbers are as reported by the cited source; research results are not products.",
+  "milestones": [
+    {"year": 1989, "event": "Hydrogen-terminated CVD diamond found to conduct at the surface", "detail": "Landstrass & Ravi observe surface conductivity that vanishes after oxidation.", "refs": ["landstrass1989"]},
+    {"year": 1994, "event": "First H-terminated diamond FETs", "detail": "Kawarada et al. build enhancement-mode MESFETs on homoepitaxial diamond using the surface channel.", "refs": ["kawarada1994"]},
+    {"year": 1997, "event": "n-type diamond with phosphorus", "detail": "Koizumi et al. grow P-doped {111} homoepitaxial films: the first reproducible n-type diamond (donor ~0.57 eV deep).", "refs": ["koizumi1997"]},
+    {"year": 2000, "event": "Why the surface conducts", "detail": "Maier et al. show adsorbed water/air layers accept electrons from H-terminated diamond, leaving holes behind.", "refs": ["maier2000"]},
+    {"year": 2002, "event": "Record carrier mobility", "detail": "Isberg et al. measure 4,500 cm²/V·s electrons and 3,800 cm²/V·s holes in single-crystal CVD diamond.", "refs": ["isberg2002"]},
+    {"year": 2004, "event": "Surface transfer doping explained", "detail": "Strobel et al. show fullerene acceptors on the surface dope diamond; later oxides (MoO₃, V₂O₅) and NO₂ do the same more stably.", "refs": ["strobel2004"]},
+    {"year": 2007, "event": "GaN HEMTs on diamond substrates", "detail": "Felbinger et al. compare GaN-on-diamond with GaN-on-SiC; diamond lowers channel temperature at the same power.", "refs": ["felbinger2007"]},
+    {"year": 2016, "event": "Inversion-channel diamond MOSFET", "detail": "Matsumoto et al. report a normally-off inversion-mode p-channel MOSFET on n-type diamond.", "refs": ["matsumoto2016"]},
+    {"year": 2017, "event": "Single-crystal diamond wafers by heteroepitaxy", "detail": "Schreck et al. explain buried lateral growth on iridium, the mechanism behind wafer-scale single-crystal diamond.", "refs": ["schreck2017"]},
+    {"year": 2017, "event": "Stable 2DHG with Al₂O₃ for complementary power inverters", "detail": "Kawarada et al. use ALD Al₂O₃ to make the hole gas durable.", "refs": ["kawarada2017"]},
+    {"year": 2022, "event": "3,326 V modulation-doped diamond MOSFETs", "detail": "Reported off-state voltage above 3.3 kV.", "refs": ["modulation3326"]},
+    {"year": 2023, "event": "100 mm single-crystal diamond wafer", "detail": "Diamond Foundry announces a 100 mm heteroepitaxial single-crystal diamond wafer.", "refs": ["df2023"]},
+    {"year": 2024, "event": "High-current vertical diamond MOSFETs", "detail": "Oi et al. (Waseda): 0.7 A from one vertical 2DHG device, −1.5 A from two in parallel; 225 V breakdown on a narrow device.", "refs": ["oi2024"]},
+    {"year": 2025, "event": "4,266 V off-state diamond MOSFETs", "detail": "J. Vac. Sci. Technol. B 43, 042201.", "refs": ["jvstb2025_4266"]},
+    {"year": 2025, "event": "Normally-off boron-doped MOSFETs above 1.7 kV", "detail": "Appl. Phys. Lett. 127, 042601.", "refs": ["apl2025_17kv"]},
+    {"year": 2025, "event": "Packaged diamond MOSFETs shown publicly", "detail": "Power Diamond Systems (Waseda spin-out, founded 2022) demonstrates packaged devices at SEMICON Japan 2025 and partners with JAXA for space testing; commercialization targeted in the 2030s.", "refs": ["pds2025", "compoundsemi_pds"]}
+  ],
+  "dopants_note": "Ionization energies used in sim/transistor_sim/dopants.py: boron 0.37 eV (acceptor), phosphorus 0.57 eV (donor), substitutional nitrogen 1.7 eV (donor). Compare boron and phosphorus in silicon at ~0.045 eV."
+}

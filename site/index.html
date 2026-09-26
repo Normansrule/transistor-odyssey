@@ -31,6 +31,8 @@
       <a href="#moore">Moore's law</a>
       <a href="#chips">Chips</a>
       <a href="#materials">Materials</a>
+      <a href="#diamond">Diamond</a>
+      <a href="#niche">Niche atlas</a>
       <a href="#frontier">Frontier</a>
       <a href="#sources">Sources</a>
     </div>
@@ -58,7 +60,7 @@
       <div class="stat"><span class="v tabnum" data-count="2300" data-format="int">2,300</span><span class="l">transistors in the Intel 4004 (1971)</span></div>
       <div class="stat"><span class="v tabnum" data-count="208" data-suffix=" billion">208 billion</span><span class="l">in NVIDIA's B200 (2024)</span></div>
       <div class="stat"><span class="v tabnum" data-count="2.15" data-format="dec2" data-suffix=" yr">2.15 yr</span><span class="l">fitted doubling time, 1971–2024</span></div>
-      <div class="stat"><span class="v tabnum" data-count="176" data-format="int">176</span><span class="l">cited sources in this project</span></div>
+      <div class="stat"><span class="v tabnum" data-count="219" data-format="int" id="refCountStat">219</span><span class="l">cited sources in this project</span></div>
     </div>
   </div>
 </header>
@@ -252,6 +254,52 @@
   </div>
 </section>
 
+<!-- ============ DIAMOND ============ -->
+<section class="sec" id="diamond">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Deep dive · diamond electronics</span>
+      <h2>Diamond lab</h2>
+      <p class="lead">Diamond has the best numbers of any semiconductor and the worst dopants. Boron sits 0.37 eV above the valence band, so at room temperature almost none of it releases a hole. Pick a dopant, a doping level and a temperature to see how much conducts.</p>
+    </div>
+    <div class="lab">
+      <div class="card panel">
+        <div class="ctl"><label for="dopSel">Dopant</label><select id="dopSel"></select></div>
+        <div class="ctl"><label for="dopN"><span>Doping density</span> <output id="dopNOut"></output></label><input id="dopN" type="range" min="15" max="20" step="0.05" value="17"></div>
+        <div class="ctl"><label for="dopT"><span>Temperature</span> <output id="dopTOut"></output></label><input id="dopT" type="range" min="150" max="900" step="5" value="300"></div>
+        <p class="small">Model: charge-neutrality quadratic with a single dopant level and N ∝ T<sup>1.5</sup> (<span class="mono">sim/transistor_sim/dopants.py</span>). Heavy doping (&gt;10²⁰) conducts by hopping instead, which this ignores.</p>
+      </div>
+      <div style="display:grid;gap:16px;min-width:0">
+        <div class="tiles tiles-3" id="dopTiles"></div>
+        <div class="card plot" id="dopPlot"><h4>Ionized fraction vs temperature</h4><div class="sub chart-legend" id="dopLegend"></div><div id="dopChart"></div></div>
+      </div>
+    </div>
+    <div class="dia-grid">
+      <figure class="card dia-fig glow reveal"><img src="assets/xsec/diamond_transfer_doping.svg" alt="Band diagram of surface transfer doping on hydrogen-terminated diamond" loading="lazy"><figcaption>The workaround: on a hydrogen-terminated surface, acceptors outside the crystal pull electrons out and leave a 2D hole gas ~1 nm deep (Maier 2000, Strobel 2004).</figcaption></figure>
+      <figure class="card dia-fig glow reveal"><img src="assets/xsec/diamond_vertical_mosfet.svg" alt="Vertical diamond trench MOSFET" loading="lazy"><figcaption>Vertical 2DHG trench MOSFET (Waseda, 2024): 0.7 A from one device.</figcaption></figure>
+      <figure class="card dia-fig glow reveal"><img src="assets/xsec/diamond_inversion_mosfet.svg" alt="Inversion channel diamond MOSFET" loading="lazy"><figcaption>Inversion-channel MOSFET on phosphorus-doped diamond (2016): normally off.</figcaption></figure>
+      <figure class="card dia-fig glow reveal"><img src="assets/xsec/gan_on_diamond.svg" alt="GaN HEMT on diamond substrate" loading="lazy"><figcaption>GaN-on-diamond: diamond ~1 µm under the channel pulls heat from RF amplifiers.</figcaption></figure>
+      <figure class="card dia-fig glow reveal"><img src="assets/xsec/diamond_schottky.svg" alt="Pseudo-vertical diamond Schottky diode" loading="lazy"><figcaption>Pseudo-vertical Schottky diode: p⁻ drift on p⁺, the simplest diamond power device.</figcaption></figure>
+      <figure class="card dia-fig glow reveal"><img src="assets/xsec/nv_center.svg" alt="Nitrogen-vacancy centre in the diamond lattice" loading="lazy"><figcaption>NV centre: a room-temperature spin for quantum sensing.</figcaption></figure>
+    </div>
+    <h3 style="margin:48px 0 16px">Diamond milestones, 1989 → 2025</h3>
+    <ol class="dia-timeline" id="diaTimeline"></ol>
+  </div>
+</section>
+
+<!-- ============ NICHE ATLAS ============ -->
+<section class="sec" id="niche">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Atlas · the rest of the family</span>
+      <h2>Niche, forgotten and exotic transistors</h2>
+      <p class="lead">Alloy junctions and surface barriers from the 1950s, the IGBTs in trains, the oxide TFTs in your screen, the 3D NAND in your SSD, and switches that try to beat 60 mV/decade. Filter by family.</p>
+    </div>
+    <div class="src-tools"><div class="seg" id="nicheCats" role="group" aria-label="Filter by family"></div><span class="src-count" id="nicheCount"></span></div>
+    <div class="niche-grid" id="nicheGrid"></div>
+  </div>
+</section>
+
 <!-- ============ FRONTIER ============ -->
 <section class="sec" id="frontier">
   <div class="wrap">
@@ -322,7 +370,7 @@
     </div>
     <div class="src-tools">
       <label class="sr-only" for="srcSearch">Search sources</label>
-      <input type="search" id="srcSearch" placeholder="Search 176 sources: author, year, topic…">
+      <input type="search" id="srcSearch" placeholder="Search sources: author, year, topic…">
       <div class="seg" id="srcCats" role="group" aria-label="Filter by topic"></div>
       <span class="src-count" id="srcCount"></span>
     </div>
@@ -340,7 +388,7 @@
     </div>
     <div>
       <h4>Explore</h4>
-      <ul><li><a href="#timeline">Timeline</a></li><li><a href="#explorer">3D explorer</a></li><li><a href="#lab">Device lab</a></li><li><a href="#materials">Materials</a></li><li><a href="#sources">Sources</a></li></ul>
+      <ul><li><a href="#timeline">Timeline</a></li><li><a href="#explorer">3D explorer</a></li><li><a href="#lab">Device lab</a></li><li><a href="#materials">Materials</a></li><li><a href="#diamond">Diamond lab</a></li><li><a href="#niche">Niche atlas</a></li><li><a href="#sources">Sources</a></li></ul>
     </div>
     <div>
       <h4>Design inspiration</h4>

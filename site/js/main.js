@@ -2,6 +2,8 @@ import { DATA } from './data.js';
 import { startFluid } from './fluid.js';
 import { initLab } from './lab.js';
 import { initMoore, initMaterials } from './charts.js';
+import { initDiamond } from './diamond.js';
+import { initNiche } from './niche.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -19,6 +21,7 @@ safe(() => {
   $('#marquee').innerHTML = items + items;
 }, 'marquee');
 safe(() => {
+  const rc = document.getElementById('refCountStat'); if (rc) { rc.dataset.count = DATA.refs.length; rc.textContent = DATA.refs.length; }
   const els = document.querySelectorAll('[data-count]');
   const fmt = (el, v) => {
     const f = el.dataset.format, s = el.dataset.suffix || '';
@@ -148,6 +151,8 @@ safe(() => {
 safe(() => initLab(DATA), 'lab');
 safe(() => initMoore(DATA), 'moore');
 safe(() => initMaterials(DATA), 'materials');
+safe(() => initDiamond(DATA), 'diamond');
+safe(() => initNiche(DATA), 'niche');
 (async () => {
   try {
     const mod = await import('./explorer3d.js');

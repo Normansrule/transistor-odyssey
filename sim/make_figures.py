@@ -22,7 +22,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
-from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout  # noqa: E402
+from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep  # noqa: E402
 
 FIG = ROOT / "figures"
 FIG.mkdir(exist_ok=True)
@@ -38,7 +38,7 @@ plt.rcParams.update({
     "xtick.color": MUTED, "ytick.color": MUTED, "text.color": INK,
     "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.8, "grid.linestyle": "-",
     "axes.spines.top": False, "axes.spines.right": False,
-    "font.family": ["DejaVu Sans"], "font.size": 10.5, "axes.titlesize": 13, "axes.titleweight": "semibold",
+    "font.family": ["DejaVu Sans"], "font.size": 10.5, "axes.titlesize": 13, "axes.titleweight": "bold",
     "axes.titlelocation": "left", "axes.titlepad": 24, "legend.frameon": False, "legend.labelcolor": INK2,
     "lines.linewidth": 2, "lines.solid_capstyle": "round", "lines.solid_joinstyle": "round",
 })
@@ -125,7 +125,7 @@ def fig_iv_families():
         ax.set_title(p.name, fontsize=11)
         ax.set_xlim(0, p.VDD * 1.16)
         ax.set_xlabel("V_DS (V)"); ax.set_ylabel("I_D (µA/µm)")
-    fig.suptitle("Output characteristics from the compact model", x=0.02, ha="left", color=INK, fontsize=13, weight="semibold")
+    fig.suptitle("Output characteristics from the compact model", x=0.02, ha="left", color=INK, fontsize=13, weight="bold")
     fig.text(0.02, 0.945, "Curves labelled with V_GS. Short-channel devices saturate early (velocity saturation) and tilt (DIBL, CLM).", color=MUTED, fontsize=9.5)
     fig.tight_layout(rect=(0, 0, 1, 0.93))
     save(fig, "iv_families")
@@ -244,7 +244,7 @@ def fig_dennard():
     for a in (a1, a2):
         a.axvspan(2004, 2026, color=SERIES[1], alpha=0.08, lw=0)
         a.text(2005, a.get_ylim()[1] * 0.6, "post-Dennard", color=INK2, fontsize=9)
-    fig.suptitle("Dennard scaling ends around 2005", x=0.02, ha="left", fontsize=13, weight="semibold")
+    fig.suptitle("Dennard scaling ends around 2005", x=0.02, ha="left", fontsize=13, weight="bold")
     fig.text(0.02, 0.9, "Voltage stalls near 1 V because threshold voltage cannot drop without exponential leakage; clocks stall with it.", color=MUTED, fontsize=9.5)
     fig.tight_layout(rect=(0, 0, 1, 0.88))
     save(fig, "dennard_breakdown")
@@ -264,17 +264,56 @@ def fig_gummel():
     save(fig, "gummel")
 
 
+def fig_ionization():
+    T = np.linspace(150, 900, 300)
+    keys = [("Si:B", SERIES[0]), ("SiC:Al", SERIES[1]), ("GaN:Mg", SERIES[2]), ("C:B", SERIES[3]), ("C:P", SERIES[4])]
+    fig, ax = plt.subplots(figsize=(10, 5.4))
+    for k, c in keys:
+        d = dopants.DOPANTS[k]
+        f = dopants.ionized_fraction(d, 1e17, T) * 100
+        ax.plot(T, f, color=c, label=f"{d.label} (E = {d.Ea_eV} eV)")
+    ax.axvline(300, color=MUTED, lw=1)
+    ax.text(305, 2e-4, "room temperature", color=MUTED, fontsize=9)
+    ax.set_yscale("log"); ax.set_ylim(1e-4, 150); ax.set_xlim(150, 900)
+    ax.set_xlabel("Temperature (K)"); ax.set_ylabel("Dopants ionized (%)")
+    ax.set_title("Why diamond is hard to dope")
+    subtitle(ax, "Acceptor/donor ionization at 10¹⁷ cm⁻³. Boron in diamond is ~0.5% ionized at 300 K; phosphorus ~0.04%.")
+    ax.legend(loc="lower right", fontsize=9)
+    save(fig, "dopant_ionization")
+
+
+def fig_steep():
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    v = np.linspace(0, 0.8, 600)
+    ideal = mosfet.preset("2011_22nm_finfet", n=1.0, eta=0.0, VT0=0.3, Rs_ohm_um=0)
+    ax.plot(v, mosfet.drain_current(ideal, v, 0.5), color=SERIES[0], label="Ideal MOSFET (n = 1): 59.5 mV/dec floor")
+    nc = mosfet.preset("2011_22nm_finfet", n=0.8, eta=0.0, VT0=0.3, Rs_ohm_um=0)
+    ax.plot(v, mosfet.drain_current(nc, v, 0.5), color=SERIES[1], label="Negative-capacitance FET, idealized (n = 0.8)")
+    it = steep.tfet_current(v)
+    ax.plot(v, it, color=SERIES[2], label=f"Tunnel FET (Kane model): min SS {steep.min_swing(v, it):.0f} mV/dec")
+    ax.set_yscale("log"); ax.set_ylim(1e-15, 1e-2); ax.set_xlim(0, 0.8)
+    ax.set_xlabel("V_GS (V)"); ax.set_ylabel("I_D (A/µm), V_DS = 0.5 V")
+    ax.set_title("Beating 60 mV/decade")
+    subtitle(ax, "Tunnel FETs switch steeply at low current but deliver far less on-current; NC-FETs amplify the gate voltage.")
+    ax.legend(loc="lower right", fontsize=9)
+    save(fig, "steep_slope")
+
+
 def export_model_json():
     """Model parameters + metrics for the website's live device lab."""
     out = {k: {**p.as_dict(), "metrics": mosfet.metrics(p)} for k, p in mosfet.PRESETS.items()}
     (ROOT / "data" / "model_presets.json").write_text(json.dumps(out, indent=1, ensure_ascii=False), encoding="utf-8")
     print("data/model_presets.json")
+    dp = {k: {"label": d.label, "host": d.host, "kind": d.kind, "Ea_eV": d.Ea_eV, "N_eff_300": d.N_eff_300, "g": d.g, "ref": d.ref}
+          for k, d in dopants.DOPANTS.items()}
+    (ROOT / "data" / "dopants.json").write_text(json.dumps(dp, indent=1, ensure_ascii=False), encoding="utf-8")
+    print("data/dopants.json")
 
 
 if __name__ == "__main__":
     crosssection.write_all()
     layout.write_all()
     for f in (fig_moore, fig_node_vs_pitch, fig_iv_families, fig_transfer, fig_vtc, fig_hemt,
-              fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel):
+              fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel, fig_ionization, fig_steep):
         f()
     export_model_json()

@@ -1,0 +1,83 @@
+{
+ "Si:B": {
+  "label": "Boron in silicon",
+  "host": "Si",
+  "kind": "acceptor",
+  "Ea_eV": 0.045,
+  "N_eff_300": 1.83e+19,
+  "g": 4,
+  "ref": "sze2006"
+ },
+ "Si:P": {
+  "label": "Phosphorus in silicon",
+  "host": "Si",
+  "kind": "donor",
+  "Ea_eV": 0.045,
+  "N_eff_300": 2.8e+19,
+  "g": 2,
+  "ref": "sze2006"
+ },
+ "SiC:Al": {
+  "label": "Aluminium in 4H-SiC",
+  "host": "4H-SiC",
+  "kind": "acceptor",
+  "Ea_eV": 0.2,
+  "N_eff_300": 2.5e+19,
+  "g": 4,
+  "ref": "kimoto2014"
+ },
+ "SiC:N": {
+  "label": "Nitrogen in 4H-SiC",
+  "host": "4H-SiC",
+  "kind": "donor",
+  "Ea_eV": 0.06,
+  "N_eff_300": 1.7e+19,
+  "g": 2,
+  "ref": "kimoto2014"
+ },
+ "GaN:Mg": {
+  "label": "Magnesium in GaN",
+  "host": "GaN",
+  "kind": "acceptor",
+  "Ea_eV": 0.17,
+  "N_eff_300": 4.6e+19,
+  "g": 4,
+  "ref": "amano1989"
+ },
+ "GaN:Si": {
+  "label": "Silicon in GaN",
+  "host": "GaN",
+  "kind": "donor",
+  "Ea_eV": 0.015,
+  "N_eff_300": 2.3e+18,
+  "g": 2,
+  "ref": "mishra2002"
+ },
+ "C:B": {
+  "label": "Boron in diamond",
+  "host": "Diamond",
+  "kind": "acceptor",
+  "Ea_eV": 0.37,
+  "N_eff_300": 1.8e+19,
+  "g": 4,
+  "ref": "isberg2002"
+ },
+ "C:P": {
+  "label": "Phosphorus in diamond",
+  "host": "Diamond",
+  "kind": "donor",
+  "Ea_eV": 0.57,
+  "N_eff_300": 1e+20,
+  "g": 2,
+  "ref": "koizumi1997"
+ },
+ "C:N": {
+  "label": "Nitrogen in diamond",
+  "host": "Diamond",
+  "kind": "donor",
+  "Ea_eV": 1.7,
+  "N_eff_300": 1e+20,
+  "g": 2,
+  "ref": "doherty2013"
+ }
+}

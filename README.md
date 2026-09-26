@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://normansrule.github.io/transistor-odyssey/"><img alt="Live site" src="https://img.shields.io/badge/live%20site-GitHub%20Pages-f2b84b?style=for-the-badge&labelColor=10141a"></a>
-  <a href="REFERENCES.md"><img alt="176 references" src="https://img.shields.io/badge/references-176-7fd3d0?style=for-the-badge&labelColor=10141a"></a>
-  <a href="docs/README.md"><img alt="13 chapters" src="https://img.shields.io/badge/chapters-13-b58fd6?style=for-the-badge&labelColor=10141a"></a>
+  <a href="REFERENCES.md"><img alt="219 references" src="https://img.shields.io/badge/references-219-7fd3d0?style=for-the-badge&labelColor=10141a"></a>
+  <a href="docs/README.md"><img alt="16 chapters" src="https://img.shields.io/badge/chapters-16-b58fd6?style=for-the-badge&labelColor=10141a"></a>
   <a href=".github/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Normansrule/transistor-odyssey/ci.yml?style=for-the-badge&labelColor=10141a&label=tests"></a>
   <a href="LICENSE"><img alt="MIT + CC BY 4.0" src="https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY%204.0-d9825b?style=for-the-badge&labelColor=10141a"></a>
 </p>
@@ -22,13 +22,13 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 
 | | |
 |---|---|
-| 🌐 **[Interactive website](site/)** | WebGL fluid hero · GSAP scroll-pinned timeline · three.js explorer that explodes six architectures and animates carrier flow · live device lab · Moore's-law chart with hover and data table · die-photo vs generated-drawing compare slider · materials ranking · lithography calculator · searchable bibliography |
-| 📚 **[13 chapters](docs/README.md)** | 1947 point contact → planar → MOSFET/CMOS → scaling → strain/HKMG → FinFET → lithography → GAA/backside power/ångström era → 2D MoS₂ → GaAs/GaN/SiC/Ga₂O₃ → diamond/CNT/beyond-CMOS → simulation methods → glossary |
-| 🧮 **[Simulation package](sim/transistor_sim)** | Compact MOSFET model with 8 era presets · AlGaN/GaN polarization 2DEG model · BJT Gummel model · Baliga/Johnson figures of merit · Moore/Dennard scaling |
-| 🖼️ **Generated drawings** | [21 labelled cross-sections](figures/cross_sections) · [6 GDS mask layouts](figures/layout) (open in KLayout/Magic) · [11 charts](figures) |
+| 🌐 **[Interactive website](site/)** | WebGL fluid hero · GSAP scroll-pinned timeline · three.js explorer that explodes seven architectures (incl. an H-terminated diamond FET) and animates carrier flow · live device lab · Moore's-law chart · die-photo vs generated-drawing slider · materials ranking · **Diamond lab** (dopant ionization simulator + milestones) · **Niche atlas** of 28 forgotten/exotic transistors · lithography calculator · searchable bibliography |
+| 📚 **[16 chapters](docs/README.md)** | 1947 point contact → planar → MOSFET/CMOS → scaling → strain/HKMG → FinFET → lithography → GAA/backside power/ångström era → 2D MoS₂ → GaAs/GaN/SiC/Ga₂O₃ → diamond/CNT/beyond-CMOS → simulation methods → **diamond electronics in depth** → **niche & forgotten transistors** → **steep-slope & exotic switches** → glossary |
+| 🧮 **[Simulation package](sim/transistor_sim)** | Compact MOSFET model with 8 era presets · AlGaN/GaN polarization 2DEG model · BJT Gummel model · dopant-ionization model (why diamond is hard to dope) · tunnel-FET and negative-capacitance steep-slope models · Baliga/Johnson figures of merit · Moore/Dennard scaling |
+| 🖼️ **Generated drawings** | [40 labelled cross-sections](figures/cross_sections) · [6 GDS mask layouts](figures/layout) (open in KLayout/Magic) · [13 charts](figures) |
 | ⚡ **[SPICE netlists](sim/spice)** | ngspice inverters (1.5 µm, 180 nm), a 5-stage ring oscillator and a behavioural GaN HEMT |
-| 🗂️ **[Open data](data/)** | 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 176 references |
-| ✅ **[Tests](tests/)** | 28 checks tying model output to published numbers and every citation key to the bibliography |
+| 🗂️ **[Open data](data/)** | 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 28 niche devices · 16 diamond milestones · 9 dopants · 219 references |
+| ✅ **[Tests](tests/)** | 33 checks tying model output to published numbers and every citation key to the bibliography |
 
 ## Twenty shapes of one switch
 
@@ -97,6 +97,28 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 
 <sub>Representative 300 K values from <a href="data/materials.json">data/materials.json</a>; FOMs computed by <code>sim/transistor_sim/materials.py</code>. Details and caveats in <a href="docs/10-compound-semiconductors.md">Chapter 10</a> and <a href="docs/11-diamond-and-beyond.md">Chapter 11</a>.</sub>
 
+## Diamond, niche and exotic devices
+
+<table>
+<tr>
+<td width="33%"><img src="figures/cross_sections/diamond_vertical_mosfet.svg" alt="Vertical diamond MOSFET"><br><b>2024 · Vertical diamond MOSFET</b><br><sub>Waseda: 2D hole gas on trench walls, 0.7 A per device.</sub></td>
+<td width="33%"><img src="figures/cross_sections/diamond_transfer_doping.svg" alt="Transfer doping"><br><b>Surface transfer doping</b><br><sub>How H-terminated diamond conducts without bulk dopants.</sub></td>
+<td width="33%"><img src="figures/cross_sections/nv_center.svg" alt="NV centre"><br><b>NV centre</b><br><sub>A room-temperature spin in the diamond lattice.</sub></td>
+</tr>
+<tr>
+<td><img src="figures/cross_sections/igzo_tft.svg" alt="IGZO TFT"><br><b>IGZO thin-film transistor</b><br><sub>Displays and the bendable Flex-RV CPU (2024).</sub></td>
+<td><img src="figures/cross_sections/nand3d.svg" alt="3D NAND"><br><b>3D NAND string</b><br><sub>200+ stacked word lines around one channel.</sub></td>
+<td><img src="figures/cross_sections/tfet.svg" alt="Tunnel FET"><br><b>Tunnel FET</b><br><sub>Band-to-band tunnelling beats 60 mV/decade.</sub></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="50%"><img src="figures/dopant_ionization.png" alt="Dopant ionization"><br><sub>Boron in diamond is ~0.5% ionized at room temperature; boron in silicon ~90–100%.</sub></td>
+<td width="50%"><img src="figures/steep_slope.png" alt="Steep slope"><br><sub>Tunnel and negative-capacitance FETs versus the thermionic limit.</sub></td>
+</tr>
+</table>
+
 ## Chapters
 
 1. [Origins: the point contact and the junction](docs/01-origins.md) — 1947–1954
@@ -111,18 +133,30 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 10. [Compound semiconductors: GaAs, InP, GaN, SiC, Ga₂O₃](docs/10-compound-semiconductors.md)
 11. [Diamond, carbon nanotubes and beyond-CMOS](docs/11-diamond-and-beyond.md)
 12. [How the simulations work](docs/12-simulation.md)
-13. [Glossary](docs/13-glossary.md)
+13. [Diamond electronics in depth](docs/13-diamond-electronics.md) — doping, transfer doping, kV MOSFETs, wafers, GaN-on-diamond, NV centres
+14. [Niche and forgotten transistors](docs/14-niche-and-forgotten.md) — alloy junction, JFET, IGBT, IGZO/organic/flexible, flash & 3D NAND, FD-SOI, junctionless, VTFET
+15. [Steep-slope and exotic switches](docs/15-steep-slope-and-exotic.md) — TFET, NC-FET/FeFET, single-electron, spin FET, memristor, vacuum, RSFQ
+16. [Glossary](docs/16-glossary.md)
 
 ## Quick start (Ubuntu / WSL2)
 
-```bash
-git clone git@github.com:Normansrule/transistor-odyssey.git
-cd transistor-odyssey
-python3 -m venv .venv && source .venv/bin/activate      # or: conda create -n odyssey python=3.11
-pip install -r requirements.txt
+A browser download from Windows lands in the Windows Downloads folder, which WSL sees as `/mnt/c/Users/<you>/Downloads/`, not `~`:
 
+```bash
+ZIP=$(ls -t /mnt/c/Users/$USER/Downloads/transistor-odyssey*.zip | head -1) && echo "$ZIP"
+mkdir -p ~/projects && cd ~/projects
+[ -d transistor-odyssey ] && mv transistor-odyssey "transistor-odyssey.old.$(date +%s)"
+unzip -q "$ZIP" && cd transistor-odyssey && bash scripts/setup_ubuntu.sh
+```
+
+`scripts/setup_ubuntu.sh` builds a private `.venv`, regenerates everything, runs the tests, creates `Normansrule/transistor-odyssey`, pushes over the `github-normansrule` SSH alias, enables GitHub Pages and starts the deploy. Override with `OWNER=… REPO=… SSH_HOST=…`, or `SKIP_GITHUB=1` to build locally only. It stops at the first error.
+
+Day-to-day:
+
+```bash
+source .venv/bin/activate
 make figures     # regenerate cross-sections, GDS layouts, charts, site data
-make test        # 28 physics + data checks
+make test        # physics + data checks
 make serve       # website at http://localhost:8000
 make spice       # optional: needs `sudo apt install ngspice`
 ```
@@ -134,16 +168,16 @@ Open a generated layout in KLayout: `klayout figures/layout/inverter_22_nm_FinFE
 ```
 transistor-odyssey/
 ├── site/                  GitHub Pages website (index.html, css/, js/, vendor/ three.js + GSAP, assets/)
-├── docs/                  13 chapters, citations as [@key]
+├── docs/                  16 chapters, citations as [@key]
 ├── sim/
-│   ├── transistor_sim/    mosfet · hemt · bjt · materials · scaling · crosssection · layout
+│   ├── transistor_sim/    mosfet · hemt · bjt · dopants · steep · materials · scaling · crosssection · layout
 │   ├── spice/             ngspice netlists
 │   └── make_figures.py    renders everything in figures/
 ├── figures/               generated PNG/SVG charts, cross_sections/, layout/ (SVG + GDS)
-├── data/                  chips.json · nodes.csv · materials.json · timeline.json · images.json · references.json
-├── scripts/               build_data.py (site bundle, REFERENCES.md, CREDITS.md) · fetch_images.py
+├── data/                  chips · nodes · materials · timeline · niche · diamond · dopants · images · references
+├── scripts/               setup_ubuntu.sh · build_data.py (site bundle, REFERENCES.md, CREDITS.md) · fetch_images.py
 ├── tests/                 pytest suite
-├── REFERENCES.md          176 sources, generated
+├── REFERENCES.md          219 sources, generated
 └── CREDITS.md             photo attribution, generated
 ```
 
