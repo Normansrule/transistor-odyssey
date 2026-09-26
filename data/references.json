@@ -1,0 +1,1051 @@
+{
+ "_about": "Master bibliography. Every 'refs' id used in data/*.json and docs/*.md resolves here. scripts/build_references.py renders REFERENCES.md and site/js/data.js from this file; tests/test_data.py checks that no id is missing.",
+ "references": [
+  {
+   "id": "bardeen1948",
+   "cat": "History",
+   "cite": "J. Bardeen, W. H. Brattain, \"The Transistor, A Semi-Conductor Triode,\" Phys. Rev. 74, 230 (1948).",
+   "doi": "10.1103/PhysRev.74.230"
+  },
+  {
+   "id": "shockley1949",
+   "cat": "History",
+   "cite": "W. Shockley, \"The Theory of p-n Junctions in Semiconductors and p-n Junction Transistors,\" Bell Syst. Tech. J. 28, 435 (1949).",
+   "doi": "10.1002/j.1538-7305.1949.tb03645.x"
+  },
+  {
+   "id": "shockley1951",
+   "cat": "History",
+   "cite": "W. Shockley, M. Sparks, G. K. Teal, \"p-n Junction Transistors,\" Phys. Rev. 83, 151 (1951).",
+   "doi": "10.1103/PhysRev.83.151"
+  },
+  {
+   "id": "nobel1956",
+   "cat": "History",
+   "cite": "The Nobel Prize in Physics 1956: Shockley, Bardeen, Brattain \"for their researches on semiconductors and their discovery of the transistor effect.\"",
+   "url": "https://www.nobelprize.org/prizes/physics/1956/summary/"
+  },
+  {
+   "id": "riordan1997",
+   "cat": "History",
+   "cite": "M. Riordan, L. Hoddeson, Crystal Fire: The Birth of the Information Age, W. W. Norton (1997). ISBN 978-0-393-04124-8."
+  },
+  {
+   "id": "lojek2007",
+   "cat": "History",
+   "cite": "B. Lojek, History of Semiconductor Engineering, Springer (2007).",
+   "doi": "10.1007/978-3-540-34258-8"
+  },
+  {
+   "id": "frosch1957",
+   "cat": "History",
+   "cite": "C. J. Frosch, L. Derick, \"Surface Protection and Selective Masking during Diffusion in Silicon,\" J. Electrochem. Soc. 104, 547 (1957).",
+   "doi": "10.1149/1.2428650"
+  },
+  {
+   "id": "atalla1959",
+   "cat": "History",
+   "cite": "M. M. Atalla, E. Tannenbaum, E. J. Scheibner, \"Stabilization of Silicon Surfaces by Thermally Grown Oxides,\" Bell Syst. Tech. J. 38, 749 (1959).",
+   "doi": "10.1002/j.1538-7305.1959.tb03907.x"
+  },
+  {
+   "id": "hoerni1962",
+   "cat": "History",
+   "cite": "J. A. Hoerni, \"Method of Manufacturing Semiconductor Devices,\" U.S. Patent 3,025,589 (1962; filed 1959).",
+   "url": "https://patents.google.com/patent/US3025589A"
+  },
+  {
+   "id": "kilby_patent",
+   "cat": "History",
+   "cite": "J. S. Kilby, \"Miniaturized Electronic Circuits,\" U.S. Patent 3,138,743 (1964; filed 1959).",
+   "url": "https://patents.google.com/patent/US3138743A"
+  },
+  {
+   "id": "noyce_patent",
+   "cat": "History",
+   "cite": "R. N. Noyce, \"Semiconductor Device-and-Lead Structure,\" U.S. Patent 2,981,877 (1961; filed 1959).",
+   "url": "https://patents.google.com/patent/US2981877A"
+  },
+  {
+   "id": "kilby1976",
+   "cat": "History",
+   "cite": "J. S. Kilby, \"Invention of the Integrated Circuit,\" IEEE Trans. Electron Devices 23(7), 648 (1976).",
+   "doi": "10.1109/T-ED.1976.18467"
+  },
+  {
+   "id": "kilby_nobel",
+   "cat": "History",
+   "cite": "J. S. Kilby, Nobel Lecture \"Turning Potential into Realities: The Invention of the Integrated Circuit\" (2000).",
+   "url": "https://www.nobelprize.org/prizes/physics/2000/kilby/lecture/"
+  },
+  {
+   "id": "ethw_ic",
+   "cat": "History",
+   "cite": "IEEE Milestone: First Semiconductor Integrated Circuit (IC), 1958. Engineering and Technology History Wiki.",
+   "url": "https://ethw.org/Milestones:First_Semiconductor_Integrated_Circuit_(IC),_1958"
+  },
+  {
+   "id": "lilienfeld_patent",
+   "cat": "History",
+   "cite": "J. E. Lilienfeld, \"Method and Apparatus for Controlling Electric Currents,\" U.S. Patent 1,745,175 (1930; filed 1926).",
+   "url": "https://patents.google.com/patent/US1745175A"
+  },
+  {
+   "id": "kahng1960",
+   "cat": "History",
+   "cite": "D. Kahng, M. M. Atalla, \"Silicon-Silicon Dioxide Field Induced Surface Devices,\" IRE-AIEE Solid-State Device Research Conference, Pittsburgh (1960). Retrospective: Computer History Museum, \"1960: Metal Oxide Semiconductor (MOS) Transistor Demonstrated.\"",
+   "url": "https://www.computerhistory.org/siliconengine/metal-oxide-semiconductor-mos-transistor-demonstrated/"
+  },
+  {
+   "id": "sah1988",
+   "cat": "History",
+   "cite": "C.-T. Sah, \"Evolution of the MOS Transistor—From Conception to VLSI,\" Proc. IEEE 76(10), 1280 (1988).",
+   "doi": "10.1109/5.16328"
+  },
+  {
+   "id": "wanlass1963",
+   "cat": "History",
+   "cite": "F. M. Wanlass, C. T. Sah, \"Nanowatt Logic Using Field-Effect Metal-Oxide Semiconductor Triodes,\" ISSCC Dig. Tech. Papers, 32 (1963).",
+   "doi": "10.1109/ISSCC.1963.1157450"
+  },
+  {
+   "id": "faggin1970",
+   "cat": "History",
+   "cite": "F. Faggin, T. Klein, \"Silicon Gate Technology,\" Solid-State Electronics 13, 1125 (1970).",
+   "doi": "10.1016/0038-1101(70)90124-3"
+  },
+  {
+   "id": "faggin1996",
+   "cat": "History",
+   "cite": "F. Faggin, M. E. Hoff, S. Mazor, M. Shima, \"The History of the 4004,\" IEEE Micro 16(6), 10 (1996).",
+   "doi": "10.1109/40.546561"
+  },
+  {
+   "id": "intel4004story",
+   "cat": "History",
+   "cite": "Intel, \"The Story of the Intel 4004.\"",
+   "url": "https://www.intel.com/content/www/us/en/history/museum-story-of-intel-4004.html"
+  },
+  {
+   "id": "wiki4004",
+   "cat": "History",
+   "cite": "Wikipedia, \"Intel 4004\" (10 µm silicon-gate pMOS, 2,300 transistors, 12 mm² die).",
+   "url": "https://en.wikipedia.org/wiki/Intel_4004"
+  },
+  {
+   "id": "wiki486",
+   "cat": "History",
+   "cite": "Wikipedia, \"i486\" (first x86 with more than one million transistors).",
+   "url": "https://en.wikipedia.org/wiki/I486"
+  },
+  {
+   "id": "chm_siliconengine",
+   "cat": "History",
+   "cite": "Computer History Museum, \"The Silicon Engine: A Timeline of Semiconductors in Computers.\"",
+   "url": "https://www.computerhistory.org/siliconengine/"
+  },
+  {
+   "id": "visual6502",
+   "cat": "Simulation",
+   "cite": "G. James, B. Silverman, B. Silverman, \"Visualizing a Classic CPU in Action: The 6502,\" ACM SIGGRAPH 2010 Talks; transistor-level simulator at visual6502.org.",
+   "url": "http://www.visual6502.org/"
+  },
+  {
+   "id": "shirriff",
+   "cat": "History",
+   "cite": "K. Shirriff, Righto.com — die-level reverse engineering of the 4004, 8008, 8086, 386 and others.",
+   "url": "https://www.righto.com/"
+  },
+  {
+   "id": "shirriff2016",
+   "cat": "History",
+   "cite": "K. Shirriff, \"The Surprising Story of the First Microprocessors,\" IEEE Spectrum (2016).",
+   "url": "https://spectrum.ieee.org/the-surprising-story-of-the-first-microprocessors"
+  },
+  {
+   "id": "moore1965",
+   "cat": "Scaling",
+   "cite": "G. E. Moore, \"Cramming More Components onto Integrated Circuits,\" Electronics 38(8) (1965); reprinted Proc. IEEE 86(1), 82 (1998).",
+   "doi": "10.1109/JPROC.1998.658762"
+  },
+  {
+   "id": "moore1975",
+   "cat": "Scaling",
+   "cite": "G. E. Moore, \"Progress in Digital Integrated Electronics,\" IEDM Tech. Dig., 11 (1975)."
+  },
+  {
+   "id": "dennard1974",
+   "cat": "Scaling",
+   "cite": "R. H. Dennard et al., \"Design of Ion-Implanted MOSFET's with Very Small Physical Dimensions,\" IEEE J. Solid-State Circuits 9(5), 256 (1974).",
+   "doi": "10.1109/JSSC.1974.1050511"
+  },
+  {
+   "id": "bohr2007",
+   "cat": "Scaling",
+   "cite": "M. Bohr, \"A 30 Year Retrospective on Dennard's MOSFET Scaling Paper,\" IEEE SSCS Newsletter 12(1), 11 (2007).",
+   "doi": "10.1109/N-SSC.2007.4785534"
+  },
+  {
+   "id": "frank2001",
+   "cat": "Scaling",
+   "cite": "D. J. Frank et al., \"Device Scaling Limits of Si MOSFETs and Their Application Dependencies,\" Proc. IEEE 89(3), 259 (2001).",
+   "doi": "10.1109/5.915374"
+  },
+  {
+   "id": "ferain2011",
+   "cat": "Scaling",
+   "cite": "I. Ferain, C. A. Colinge, J.-P. Colinge, \"Multigate Transistors as the Future of Classical Metal–Oxide–Semiconductor Field-Effect Transistors,\" Nature 479, 310 (2011).",
+   "doi": "10.1038/nature10676"
+  },
+  {
+   "id": "irds2023",
+   "cat": "Scaling",
+   "cite": "IEEE International Roadmap for Devices and Systems (IRDS), More Moore chapter.",
+   "url": "https://irds.ieee.org/editions"
+  },
+  {
+   "id": "imec_roadmap",
+   "cat": "Scaling",
+   "cite": "imec, \"Smaller, Better, Faster: imec Presents Chip Scaling Roadmap.\"",
+   "url": "https://www.imec-int.com/en/articles/smaller-better-faster-imec-presents-chip-scaling-roadmap"
+  },
+  {
+   "id": "kisee2026",
+   "cat": "Scaling",
+   "cite": "Hardware Busters, \"0.2nm Chips and 3D Transistors Within 15 Years\" (on the Korean Institute of Semiconductor Engineers' Semiconductor Technology Roadmap 2026), Dec 2025.",
+   "url": "https://hwbusters.com/news/0-2nm-chips-and-3d-transistors-within-15-years/"
+  },
+  {
+   "id": "wiki1nm",
+   "cat": "Scaling",
+   "cite": "Wikipedia, \"1 nm process\" (contacted gate pitch vs node naming; 2D and sub-1 nm milestones).",
+   "url": "https://en.wikipedia.org/wiki/1_nm_process"
+  },
+  {
+   "id": "mead1980",
+   "cat": "Design",
+   "cite": "C. Mead, L. Conway, Introduction to VLSI Systems, Addison-Wesley (1980)."
+  },
+  {
+   "id": "weste2010",
+   "cat": "Design",
+   "cite": "N. H. E. Weste, D. M. Harris, CMOS VLSI Design: A Circuits and Systems Perspective, 4th ed., Addison-Wesley (2010)."
+  },
+  {
+   "id": "rabaey2003",
+   "cat": "Design",
+   "cite": "J. M. Rabaey, A. Chandrakasan, B. Nikolić, Digital Integrated Circuits: A Design Perspective, 2nd ed., Prentice Hall (2003)."
+  },
+  {
+   "id": "sze2006",
+   "cat": "Device physics",
+   "cite": "S. M. Sze, K. K. Ng, Physics of Semiconductor Devices, 3rd ed., Wiley (2006).",
+   "doi": "10.1002/0470068329"
+  },
+  {
+   "id": "taur2013",
+   "cat": "Device physics",
+   "cite": "Y. Taur, T. H. Ning, Fundamentals of Modern VLSI Devices, 2nd ed., Cambridge University Press (2009/2013).",
+   "doi": "10.1017/CBO9781139195065"
+  },
+  {
+   "id": "hu2010",
+   "cat": "Device physics",
+   "cite": "C. Hu, Modern Semiconductor Devices for Integrated Circuits, Pearson (2010); free chapters from the author.",
+   "url": "https://www.chu.berkeley.edu/modern-semiconductor-devices/"
+  },
+  {
+   "id": "pierret1996",
+   "cat": "Device physics",
+   "cite": "R. F. Pierret, Semiconductor Device Fundamentals, Addison-Wesley (1996)."
+  },
+  {
+   "id": "lundstrom2017",
+   "cat": "Device physics",
+   "cite": "M. Lundstrom, Fundamentals of Nanotransistors, World Scientific (2017); nanoHUB course.",
+   "doi": "10.1142/9018"
+  },
+  {
+   "id": "natori1994",
+   "cat": "Device physics",
+   "cite": "K. Natori, \"Ballistic Metal-Oxide-Semiconductor Field Effect Transistor,\" J. Appl. Phys. 76, 4879 (1994).",
+   "doi": "10.1063/1.357263"
+  },
+  {
+   "id": "khakifirooz2009",
+   "cat": "Device physics",
+   "cite": "A. Khakifirooz, O. M. Nayfeh, D. Antoniadis, \"A Simple Semiempirical Short-Channel MOSFET Current–Voltage Model Continuous Across All Regions of Operation and Employing Only Physical Parameters,\" IEEE Trans. Electron Devices 56(8), 1674 (2009).",
+   "doi": "10.1109/TED.2009.2024022"
+  },
+  {
+   "id": "enz1995",
+   "cat": "Device physics",
+   "cite": "C. C. Enz, F. Krummenacher, E. A. Vittoz, \"An Analytical MOS Transistor Model Valid in All Regions of Operation,\" Analog Integr. Circuits Signal Process. 8, 83 (1995).",
+   "doi": "10.1007/BF01239381"
+  },
+  {
+   "id": "sakurai1990",
+   "cat": "Device physics",
+   "cite": "T. Sakurai, A. R. Newton, \"Alpha-Power Law MOSFET Model and Its Applications to CMOS Inverter Delay and Other Formulas,\" IEEE J. Solid-State Circuits 25(2), 584 (1990).",
+   "doi": "10.1109/4.52187"
+  },
+  {
+   "id": "bsim",
+   "cat": "Device physics",
+   "cite": "BSIM Group, UC Berkeley — BSIM4, BSIM-CMG (FinFET/GAA) and BSIM-IMG compact models.",
+   "url": "https://bsim.berkeley.edu/"
+  },
+  {
+   "id": "fuechsle2012",
+   "cat": "Device physics",
+   "cite": "M. Fuechsle et al., \"A Single-Atom Transistor,\" Nature Nanotechnology 7, 242 (2012).",
+   "doi": "10.1038/nnano.2012.21"
+  },
+  {
+   "id": "plummer2000",
+   "cat": "Process",
+   "cite": "J. D. Plummer, M. D. Deal, P. B. Griffin, Silicon VLSI Technology: Fundamentals, Practice and Modeling, Prentice Hall (2000)."
+  },
+  {
+   "id": "thompson2004",
+   "cat": "Process",
+   "cite": "S. E. Thompson et al., \"A 90-nm Logic Technology Featuring Strained-Silicon,\" IEEE Trans. Electron Devices 51(11), 1790 (2004).",
+   "doi": "10.1109/TED.2004.836648"
+  },
+  {
+   "id": "mistry2007",
+   "cat": "Process",
+   "cite": "K. Mistry et al., \"A 45nm Logic Technology with High-k+Metal Gate Transistors, Strained Silicon, 9 Cu Interconnect Layers, 193nm Dry Patterning, and 100% Pb-free Packaging,\" IEDM (2007).",
+   "doi": "10.1109/IEDM.2007.4418914"
+  },
+  {
+   "id": "wilk2001",
+   "cat": "Process",
+   "cite": "G. D. Wilk, R. M. Wallace, J. M. Anthony, \"High-κ Gate Dielectrics: Current Status and Materials Properties Considerations,\" J. Appl. Phys. 89, 5243 (2001).",
+   "doi": "10.1063/1.1361065"
+  },
+  {
+   "id": "robertson2006",
+   "cat": "Process",
+   "cite": "J. Robertson, \"High Dielectric Constant Gate Oxides for Metal Oxide Si Transistors,\" Rep. Prog. Phys. 69, 327 (2006).",
+   "doi": "10.1088/0034-4885/69/2/R02"
+  },
+  {
+   "id": "hisamoto1989",
+   "cat": "Process",
+   "cite": "D. Hisamoto et al., \"A Fully Depleted Lean-Channel Transistor (DELTA)—A Novel Vertical Ultrathin SOI MOSFET,\" IEDM (1989).",
+   "doi": "10.1109/IEDM.1989.74182"
+  },
+  {
+   "id": "hisamoto2000",
+   "cat": "Process",
+   "cite": "D. Hisamoto et al., \"FinFET—A Self-Aligned Double-Gate MOSFET Scalable to 20 nm,\" IEEE Trans. Electron Devices 47(12), 2320 (2000).",
+   "doi": "10.1109/16.887014"
+  },
+  {
+   "id": "colinge2008",
+   "cat": "Process",
+   "cite": "J.-P. Colinge (ed.), FinFETs and Other Multi-Gate Transistors, Springer (2008).",
+   "doi": "10.1007/978-0-387-71752-4"
+  },
+  {
+   "id": "auth2012",
+   "cat": "Process",
+   "cite": "C. Auth et al., \"A 22nm High Performance and Low-Power CMOS Technology Featuring Fully-Depleted Tri-Gate Transistors, Self-Aligned Contacts and High Density MIM Capacitors,\" VLSI Technology Symp. (2012).",
+   "doi": "10.1109/VLSIT.2012.6242496"
+  },
+  {
+   "id": "natarajan2014",
+   "cat": "Process",
+   "cite": "S. Natarajan et al., \"A 14nm Logic Technology Featuring 2nd-Generation FinFET, Air-Gapped Interconnects, Self-Aligned Double Patterning and a 0.0588 µm² SRAM Cell Size,\" IEDM (2014).",
+   "doi": "10.1109/IEDM.2014.7047058"
+  },
+  {
+   "id": "auth2017",
+   "cat": "Process",
+   "cite": "C. Auth et al., \"A 10nm High Performance and Low-Power CMOS Technology Featuring 3rd Generation FinFET Transistors, Self-Aligned Quad Patterning, Contact over Active Gate and Cobalt Local Interconnects,\" IEDM (2017).",
+   "doi": "10.1109/IEDM.2017.8268472"
+  },
+  {
+   "id": "yeap2019",
+   "cat": "Process",
+   "cite": "G. Yeap et al., \"5nm CMOS Production Technology Platform Featuring Full-Fledged EUV, and High Mobility Channel FinFETs with Densest 0.021µm² SRAM Cells for Mobile SoC and High Performance Computing Applications,\" IEDM (2019).",
+   "doi": "10.1109/IEDM19573.2019.8993577"
+  },
+  {
+   "id": "loubet2017",
+   "cat": "Process",
+   "cite": "N. Loubet et al., \"Stacked Nanosheet Gate-All-Around Transistor to Enable Scaling Beyond FinFET,\" VLSI Technology Symp. (2017).",
+   "doi": "10.23919/VLSIT.2017.7998183"
+  },
+  {
+   "id": "weckx2019",
+   "cat": "Process",
+   "cite": "P. Weckx et al., \"Novel Forksheet Device Architecture as Ultimate Logic Scaling Device Towards 2nm,\" IEDM (2019).",
+   "doi": "10.1109/IEDM19573.2019.8993635"
+  },
+  {
+   "id": "ryckaert2018",
+   "cat": "Process",
+   "cite": "J. Ryckaert et al., \"The Complementary FET (CFET) for CMOS Scaling Beyond N3,\" VLSI Technology Symp. (2018).",
+   "doi": "10.1109/VLSIT.2018.8510618"
+  },
+  {
+   "id": "levinson2019",
+   "cat": "Lithography",
+   "cite": "H. J. Levinson, Principles of Lithography, 4th ed., SPIE Press (2019).",
+   "doi": "10.1117/3.2525306"
+  },
+  {
+   "id": "bakshi2018",
+   "cat": "Lithography",
+   "cite": "V. Bakshi (ed.), EUV Lithography, 2nd ed., SPIE Press (2018).",
+   "doi": "10.1117/3.2305675"
+  },
+  {
+   "id": "asml_euv",
+   "cat": "Lithography",
+   "cite": "ASML, EUV lithography systems (NXE and EXE High-NA platforms).",
+   "url": "https://www.asml.com/en/products/euv-lithography-systems"
+  },
+  {
+   "id": "samsung2022",
+   "cat": "2020s nodes",
+   "cite": "Samsung Newsroom, \"Samsung Begins Chip Production Using 3nm Process Technology With GAA Architecture\" (30 June 2022).",
+   "url": "https://news.samsung.com/global/samsung-begins-chip-production-using-3nm-process-technology-with-gaa-architecture"
+  },
+  {
+   "id": "tsmc_n2",
+   "cat": "2020s nodes",
+   "cite": "TSMC, \"2nm Technology\" (N2: volume production started Q4 2025).",
+   "url": "https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_2nm"
+  },
+  {
+   "id": "tsmc_a16",
+   "cat": "2020s nodes",
+   "cite": "TSMC, \"A16 Technology\" (Super Power Rail backside power delivery).",
+   "url": "https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_A16"
+  },
+  {
+   "id": "intel_18a",
+   "cat": "2020s nodes",
+   "cite": "Intel Foundry, \"Intel 18A\" (RibbonFET gate-all-around + PowerVia backside power).",
+   "url": "https://www.intel.com/content/www/us/en/foundry/process/18a.html"
+  },
+  {
+   "id": "semiwiki_n2",
+   "cat": "2020s nodes",
+   "cite": "SemiWiki, \"TSMC Quietly Begins Volume Production of 2nm-Class Chips\" (31 Dec 2025).",
+   "url": "https://semiwiki.com/forum/threads/tsmc-quietly-begins-volume-production-of-2nm-class-chips.24283/"
+  },
+  {
+   "id": "semiwiki_a16",
+   "cat": "2020s nodes",
+   "cite": "SemiWiki / DIGITIMES, \"TSMC Eyes A16 Mass Production in 4Q26 and Intel Refines 18A Roadmap with 18A-P\" (July 2026).",
+   "url": "https://semiwiki.com/forum/threads/tsmc-eyes-a16-mass-production-in-4q26-and-intel-refines-18a-roadmap-with-18a-p.25526/"
+  },
+  {
+   "id": "toms_18a",
+   "cat": "2020s nodes",
+   "cite": "Tom's Hardware, \"Intel's 18A Production Starts Before TSMC's Competing N2 Tech\" (Oct 2025).",
+   "url": "https://www.tomshardware.com/pc-components/cpus/intels-18a-production-starts-before-tsmcs-competing-n2-tech-heres-how-the-two-process-nodes-compare"
+  },
+  {
+   "id": "intel_8k_2026",
+   "cat": "2020s nodes",
+   "cite": "Intel Corp., Form 8-K, Q2 2026 earnings release (18A-P risk production; Panther Lake subset using High-NA EUV).",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000050863/000005086326000155/q226earningsrelease.htm"
+  },
+  {
+   "id": "panther_lake",
+   "cat": "2020s nodes",
+   "cite": "Wikipedia, \"Panther Lake (microprocessor)\" (Intel 18A, launched January 2026).",
+   "url": "https://en.wikipedia.org/wiki/Panther_Lake_(microprocessor)"
+  },
+  {
+   "id": "rapidus",
+   "cat": "2020s nodes",
+   "cite": "Rapidus, \"2nm Semiconductor Challenges\" (2nm GAA transistor operation confirmed July 2025; mass production targeted 2027).",
+   "url": "https://www.rapidus.inc/en/tech/te0006/"
+  },
+  {
+   "id": "ibm2021",
+   "cat": "2020s nodes",
+   "cite": "IBM Newsroom, \"IBM Unveils World's First 2 Nanometer Chip Technology\" (6 May 2021).",
+   "url": "https://newsroom.ibm.com/2021-05-06-IBM-Unveils-Worlds-First-2-Nanometer-Chip-Technology,-Opens-a-New-Frontier-for-Semiconductors"
+  },
+  {
+   "id": "ibm2026",
+   "cat": "2020s nodes",
+   "cite": "IBM Newsroom, \"IBM Debuts World's First Sub-1 Nanometer Chip Technology\" (25 June 2026).",
+   "url": "https://newsroom.ibm.com/2026-06-25-ibm-debuts-worlds-first-sub-1-nanometer-chip-technology"
+  },
+  {
+   "id": "register2026",
+   "cat": "2020s nodes",
+   "cite": "The Register, \"IBM Stacks Up a Sub-Nanometer Chip Future\" (25 June 2026).",
+   "url": "https://www.theregister.com/systems/2026/06/25/ibm-stacks-up-a-sub-nanometer-chip-future/5261555"
+  },
+  {
+   "id": "futurum2026",
+   "cat": "2020s nodes",
+   "cite": "Futurum Group, \"Look Past IBM's 0.7nm Label: Nanostack Architecture Is the Real Breakthrough\" (26 June 2026).",
+   "url": "https://futurumgroup.com/insights/look-past-ibms-07nm-label-nanostack-architecture-is-the-real-breakthrough/"
+  },
+  {
+   "id": "gizmodo2026",
+   "cat": "2020s nodes",
+   "cite": "Gizmodo, \"IBM Crosses One of Computing's Biggest Barriers with World's First Sub-1-Nanometer Chip\" (25 June 2026).",
+   "url": "https://gizmodo.com/ibm-crosses-one-of-computings-biggest-barriers-with-worlds-first-sub-1-nanometer-chip-2000777736"
+  },
+  {
+   "id": "nycu2026",
+   "cat": "2D & 1D channels",
+   "cite": "NYCU & TSMC Corporate Research (W.-H. Chang, T.-E. Lee, I. Radu et al.), monolayer MoS2 top-gate FETs with a 0.42 nm epitaxial-Al-derived AlOx interface under HfO2, Nature Electronics (Aug 2026). Press summary: Newswise.",
+   "url": "https://www.newswise.com/articles/nycu-and-tsmc-researchers-engineer-atomic-interface-to-tackle-a-key-transistor-bottleneck"
+  },
+  {
+   "id": "sciencedaily2026",
+   "cat": "2D & 1D channels",
+   "cite": "ScienceDaily, \"A 0.42-Nanometer Breakthrough Could Push Transistors Beyond Silicon\" (Aug 2026).",
+   "url": "https://www.sciencedaily.com/releases/2026/08/260808234943.htm"
+  },
+  {
+   "id": "intelligentliving2026",
+   "cat": "2D & 1D channels",
+   "cite": "Intelligent Living, \"0.42-Nanometer Breakthrough Could Push Transistors Beyond Silicon\" (explains node name vs physical thickness), Aug 2026.",
+   "url": "https://www.intelligentliving.co/transistors-beyond-silicon-042-nanometer/"
+  },
+  {
+   "id": "scitech2026",
+   "cat": "2D & 1D channels",
+   "cite": "SciTechDaily, \"One of the Thinnest Transistor Interfaces Yet Could Reshape Future Chips\" (Aug 2026).",
+   "url": "https://scitechdaily.com/one-of-the-thinnest-transistor-interfaces-yet-could-reshape-future-chips/"
+  },
+  {
+   "id": "ao2025",
+   "cat": "2D & 1D channels",
+   "cite": "M. Ao et al., \"A RISC-V 32-bit Microprocessor Based on Two-Dimensional Semiconductors,\" Nature 640, 654 (2025).",
+   "doi": "10.1038/s41586-025-08759-9"
+  },
+  {
+   "id": "semitoday_wuji",
+   "cat": "2D & 1D channels",
+   "cite": "Semiconductor Today, \"RISC Processor Based on 2D Semiconductor FETs\" (Apr 2025).",
+   "url": "https://www.semiconductor-today.com/news_items/2025/apr/fudan-170425.shtml"
+  },
+  {
+   "id": "radisavljevic2011",
+   "cat": "2D & 1D channels",
+   "cite": "B. Radisavljevic, A. Radenovic, J. Brivio, V. Giacometti, A. Kis, \"Single-Layer MoS2 Transistors,\" Nature Nanotechnology 6, 147 (2011).",
+   "doi": "10.1038/nnano.2010.279"
+  },
+  {
+   "id": "desai2016",
+   "cat": "2D & 1D channels",
+   "cite": "S. B. Desai et al., \"MoS2 Transistors with 1-Nanometer Gate Lengths,\" Science 354, 99 (2016).",
+   "doi": "10.1126/science.aah4698"
+  },
+  {
+   "id": "chhowalla2016",
+   "cat": "2D & 1D channels",
+   "cite": "M. Chhowalla, D. Jena, H. Zhang, \"Two-Dimensional Semiconductors for Transistors,\" Nature Reviews Materials 1, 16052 (2016).",
+   "doi": "10.1038/natrevmats.2016.52"
+  },
+  {
+   "id": "li2019",
+   "cat": "2D & 1D channels",
+   "cite": "M.-Y. Li, S.-K. Su, H.-S. P. Wong, L.-J. Li, \"How 2D Semiconductors Could Extend Moore's Law,\" Nature 567, 169 (2019).",
+   "doi": "10.1038/d41586-019-00793-8"
+  },
+  {
+   "id": "shen2021",
+   "cat": "2D & 1D channels",
+   "cite": "P.-C. Shen et al., \"Ultralow Contact Resistance Between Semimetal and Monolayer Semiconductors,\" Nature 593, 211 (2021).",
+   "doi": "10.1038/s41586-021-03472-9"
+  },
+  {
+   "id": "das2021",
+   "cat": "2D & 1D channels",
+   "cite": "S. Das et al., \"Transistors Based on Two-Dimensional Materials for Future Integrated Circuits,\" Nature Electronics 4, 786 (2021).",
+   "doi": "10.1038/s41928-021-00670-1"
+  },
+  {
+   "id": "illarionov2020",
+   "cat": "2D & 1D channels",
+   "cite": "Y. Y. Illarionov et al., \"Insulators for 2D Nanoelectronics: The Gap to Bridge,\" Nature Communications 11, 3385 (2020).",
+   "doi": "10.1038/s41467-020-16640-8"
+  },
+  {
+   "id": "li2023",
+   "cat": "2D & 1D channels",
+   "cite": "W. Li et al., \"Approaching the Quantum Limit in Two-Dimensional Semiconductor Contacts,\" Nature 613, 274 (2023).",
+   "doi": "10.1038/s41586-022-05431-4"
+  },
+  {
+   "id": "cleaninterface2025",
+   "cat": "2D & 1D channels",
+   "cite": "\"Ultra-Clean Interface Between High-k Dielectric and 2D MoS2,\" arXiv:2507.18010 (2025).",
+   "url": "https://arxiv.org/abs/2507.18010"
+  },
+  {
+   "id": "flatland2026",
+   "cat": "2D & 1D channels",
+   "cite": "\"Chips in the Flatland: 2D Semiconductors for Future Computing Electronics,\" arXiv:2605.26555 (2026).",
+   "url": "https://arxiv.org/abs/2605.26555"
+  },
+  {
+   "id": "novoselov2004",
+   "cat": "2D & 1D channels",
+   "cite": "K. S. Novoselov et al., \"Electric Field Effect in Atomically Thin Carbon Films,\" Science 306, 666 (2004).",
+   "doi": "10.1126/science.1102896"
+  },
+  {
+   "id": "tans1998",
+   "cat": "2D & 1D channels",
+   "cite": "S. J. Tans, A. R. M. Verschueren, C. Dekker, \"Room-Temperature Transistor Based on a Single Carbon Nanotube,\" Nature 393, 49 (1998).",
+   "doi": "10.1038/29954"
+  },
+  {
+   "id": "franklin2012",
+   "cat": "2D & 1D channels",
+   "cite": "A. D. Franklin et al., \"Sub-10 nm Carbon Nanotube Transistor,\" Nano Letters 12, 758 (2012).",
+   "doi": "10.1021/nl203701g"
+  },
+  {
+   "id": "shulaker2013",
+   "cat": "2D & 1D channels",
+   "cite": "M. M. Shulaker et al., \"Carbon Nanotube Computer,\" Nature 501, 526 (2013).",
+   "doi": "10.1038/nature12502"
+  },
+  {
+   "id": "hills2019",
+   "cat": "2D & 1D channels",
+   "cite": "G. Hills et al., \"Modern Microprocessor Built from Complementary Carbon Nanotube Transistors,\" Nature 572, 595 (2019).",
+   "doi": "10.1038/s41586-019-1493-8"
+  },
+  {
+   "id": "mead1966",
+   "cat": "Compound semiconductors",
+   "cite": "C. A. Mead, \"Schottky Barrier Gate Field Effect Transistor,\" Proc. IEEE 54(2), 307 (1966).",
+   "doi": "10.1109/PROC.1966.4661"
+  },
+  {
+   "id": "hooper1967",
+   "cat": "Compound semiconductors",
+   "cite": "W. W. Hooper, W. I. Lehrer, \"An Epitaxial GaAs Field-Effect Transistor,\" Proc. IEEE 55(7), 1237 (1967).",
+   "doi": "10.1109/PROC.1967.5796"
+  },
+  {
+   "id": "kroemer1957",
+   "cat": "Compound semiconductors",
+   "cite": "H. Kroemer, \"Theory of a Wide-Gap Emitter for Transistors,\" Proc. IRE 45, 1535 (1957).",
+   "doi": "10.1109/JRPROC.1957.278348"
+  },
+  {
+   "id": "mimura1980",
+   "cat": "Compound semiconductors",
+   "cite": "T. Mimura, S. Hiyamizu, T. Fujii, K. Nanbu, \"A New Field-Effect Transistor with Selectively Doped GaAs/n-AlxGa1-xAs Heterojunctions,\" Jpn. J. Appl. Phys. 19, L225 (1980).",
+   "doi": "10.1143/JJAP.19.L225"
+  },
+  {
+   "id": "nobel2000",
+   "cat": "Compound semiconductors",
+   "cite": "The Nobel Prize in Physics 2000: Alferov & Kroemer (semiconductor heterostructures) and Kilby (integrated circuit).",
+   "url": "https://www.nobelprize.org/prizes/physics/2000/summary/"
+  },
+  {
+   "id": "khan1993",
+   "cat": "Compound semiconductors",
+   "cite": "M. A. Khan, A. Bhattarai, J. N. Kuznia, D. T. Olson, \"High Electron Mobility Transistor Based on a GaN-AlxGa1−xN Heterojunction,\" Appl. Phys. Lett. 63, 1214 (1993).",
+   "doi": "10.1063/1.109775"
+  },
+  {
+   "id": "ambacher1999",
+   "cat": "Compound semiconductors",
+   "cite": "O. Ambacher et al., \"Two-Dimensional Electron Gases Induced by Spontaneous and Piezoelectric Polarization Charges in N- and Ga-Face AlGaN/GaN Heterostructures,\" J. Appl. Phys. 85, 3222 (1999).",
+   "doi": "10.1063/1.369664"
+  },
+  {
+   "id": "ambacher2000",
+   "cat": "Compound semiconductors",
+   "cite": "O. Ambacher et al., \"Two Dimensional Electron Gases Induced by Spontaneous and Piezoelectric Polarization in Undoped and Doped AlGaN/GaN Heterostructures,\" J. Appl. Phys. 87, 334 (2000).",
+   "doi": "10.1063/1.371866"
+  },
+  {
+   "id": "mishra2002",
+   "cat": "Compound semiconductors",
+   "cite": "U. K. Mishra, P. Parikh, Y.-F. Wu, \"AlGaN/GaN HEMTs—An Overview of Device Operation and Applications,\" Proc. IEEE 90(6), 1022 (2002).",
+   "doi": "10.1109/JPROC.2002.1021567"
+  },
+  {
+   "id": "amano1989",
+   "cat": "Compound semiconductors",
+   "cite": "H. Amano, M. Kito, K. Hiramatsu, I. Akasaki, \"P-Type Conduction in Mg-Doped GaN Treated with Low-Energy Electron Beam Irradiation (LEEBI),\" Jpn. J. Appl. Phys. 28, L2112 (1989).",
+   "doi": "10.1143/JJAP.28.L2112"
+  },
+  {
+   "id": "nakamura1992",
+   "cat": "Compound semiconductors",
+   "cite": "S. Nakamura, T. Mukai, M. Senoh, N. Iwasa, \"Thermal Annealing Effects on P-Type Mg-Doped GaN Films,\" Jpn. J. Appl. Phys. 31, L139 (1992).",
+   "doi": "10.1143/JJAP.31.L139"
+  },
+  {
+   "id": "nobel2014",
+   "cat": "Compound semiconductors",
+   "cite": "The Nobel Prize in Physics 2014: Akasaki, Amano, Nakamura for efficient blue light-emitting diodes (GaN).",
+   "url": "https://www.nobelprize.org/prizes/physics/2014/summary/"
+  },
+  {
+   "id": "then2019",
+   "cat": "Compound semiconductors",
+   "cite": "H. W. Then et al., \"3D Heterogeneous Integration of High Performance High-K Metal Gate GaN NMOS and Si PMOS Transistors on 300mm High-Resistivity Si Substrate for Energy-Efficient and Compact Power Delivery, RF (5G and Beyond) and SoC Applications,\" IEDM (2019).",
+   "doi": "10.1109/IEDM19573.2019.8993583"
+  },
+  {
+   "id": "bader2020",
+   "cat": "Compound semiconductors",
+   "cite": "S. J. Bader et al., \"Prospects for Wide Bandgap and Ultrawide Bandgap CMOS Devices,\" IEEE Trans. Electron Devices 67(10), 4010 (2020).",
+   "doi": "10.1109/TED.2020.3010471"
+  },
+  {
+   "id": "lidow2019",
+   "cat": "Compound semiconductors",
+   "cite": "A. Lidow, M. de Rooij, J. Strydom, D. Reusch, J. Glaser, GaN Transistors for Efficient Power Conversion, 3rd ed., Wiley (2019).",
+   "doi": "10.1002/9781119594406"
+  },
+  {
+   "id": "kimoto2014",
+   "cat": "Compound semiconductors",
+   "cite": "T. Kimoto, J. A. Cooper, Fundamentals of Silicon Carbide Technology, Wiley (2014).",
+   "doi": "10.1002/9781118313534"
+  },
+  {
+   "id": "baliga1982",
+   "cat": "Compound semiconductors",
+   "cite": "B. J. Baliga, \"Semiconductors for High-Voltage, Vertical Channel Field-Effect Transistors,\" J. Appl. Phys. 53, 1759 (1982).",
+   "doi": "10.1063/1.331646"
+  },
+  {
+   "id": "baliga1989",
+   "cat": "Compound semiconductors",
+   "cite": "B. J. Baliga, \"Power Semiconductor Device Figure of Merit for High-Frequency Applications,\" IEEE Electron Device Lett. 10(10), 455 (1989).",
+   "doi": "10.1109/55.43098"
+  },
+  {
+   "id": "johnson1965",
+   "cat": "Compound semiconductors",
+   "cite": "E. O. Johnson, \"Physical Limitations on Frequency and Power Parameters of Transistors,\" RCA Review 26, 163 (1965)."
+  },
+  {
+   "id": "higashiwaki2012",
+   "cat": "Compound semiconductors",
+   "cite": "M. Higashiwaki et al., \"Gallium Oxide (Ga2O3) Metal-Semiconductor Field-Effect Transistors on Single-Crystal β-Ga2O3 (010) Substrates,\" Appl. Phys. Lett. 100, 013504 (2012).",
+   "doi": "10.1063/1.3674287"
+  },
+  {
+   "id": "tsao2018",
+   "cat": "Compound semiconductors",
+   "cite": "J. Y. Tsao et al., \"Ultrawide-Bandgap Semiconductors: Research Opportunities and Challenges,\" Advanced Electronic Materials 4, 1600501 (2018).",
+   "doi": "10.1002/aelm.201600501"
+  },
+  {
+   "id": "isberg2002",
+   "cat": "Diamond",
+   "cite": "J. Isberg et al., \"High Carrier Mobility in Single-Crystal Plasma-Deposited Diamond,\" Science 297, 1670 (2002).",
+   "doi": "10.1126/science.1074374"
+  },
+  {
+   "id": "landstrass1989",
+   "cat": "Diamond",
+   "cite": "M. I. Landstrass, K. V. Ravi, \"Resistivity of Chemical Vapor Deposited Diamond Films,\" Appl. Phys. Lett. 55, 975 (1989).",
+   "doi": "10.1063/1.101694"
+  },
+  {
+   "id": "kawarada1994",
+   "cat": "Diamond",
+   "cite": "H. Kawarada, M. Aoki, M. Ito, \"Enhancement Mode Metal-Semiconductor Field Effect Transistors Using Homoepitaxial Diamonds,\" Appl. Phys. Lett. 65, 1563 (1994).",
+   "doi": "10.1063/1.112915"
+  },
+  {
+   "id": "maier2000",
+   "cat": "Diamond",
+   "cite": "F. Maier, M. Riedel, B. Mantel, J. Ristein, L. Ley, \"Origin of Surface Conductivity in Diamond,\" Phys. Rev. Lett. 85, 3472 (2000).",
+   "doi": "10.1103/PhysRevLett.85.3472"
+  },
+  {
+   "id": "kawarada2017",
+   "cat": "Diamond",
+   "cite": "H. Kawarada et al., \"Durability-Enhanced Two-Dimensional Hole Gas of C-H Diamond Surface for Complementary Power Inverter Applications,\" Scientific Reports 7, 42368 (2017).",
+   "doi": "10.1038/srep42368"
+  },
+  {
+   "id": "donato2020",
+   "cat": "Diamond",
+   "cite": "N. Donato et al., \"Diamond Power Devices: State of the Art, Modelling, Figures of Merit and Future Perspective,\" J. Phys. D: Appl. Phys. 53, 093001 (2020).",
+   "doi": "10.1088/1361-6463/ab4eab"
+  },
+  {
+   "id": "likharev1991",
+   "cat": "Beyond CMOS",
+   "cite": "K. K. Likharev, V. K. Semenov, \"RSFQ Logic/Memory Family: A New Josephson-Junction Technology for Sub-Terahertz-Clock-Frequency Digital Systems,\" IEEE Trans. Appl. Supercond. 1(1), 3 (1991).",
+   "doi": "10.1109/77.80745"
+  },
+  {
+   "id": "han2012",
+   "cat": "Beyond CMOS",
+   "cite": "J.-W. Han, J. S. Oh, M. Meyyappan, \"Vacuum Nanoelectronics: Back to the Future?—Gate Insulated Nanoscale Vacuum Channel Transistor,\" Appl. Phys. Lett. 100, 213505 (2012).",
+   "doi": "10.1063/1.4717751"
+  },
+  {
+   "id": "nagel1973",
+   "cat": "Simulation",
+   "cite": "L. W. Nagel, D. O. Pederson, \"SPICE (Simulation Program with Integrated Circuit Emphasis),\" UC Berkeley ERL Memo M382 (1973).",
+   "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/1973/22871.html"
+  },
+  {
+   "id": "nagel1975",
+   "cat": "Simulation",
+   "cite": "IEEE Milestone: SPICE (Simulation Program with Integrated Circuit Emphasis), 1969-1970. Engineering and Technology History Wiki.",
+   "url": "https://ethw.org/Milestones:SPICE_(Simulation_Program_with_Integrated_Circuit_Emphasis),_1969-1970"
+  },
+  {
+   "id": "ngspice",
+   "cat": "Simulation",
+   "cite": "ngspice — open-source mixed-signal circuit simulator.",
+   "url": "https://ngspice.sourceforge.io/"
+  },
+  {
+   "id": "klayout",
+   "cat": "Simulation",
+   "cite": "KLayout — layout viewer and editor (GDSII/OASIS).",
+   "url": "https://www.klayout.de/"
+  },
+  {
+   "id": "magic",
+   "cat": "Simulation",
+   "cite": "Magic VLSI Layout Tool (J. Ousterhout et al., UC Berkeley, 1980s; maintained by R. T. Edwards).",
+   "url": "http://opencircuitdesign.com/magic/"
+  },
+  {
+   "id": "openroad",
+   "cat": "Simulation",
+   "cite": "The OpenROAD Project — open RTL-to-GDS flow.",
+   "url": "https://theopenroadproject.org/"
+  },
+  {
+   "id": "gdstk",
+   "cat": "Simulation",
+   "cite": "L. H. Gabrielli, gdstk — Python/C++ library for GDSII and OASIS.",
+   "url": "https://github.com/heitzmann/gdstk"
+  },
+  {
+   "id": "sky130",
+   "cat": "Simulation",
+   "cite": "SkyWater / Google, SKY130 open-source 130 nm PDK.",
+   "url": "https://github.com/google/skywater-pdk"
+  },
+  {
+   "id": "gf180",
+   "cat": "Simulation",
+   "cite": "GlobalFoundries / Google, GF180MCU open-source 180 nm PDK.",
+   "url": "https://github.com/google/gf180mcu-pdk"
+  },
+  {
+   "id": "ihp_sg13g2",
+   "cat": "Simulation",
+   "cite": "IHP, SG13G2 open-source 130 nm SiGe BiCMOS PDK.",
+   "url": "https://github.com/IHP-GmbH/IHP-Open-PDK"
+  },
+  {
+   "id": "tinytapeout",
+   "cat": "Simulation",
+   "cite": "Tiny Tapeout — shared-shuttle ASIC tapeouts for education.",
+   "url": "https://tinytapeout.com/"
+  },
+  {
+   "id": "devsim",
+   "cat": "Simulation",
+   "cite": "DEVSIM — open-source TCAD semiconductor device simulator.",
+   "url": "https://devsim.org/"
+  },
+  {
+   "id": "suprem",
+   "cat": "Simulation",
+   "cite": "D. A. Antoniadis, S. E. Hansen, R. W. Dutton, \"SUPREM II — A Program for IC Process Modeling and Simulation,\" Stanford Electronics Laboratories Tech. Rep. 5019-2 (1978)."
+  },
+  {
+   "id": "pisces",
+   "cat": "Simulation",
+   "cite": "M. R. Pinto, C. S. Rafferty, R. W. Dutton, \"PISCES-II: Poisson and Continuity Equation Solver,\" Stanford Electronics Laboratories (1984)."
+  },
+  {
+   "id": "nanohub",
+   "cat": "Simulation",
+   "cite": "nanoHUB.org — MOSFET, FinFET, nanowire and 2D-FET simulation tools (Purdue / NCN).",
+   "url": "https://nanohub.org/"
+  },
+  {
+   "id": "sentaurus",
+   "cat": "Simulation",
+   "cite": "Synopsys Sentaurus TCAD (industry process and device simulation).",
+   "url": "https://www.synopsys.com/manufacturing/tcad.html"
+  },
+  {
+   "id": "stam1999",
+   "cat": "Simulation",
+   "cite": "J. Stam, \"Stable Fluids,\" Proc. SIGGRAPH '99, 121 (1999) — algorithm behind the site's WebGL fluid hero.",
+   "doi": "10.1145/311535.311548"
+  },
+  {
+   "id": "apple_a11",
+   "cat": "Chip data",
+   "cite": "Wikipedia, \"Apple A11\" (4.3 billion transistors, TSMC 10 nm FinFET).",
+   "url": "https://en.wikipedia.org/wiki/Apple_A11"
+  },
+  {
+   "id": "apple_a12",
+   "cat": "Chip data",
+   "cite": "Wikipedia, \"Apple A12\" (6.9 billion transistors, TSMC N7); see also Tom's Hardware launch coverage.",
+   "url": "https://en.wikipedia.org/wiki/Apple_A12"
+  },
+  {
+   "id": "phonearena_n5",
+   "cat": "Chip data",
+   "cite": "PhoneArena, TSMC 5 nm density (171.3 MTr/mm²) and A14 (11.8B) / M1 (16B) transistor counts.",
+   "url": "https://www.phonearena.com/news/apple-a16-bionic-chip-could-use-4nm-process-node-by-2022_id128506"
+  },
+  {
+   "id": "apple_m1max",
+   "cat": "Chip data",
+   "cite": "Apple Newsroom, \"Introducing M1 Pro and M1 Max\" (57 billion transistors), Oct 2021.",
+   "url": "https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/"
+  },
+  {
+   "id": "apple_m3",
+   "cat": "Chip data",
+   "cite": "Apple Newsroom, \"Apple Unveils M3, M3 Pro, and M3 Max\" (M3 Max: 92 billion transistors, 3 nm), Oct 2023.",
+   "url": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/"
+  },
+  {
+   "id": "nvidia_h100",
+   "cat": "Chip data",
+   "cite": "Wikipedia, \"Hopper (microarchitecture)\" (H100: 80 billion transistors, TSMC 4N, 814 mm²).",
+   "url": "https://en.wikipedia.org/wiki/Hopper_(microarchitecture)"
+  },
+  {
+   "id": "nvidia_blackwell",
+   "cat": "Chip data",
+   "cite": "Wikipedia, \"Blackwell (microarchitecture)\" (B200: 208 billion transistors across two dies, TSMC 4NP).",
+   "url": "https://en.wikipedia.org/wiki/Blackwell_(microarchitecture)"
+  },
+  {
+   "id": "cerebras_wse3",
+   "cat": "Chip data",
+   "cite": "Cerebras, WSE-3 announcement (4 trillion transistors, 46,225 mm²), March 2024.",
+   "url": "https://www.cerebras.ai/press-release/cerebras-announces-third-generation-wafer-scale-engine"
+  },
+  {
+   "id": "commons_dies",
+   "cat": "Image sources",
+   "cite": "Wikimedia Commons, Category: Intel microprocessor dies (Pauli Rautakorpi and others).",
+   "url": "https://commons.wikimedia.org/wiki/Category:Intel_microprocessor_dies"
+  },
+  {
+   "id": "rautakorpi",
+   "cat": "Image sources",
+   "cite": "Pauli Rautakorpi (User:Birdman86), die-shot collection on Wikimedia Commons, CC BY 3.0.",
+   "url": "https://commons.wikimedia.org/wiki/User:Birdman86"
+  },
+  {
+   "id": "fritzchens",
+   "cat": "Image sources",
+   "cite": "Fritzchens Fritz, die-shot album on Flickr (CC0 public-domain dedication).",
+   "url": "https://www.flickr.com/photos/130561288@N04/albums/72157650403404920/"
+  },
+  {
+   "id": "commons_transistors",
+   "cat": "Image sources",
+   "cite": "Wikimedia Commons, Category: Early transistors.",
+   "url": "https://commons.wikimedia.org/wiki/Category:Early_transistors"
+  },
+  {
+   "id": "inspo_reactbits",
+   "cat": "Design inspiration",
+   "cite": "DavidHDev, react-bits — animated React components.",
+   "url": "https://github.com/DavidHDev/react-bits"
+  },
+  {
+   "id": "inspo_magicui",
+   "cat": "Design inspiration",
+   "cite": "magicuidesign, magicui — animated components for design engineers.",
+   "url": "https://github.com/magicuidesign/magicui"
+  },
+  {
+   "id": "inspo_animateui",
+   "cat": "Design inspiration",
+   "cite": "Animate UI — animated React components.",
+   "url": "https://animate-ui.com/"
+  },
+  {
+   "id": "inspo_motionprimitives",
+   "cat": "Design inspiration",
+   "cite": "ibelick, motion-primitives — animated UI kit.",
+   "url": "https://github.com/ibelick/motion-primitives"
+  },
+  {
+   "id": "inspo_fluid",
+   "cat": "Design inspiration",
+   "cite": "PavelDoGreat, WebGL-Fluid-Simulation.",
+   "url": "https://github.com/PavelDoGreat/WebGL-Fluid-Simulation"
+  },
+  {
+   "id": "inspo_folio",
+   "cat": "Design inspiration",
+   "cite": "Bruno Simon, folio-2019 (three.js portfolio).",
+   "url": "https://github.com/brunosimon/folio-2019"
+  },
+  {
+   "id": "inspo_gsap",
+   "cat": "Design inspiration",
+   "cite": "GreenSock, GSAP animation platform (used here with ScrollTrigger).",
+   "url": "https://github.com/greensock/GSAP"
+  },
+  {
+   "id": "inspo_remotion",
+   "cat": "Design inspiration",
+   "cite": "remotion-dev, Remotion — programmatic video with React.",
+   "url": "https://github.com/remotion-dev/remotion"
+  },
+  {
+   "id": "inspo_llmviz",
+   "cat": "Design inspiration",
+   "cite": "B. Bycroft, llm-viz — 3D visualization of a GPT-style LLM.",
+   "url": "https://github.com/bbycroft/llm-viz"
+  },
+  {
+   "id": "inspo_transformer",
+   "cat": "Design inspiration",
+   "cite": "Polo Club (Georgia Tech), Transformer Explainer.",
+   "url": "https://github.com/poloclub/transformer-explainer"
+  },
+  {
+   "id": "inspo_godseye",
+   "cat": "Design inspiration",
+   "cite": "bilawalsidhu, gods-eye-view — 3D globe spatial-intelligence viewer.",
+   "url": "https://github.com/bilawalsidhu/gods-eye-view"
+  },
+  {
+   "id": "inspo_worldmonitor",
+   "cat": "Design inspiration",
+   "cite": "koala73, worldmonitor — real-time global intelligence dashboard.",
+   "url": "https://github.com/koala73/worldmonitor"
+  },
+  {
+   "id": "threejs",
+   "cat": "Design inspiration",
+   "cite": "three.js — JavaScript 3D library (used for the architecture explorer).",
+   "url": "https://threejs.org/"
+  }
+ ]
+}

@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Transistor Odyssey</title>
+<meta name="description" content="An interactive history of the transistor from the 1947 point-contact device to 2 nm gate-all-around, IBM's 0.7 nm nanostack and 2D MoS₂ with a 0.42 nm interface, plus GaN, GaAs, SiC, diamond and nanotube alternatives.">
+<meta property="og:title" content="Transistor Odyssey — 1947 to the ångström era">
+<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, with 170+ references.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Oxanium:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/OrbitControls.js": "./vendor/OrbitControls.js" } }</script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Transistor Odyssey home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="15" width="20" height="6" rx="1.5" fill="#4b596d"/><rect x="3" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="15" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="9" y="12.2" width="6" height="1.2" fill="#9a80dc"/><rect x="9" y="5" width="6" height="7.2" rx="1" fill="#f2b84b"/></svg>
+      Transistor Odyssey
+    </a>
+    <div class="nav-links">
+      <a href="#scale">Scale</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#explorer">3D explorer</a>
+      <a href="#lab">Device lab</a>
+      <a href="#moore">Moore's law</a>
+      <a href="#chips">Chips</a>
+      <a href="#materials">Materials</a>
+      <a href="#frontier">Frontier</a>
+      <a href="#sources">Sources</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Source
+    </a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="fluid" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">An open history of the transistor · 1947 → 2026</span>
+    <h1>From a <span class="sheen">50 µm gold contact</span> to a 0.42 nm atomic interface</h1>
+    <p class="lead">How the switch at the heart of every chip changed shape: germanium point contacts, planar silicon, FinFETs, gate-all-around nanosheets, IBM's 7 Å nanostack and one-molecule-thick MoS₂. Plus the materials that could replace silicon, from GaN and GaAs to diamond. Every number is sourced; every simulation is open.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#timeline">Walk the timeline</a>
+      <a class="btn" href="#explorer">Open the 3D explorer</a>
+      <a class="btn" href="#lab">Run the device lab</a>
+    </div>
+    <p class="hint">Drag across the background to stir the fluid.</p>
+    <div class="stats" aria-label="Key numbers">
+      <div class="stat"><span class="v tabnum" data-count="2300" data-format="int">2,300</span><span class="l">transistors in the Intel 4004 (1971)</span></div>
+      <div class="stat"><span class="v tabnum" data-count="208" data-suffix=" billion">208 billion</span><span class="l">in NVIDIA's B200 (2024)</span></div>
+      <div class="stat"><span class="v tabnum" data-count="2.15" data-format="dec2" data-suffix=" yr">2.15 yr</span><span class="l">fitted doubling time, 1971–2024</span></div>
+      <div class="stat"><span class="v tabnum" data-count="176" data-format="int">176</span><span class="l">cited sources in this project</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+<main>
+
+<!-- ============ SCALE ============ -->
+<section class="sec" id="scale">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Chapter 0 · Scale</span>
+      <h2>Node names are not lengths any more</h2>
+      <p class="lead">Until the 1990s a "1 µm process" really had 1 µm gates. Today "2 nm" is a generation label: the gates are around 12–15 nm long and the metal lines 20 nm apart. So what is 0.42 nm? It is the thickness of one engineered layer, about two atoms of aluminium oxide. Drag the ruler to feel the distances.</p>
+    </div>
+    <div class="card ruler-card glow reveal">
+      <div class="ruler-top">
+        <div>
+          <div class="ruler-readout tabnum" id="rulerReadout">10<small>µm</small></div>
+          <div class="ruler-what" id="rulerWhat">Intel 4004 gate length (1971)</div>
+        </div>
+        <span class="small mono">log scale · 1 mm → 0.1 nm</span>
+      </div>
+      <canvas id="ruler" aria-label="Logarithmic scale ruler from one millimetre to one tenth of a nanometre"></canvas>
+      <label class="sr-only" for="rulerRange">Length on a log scale</label>
+      <input class="ruler-range" id="rulerRange" type="range" min="-10" max="-3" step="0.001" value="-5">
+    </div>
+    <div class="callout-grid" style="margin-top:16px">
+      <div class="card callout glow reveal">
+        <span class="tag">In production · Q4 2025 →</span>
+        <div class="k"><em>2 nm</em> class</div>
+        <p>TSMC N2 and Intel 18A reached high-volume manufacturing in Q4 2025 with gate-all-around nanosheets. 18A adds PowerVia backside power; TSMC's A16 with Super Power Rail targets 2H 2026.</p>
+      </div>
+      <div class="card callout glow reveal">
+        <span class="tag">Research · 25 June 2026</span>
+        <div class="k"><em>0.7 nm</em> (7 Å) node</div>
+        <p>IBM's nanostack stacks and staggers nanosheets vertically: nearly 100 billion transistors on a fingernail-sized chip, about twice the density of its 2021 2 nm chip. Commercialization is projected within about five years.</p>
+      </div>
+      <div class="card callout glow reveal">
+        <span class="tag">Research · August 2026</span>
+        <div class="k"><em>0.42 nm</em> interface</div>
+        <p>NYCU and TSMC Corporate Research oxidised a 0.3 nm epitaxial aluminium film on monolayer MoS₂ into 0.42 nm of AlOx, then grew HfO₂ on top: ~1 nm EOT, low leakage, 0.45 mS/µm peak gm. A layer thickness, not a process node.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="sec" id="timeline" style="padding-bottom:clamp(48px,6vw,80px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Chapters 1–20 · Structure</span>
+      <h2>Twenty shapes of one switch</h2>
+      <p class="lead">Each card pairs a generated cross-section (the simulation view) with what changed and who did it. Scroll sideways, or keep scrolling down on a large screen and the track moves for you.</p>
+    </div>
+  </div>
+  <div class="tl-outer" id="tlOuter">
+    <div class="tl-progress" aria-hidden="true"><i id="tlBar"></i></div>
+    <div class="tl-track" id="tlTrack" tabindex="0" aria-label="Transistor timeline, scroll horizontally"></div>
+  </div>
+</section>
+
+<!-- ============ 3D EXPLORER ============ -->
+<section class="sec" id="explorer">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Interactive · three.js</span>
+      <h2>Take a transistor apart</h2>
+      <p class="lead">Orbit, zoom and explode each architecture. Raise the gate voltage and watch carriers start to flow through the channel; the flow rate comes from the same compact model as the device lab.</p>
+    </div>
+    <div class="explorer">
+      <div class="card stage" id="stage">
+        <div class="stage-caption" id="stageCaption"></div>
+      </div>
+      <div class="card panel">
+        <div class="seg" id="archSeg" role="group" aria-label="Architecture"></div>
+        <div class="ctl">
+          <label for="vg"><span>Gate voltage</span> <output id="vgOut">0.70 V</output></label>
+          <input id="vg" type="range" min="0" max="1" step="0.01" value="0.7">
+        </div>
+        <div class="ctl">
+          <label for="explode"><span>Explode layers</span> <output id="explodeOut">0%</output></label>
+          <input id="explode" type="range" min="0" max="1" step="0.01" value="0">
+        </div>
+        <label class="switch"><input type="checkbox" id="spin" checked> Auto-rotate</label>
+        <div>
+          <div class="small" style="margin-bottom:8px">Layers (hover the model to identify)</div>
+          <div class="legend" id="legend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEVICE LAB ============ -->
+<section class="sec" id="lab">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Simulation · compact model</span>
+      <h2>Device lab</h2>
+      <p class="lead">One smooth MOSFET equation set (subthreshold, velocity saturation, DIBL, series resistance) with parameters for eight eras. Pick a device and move the bias. The Python twin in <span class="mono">sim/transistor_sim/mosfet.py</span> is tested against published numbers.</p>
+    </div>
+    <div class="lab">
+      <div class="card panel">
+        <div class="ctl">
+          <label for="preset">Device</label>
+          <select id="preset"></select>
+        </div>
+        <div class="ctl">
+          <label for="labVg"><span>V<sub>GS</sub> gate–source</span> <output id="labVgOut"></output></label>
+          <input id="labVg" type="range" min="0" max="1" step="0.001">
+        </div>
+        <div class="ctl">
+          <label for="labVd"><span>V<sub>DS</sub> drain–source</span> <output id="labVdOut"></output></label>
+          <input id="labVd" type="range" min="0" max="1" step="0.001">
+        </div>
+        <p class="small" id="presetNote"></p>
+        <dl class="kv" id="presetKv"></dl>
+      </div>
+      <div style="display:grid;gap:16px;min-width:0">
+        <div class="tiles" id="labTiles"></div>
+        <div class="plots">
+          <div class="card plot" id="plotOut"><h4>Output characteristics</h4><div class="sub">I<sub>D</sub> vs V<sub>DS</sub>, five gate voltages; dot = bias point</div></div>
+          <div class="card plot" id="plotTr"><h4>Transfer curve (log)</h4><div class="sub">I<sub>D</sub> vs V<sub>GS</sub> at the chosen V<sub>DS</sub></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOORE ============ -->
+<section class="sec" id="moore">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Data · 33 chips</span>
+      <h2>Moore's law, with the outliers left in</h2>
+      <p class="lead">Transistors per chip on a log axis. Production silicon doubles about every 2.15 years. Beyond-silicon research chips (carbon nanotubes, MoS₂) start the climb again from a few thousand devices.</p>
+    </div>
+    <div class="card moore reveal" id="mooreCard">
+      <div class="chart-legend" id="mooreLegend"></div>
+      <div id="mooreChart"></div>
+      <button class="btn table-toggle" id="mooreTableBtn" aria-expanded="false">Show data table</button>
+      <div class="scroll-x" id="mooreTable" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHIPS ============ -->
+<section class="sec" id="chips">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Physical vs simulated</span>
+      <h2>Die photos beside their drawings</h2>
+      <p class="lead">Left of the handle: a real photograph from Wikimedia Commons. Right: the layout or cross-section this repository generates for the same era. Drag the handle to compare.</p>
+    </div>
+    <div class="compare-wrap">
+      <div class="compare-list" id="compareList" role="group" aria-label="Choose a chip"></div>
+      <div>
+        <div class="compare" id="compare">
+          <div class="pane photo" id="cmpPhoto"></div>
+          <div class="pane sim" id="cmpSim"></div>
+          <div class="bar" aria-hidden="true"></div>
+          <button class="knob" id="cmpKnob" aria-label="Drag to compare photo and simulation">⇆</button>
+          <span class="tag l">Photograph</span><span class="tag r">Generated</span>
+        </div>
+        <p class="credit" id="cmpCredit"></p>
+      </div>
+    </div>
+    <div class="photo-grid" id="photoGrid"></div>
+  </div>
+</section>
+
+<!-- ============ MATERIALS ============ -->
+<section class="sec" id="materials">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Beyond silicon · materials</span>
+      <h2>GaN, GaAs, SiC, diamond and the 2D family</h2>
+      <p class="lead">Silicon won logic because its oxide is nearly perfect. Other semiconductors win elsewhere: GaAs and InP at high frequency, GaN and SiC at high voltage, diamond at everything except manufacturing. Choose a property to rank them.</p>
+    </div>
+    <div class="mat-layout">
+      <div class="card mat-chart">
+        <div class="seg" id="propSeg" role="group" aria-label="Property"></div>
+        <div id="matChart"></div>
+        <p class="small" id="propNote"></p>
+      </div>
+      <div class="mat-cards" id="matCards"></div>
+    </div>
+    <div class="card mat-detail" id="matDetail"></div>
+  </div>
+</section>
+
+<!-- ============ FRONTIER ============ -->
+<section class="sec" id="frontier">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">2025–2026 · the ångström era</span>
+      <h2>Where the frontier is right now</h2>
+      <p class="lead">Three results from the last eighteen months, and what each one actually claims.</p>
+    </div>
+    <div class="frontier">
+      <article class="card fcard glow reveal">
+        <span class="date">Nature · 2 April 2025</span>
+        <h3>RV32-WUJI: a RISC-V CPU on MoS₂</h3>
+        <img src="assets/xsec/mos2.svg" alt="Cross-section of a MoS₂ top-gate transistor" loading="lazy">
+        <p>Fudan University built a 32-bit RISC-V processor from 5,900 monolayer MoS₂ transistors with a 25-cell 2D standard-cell library, on a 4-inch sapphire wafer. The previous 2D record was 115 transistors.</p>
+      </article>
+      <article class="card fcard glow reveal">
+        <span class="date">IBM Research · 25 June 2026</span>
+        <h3>Nanostack at 7 Å</h3>
+        <img src="assets/xsec/nanostack.svg" alt="Cross-section of stacked, staggered nanosheet tiers" loading="lazy">
+        <p>IBM's first sub-1 nm technology stacks and staggers nanosheet transistors vertically. Claims: nearly 2× the density of its 2 nm chip, up to 50% more performance or 70% better efficiency, and 40% SRAM scaling shown at VLSI 2026.</p>
+      </article>
+      <article class="card fcard glow reveal">
+        <span class="date">Nature Electronics · August 2026</span>
+        <h3>0.42 nm AlOx on monolayer MoS₂</h3>
+        <img src="assets/xsec/mos2_interface.svg" alt="To-scale stack of MoS₂, 0.42 nm AlOx and HfO₂" loading="lazy">
+        <p>NYCU and TSMC engineered the interface instead of the channel: epitaxial Al → 0.42 nm AlOx → HfO₂. Result: ~1 nm EOT, low leakage, minimal hysteresis, 0.45 mS/µm at ~100 nm channel length on wafer-scale CVD MoS₂.</p>
+      </article>
+    </div>
+    <div class="card truth reveal">
+      <span class="badge">READ THIS FIRST</span>
+      <p><strong>No foundry sells a 0.42 nm or 0.7 nm process today.</strong> The most advanced production nodes in September 2026 are 2 nm-class (TSMC N2, Intel 18A) with A16 ramping. "0.7 nm" is IBM's research node name; "0.42 nm" is the physical thickness of one interface layer in a research transistor whose channel is about 100 nm long. Both matter because they show how the next decade could scale: vertically (stacking) and atomically (2D channels with engineered interfaces).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LITHOGRAPHY ============ -->
+<section class="sec" id="litho">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Tool · Rayleigh criterion</span>
+      <h2>How small can light print?</h2>
+      <p class="lead">Printed half-pitch ≈ k₁·λ/NA. Choose a light source and push the numbers toward the physical limit k₁ = 0.25.</p>
+    </div>
+    <div class="litho">
+      <div class="card panel">
+        <div class="seg" id="lambdaSeg" role="group" aria-label="Light source"></div>
+        <div class="ctl"><label for="na"><span>Numerical aperture NA</span> <output id="naOut"></output></label><input id="na" type="range" min="0.2" max="1.44" step="0.01" value="1.35"></div>
+        <div class="ctl"><label for="k1"><span>Process factor k₁</span> <output id="k1Out"></output></label><input id="k1" type="range" min="0.25" max="0.8" step="0.01" value="0.35"></div>
+        <div class="formula" id="lithoFormula"></div>
+      </div>
+      <div class="card litho-out">
+        <span class="small">Minimum half-pitch in a single exposure</span>
+        <div class="big" id="lithoBig">–</div>
+        <canvas id="lithoCanvas" aria-label="Line and space pattern at the computed half-pitch"></canvas>
+        <p class="small" id="lithoNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="sec" id="sources">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Bibliography</span>
+      <h2>Sources</h2>
+      <p class="lead">Every figure on this page traces to one of these. The same list lives in <span class="mono">REFERENCES.md</span>, generated from <span class="mono">data/references.json</span>.</p>
+    </div>
+    <div class="src-tools">
+      <label class="sr-only" for="srcSearch">Search sources</label>
+      <input type="search" id="srcSearch" placeholder="Search 176 sources: author, year, topic…">
+      <div class="seg" id="srcCats" role="group" aria-label="Filter by topic"></div>
+      <span class="src-count" id="srcCount"></span>
+    </div>
+    <ol class="src-list" id="srcList"></ol>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" style="margin-bottom:10px">Transistor Odyssey</a>
+      <p>Open educational repository. Code MIT; text and generated figures CC BY 4.0. Photographs remain under their Wikimedia Commons licenses (see CREDITS.md). Built with three.js and GSAP; fluid hero after Stam's "Stable Fluids".</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul><li><a href="#timeline">Timeline</a></li><li><a href="#explorer">3D explorer</a></li><li><a href="#lab">Device lab</a></li><li><a href="#materials">Materials</a></li><li><a href="#sources">Sources</a></li></ul>
+    </div>
+    <div>
+      <h4>Design inspiration</h4>
+      <ul id="inspo"></ul>
+    </div>
+  </div>
+</footer>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

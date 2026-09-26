@@ -1,0 +1,26 @@
+node_label,year,node_nm,cpp_nm,mmp_nm,gate_length_nm,vdd_v,structure,channel,gate_stack,lithography_nm,density_mtr_mm2,representative,notes
+10 µm,1971,10000,,,10000,15,planar pMOS,Si,poly-Si / SiO2,436,,Intel 4004,Silicon-gate self-aligned; contact printing and projection
+6 µm,1974,6000,,,6000,12,planar nMOS,Si,poly-Si / SiO2,436,,Intel 8080,
+3 µm,1977,3000,,,3000,5,planar nMOS (HMOS),Si,poly-Si / SiO2,436,,Intel 8086,
+1.5 µm,1982,1500,,,1500,5,planar CMOS,Si,poly-Si / SiO2,436,,Intel 80286 / 80386,
+1 µm,1985,1000,,,1000,5,planar CMOS,Si,poly-Si / SiO2,365,,Intel 80486,i-line steppers arrive
+800 nm,1989,800,,,800,5,planar BiCMOS,Si,poly-Si / SiO2,365,,Intel Pentium,
+500 nm,1993,500,,,500,3.3,planar CMOS,Si,poly-Si / SiO2,365,,Pentium (P54C),
+350 nm,1995,350,,,350,3.3,planar CMOS,Si,poly-Si / SiO2,365,,Pentium II,
+250 nm,1997,250,,,200,2.5,planar CMOS,Si,poly-Si / SiO2,248,,Pentium III,KrF 248 nm DUV
+180 nm,1999,180,,,130,1.8,planar CMOS,Si,poly-Si / SiON,248,,Pentium 4 (Willamette),Copper interconnect ramps (IBM 1997)
+130 nm,2001,130,,,70,1.4,planar CMOS,Si,poly-Si / SiON,248,,Pentium 4 (Northwood),
+90 nm,2003,90,260,220,50,1.2,planar strained-Si,Si (strained),poly-Si / SiON,193,,Pentium 4 (Prescott),Embedded SiGe S/D + tensile nitride
+65 nm,2005,65,220,210,35,1.1,planar strained-Si,Si (strained),poly-Si / SiON,193,,Core 2 (Conroe),
+45 nm,2007,45,160,160,35,1.0,planar HKMG,Si (strained),metal / HfO2,193,,Core 2 (Penryn),First high-k metal gate in HVM
+32 nm,2009,32,112,112,30,0.95,planar HKMG,Si (strained),metal / HfO2,193,,Sandy Bridge,193 nm immersion
+22 nm,2011,22,90,80,26,0.9,FinFET (tri-gate),Si fin,metal / HfO2,193,,Ivy Bridge,First FinFET in HVM
+14 nm,2014,14,70,52,20,0.8,FinFET,Si fin,metal / HfO2,193,37.5,Broadwell,Intel 14 nm density 37.5 MTr/mm2
+10 nm (Intel 7),2018,10,54,36,18,0.75,FinFET,Si fin,metal / HfO2,193,100.8,Cannon Lake / Ice Lake,Self-aligned quad patterning; cobalt local interconnect
+7 nm (TSMC N7),2018,7,57,40,18,0.75,FinFET,Si fin,metal / HfO2,193,91.2,Apple A12,N7+ (2019) first EUV layers in HVM
+5 nm (TSMC N5),2020,5,51,28,16,0.7,FinFET,Si / SiGe fin,metal / HfO2,13.5,171.3,Apple A14 / M1,Full EUV critical layers
+3 nm (TSMC N3),2022,3,48,23,16,0.7,FinFET (TSMC) / GAA (Samsung SF3E),Si fin / nanosheet,metal / HfO2,13.5,~300 (est.),Apple A17 Pro / M3,Samsung ships first GAA (MBCFET) 2022
+2 nm (TSMC N2 / Intel 18A),2025,2,~45 (est.),~20 (est.),~14 (est.),0.7,GAA nanosheet,Si nanosheets,metal / HfO2,13.5,,Intel Panther Lake (18A) / N2 SoCs,Intel 18A adds PowerVia backside power; both in HVM Q4 2025
+1.6 nm (TSMC A16),2026,1.6,,,,0.65,GAA nanosheet + backside power,Si nanosheets,metal / HfO2,13.5,,HPC/AI parts (announced),Super Power Rail backside contact; volume 2H 2026
+0.7 nm (IBM nanostack research),2026,0.7,,,,,stacked & staggered nanosheets (research),Si nanosheets,metal / high-k,13.5 (High-NA planned),,IBM test chip,~2x density vs IBM 2 nm (2021); research not production
+2D MoS2 (0.42 nm AlOx interface),2026,,,,100,1.0,2D top-gate FET (research),monolayer MoS2 (0.7 nm),HfO2 on 0.42 nm AlOx (EOT ~1 nm),,,NYCU + TSMC Corporate Research,0.42 nm is an interface layer thickness not a node name

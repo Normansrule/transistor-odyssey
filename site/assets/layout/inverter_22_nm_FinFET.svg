@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 392 1101.3333333333333" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif">
+<rect width="100%" height="100%" rx="12" fill="#10141a"/>
+<text x="16" y="28" fill="#e8ecf1" font-size="15" font-weight="600">22 nm FinFET (2011)</text>
+<rect x="16.00" y="48.00" width="360.00" height="530.67" fill="#5a5f7a" fill-opacity="0.45" stroke="#5a5f7a" stroke-width="1"/>
+<rect x="16.00" y="774.67" width="360.00" height="20.00" fill="#7b8ca5" fill-opacity="0.95" stroke="#7b8ca5" stroke-width="1"/>
+<rect x="16.00" y="694.67" width="360.00" height="20.00" fill="#7b8ca5" fill-opacity="0.95" stroke="#7b8ca5" stroke-width="1"/>
+<rect x="16.00" y="494.67" width="360.00" height="20.00" fill="#7b8ca5" fill-opacity="0.95" stroke="#7b8ca5" stroke-width="1"/>
+<rect x="16.00" y="414.67" width="360.00" height="20.00" fill="#7b8ca5" fill-opacity="0.95" stroke="#7b8ca5" stroke-width="1"/>
+<rect x="5.20" y="144.00" width="21.60" height="821.33" fill="#c95c50" fill-opacity="0.9" stroke="#c95c50" stroke-width="1"/>
+<rect x="125.20" y="144.00" width="21.60" height="821.33" fill="#c95c50" fill-opacity="0.9" stroke="#c95c50" stroke-width="1"/>
+<rect x="245.20" y="144.00" width="21.60" height="821.33" fill="#c95c50" fill-opacity="0.9" stroke="#c95c50" stroke-width="1"/>
+<rect x="365.20" y="144.00" width="21.60" height="821.33" fill="#c95c50" fill-opacity="0.9" stroke="#c95c50" stroke-width="1"/>
+<rect x="16.00" y="901.33" width="360.00" height="160.00" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="16.00" y="48.00" width="360.00" height="160.00" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="280.00" y="434.67" width="53.33" height="360.00" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="64.00" y="698.67" width="24.00" height="112.00" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<rect x="64.00" y="418.67" width="24.00" height="112.00" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<rect x="184.00" y="418.67" width="24.00" height="392.00" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<text x="16" y="1087" fill="#8a94a3" font-size="12">cell 270 nm × 760 nm · gridded</text>
+</svg>

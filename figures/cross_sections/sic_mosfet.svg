@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="4H-SiC power MOSFET (vertical, planar gate)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">4H-SiC power MOSFET (vertical, planar gate)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Current flows down through a thick n⁻ drift layer; blocks 650 V–3.3 kV.</text>
+<rect x="30.0" y="350.0" width="470.0" height="44.0" rx="0" fill="#e8c45c" fill-opacity="1.0"/>
+<rect x="30.0" y="310.0" width="470.0" height="40.0" rx="0" fill="#b8964f" fill-opacity="1.0"/>
+<rect x="30.0" y="200.0" width="470.0" height="110.0" rx="0" fill="#5a5f7a" fill-opacity="1.0"/>
+<rect x="30.0" y="170.0" width="170.0" height="60.0" rx="0" fill="#e07f3f" fill-opacity="1.0"/>
+<rect x="330.0" y="170.0" width="170.0" height="60.0" rx="0" fill="#e07f3f" fill-opacity="1.0"/>
+<rect x="60.0" y="170.0" width="110.0" height="16.0" rx="0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="360.0" y="170.0" width="110.0" height="16.0" rx="0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="140.0" y="158.0" width="250.0" height="12.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="150.0" y="118.0" width="230.0" height="40.0" rx="0" fill="#c95c50" fill-opacity="1.0"/>
+<line x1="265.0" y1="200.0" x2="265.0" y2="300.0" stroke="#e8ecf1" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/>
+<polyline points="265.0,138.0 522.0,138.0 540.0,138.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="138.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="142.0" fill="#e8ecf1" font-size="12.5">Poly gate</text>
+<polyline points="265.0,164.0 522.0,168.0 540.0,168.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="164.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="172.0" fill="#e8ecf1" font-size="12.5">Gate oxide</text>
+<polyline points="115.0,178.0 522.0,198.0 540.0,198.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="115.0" cy="178.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="202.0" fill="#e8ecf1" font-size="12.5">n⁺ source</text>
+<polyline points="115.0,200.0 522.0,228.0 540.0,228.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="115.0" cy="200.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="232.0" fill="#e8ecf1" font-size="12.5">p-body</text>
+<polyline points="265.0,255.0 522.0,258.0 540.0,258.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="255.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="262.0" fill="#e8ecf1" font-size="12.5">n⁻ drift layer (µm-thick)</text>
+<polyline points="265.0,330.0 522.0,330.0 540.0,330.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="330.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="334.0" fill="#e8ecf1" font-size="12.5">n⁺ SiC substrate</text>
+<polyline points="265.0,372.0 522.0,372.0 540.0,372.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="372.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="376.0" fill="#e8ecf1" font-size="12.5">Drain metal (backside)</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Baliga FOM ≈ 300× silicon</text>
+</svg>

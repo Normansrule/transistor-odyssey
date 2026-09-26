@@ -1,0 +1,17 @@
+* CMOS inverter, 1.5 um era (80386-class), SPICE Level 1 (Shichman-Hodges)
+* Educational parameters: tox = 25 nm, VDD = 5 V. Run: ngspice -b inverter_1p5um.cir
+.model nch nmos level=1 vto=0.8  kp=69u  gamma=0.5 phi=0.7 lambda=0.03 tox=25n
+.model pch pmos level=1 vto=-0.8 kp=25u  gamma=0.5 phi=0.7 lambda=0.04 tox=25n
+.param L=1.5u
+VDD vdd 0 5
+VIN in 0 0
+MP out in vdd vdd pch W=9u  L={L}
+MN out in 0   0   nch W=3u  L={L}
+CL out 0 50f
+.control
+  dc VIN 0 5 0.01
+  wrdata vtc_1p5um.csv v(out)
+  echo "switching threshold (V):"
+  meas dc vm when v(out)=v(in)
+.endc
+.end

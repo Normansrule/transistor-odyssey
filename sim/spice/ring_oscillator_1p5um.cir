@@ -1,0 +1,23 @@
+* 5-stage ring oscillator, 1.5 um CMOS (Level 1). Frequency ~ 1/(2*N*t_pd)
+.model nch nmos level=1 vto=0.8  kp=69u lambda=0.03 tox=25n cgso=0.3n cgdo=0.3n cj=0.3m
+.model pch pmos level=1 vto=-0.8 kp=25u lambda=0.04 tox=25n cgso=0.3n cgdo=0.3n cj=0.5m
+.subckt inv in out vdd
+MP out in vdd vdd pch W=9u L=1.5u AD=27p AS=27p PD=15u PS=15u
+MN out in 0   0   nch W=3u L=1.5u AD=9p  AS=9p  PD=9u  PS=9u
+.ends
+VDD vdd 0 5
+X1 n1 n2 vdd inv
+X2 n2 n3 vdd inv
+X3 n3 n4 vdd inv
+X4 n4 n5 vdd inv
+X5 n5 n1 vdd inv
+.ic v(n1)=0 v(n2)=5 v(n3)=0 v(n4)=5 v(n5)=0
+.control
+  tran 0.05n 60n uic
+  wrdata ring_1p5um.csv v(n1)
+  meas tran t1 when v(n1)=2.5 rise=3
+  meas tran t2 when v(n1)=2.5 rise=4
+  let f_mhz = 1e-6/(t2-t1)
+  print f_mhz
+.endc
+.end

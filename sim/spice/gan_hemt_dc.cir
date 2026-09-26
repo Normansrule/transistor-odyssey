@@ -1,0 +1,11 @@
+* Behavioural AlGaN/GaN HEMT output curves (depletion-mode, Voff ~ -4.5 V, 1 mm wide)
+* Mirrors sim/transistor_sim/hemt.py for a quick ngspice comparison.
+.param voff=-4.5 k=0.09 lam=0.01 vsatl=3.0
+VDS d 0 0
+VGS g 0 0
+B1 d 0 I = k*max(v(g)-voff,0)*max(v(g)-voff,0) / (1 + max(v(g)-voff,0)/vsatl) * tanh(v(d)/(0.5+0.25*max(v(g)-voff,0))) * (1+lam*v(d))
+.control
+  dc VDS 0 20 0.1 VGS -4 0 1
+  wrdata hemt_family.csv i(VDS)
+.endc
+.end

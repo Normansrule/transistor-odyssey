@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif">
+<rect width="100%" height="100%" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">One CMOS inverter, drawn to the same scale</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Area of the 1971 cell vs today: roughly a 10⁶× shrink. Most modern cells are sub-pixel here.</text>
+<rect x="40.00" y="80.00" width="248.18" height="420.00" fill="#e2b650" fill-opacity="0.22" stroke="#e2b650"/>
+<text x="52.0" y="110" fill="#e8ecf1" font-size="13" font-weight="600">10 µm (1971)</text>
+<text x="52.0" y="127" fill="#8a94a3" font-size="12">28,600 µm²</text>
+<rect x="308.18" y="437.00" width="37.23" height="63.00" fill="#e2b650" fill-opacity="0.9" stroke="#e2b650"/>
+<text x="355.4" y="172" fill="#e8ecf1" font-size="13" font-weight="600">1.5 µm (1985)</text>
+<text x="355.4" y="189" fill="#8a94a3" font-size="12">644 µm²</text>
+<line x1="345.4" y1="437.0" x2="351.4" y2="168" stroke="#8a94a3" stroke-width="1"/>
+<rect x="308.18" y="492.44" width="4.47" height="7.56" fill="#e2b650" fill-opacity="0.9" stroke="#e2b650"/>
+<text x="322.6" y="234" fill="#e8ecf1" font-size="13" font-weight="600">180 nm (1999)</text>
+<text x="322.6" y="251" fill="#8a94a3" font-size="12">9.27 µm²</text>
+<line x1="312.6" y1="492.4" x2="318.6" y2="230" stroke="#8a94a3" stroke-width="1"/>
+<rect x="308.18" y="498.55" width="0.60" height="1.45" fill="#e2b650" fill-opacity="0.9" stroke="#e2b650"/>
+<text x="319.2" y="296" fill="#e8ecf1" font-size="13" font-weight="600">22 nm FinFET (2011)</text>
+<text x="319.2" y="313" fill="#8a94a3" font-size="12">0.205 µm²</text>
+<line x1="309.2" y1="498.5" x2="315.2" y2="292" stroke="#8a94a3" stroke-width="1"/>
+<rect x="308.18" y="499.41" width="0.60" height="0.60" fill="#e2b650" fill-opacity="0.9" stroke="#e2b650"/>
+<text x="319.2" y="358" fill="#e8ecf1" font-size="13" font-weight="600">5 nm FinFET (2020)</text>
+<text x="319.2" y="375" fill="#8a94a3" font-size="12">0.0471 µm²</text>
+<line x1="309.2" y1="499.4" x2="315.2" y2="354" stroke="#8a94a3" stroke-width="1"/>
+<rect x="308.18" y="499.62" width="0.60" height="0.60" fill="#e2b650" fill-opacity="0.9" stroke="#e2b650"/>
+<text x="319.2" y="420" fill="#e8ecf1" font-size="13" font-weight="600">2 nm GAA (2025, est.)</text>
+<text x="319.2" y="437" fill="#8a94a3" font-size="12">0.0271 µm²</text>
+<line x1="309.2" y1="499.6" x2="315.2" y2="416" stroke="#8a94a3" stroke-width="1"/>
+</svg>
