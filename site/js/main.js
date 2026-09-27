@@ -271,3 +271,10 @@ safe(() => {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
   links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) io.observe(s); });
 }, 'nav');
+
+// ---------- reading progress ----------
+safe(() => {
+  const bar = document.querySelector('.pl-progress i'); if (!bar) return;
+  const on = () => { const max = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`; };
+  addEventListener('scroll', on, { passive: true }); on();
+}, 'progress');

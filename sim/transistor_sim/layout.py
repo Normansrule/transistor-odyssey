@@ -14,6 +14,8 @@ dimensions taken from data/nodes.csv (CPP, MMP).
 """
 from __future__ import annotations
 
+import datetime
+
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -182,7 +184,7 @@ def write_all() -> list[Path]:
             for l, x0, y0, x1, y1 in c["shapes"]:
                 cell.add(gdstk.rectangle((x0, y0), (x1, y1), layer=LAYERS[l][0]))
             p = OUT / f"inverter_{slug}.gds"
-            lib.write_gds(str(p))
+            lib.write_gds(str(p), timestamp=datetime.datetime(2026, 1, 1))  # fixed stamp: reproducible files
             written.append(p)
     s = shrink_svg(cells)
     (OUT / "shrink.svg").write_text(s, encoding="utf-8")

@@ -20,5 +20,6 @@
 | 16 | [How a 2 nm-class transistor is built](16-process-flow.md) | 2022–2026 | ![](../figures/process/step_11.svg) |
 | 17 | [Packaging and 3D integration](17-packaging-and-3d.md) | 2012–2026 | ![](../figures/cross_sections/cowos_interposer.svg) |
 | 18 | [Glossary](18-glossary.md) | — | |
+| 19 | [The Physics Lab: semiconductor physics you can run](19-physics-lab.md) | — | ![](../figures/dibl_2d.png) |
 
 Citations are written as an at-sign key in square brackets, e.g. `[@kilby1976]`. Every key resolves to an entry in [REFERENCES.md](../REFERENCES.md) (search the page for the key); `tests/test_data.py` fails if one does not.

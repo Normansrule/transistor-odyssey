@@ -1339,6 +1339,126 @@
    "cat": "Packaging",
    "cite": "Tech Times, \"IC-Link Joins TSMC 3DFabric Alliance; Showcases CoWoS ASIC Co-Design\" (23 Sep 2026).",
    "url": "https://www.techtimes.com/articles/327952/20260923/ic-link-joins-tsmc-3dfabric-alliance-showcases-cowos-asic-co-design-oip-forum-today.htm"
+  },
+  {
+   "id": "varshni1967",
+   "cat": "Physics lab",
+   "cite": "Y. P. Varshni, \"Temperature Dependence of the Energy Gap in Semiconductors,\" Physica 34, 149 (1967).",
+   "doi": "10.1016/0031-8914(67)90062-6"
+  },
+  {
+   "id": "vurgaftman2001",
+   "cat": "Physics lab",
+   "cite": "I. Vurgaftman, J. R. Meyer, L. R. Ram-Mohan, \"Band Parameters for III–V Compound Semiconductors and Their Alloys,\" J. Appl. Phys. 89, 5815 (2001).",
+   "doi": "10.1063/1.1368156"
+  },
+  {
+   "id": "altermatt2003",
+   "cat": "Physics lab",
+   "cite": "P. P. Altermatt et al., \"Reassessment of the Intrinsic Carrier Density in Crystalline Silicon in View of Band-Gap Narrowing,\" J. Appl. Phys. 93, 1598 (2003).",
+   "doi": "10.1063/1.1529297"
+  },
+  {
+   "id": "ioffe_nsm",
+   "cat": "Physics lab",
+   "cite": "Ioffe Institute, \"New Semiconductor Materials: Characteristics and Properties\" (NSM archive) — band gaps, effective densities of states, lattice constants.",
+   "url": "http://www.ioffe.ru/SVA/NSM/Semicond/"
+  },
+  {
+   "id": "caughey1967",
+   "cat": "Physics lab",
+   "cite": "D. M. Caughey, R. E. Thomas, \"Carrier Mobilities in Silicon Empirically Related to Doping and Field,\" Proc. IEEE 55, 2192 (1967).",
+   "doi": "10.1109/PROC.1967.6123"
+  },
+  {
+   "id": "canali1975",
+   "cat": "Physics lab",
+   "cite": "C. Canali, G. Majni, R. Minder, G. Ottaviani, \"Electron and Hole Drift Velocity Measurements in Silicon and Their Empirical Relation to Electric Field and Temperature,\" IEEE Trans. Electron Devices 22, 1045 (1975).",
+   "doi": "10.1109/T-ED.1975.18267"
+  },
+  {
+   "id": "jacoboni1983",
+   "cat": "Physics lab",
+   "cite": "C. Jacoboni, L. Reggiani, \"The Monte Carlo Method for the Solution of Charge Transport in Semiconductors with Applications to Covalent Materials,\" Rev. Mod. Phys. 55, 645 (1983).",
+   "doi": "10.1103/RevModPhys.55.645"
+  },
+  {
+   "id": "lundstrom2000",
+   "cat": "Physics lab",
+   "cite": "M. Lundstrom, Fundamentals of Carrier Transport, 2nd ed., Cambridge University Press (2000).",
+   "doi": "10.1017/CBO9780511618611"
+  },
+  {
+   "id": "yan1992",
+   "cat": "Physics lab",
+   "cite": "R.-H. Yan, A. Ourmazd, K. F. Lee, \"Scaling the Si MOSFET: From Bulk to SOI to Bulk,\" IEEE Trans. Electron Devices 39, 1704 (1992).",
+   "doi": "10.1109/16.141237"
+  },
+  {
+   "id": "frank1998",
+   "cat": "Physics lab",
+   "cite": "D. J. Frank, Y. Taur, H.-S. P. Wong, \"Generalized Scale Length for Two-Dimensional Effects in MOSFETs,\" IEEE Electron Device Lett. 19, 385 (1998).",
+   "doi": "10.1109/55.720194"
+  },
+  {
+   "id": "selberherr1984",
+   "cat": "Physics lab",
+   "cite": "S. Selberherr, Analysis and Simulation of Semiconductor Devices, Springer (1984).",
+   "doi": "10.1007/978-3-7091-8752-4"
+  },
+  {
+   "id": "tsu1973",
+   "cat": "Physics lab",
+   "cite": "R. Tsu, L. Esaki, \"Tunneling in a Finite Superlattice,\" Appl. Phys. Lett. 22, 562 (1973).",
+   "doi": "10.1063/1.1654509"
+  },
+  {
+   "id": "chang1974",
+   "cat": "Physics lab",
+   "cite": "L. L. Chang, L. Esaki, R. Tsu, \"Resonant Tunneling in Semiconductor Double Barriers,\" Appl. Phys. Lett. 24, 593 (1974).",
+   "doi": "10.1063/1.1655067"
+  },
+  {
+   "id": "ando1987",
+   "cat": "Physics lab",
+   "cite": "Y. Ando, T. Itoh, \"Calculation of Transmission Tunneling Current Across Arbitrary Potential Barriers,\" J. Appl. Phys. 61, 1497 (1987).",
+   "doi": "10.1063/1.338082"
+  },
+  {
+   "id": "lo1997",
+   "cat": "Physics lab",
+   "cite": "S.-H. Lo, D. A. Buchanan, Y. Taur, W. Wang, \"Quantum-Mechanical Modeling of Electron Tunneling Current from the Inversion Layer of Ultra-Thin-Oxide nMOSFETs,\" IEEE Electron Device Lett. 18, 209 (1997).",
+   "doi": "10.1109/55.568766"
+  },
+  {
+   "id": "griffiths2018",
+   "cat": "Physics lab",
+   "cite": "D. J. Griffiths, D. F. Schroeter, Introduction to Quantum Mechanics, 3rd ed., Cambridge University Press (2018).",
+   "doi": "10.1017/9781316995433"
+  },
+  {
+   "id": "wilson1969",
+   "cat": "Physics lab",
+   "cite": "J. A. Wilson, A. D. Yoffe, \"The Transition Metal Dichalcogenides: Discussion and Interpretation of the Observed Optical, Electrical and Structural Properties,\" Adv. Phys. 18, 193 (1969).",
+   "doi": "10.1080/00018736900101307"
+  },
+  {
+   "id": "nanohub_pntoy",
+   "cat": "Physics lab",
+   "cite": "nanoHUB, \"PN Junction Lab\" — free online pn-junction simulator (Purdue University).",
+   "url": "https://nanohub.org/tools/pntoy"
+  },
+  {
+   "id": "nanohub_moscap",
+   "cat": "Physics lab",
+   "cite": "nanoHUB, \"MOSCap\" — free online MOS capacitor simulator (Purdue University).",
+   "url": "https://nanohub.org/tools/moscap"
+  },
+  {
+   "id": "katex",
+   "cat": "Physics lab",
+   "cite": "KaTeX — fast math typesetting for the web (MIT licence), used for the Physics Lab equations.",
+   "url": "https://katex.org/"
   }
  ]
 }

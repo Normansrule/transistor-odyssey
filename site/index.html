@@ -6,7 +6,7 @@
 <title>Transistor Odyssey</title>
 <meta name="description" content="An interactive history of the transistor from the 1947 point-contact device to 2 nm gate-all-around, IBM's 0.7 nm nanostack and 2D MoS₂ with a 0.42 nm interface, plus GaN, GaAs, SiC, diamond and nanotube alternatives.">
 <meta property="og:title" content="Transistor Odyssey — 1947 to the ångström era">
-<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, with 170+ references.">
+<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, seven live physics labs and 245 references.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,7 @@
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<div class="pl-progress" aria-hidden="true"><i></i></div>
 
 <nav class="nav" aria-label="Main">
   <div class="wrap">
@@ -37,6 +38,7 @@
       <a href="#frontier">Frontier</a>
       <a href="#sources">Sources</a>
     </div>
+    <a class="nav-lab" href="physics.html">Physics Lab</a>
     <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       Source
@@ -55,6 +57,7 @@
       <a class="btn primary" href="#timeline">Walk the timeline</a>
       <a class="btn" href="#explorer">Open the 3D explorer</a>
       <a class="btn" href="#lab">Run the device lab</a>
+      <a class="btn" href="physics.html">Physics Lab: 7 live simulations →</a>
     </div>
     <p class="hint">Drag across the background to stir the fluid.</p>
     <div class="stats" aria-label="Key numbers">
@@ -219,6 +222,26 @@
           <div class="card plot" id="plotTr"><h4>Transfer curve (log)</h4><div class="sub">I<sub>D</sub> vs V<sub>GS</sub> at the chosen V<sub>DS</sub></div></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHYSICS LAB TEASER ============ -->
+<section class="sec" id="physics">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">New · Physics Lab</span>
+      <h2>Learn the physics inside the switch</h2>
+      <p class="lead">Seven interactive simulations on their own page: each one re-solves the real equations as you move a slider, comes with guided experiments and equations, and is checked in CI against a Python twin in <span class="mono">sim/transistor_sim/physics/</span>.</p>
+    </div>
+    <div class="pl-teaser">
+      <a class="card glow" href="physics.html#bands"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="4" y="4" width="112" height="14" fill="#3987e5" opacity=".25"/><rect x="4" y="36" width="112" height="14" fill="#d95926" opacity=".25"/><line x1="4" y1="18" x2="116" y2="18" stroke="#aab3c0"/><line x1="4" y1="36" x2="116" y2="36" stroke="#aab3c0"/><line x1="4" y1="23" x2="116" y2="23" stroke="#f2b84b" stroke-dasharray="4 3"/><circle cx="10" cy="14" r="2" fill="#5aa2ff"/><circle cx="19" cy="13" r="2" fill="#5aa2ff"/><circle cx="28" cy="12" r="2" fill="#5aa2ff"/><circle cx="37" cy="11" r="2" fill="#5aa2ff"/><circle cx="46" cy="10" r="2" fill="#5aa2ff"/><circle cx="55" cy="9" r="2" fill="#5aa2ff"/><circle cx="64" cy="14" r="2" fill="#5aa2ff"/><circle cx="73" cy="13" r="2" fill="#5aa2ff"/><circle cx="82" cy="12" r="2" fill="#5aa2ff"/><circle cx="91" cy="11" r="2" fill="#5aa2ff"/><circle cx="100" cy="10" r="2" fill="#5aa2ff"/><circle cx="109" cy="9" r="2" fill="#5aa2ff"/><circle cx="14" cy="40" r="2" fill="none" stroke="#ff8a55"/><circle cx="37" cy="40" r="2" fill="none" stroke="#ff8a55"/><circle cx="60" cy="40" r="2" fill="none" stroke="#ff8a55"/><circle cx="83" cy="40" r="2" fill="none" stroke="#ff8a55"/></svg><b>01</b><h3>Where the electrons are</h3><p>Band gaps, n<sub>i</sub>(T), the Fermi level and thermally excited carriers in six materials.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="physics.html#pn"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="4" y="6" width="50" height="42" fill="#d95926" opacity=".15"/><rect x="66" y="6" width="50" height="42" fill="#3987e5" opacity=".15"/><path d="M4 44 L40 44 L60 12 L74 44 L116 44" fill="#f2b84b" fill-opacity=".2" stroke="#f2b84b"/></svg><b>02</b><h3>The junction under every transistor</h3><p>Depletion region, built-in field, band bending and the diode law — animated carriers included.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="physics.html#mos"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M4 8 C30 8 34 10 40 30 C44 46 50 46 56 46 C62 46 64 30 70 14 C76 8 100 8 116 8" fill="none" stroke="#3987e5" stroke-width="2"/><path d="M56 46 L116 46" stroke="#d95926" stroke-dasharray="4 3" fill="none"/></svg><b>03</b><h3>How a gate makes a channel</h3><p>Exact MOS-capacitor solution: accumulation, depletion, inversion and live C–V curves.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="physics.html#tunnel"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="52" y="8" width="14" height="40" fill="#aab3c0" opacity=".25" stroke="#aab3c0"/><path d="M4 28 Q10 10 16 28 T28 28 T40 28 T52 28" fill="none" stroke="#5aa2ff" stroke-width="2"/><path d="M52 28 Q60 34 66 30" fill="none" stroke="#5aa2ff" stroke-width="2"/><path d="M66 30 Q70 27 74 30 T82 30 T90 30 T98 30 T106 30 T116 30" fill="none" stroke="#7fd3d0" stroke-width="1.5"/></svg><b>04</b><h3>Why oxides can't get thinner</h3><p>Transfer-matrix quantum tunnelling, resonant double barriers and gate-oxide leakage.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="physics.html#short"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#1c48a0"/><stop offset=".6" stop-color="#3987e5"/><stop offset="1" stop-color="#f2b84b"/></linearGradient></defs><rect x="20" y="8" width="80" height="40" fill="url(#hg)"/><rect x="20" y="4" width="80" height="4" fill="#f2b84b"/><path d="M30 8 Q26 28 30 48" fill="none" stroke="#0a0d11" stroke-opacity=".5"/><path d="M42 8 Q38 28 42 48" fill="none" stroke="#0a0d11" stroke-opacity=".5"/><path d="M54 8 Q50 28 54 48" fill="none" stroke="#0a0d11" stroke-opacity=".5"/><path d="M66 8 Q62 28 66 48" fill="none" stroke="#0a0d11" stroke-opacity=".5"/><path d="M78 8 Q74 28 78 48" fill="none" stroke="#0a0d11" stroke-opacity=".5"/><path d="M90 8 Q86 28 90 48" fill="none" stroke="#0a0d11" stroke-opacity=".5"/></svg><b>05</b><h3>Why the FinFET had to happen</h3><p>A live 2D Poisson solver: drain-induced barrier lowering, single vs double gate.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="physics.html#drift"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M4 50 C30 40 40 14 60 10 C80 7 100 7 116 7" fill="none" stroke="#aab3c0" stroke-width="1.5"/><path d="M4 50 L60 4" stroke="#f2b84b" stroke-dasharray="3 3"/><circle cx="12" cy="46" r="2.2" fill="#5aa2ff"/><circle cx="22" cy="42" r="2.2" fill="#5aa2ff"/><circle cx="32" cy="38" r="2.2" fill="#5aa2ff"/><circle cx="42" cy="34" r="2.2" fill="#5aa2ff"/><circle cx="52" cy="30" r="2.2" fill="#5aa2ff"/><circle cx="62" cy="10" r="2.2" fill="#5aa2ff"/><circle cx="72" cy="12" r="2.2" fill="#5aa2ff"/><circle cx="82" cy="11" r="2.2" fill="#5aa2ff"/><circle cx="92" cy="10" r="2.2" fill="#5aa2ff"/><circle cx="102" cy="12" r="2.2" fill="#5aa2ff"/><circle cx="112" cy="11" r="2.2" fill="#5aa2ff"/></svg><b>06</b><h3>Why electrons have a speed limit</h3><p>Ensemble Monte Carlo of hot electrons: mobility, saturation and velocity overshoot.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="physics.html#crystal"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><circle cx="10" cy="10" r="3.4" fill="#9fb3c8"/><circle cx="27" cy="10" r="3.4" fill="#b58fd6"/><circle cx="44" cy="10" r="3.4" fill="#3987e5"/><circle cx="61" cy="10" r="3.4" fill="#9fb3c8"/><circle cx="78" cy="10" r="3.4" fill="#b58fd6"/><circle cx="95" cy="10" r="3.4" fill="#3987e5"/><circle cx="112" cy="10" r="3.4" fill="#9fb3c8"/><circle cx="18" cy="26" r="3.4" fill="#b58fd6"/><circle cx="35" cy="26" r="3.4" fill="#3987e5"/><circle cx="52" cy="26" r="3.4" fill="#9fb3c8"/><circle cx="69" cy="26" r="3.4" fill="#b58fd6"/><circle cx="86" cy="26" r="3.4" fill="#3987e5"/><circle cx="103" cy="26" r="3.4" fill="#9fb3c8"/><circle cx="120" cy="26" r="3.4" fill="#b58fd6"/><circle cx="10" cy="42" r="3.4" fill="#3987e5"/><circle cx="27" cy="42" r="3.4" fill="#9fb3c8"/><circle cx="44" cy="42" r="3.4" fill="#b58fd6"/><circle cx="61" cy="42" r="3.4" fill="#3987e5"/><circle cx="78" cy="42" r="3.4" fill="#9fb3c8"/><circle cx="95" cy="42" r="3.4" fill="#b58fd6"/><circle cx="112" cy="42" r="3.4" fill="#3987e5"/><line x1="10" y1="10" x2="18" y2="26" stroke="#4b596d"/><line x1="27" y1="10" x2="35" y2="26" stroke="#4b596d"/><line x1="44" y1="10" x2="52" y2="26" stroke="#4b596d"/><line x1="61" y1="10" x2="69" y2="26" stroke="#4b596d"/><line x1="78" y1="10" x2="86" y2="26" stroke="#4b596d"/><line x1="95" y1="10" x2="103" y2="26" stroke="#4b596d"/></svg><b>07</b><h3>The lattices behind the materials</h3><p>Diamond, zincblende, wurtzite, 4H-SiC and monolayer MoS₂ in interactive 3D.</p><span class="go">Open lab →</span></a>
     </div>
   </div>
 </section>

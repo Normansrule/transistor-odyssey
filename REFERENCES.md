@@ -1,8 +1,8 @@
 # References
 
-225 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
+245 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
 
-**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging)
+**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab)
 
 ## History
 
@@ -282,3 +282,26 @@
 223. `hybrid_guide2026` — Inside Deep Tech, "Hybrid Bonding: A Full Guide to SoIC & Foveros Direct" (2026). [link](https://www.insidedeeptech.com/hybrid-bonding-soic-foveros-direct-full-guide/)
 224. `intel_packaging` — Intel Foundry, "Advanced Process Technologies for Data Center" (Foveros, EMIB, Foveros Direct). [link](https://www.intel.com/content/www/us/en/foundry/library/advanced-process-technologies-for-data-center.html)
 225. `iclink2026` — Tech Times, "IC-Link Joins TSMC 3DFabric Alliance; Showcases CoWoS ASIC Co-Design" (23 Sep 2026). [link](https://www.techtimes.com/articles/327952/20260923/ic-link-joins-tsmc-3dfabric-alliance-showcases-cowos-asic-co-design-oip-forum-today.htm)
+
+## Physics lab
+
+226. `varshni1967` — Y. P. Varshni, "Temperature Dependence of the Energy Gap in Semiconductors," Physica 34, 149 (1967). [doi:10.1016/0031-8914(67)90062-6](https://doi.org/10.1016/0031-8914(67)90062-6)
+227. `vurgaftman2001` — I. Vurgaftman, J. R. Meyer, L. R. Ram-Mohan, "Band Parameters for III–V Compound Semiconductors and Their Alloys," J. Appl. Phys. 89, 5815 (2001). [doi:10.1063/1.1368156](https://doi.org/10.1063/1.1368156)
+228. `altermatt2003` — P. P. Altermatt et al., "Reassessment of the Intrinsic Carrier Density in Crystalline Silicon in View of Band-Gap Narrowing," J. Appl. Phys. 93, 1598 (2003). [doi:10.1063/1.1529297](https://doi.org/10.1063/1.1529297)
+229. `ioffe_nsm` — Ioffe Institute, "New Semiconductor Materials: Characteristics and Properties" (NSM archive) — band gaps, effective densities of states, lattice constants. [link](http://www.ioffe.ru/SVA/NSM/Semicond/)
+230. `caughey1967` — D. M. Caughey, R. E. Thomas, "Carrier Mobilities in Silicon Empirically Related to Doping and Field," Proc. IEEE 55, 2192 (1967). [doi:10.1109/PROC.1967.6123](https://doi.org/10.1109/PROC.1967.6123)
+231. `canali1975` — C. Canali, G. Majni, R. Minder, G. Ottaviani, "Electron and Hole Drift Velocity Measurements in Silicon and Their Empirical Relation to Electric Field and Temperature," IEEE Trans. Electron Devices 22, 1045 (1975). [doi:10.1109/T-ED.1975.18267](https://doi.org/10.1109/T-ED.1975.18267)
+232. `jacoboni1983` — C. Jacoboni, L. Reggiani, "The Monte Carlo Method for the Solution of Charge Transport in Semiconductors with Applications to Covalent Materials," Rev. Mod. Phys. 55, 645 (1983). [doi:10.1103/RevModPhys.55.645](https://doi.org/10.1103/RevModPhys.55.645)
+233. `lundstrom2000` — M. Lundstrom, Fundamentals of Carrier Transport, 2nd ed., Cambridge University Press (2000). [doi:10.1017/CBO9780511618611](https://doi.org/10.1017/CBO9780511618611)
+234. `yan1992` — R.-H. Yan, A. Ourmazd, K. F. Lee, "Scaling the Si MOSFET: From Bulk to SOI to Bulk," IEEE Trans. Electron Devices 39, 1704 (1992). [doi:10.1109/16.141237](https://doi.org/10.1109/16.141237)
+235. `frank1998` — D. J. Frank, Y. Taur, H.-S. P. Wong, "Generalized Scale Length for Two-Dimensional Effects in MOSFETs," IEEE Electron Device Lett. 19, 385 (1998). [doi:10.1109/55.720194](https://doi.org/10.1109/55.720194)
+236. `selberherr1984` — S. Selberherr, Analysis and Simulation of Semiconductor Devices, Springer (1984). [doi:10.1007/978-3-7091-8752-4](https://doi.org/10.1007/978-3-7091-8752-4)
+237. `tsu1973` — R. Tsu, L. Esaki, "Tunneling in a Finite Superlattice," Appl. Phys. Lett. 22, 562 (1973). [doi:10.1063/1.1654509](https://doi.org/10.1063/1.1654509)
+238. `chang1974` — L. L. Chang, L. Esaki, R. Tsu, "Resonant Tunneling in Semiconductor Double Barriers," Appl. Phys. Lett. 24, 593 (1974). [doi:10.1063/1.1655067](https://doi.org/10.1063/1.1655067)
+239. `ando1987` — Y. Ando, T. Itoh, "Calculation of Transmission Tunneling Current Across Arbitrary Potential Barriers," J. Appl. Phys. 61, 1497 (1987). [doi:10.1063/1.338082](https://doi.org/10.1063/1.338082)
+240. `lo1997` — S.-H. Lo, D. A. Buchanan, Y. Taur, W. Wang, "Quantum-Mechanical Modeling of Electron Tunneling Current from the Inversion Layer of Ultra-Thin-Oxide nMOSFETs," IEEE Electron Device Lett. 18, 209 (1997). [doi:10.1109/55.568766](https://doi.org/10.1109/55.568766)
+241. `griffiths2018` — D. J. Griffiths, D. F. Schroeter, Introduction to Quantum Mechanics, 3rd ed., Cambridge University Press (2018). [doi:10.1017/9781316995433](https://doi.org/10.1017/9781316995433)
+242. `wilson1969` — J. A. Wilson, A. D. Yoffe, "The Transition Metal Dichalcogenides: Discussion and Interpretation of the Observed Optical, Electrical and Structural Properties," Adv. Phys. 18, 193 (1969). [doi:10.1080/00018736900101307](https://doi.org/10.1080/00018736900101307)
+243. `nanohub_pntoy` — nanoHUB, "PN Junction Lab" — free online pn-junction simulator (Purdue University). [link](https://nanohub.org/tools/pntoy)
+244. `nanohub_moscap` — nanoHUB, "MOSCap" — free online MOS capacitor simulator (Purdue University). [link](https://nanohub.org/tools/moscap)
+245. `katex` — KaTeX — fast math typesetting for the web (MIT licence), used for the Physics Lab equations. [link](https://katex.org/)

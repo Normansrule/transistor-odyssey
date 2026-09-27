@@ -27,6 +27,7 @@ python -m pip install -q -r requirements.txt
 echo "==> generating figures, layouts and site data"
 make figures PY=python >/dev/null
 echo "==> running tests"
+command -v node >/dev/null || echo "    (Node.js not found: the JS-vs-Python parity test will be skipped; 'sudo apt install nodejs' to enable it)"
 make test PY=python
 
 # The zip ships with its own .git; make sure we are in *this* repo, never a parent one
@@ -56,6 +57,14 @@ fi
 
 git remote remove origin 2>/dev/null || true
 git remote add origin "git@$SSH_HOST:$OWNER/$REPO.git"
+# If GitHub already has an earlier version, keep its history and put this version on top
+if git fetch -q origin main 2>/dev/null; then
+  if ! git merge-base --is-ancestor origin/main HEAD; then
+    echo "==> GitHub has an earlier version; merging its history (this version's files win)"
+    git -c user.name="${GIT_NAME:-Aleksander Norman}" -c user.email="${GIT_EMAIL:-aleksanderjnorman@gmail.com}" \
+      merge -q -s ours --allow-unrelated-histories origin/main -m "Merge earlier GitHub history; keep this version's files"
+  fi
+fi
 echo "==> pushing over SSH ($SSH_HOST)"
 git push -u origin main
 

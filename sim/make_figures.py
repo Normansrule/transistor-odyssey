@@ -23,6 +23,7 @@ ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
 from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep, process  # noqa: E402
+from transistor_sim.physics import carriers, junction, moscap, tunnel, poisson2d, montecarlo, crystal  # noqa: E402
 
 FIG = ROOT / "figures"
 FIG.mkdir(exist_ok=True)
@@ -41,12 +42,14 @@ plt.rcParams.update({
     "font.family": ["DejaVu Sans"], "font.size": 10.5, "axes.titlesize": 13, "axes.titleweight": "bold",
     "axes.titlelocation": "left", "axes.titlepad": 24, "legend.frameon": False, "legend.labelcolor": INK2,
     "lines.linewidth": 2, "lines.solid_capstyle": "round", "lines.solid_joinstyle": "round",
+    "svg.hashsalt": "transistor-odyssey",  # stable SVG ids so regenerating does not churn git
 })
 
 
 def save(fig, name):
     for ext in ("png", "svg"):
-        fig.savefig(FIG / f"{name}.{ext}", dpi=160, bbox_inches="tight", pad_inches=0.25)
+        meta = {"Date": None} if ext == "svg" else {"Software": None}
+        fig.savefig(FIG / f"{name}.{ext}", dpi=160, bbox_inches="tight", pad_inches=0.25, metadata=meta)
     plt.close(fig)
     print("figures/" + name + ".png")
 
@@ -310,11 +313,131 @@ def export_model_json():
     print("data/dopants.json")
 
 
+# --- semiconductor physics (sim/transistor_sim/physics) ----------------------
+def fig_intrinsic():
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    T = np.linspace(200, 900, 200)
+    for i, m in enumerate(["Ge", "Si", "GaAs", "4H-SiC", "GaN", "Diamond"]):
+        ni = [carriers.intrinsic_density(m, t) for t in T]
+        ax.plot(1000 / T, ni, color=SERIES[i], label=m)
+    ax.axhline(1e15, color=MUTED, lw=1, ls="--")
+    ax.text(1.18, 2.2e15, "typical background doping: above this line the device stops working", color=INK2, fontsize=9)
+    ax.set_yscale("log"); ax.set_ylim(1e-10, 1e19); ax.set_xlim(1.1, 5)
+    ax.set_xlabel("1000 / T (1/K)   ← hotter"); ax.set_ylabel("intrinsic density n_i (cm⁻³)")
+    ax.set_title("Why wide band gaps survive heat")
+    subtitle(ax, "n_i = √(Nc Nv) exp(−Eg/2kT) with Varshni Eg(T). Silicon reaches 10¹⁵ cm⁻³ near 560 K; GaN, SiC and diamond never do here.")
+    ax.legend(loc="lower left", fontsize=9, ncol=3)
+    save(fig, "intrinsic_density")
+
+
+def fig_pn():
+    fig, axs = plt.subplots(3, 1, figsize=(10, 8.4), sharex=True, gridspec_kw=dict(hspace=0.25))
+    for V, c, lab in [(0.0, SERIES[0], "0 V (equilibrium)"), (-2.0, SERIES[1], "−2 V (reverse)")]:
+        sj = junction.solve(1e16, 5e16, V)
+        x = sj["x_um"]
+        axs[0].plot(x, sj["rho"] / 1.602e-19 / 1e16, color=c, label=lab)
+        axs[1].plot(x, -sj["E"] / 1e3, color=c)
+        Eg = carriers.band_gap("Si")
+        Ec = 0.5 - sj["psi"]
+        axs[2].plot(x, Ec, color=c); axs[2].plot(x, Ec - Eg, color=c, alpha=0.7)
+    axs[0].set_ylabel("ρ / q (10¹⁶ cm⁻³)"); axs[1].set_ylabel("|E| (kV/cm)"); axs[2].set_ylabel("energy (eV)")
+    axs[2].set_xlabel("position (µm), p side left, n side right")
+    axs[0].legend(loc="upper left", fontsize=9)
+    axs[0].set_title("Abrupt pn junction, depletion approximation")
+    subtitle(axs[0], "Na = 10¹⁶, Nd = 5×10¹⁶ cm⁻³. Charge → field → band bending; reverse bias widens the depletion region.")
+    save(fig, "pn_junction")
+
+
+def fig_cv():
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    for i, t in enumerate([10, 5, 2]):
+        p = moscap.params(Na=1e17, tox_nm=t, Vfb=-0.9)
+        cv = moscap.cv_curves(p, -3, 3)
+        ax.plot(cv["Vg"], cv["C_lf"], color=SERIES[i], label=f"t_ox = {t} nm, low frequency")
+        ax.plot(cv["Vg"], cv["C_hf"], color=SERIES[i], ls="--", label=f"t_ox = {t} nm, high frequency")
+    ax.set_xlabel("gate voltage V_G (V)"); ax.set_ylabel("C / C_ox"); ax.set_ylim(0, 1.05)
+    ax.set_title("MOS capacitor C–V")
+    subtitle(ax, "Exact surface-charge solution, p-Si 10¹⁷ cm⁻³. Accumulation → depletion → inversion; minority carriers can't follow at high frequency.")
+    ax.legend(loc="center right", fontsize=8.5, bbox_to_anchor=(1.0, 0.52))
+    save(fig, "mos_cv")
+
+
+def fig_leakage():
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    eot = np.linspace(0.6, 2.2, 41)
+    ax.plot(eot, tunnel.leakage_vs_eot(eot, "SiO2"), color=SERIES[0], label="SiO₂")
+    ax.plot(eot, tunnel.leakage_vs_eot(eot, "Si3N4"), color=SERIES[3], label="Si₃N₄")
+    ax.plot(eot, tunnel.leakage_vs_eot(eot, "HfO2", il_nm=0.5), color=SERIES[1], label="HfO₂ on 0.5 nm SiO₂")
+    ax.plot(eot, tunnel.leakage_vs_eot(eot, "HfO2"), color=SERIES[2], label="HfO₂ alone (ideal)")
+    ax.set_yscale("log"); ax.set_xlabel("equivalent oxide thickness (nm)"); ax.set_ylabel("tunnelling probability at the band edge")
+    ax.set_title("Why high-k arrived in 2007")
+    subtitle(ax, "Transfer-matrix tunnelling through a trapezoidal barrier, V_ox = 1 V. SiO₂ leaks ~10× more per 2 Å thinner.")
+    ax.legend(loc="upper right", fontsize=9)
+    save(fig, "oxide_leakage")
+
+
+def fig_dibl():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 5.4), gridspec_kw=dict(wspace=0.28))
+    g = poisson2d.build(L_nm=20)
+    for i, vd in enumerate([0.05, 0.4, 0.8]):
+        psi = poisson2d.solve(g, 0.0, vd)
+        eb, ec, _ = poisson2d.barrier(g, psi)
+        x = np.linspace(0, 20, g["nx"])
+        a1.plot(x, ec, color=RAMP[1 + i], label=f"V_DS = {vd} V (barrier {eb:.2f} eV)")
+    a1.set_xlabel("position along channel (nm)"); a1.set_ylabel("conduction band, source-referenced (eV)")
+    a1.set_title("Drain pulls the barrier down"); a1.legend(fontsize=8.5, loc="lower left")
+    subtitle(a1, "2D Poisson, single gate, L = 20 nm, t_Si = 6 nm")
+    Ls = [14, 18, 24, 32, 45, 60]
+    a2.plot(Ls, [poisson2d.dibl(L) for L in Ls], "o-", color=SERIES[0], label="single gate (UTB SOI)")
+    a2.plot(Ls, [poisson2d.dibl(L, True) for L in Ls], "o-", color=SERIES[1], label="double gate (FinFET-like)")
+    a2.set_yscale("log"); a2.set_xlabel("gate length (nm)"); a2.set_ylabel("DIBL (mV/V)")
+    a2.set_title("Two gates beat one"); a2.legend(fontsize=9)
+    subtitle(a2, "Same body and oxide; a second gate shrinks λ by √2")
+    save(fig, "dibl_2d")
+
+
+def fig_montecarlo():
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    F = np.logspace(2.5, 5.5, 13)
+    v = [montecarlo.simulate(f, n=1500, t_ps=3)["v_cm_s"] for f in F]
+    Fs = np.logspace(2.5, 5.5, 200)
+    ax.plot(Fs, montecarlo.caughey_thomas(Fs), color=MUTED, lw=1.4, label="measured fit (Canali 1975)")
+    ax.plot(F, v, "o", color=SERIES[0], label="ensemble Monte Carlo (this repo)")
+    ax.plot(Fs, 1400 * Fs, color=SERIES[3], lw=1, ls="--", label="µ = 1400 cm²/V·s")
+    ax.set_xscale("log"); ax.set_yscale("log"); ax.set_ylim(3e5, 3e7)
+    ax.set_xlabel("electric field (V/cm)"); ax.set_ylabel("drift velocity (cm/s)")
+    ax.set_title("Velocity saturation in silicon")
+    subtitle(ax, "Acoustic + optical-phonon scattering, non-parabolic band. Hot electrons shed energy as 63 meV phonons.")
+    ax.legend(loc="lower right", fontsize=9)
+    save(fig, "velocity_saturation")
+
+
+def export_physics_json():
+    crystal.write_json(ROOT / "data" / "crystals.json")
+    print("data/crystals.json")
+    ref = {
+        "ni": {m: carriers.intrinsic_density(m) for m in carriers.MATERIALS},
+        "Eg": {m: carriers.band_gap(m) for m in carriers.MATERIALS},
+        "pn": {k: junction.solve(1e16, 5e16, -1.0)[k] for k in ("Vbi", "W_um", "xn_um", "xp_um", "Emax")},
+        "J0": junction.saturation_current(1e17, 1e16),
+        "mos": {"Vt": moscap.threshold(moscap.params(Na=1e17, tox_nm=5)),
+                "Vg_at_0.5": float(moscap.gate_voltage(0.5, moscap.params(Na=1e17, tox_nm=5)))},
+        "tunnel": {"rect_0.5_1_0.5": tunnel.transfer(0.5, [1.0], [0.5])[0],
+                   "sio2_1nm": float(tunnel.leakage_vs_eot([1.0], "SiO2")[0]),
+                   "hfo2_1nm_il0.5": float(tunnel.leakage_vs_eot([1.0], "HfO2", il_nm=0.5)[0])},
+        "dibl": {"SG20": poisson2d.dibl(20), "DG20": poisson2d.dibl(20, True)},
+    }
+    (ROOT / "data" / "physics_reference.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
+    print("data/physics_reference.json")
+
+
 if __name__ == "__main__":
     crosssection.write_all()
     layout.write_all()
     process.write_all()
     for f in (fig_moore, fig_node_vs_pitch, fig_iv_families, fig_transfer, fig_vtc, fig_hemt,
-              fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel, fig_ionization, fig_steep):
+              fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel, fig_ionization, fig_steep,
+              fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo):
         f()
     export_model_json()
+    export_physics_json()

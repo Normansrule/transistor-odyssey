@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Physics Lab · Transistor Odyssey</title>
+<meta name="description" content="Seven live, interactive simulations of the semiconductor physics inside a transistor: band gaps and carriers, the pn junction, the MOS capacitor, quantum tunnelling, 2D short-channel electrostatics, Monte Carlo electron transport and 3D crystal lattices.">
+<meta property="og:title" content="Physics Lab — the physics inside the switch">
+<meta property="og:description" content="Seven interactive semiconductor simulations, each mirrored in tested Python.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Oxanium:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/physics.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/OrbitControls.js": "./vendor/OrbitControls.js" } }</script>
+<script defer src="vendor/katex/katex.min.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="physics">
+
+<div class="pl-progress" aria-hidden="true"><i></i></div>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Transistor Odyssey home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="15" width="20" height="6" rx="1.5" fill="#4b596d"/><rect x="3" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="15" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="9" y="12.2" width="6" height="1.2" fill="#9a80dc"/><rect x="9" y="5" width="6" height="7.2" rx="1" fill="#f2b84b"/></svg>
+      Transistor Odyssey
+    </a>
+    <span class="nav-crumb">/ Physics Lab</span>
+    <div class="nav-links">
+      <a href="index.html#timeline">Timeline</a>
+      <a href="index.html#explorer">3D explorer</a>
+      <a href="index.html#lab">Device lab</a>
+      <a href="index.html#materials">Materials</a>
+      <a class="active" href="physics.html">Physics Lab</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Source
+    </a>
+  </div>
+</nav>
+
+<header class="hero pl-hero" id="top">
+  <canvas id="plHero" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="eyebrow">Transistor Odyssey · Physics Lab</span>
+    <h1>The physics <span class="sheen">inside the switch</span></h1>
+    <p class="lead">Seven live simulations, from why a crystal has a band gap to why electrons hit a speed limit. Every slider re-solves the real equations in your browser, and every model has a tested Python twin in the repository. Move your pointer over this panel to steer the electric field.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#bands">Start with bands</a>
+      <a class="btn" href="#short">Jump to the 2D Poisson solver</a>
+      <a class="btn" href="index.html">Back to the history</a>
+    </div>
+    <ol class="pl-map" aria-label="Labs on this page">
+      <li><a href="#bands"><b>01</b><span>Where the electrons are</span></a></li>
+      <li><a href="#pn"><b>02</b><span>The junction under every transistor</span></a></li>
+      <li><a href="#mos"><b>03</b><span>How a gate makes a channel</span></a></li>
+      <li><a href="#tunnel"><b>04</b><span>Why oxides can't get thinner</span></a></li>
+      <li><a href="#short"><b>05</b><span>Why the FinFET had to happen</span></a></li>
+      <li><a href="#drift"><b>06</b><span>Why electrons have a speed limit</span></a></li>
+      <li><a href="#crystal"><b>07</b><span>The lattices behind the materials</span></a></li>
+    </ol>
+  </div>
+</header>
+
+<div class="pl-layout wrap">
+  <nav class="pl-toc" aria-label="Labs">
+    <p class="pl-toc-h">Physics Lab</p>
+    <ol>
+        <li><a href="#bands"><span>01</span>Bands &amp; carriers</a></li>
+        <li><a href="#pn"><span>02</span>pn junction</a></li>
+        <li><a href="#mos"><span>03</span>MOS capacitor</a></li>
+        <li><a href="#tunnel"><span>04</span>Quantum tunnelling</a></li>
+        <li><a href="#short"><span>05</span>Short-channel electrostatics</a></li>
+        <li><a href="#drift"><span>06</span>Hot-electron transport</a></li>
+        <li><a href="#crystal"><span>07</span>Crystal structure</a></li>
+      <li><a href="#pl-sources"><span>§</span>Sources</a></li>
+    </ol>
+  </nav>
+  <main class="pl-main">
+
+  <section class="lab-sec" id="bands" aria-labelledby="bands-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">01</span>
+      <div>
+        <span class="eyebrow">Bands &amp; carriers</span>
+        <h2 id="bands-h">Where the electrons are</h2>
+        <p class="lead">A semiconductor's electrons live in energy bands separated by a forbidden gap. Temperature kicks a few across the gap; dopants add many more. Change the material, heat it, dope it, and watch the Fermi level and the carriers respond.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Bands &amp; carriers controls"></aside>
+      <div class="lab-view">
+      <div class="lab-tiles"></div>
+      <div class="card pl-canvas" data-role="bands" style="--h:380px"><canvas aria-label="Energy band diagram with thermally excited electrons and holes"></canvas></div>
+      <p class="pl-warn" hidden>The Fermi level is within 3kT of a band edge: the material is <b>degenerate</b>. Boltzmann statistics, and this model, are no longer accurate.</p>
+      <div class="card plot" data-role="ni"><h4>Intrinsic density vs temperature, all six materials</h4><p class="sub">Once n<sub>i</sub> passes the doping line, the material stops behaving as doped. Hover to compare.</p></div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+          <div class="eq" data-tex="E_g(T) = E_{g0} - \frac{\alpha T^2}{T+\beta}"></div>
+          <div class="eq" data-tex="n_i = \sqrt{N_c N_v}\; e^{-E_g/2kT}"></div>
+          <div class="eq" data-tex="n = \tfrac{N_D - N_A}{2} + \sqrt{\left(\tfrac{N_D - N_A}{2}\right)^2 + n_i^2}, \quad p = \frac{n_i^2}{n}"></div>
+          <div class="eq" data-tex="E_F - E_i = kT\ln\frac{n}{n_i}"></div>
+          <p class="small">Varshni's empirical fit for the gap; effective densities of states N<sub>c</sub>, N<sub>v</sub> scale as T<sup>3/2</sup>; every dopant is assumed ionized.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>The whole transistor rests on n ≫ n<sub>i</sub>: dopants, not heat, must decide where the carriers are. That is why silicon chips throttle near 100–125 °C, why SiC and GaN run power converters at 200 °C and above, and why diamond is studied for extreme environments.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/carriers.py" rel="noopener"><code>sim/transistor_sim/physics/carriers.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="varshni1967 ioffe_nsm sze2006 altermatt2003 vurgaftman2001"></div>
+      </div>
+    </div>
+  </section>
+  <section class="lab-sec" id="pn" aria-labelledby="pn-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">02</span>
+      <div>
+        <span class="eyebrow">pn junction</span>
+        <h2 id="pn-h">The junction under every transistor</h2>
+        <p class="lead">Put p-type and n-type silicon together and carriers diffuse across, leaving behind a depletion region of fixed ions with a strong built-in field. Every source and drain is a pn junction; so is every solar cell and LED.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="pn junction controls"></aside>
+      <div class="lab-view">
+      <div class="lab-tiles"></div>
+      <div class="card pl-canvas" data-role="device" style="--h:230px"><canvas aria-label="Animated pn junction with ions in the depletion region and mobile carriers outside it"></canvas></div>
+      <p class="pl-warn" hidden></p>
+      <div class="plots">
+        <div class="card plot" data-role="stack"><h4>Charge → field → bands</h4><p class="sub">Poisson's equation, integrated twice. Hover for values.</p></div>
+        <div class="card plot" data-role="iv"><h4>Current–voltage (100 µm × 100 µm diode)</h4><p class="sub">Ideal Shockley diode, log scale.</p></div>
+      </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+          <div class="eq" data-tex="V_{bi} = \frac{kT}{q}\ln\frac{N_A N_D}{n_i^2}"></div>
+          <div class="eq" data-tex="W = \sqrt{\frac{2\varepsilon_s\,(V_{bi}-V)}{q}\left(\frac{1}{N_A}+\frac{1}{N_D}\right)}"></div>
+          <div class="eq" data-tex="N_A x_p = N_D x_n, \qquad E_{max} = \frac{q N_D x_n}{\varepsilon_s}"></div>
+          <div class="eq" data-tex="I = I_0\left(e^{qV/kT} - 1\right)"></div>
+          <p class="small">Depletion approximation: the junction region is fully emptied of mobile carriers, the rest is neutral. I<sub>0</sub> uses Caughey–Thomas mobilities and 1 µs lifetimes.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>In a MOSFET the source and drain junctions must stay reverse-biased and leak as little as possible; their depletion regions are what the drain uses to reach under the gate in short channels (Lab 05). In power devices the same equations set breakdown voltage.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/junction.py" rel="noopener"><code>sim/transistor_sim/physics/junction.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="shockley1949 sze2006 caughey1967 esaki1958 nanohub_pntoy"></div>
+      </div>
+    </div>
+  </section>
+  <section class="lab-sec" id="mos" aria-labelledby="mos-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">03</span>
+      <div>
+        <span class="eyebrow">MOS capacitor</span>
+        <h2 id="mos-h">How a gate makes a channel</h2>
+        <p class="lead">Metal, oxide, semiconductor: the heart of the MOSFET without its source and drain. A gate voltage bends the bands at the silicon surface until the surface inverts and fills with electrons. This is an exact solution, not the depletion approximation.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="MOS capacitor controls"></aside>
+      <div class="lab-view">
+      <div class="lab-tiles"></div>
+      <div class="card plot" data-role="band"><h4>Band diagram: gate | oxide | silicon</h4><p class="sub">Electron energy; the silicon Fermi level E<sub>F</sub> is the zero. The oxide band tilts with the voltage across it.</p></div>
+      <div class="plots">
+        <div class="card plot" data-role="cv"><h4>Capacitance–voltage</h4><p class="sub">The measurement every fab runs on test capacitors.</p></div>
+        <div class="card plot" data-role="dens"><h4>Carriers vs depth</h4><p class="sub">Electrons and holes follow the band bending exponentially.</p></div>
+      </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+          <div class="eq" data-tex="V_G = V_{FB} + \psi_s - \frac{Q_s(\psi_s)}{C_{ox}}"></div>
+          <div class="eq" data-tex="Q_s = \mp\sqrt{2\varepsilon_s kT p_0}\;F(\psi_s)"></div>
+          <div class="eq" data-tex="\begin{aligned} F^2 = {}&\left(e^{-\beta\psi}+\beta\psi-1\right) \\ &+ \tfrac{n_0}{p_0}\left(e^{\beta\psi}-\beta\psi-1\right) \end{aligned}"></div>
+          <div class="eq" data-tex="V_T = V_{FB} + 2\phi_B + \frac{\sqrt{4\varepsilon_s q N_A \phi_B}}{C_{ox}}"></div>
+          <p class="small">β = q/kT and φ<sub>B</sub> = (kT/q) ln(N<sub>A</sub>/n<sub>i</sub>). The band profile comes from integrating dψ/dx = −(√2 kT/qL<sub>D</sub>) F(ψ) into the bulk.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Threshold voltage, gate capacitance and the inversion charge that carries current all come from this picture. Scaling meant raising C<sub>ox</sub> (thinner, then high-k oxides) and, once channels became undoped fins and sheets, setting V<sub>T</sub> with the gate metal's work function.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/moscap.py" rel="noopener"><code>sim/transistor_sim/physics/moscap.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="sze2006 taur2013 robertson2006 nanohub_moscap"></div>
+      </div>
+    </div>
+  </section>
+  <section class="lab-sec" id="tunnel" aria-labelledby="tunnel-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">04</span>
+      <div>
+        <span class="eyebrow">Quantum tunnelling</span>
+        <h2 id="tunnel-h">Why oxides can't get thinner</h2>
+        <p class="lead">An electron is a wave. Meet a barrier thinner than its decay length and part of the wave leaks through. The transfer-matrix method solves the Schrödinger equation exactly for any stack of flat slabs; the dots show the textbook formula agreeing.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Quantum tunnelling controls"></aside>
+      <div class="lab-view">
+      <div class="lab-tiles"></div>
+      <div class="card pl-canvas" data-role="wave" style="--h:340px"><canvas aria-label="Animated electron wavefunction meeting a potential barrier"></canvas></div>
+      <div class="plots">
+        <div class="card plot" data-role="te"><h4>Transmission vs energy</h4><p class="sub">Solid: transfer matrix. Circles: closed form (single barrier).</p></div>
+        <div class="card plot" data-role="leak"><h4>Gate-oxide tunnelling at equal EOT</h4><p class="sub">Trapezoidal barrier, 1 V across the stack, electron at the silicon band edge.</p></div>
+      </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+          <div class="eq" data-tex="-\frac{\hbar^2}{2m^*}\frac{d^2\psi}{dx^2} + V(x)\,\psi = E\,\psi"></div>
+          <div class="eq" data-tex="T = \left[1 + \frac{V_0^2\sinh^2(\kappa a)}{4E(V_0-E)}\right]^{-1}"></div>
+          <div class="eq" data-tex="\kappa = \frac{\sqrt{2m^*(V_0-E)}}{\hbar}"></div>
+          <div class="eq" data-tex="T \approx e^{-2\kappa a}\quad(\kappa a \gg 1)"></div>
+          <div class="eq" data-tex="\mathrm{EOT} = t_{\text{high-}k}\,\frac{3.9}{k}"></div>
+          <p class="small">Matching ψ and ψ′/m* at every interface gives a 2×2 matrix per interface; their product yields T. The code multiplies interface determinants exactly so T stays accurate down to 10⁻³⁰.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>By the 90–65 nm nodes, SiO₂ gates were ~1.2 nm thick and leaked amperes per square centimetre. Intel's 2007 switch to HfO₂ gave the same capacitance with a physically thicker film. The same physics powers flash memory, tunnel FETs and the Esaki diode.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/tunnel.py" rel="noopener"><code>sim/transistor_sim/physics/tunnel.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="griffiths2018 ando1987 tsu1973 chang1974 lo1997 robertson2006"></div>
+      </div>
+    </div>
+  </section>
+  <section class="lab-sec" id="short" aria-labelledby="short-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">05</span>
+      <div>
+        <span class="eyebrow">Short-channel electrostatics</span>
+        <h2 id="short-h">Why the FinFET had to happen</h2>
+        <p class="lead">A live two-dimensional Poisson solve of a transistor in its off state, 81 × up to 110 grid points relaxed by successive over-relaxation every time you move a slider. Shrink the gate and the drain's field reaches in and lowers the source barrier.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Short-channel electrostatics controls"></aside>
+      <div class="lab-view">
+      <div class="lab-tiles"></div>
+      <div class="card pl-canvas" data-role="heat" style="--h:360px"><canvas aria-label="Electrostatic potential heat map of a MOSFET cross-section with equipotential lines"></canvas></div>
+      <div class="plots">
+        <div class="card plot" data-role="ec"><h4>Conduction band along the leakiest path</h4><p class="sub">The barrier electrons must climb to leave the source.</p></div>
+        <div class="card plot" data-role="sweep"><h4>DIBL vs gate length</h4><p class="sub">Swept in a background worker for your body and oxide thickness.</p></div>
+      </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+          <div class="eq" data-tex="\nabla\cdot\left(\varepsilon\,\nabla\psi\right) = q N_A \quad\text{(depleted body)}"></div>
+          <div class="eq" data-tex="\lambda = \sqrt{\frac{\varepsilon_{Si}\,t_{Si}\,t_{ox}}{N\,\varepsilon_{ox}}}, \quad N = 1 \text{ or } 2"></div>
+          <div class="eq" data-tex="\mathrm{DIBL} = -\frac{\Delta E_b / q}{\Delta V_{DS}}"></div>
+          <div class="eq" data-tex="SS = \frac{dV_{GS}}{d\log_{10} I_D} \;\geq\; \frac{kT}{q}\ln 10"></div>
+          <p class="small">N = 1 for a single gate, 2 for a double gate; the ideal swing is ≈ 60 mV/dec at 300 K. The gate, source and drain are fixed-potential boundaries; oxide side walls carry no flux. Off-current is estimated from the barrier along each horizontal path, I ∝ Σ exp(−E<sub>b</sub>/kT).</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>The rule of thumb L ≳ 5–6 λ is the reason gate geometry changed. Planar bulk ran out of λ near 20 nm; fins (two or three sides), then nanosheets (four sides) and thinner bodies each cut λ so gates could keep shrinking.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/poisson2d.py" rel="noopener"><code>sim/transistor_sim/physics/poisson2d.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="yan1992 frank1998 selberherr1984 taur2013 frank2001"></div>
+      </div>
+    </div>
+  </section>
+  <section class="lab-sec" id="drift" aria-labelledby="drift-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">06</span>
+      <div>
+        <span class="eyebrow">Hot-electron transport</span>
+        <h2 id="drift-h">Why electrons have a speed limit</h2>
+        <p class="lead">Five hundred electrons in a silicon crystal, each flying freely under the field and then scattering off lattice vibrations. This is ensemble Monte Carlo, the method behind industrial device simulators, running live. Every flash is a collision.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Hot-electron transport controls"><div class="pl-btns"><button type="button" class="btn sm" data-act="pause" aria-pressed="false">Pause</button><button type="button" class="btn sm" data-act="reset">Reset</button></div></aside>
+      <div class="lab-view">
+      <div class="lab-tiles"></div>
+      <div class="card pl-canvas" data-role="gas" style="--h:360px"><canvas aria-label="Monte Carlo simulation of electrons drifting and scattering in silicon"></canvas></div>
+      <div class="plots">
+        <div class="card plot" data-role="vf"><h4>Velocity vs field</h4><p class="sub">Your steady-state runs against the measured curve.</p></div>
+        <div class="card plot" data-role="trace"><h4>Mean velocity over time</h4><p class="sub">Step the field to see velocity overshoot.</p></div>
+      </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+          <div class="eq" data-tex="\hbar\,\frac{d\mathbf{k}}{dt} = -q\mathbf{F}"></div>
+          <div class="eq" data-tex="E(1+\alpha E) = \frac{\hbar^2 k^2}{2m^*}"></div>
+          <div class="eq" data-tex="\begin{aligned} \Gamma_{ac} &\propto T\sqrt{E} \\ \Gamma_{abs} &\propto N_{op}\sqrt{E+\hbar\omega} \\ \Gamma_{em} &\propto (N_{op}+1)\sqrt{E-\hbar\omega} \end{aligned}"></div>
+          <div class="eq" data-tex="\mu = \frac{q\langle\tau\rangle}{m^*}, \quad v = \mu F \to v_{sat}"></div>
+          <p class="small">Single isotropic valley, m* = 0.26 m<sub>0</sub>, ħω = 63 meV, α = 0.5 eV⁻¹. Two coupling constants are calibrated to silicon's measured µ ≈ 1400 cm²/V·s and v<sub>sat</sub> ≈ 10⁷ cm/s.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>In a 2 nm-class transistor the channel field is well past 10⁴ V/cm, so electrons run near saturation velocity. Drive current then depends on v<sub>sat</sub> and on how far electrons get before they scatter, which is why strain, SiGe and III–V channels were pursued.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/montecarlo.py" rel="noopener"><code>sim/transistor_sim/physics/montecarlo.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="jacoboni1983 canali1975 lundstrom2000 caughey1967 lundstrom2017"></div>
+      </div>
+    </div>
+  </section>
+  <section class="lab-sec" id="crystal" aria-labelledby="crystal-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">07</span>
+      <div>
+        <span class="eyebrow">Crystal structure</span>
+        <h2 id="crystal-h">The lattices behind the materials</h2>
+        <p class="lead">The band gap, the mobility and the polarization that makes GaN transistors work all start with where the atoms sit. Drag to rotate, scroll to zoom, hover an atom.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Crystal structure controls"><div class="pl-extra"><div class="pl-btns"><button type="button" class="btn sm" data-view="iso">Isometric</button><button type="button" class="btn sm" data-view="top">Down the c-axis</button><button type="button" class="btn sm" data-view="side">Side</button></div><div class="legend pl-legend"></div><p class="pl-why small"></p></div></aside>
+      <div class="lab-view">
+      <div class="lab-tiles"></div>
+      <div class="card stage pl-stage" data-role="crystal"><div class="stage-tip" hidden></div></div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+          <div class="eq" data-tex="d_{\text{bond}} = \frac{\sqrt{3}}{4}\,a \quad\text{(diamond and zincblende)}"></div>
+          <div class="eq" data-tex="\theta = \arccos\!\left(-\tfrac{1}{3}\right) = 109.47^\circ"></div>
+          <div class="eq" data-tex="d_{\text{bond}} \approx u\,c \quad\text{(wurtzite, } u \approx 0.377\text{)}"></div>
+          <p class="small">Positions are generated in Python from the lattice constants and exported to the page; bonds are drawn between nearest neighbours.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Silicon, germanium and diamond share the diamond-cubic lattice; GaAs adds two species (zincblende); GaN and SiC stack hexagonal layers, which breaks the symmetry and creates built-in polarization; MoS₂ is a layered crystal that can be peeled to one molecule thick.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/crystal.py" rel="noopener"><code>sim/transistor_sim/physics/crystal.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="ioffe_nsm wilson1969 sze2006"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-sec" id="pl-sources" aria-labelledby="src-h">
+    <header class="lab-head"><span class="lab-num" aria-hidden="true">§</span><div><span class="eyebrow">Sources</span><h2 id="src-h">Where the equations come from</h2>
+    <p class="lead">Textbooks, the original papers and the measured data the models are calibrated against. The full 245-entry bibliography is in <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/REFERENCES.md">REFERENCES.md</a>; Chapter 19 of the docs walks through each lab.</p></div></header>
+    <ol class="card pl-refs" id="plRefs"></ol>
+  </section>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Transistor Odyssey · Physics Lab. Code MIT, text and figures CC BY 4.0. Models are teaching-grade: each one is validated against a closed form or a measurement, but none replaces TCAD.</p>
+    <p><a href="index.html">← Back to the transistor history</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/physlab/main.js"></script>
+</body>
+</html>

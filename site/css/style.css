@@ -399,3 +399,21 @@ footer a:hover { color: var(--amber-2); }
 .fab-list button span { font-family: var(--mono); color: var(--muted); min-width: 22px; }
 .fab-list button:hover { background: var(--surface-2); color: var(--ink); }
 .fab-list button[aria-current="step"] { background: var(--surface-2); color: var(--ink); box-shadow: inset 2px 0 0 var(--amber); }
+
+/* ---------- shared with the Physics Lab ---------- */
+/* reading progress */
+.pl-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; pointer-events: none; }
+.pl-progress i { position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, var(--teal), var(--amber), var(--copper)); }
+/* ---------- teaser on the main page ---------- */
+.pl-teaser { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.pl-teaser a { padding: 20px; display: grid; gap: 10px; align-content: start; text-decoration: none; color: var(--ink-2); min-height: 190px; }
+.pl-teaser a b { font: 600 34px/1 var(--display); color: var(--amber); }
+.pl-teaser a h3 { color: var(--ink); font-size: 19px; }
+.pl-teaser a p { font-size: 14px; }
+.pl-teaser a .go { margin-top: auto; font: 12px var(--mono); color: var(--amber-2); }
+.pl-teaser a:hover h3 { color: var(--amber-2); }
+.pl-teaser svg { width: 100%; height: 54px; }
+
+.nav-lab { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(242,184,75,.45); color: var(--amber-2); text-decoration: none; font-size: 13px; white-space: nowrap; }
+.nav-lab:hover { background: rgba(242,184,75,.1); color: var(--amber); }
+@media (max-width: 1100px) { .nav-lab { margin-left: auto; } .nav-lab + .nav-gh { margin-left: 0; } }
