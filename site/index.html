@@ -27,6 +27,7 @@
       <a href="#scale">Scale</a>
       <a href="#timeline">Timeline</a>
       <a href="#explorer">3D explorer</a>
+      <a href="#fab">Fab</a>
       <a href="#lab">Device lab</a>
       <a href="#moore">Moore's law</a>
       <a href="#chips">Chips</a>
@@ -151,6 +152,36 @@
           <div class="small" style="margin-bottom:8px">Layers (hover the model to identify)</div>
           <div class="legend" id="legend"></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAB STEPPER ============ -->
+<section class="sec" id="fab">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Process · 14 steps</span>
+      <h2>Build a nanosheet transistor</h2>
+      <p class="lead">From a bare wafer to a gate-all-around transistor with backside power. Press play, drag the slider, or use the arrow keys. Each frame is drawn by <span class="mono">sim/transistor_sim/process.py</span>.</p>
+    </div>
+    <div class="fab">
+      <div class="card fab-stage">
+        <div class="fab-frame" id="fabFrame" tabindex="0" aria-label="Process step drawing; use arrow keys to change step"><img id="fabImgA" alt=""><img id="fabImgB" alt=""></div>
+        <div class="fab-ctl">
+          <button class="btn" id="fabPrev" aria-label="Previous step">←</button>
+          <button class="btn primary" id="fabPlay">Play</button>
+          <button class="btn" id="fabNext" aria-label="Next step">→</button>
+          <label class="sr-only" for="fabRange">Process step</label>
+          <input type="range" id="fabRange" min="1" max="14" step="1" value="1">
+          <output id="fabCount" class="mono">1 / 14</output>
+        </div>
+      </div>
+      <div class="card panel fab-info">
+        <span class="eyebrow" id="fabTool"></span>
+        <h3 id="fabTitle" style="font-size:24px"></h3>
+        <p id="fabDetail" style="color:var(--ink-2)"></p>
+        <ol class="fab-list" id="fabList"></ol>
       </div>
     </div>
   </div>

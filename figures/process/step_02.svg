@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Step 2 of 14 · Grow the Si/SiGe superlattice">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Step 2 of 14 · Grow the Si/SiGe superlattice</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Epitaxy (RPCVD). Along-channel view of one GAA transistor (not to scale).</text>
+<rect x="40.0" y="330.0" width="460.0" height="64.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="40.0" y="314.0" width="460.0" height="16.0" rx="0" fill="#b58fd6" fill-opacity="1.0"/>
+<rect x="40.0" y="298.0" width="460.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="40.0" y="282.0" width="460.0" height="16.0" rx="0" fill="#b58fd6" fill-opacity="1.0"/>
+<rect x="40.0" y="266.0" width="460.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="40.0" y="250.0" width="460.0" height="16.0" rx="0" fill="#b58fd6" fill-opacity="1.0"/>
+<rect x="40.0" y="234.0" width="460.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<polyline points="270.0,306.0 522.0,306.0 540.0,306.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="306.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="310.0" fill="#e8ecf1" font-size="12.5">Si channel sheet (~5 nm)</text>
+<polyline points="270.0,322.0 522.0,336.0 540.0,336.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="322.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="340.0" fill="#e8ecf1" font-size="12.5">SiGe sacrificial layer</text>
+<polyline points="270.0,362.0 522.0,366.0 540.0,366.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="362.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="370.0" fill="#e8ecf1" font-size="12.5">Silicon wafer (p-type, 300 mm)</text>
+</svg>

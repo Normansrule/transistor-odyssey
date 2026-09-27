@@ -778,6 +778,56 @@ def set_transistor() -> Drawing:
     return d
 
 
+# ---------------------------------------------------------------------------
+# Packaging and 3D integration
+# ---------------------------------------------------------------------------
+
+def cowos_interposer() -> Drawing:
+    d = Drawing("2.5D integration on a silicon interposer (CoWoS-style)", "Logic die and HBM stacks sit side by side on a silicon interposer with fine wiring between them.")
+    d.rect(30, 350, 470, 44, "glass", "Organic package substrate")
+    for x in range(50, 490, 28):
+        d.circle(x, 346, 6, "au", "C4 bumps" if x == 50 else None)
+    d.rect(40, 300, 450, 40, "si", "Silicon interposer (TSVs + fine RDL)")
+    for x in (120, 200, 330, 410):
+        d.rect(x, 300, 5, 40, "cu", "Through-silicon via (TSV)" if x == 120 else False)
+    d.rect(40, 296, 450, 4, "cu", "Redistribution wiring", opacity=0.9)
+    d.rect(170, 190, 190, 100, "si_ch", "Logic die (GPU / accelerator)")
+    for i in range(8):
+        d.rect(60, 280 - i * 11, 90, 9, "metal", "HBM DRAM stack" if i == 0 else False)
+        d.rect(380, 280 - i * 11, 90, 9, "metal", False)
+    for x in range(180, 360, 16):
+        d.circle(x, 293, 3.5, "au", "Micro-bumps (~40 µm pitch)" if x == 180 else None)
+    d.note(265, 408, "Used for NVIDIA H100/B200-class accelerators; TSMC calls its family CoWoS", size=11)
+    return d
+
+
+def hybrid_bond() -> Drawing:
+    d = Drawing("3D hybrid bonding (SoIC, Foveros Direct)", "Two dies bonded face to face: copper pads fuse directly, oxide to oxide, no solder bumps.")
+    d.rect(40, 300, 450, 90, "si", "Bottom die (e.g. SRAM/cache or base logic)")
+    d.rect(40, 280, 450, 20, "oxide", "Bonding oxide (bottom)")
+    d.rect(40, 260, 450, 20, "oxide", "Bonding oxide (top)", opacity=0.75)
+    for x in range(60, 480, 36):
+        d.rect(x, 262, 16, 36, "cu", "Cu–Cu bond pads (<10 µm pitch)" if x == 60 else False)
+    d.rect(40, 170, 450, 90, "si_ch", "Top die (compute)")
+    d.rect(90, 170, 10, 90, "cu", "TSV through top die", opacity=0.8)
+    d.note(265, 408, "TSMC SoIC bond pitch starts below 10 µm, versus ~40 µm micro-bumps", size=11)
+    return d
+
+
+def hbm_stack() -> Drawing:
+    d = Drawing("High-bandwidth memory (HBM) stack", "DRAM dies thinned and stacked on a base die, connected by thousands of TSVs; HBM4 is 2048 bits wide.")
+    d.rect(120, 340, 290, 30, "si", "Base / logic die")
+    for i in range(8):
+        y = 300 - i * 30
+        d.rect(120, y, 290, 26, "metal", "DRAM core dies (4–16 high)" if i == 0 else False)
+    for x in (160, 220, 300, 360):
+        d.rect(x, 90, 6, 280, "cu", "TSV column" if x == 160 else False)
+    for x in range(135, 400, 22):
+        d.circle(x, 376, 4, "au", "Micro-bumps to interposer" if x == 135 else None)
+    d.note(265, 408, "JEDEC HBM4 (Apr 2025): 2048-bit, up to 2 TB/s per stack, up to 16-high, 64 GB", size=11)
+    return d
+
+
 ARCHS = {
     "point_contact": point_contact, "bjt": bjt, "planar_bjt": planar_bjt,
     "planar_mosfet_metal": planar_mosfet_metal, "planar_mosfet_poly": planar_mosfet_poly,
@@ -791,6 +841,7 @@ ARCHS = {
     "diamond_schottky": diamond_schottky, "jfet": jfet, "alloy_junction": alloy_junction, "igzo_tft": igzo_tft,
     "organic_tft": organic_tft, "igbt": igbt, "fdsoi": fdsoi, "junctionless": junctionless, "vtfet": vtfet,
     "tfet": tfet, "ncfet": ncfet, "flash_fg": flash_fg, "nand3d": nand3d, "set_transistor": set_transistor,
+    "cowos_interposer": cowos_interposer, "hybrid_bond": hybrid_bond, "hbm_stack": hbm_stack,
 }
 
 

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="2.5D integration on a silicon interposer (CoWoS-style)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">2.5D integration on a silicon interposer (CoWoS-style)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Logic die and HBM stacks sit side by side on a silicon interposer with fine wiring between them.</text>
+<rect x="30.0" y="350.0" width="470.0" height="44.0" rx="0" fill="#6d7f99" fill-opacity="1.0"/>
+<circle cx="50.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="78.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="106.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="134.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="162.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="190.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="218.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="246.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="274.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="302.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="330.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="358.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="386.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="414.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="442.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<circle cx="470.0" cy="346.0" r="6.0" fill="#e8c45c"/>
+<rect x="40.0" y="300.0" width="450.0" height="40.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="120.0" y="300.0" width="5.0" height="40.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="200.0" y="300.0" width="5.0" height="40.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="330.0" y="300.0" width="5.0" height="40.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="410.0" y="300.0" width="5.0" height="40.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="40.0" y="296.0" width="450.0" height="4.0" rx="0" fill="#d9825b" fill-opacity="0.9"/>
+<rect x="170.0" y="190.0" width="190.0" height="100.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="60.0" y="280.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="280.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="269.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="269.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="258.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="258.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="247.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="247.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="236.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="236.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="225.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="225.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="214.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="214.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="203.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="380.0" y="203.0" width="90.0" height="9.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<circle cx="180.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="196.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="212.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="228.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="244.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="260.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="276.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="292.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="308.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="324.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="340.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<circle cx="356.0" cy="293.0" r="3.5" fill="#e8c45c"/>
+<polyline points="265.0,240.0 522.0,173.5 540.0,173.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="240.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="177.5" fill="#e8ecf1" font-size="12.5">Logic die (GPU / accelerator)</text>
+<polyline points="105.0,284.5 522.0,218.0 540.0,218.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="105.0" cy="284.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="222.0" fill="#e8ecf1" font-size="12.5">HBM DRAM stack</text>
+<polyline points="180.0,293.0 522.0,248.0 540.0,248.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="180.0" cy="293.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="252.0" fill="#e8ecf1" font-size="12.5">Micro-bumps (~40 µm pitch)</text>
+<polyline points="265.0,298.0 522.0,278.0 540.0,278.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="298.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="282.0" fill="#e8ecf1" font-size="12.5">Redistribution wiring</text>
+<polyline points="265.0,320.0 522.0,308.0 540.0,308.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="320.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="312.0" fill="#e8ecf1" font-size="12.5">Silicon interposer (TSVs + fine RDL)</text>
+<polyline points="122.5,320.0 522.0,338.0 540.0,338.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="122.5" cy="320.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="342.0" fill="#e8ecf1" font-size="12.5">Through-silicon via (TSV)</text>
+<polyline points="50.0,346.0 522.0,368.0 540.0,368.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="50.0" cy="346.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="372.0" fill="#e8ecf1" font-size="12.5">C4 bumps</text>
+<polyline points="265.0,372.0 522.0,398.0 540.0,398.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="372.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="402.0" fill="#e8ecf1" font-size="12.5">Organic package substrate</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Used for NVIDIA H100/B200-class accelerators; TSMC calls its family CoWoS</text>
+</svg>

@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://normansrule.github.io/transistor-odyssey/"><img alt="Live site" src="https://img.shields.io/badge/live%20site-GitHub%20Pages-f2b84b?style=for-the-badge&labelColor=10141a"></a>
-  <a href="REFERENCES.md"><img alt="219 references" src="https://img.shields.io/badge/references-219-7fd3d0?style=for-the-badge&labelColor=10141a"></a>
-  <a href="docs/README.md"><img alt="16 chapters" src="https://img.shields.io/badge/chapters-16-b58fd6?style=for-the-badge&labelColor=10141a"></a>
+  <a href="REFERENCES.md"><img alt="225 references" src="https://img.shields.io/badge/references-225-7fd3d0?style=for-the-badge&labelColor=10141a"></a>
+  <a href="docs/README.md"><img alt="18 chapters" src="https://img.shields.io/badge/chapters-18-b58fd6?style=for-the-badge&labelColor=10141a"></a>
   <a href=".github/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Normansrule/transistor-odyssey/ci.yml?style=for-the-badge&labelColor=10141a&label=tests"></a>
   <a href="LICENSE"><img alt="MIT + CC BY 4.0" src="https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY%204.0-d9825b?style=for-the-badge&labelColor=10141a"></a>
 </p>
@@ -22,13 +22,13 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 
 | | |
 |---|---|
-| 🌐 **[Interactive website](site/)** | WebGL fluid hero · GSAP scroll-pinned timeline · three.js explorer that explodes seven architectures (incl. an H-terminated diamond FET) and animates carrier flow · live device lab · Moore's-law chart · die-photo vs generated-drawing slider · materials ranking · **Diamond lab** (dopant ionization simulator + milestones) · **Niche atlas** of 28 forgotten/exotic transistors · lithography calculator · searchable bibliography |
-| 📚 **[16 chapters](docs/README.md)** | 1947 point contact → planar → MOSFET/CMOS → scaling → strain/HKMG → FinFET → lithography → GAA/backside power/ångström era → 2D MoS₂ → GaAs/GaN/SiC/Ga₂O₃ → diamond/CNT/beyond-CMOS → simulation methods → **diamond electronics in depth** → **niche & forgotten transistors** → **steep-slope & exotic switches** → glossary |
+| 🌐 **[Interactive website](site/)** | WebGL fluid hero · GSAP scroll-pinned timeline · three.js explorer that explodes seven architectures (incl. an H-terminated diamond FET) and animates carrier flow · live device lab · Moore's-law chart · die-photo vs generated-drawing slider · materials ranking · **Diamond lab** (dopant ionization simulator + milestones) · **Fab stepper** (14-step animated nanosheet process flow) · **Niche atlas** of 31 forgotten, exotic and packaging structures · lithography calculator · searchable bibliography |
+| 📚 **[18 chapters](docs/README.md)** | 1947 point contact → planar → MOSFET/CMOS → scaling → strain/HKMG → FinFET → lithography → GAA/backside power/ångström era → 2D MoS₂ → GaAs/GaN/SiC/Ga₂O₃ → diamond/CNT/beyond-CMOS → simulation methods → **diamond electronics in depth** → **niche & forgotten transistors** → **steep-slope & exotic switches** → **how a 2 nm transistor is built** → **packaging & 3D integration** → glossary |
 | 🧮 **[Simulation package](sim/transistor_sim)** | Compact MOSFET model with 8 era presets · AlGaN/GaN polarization 2DEG model · BJT Gummel model · dopant-ionization model (why diamond is hard to dope) · tunnel-FET and negative-capacitance steep-slope models · Baliga/Johnson figures of merit · Moore/Dennard scaling |
-| 🖼️ **Generated drawings** | [40 labelled cross-sections](figures/cross_sections) · [6 GDS mask layouts](figures/layout) (open in KLayout/Magic) · [13 charts](figures) |
+| 🖼️ **Generated drawings** | [43 labelled cross-sections](figures/cross_sections) · [14-step process flow](figures/process) · [6 GDS mask layouts](figures/layout) (open in KLayout/Magic) · [13 charts](figures) |
 | ⚡ **[SPICE netlists](sim/spice)** | ngspice inverters (1.5 µm, 180 nm), a 5-stage ring oscillator and a behavioural GaN HEMT |
-| 🗂️ **[Open data](data/)** | 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 28 niche devices · 16 diamond milestones · 9 dopants · 219 references |
-| ✅ **[Tests](tests/)** | 33 checks tying model output to published numbers and every citation key to the bibliography |
+| 🗂️ **[Open data](data/)** | 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 31 niche devices · 16 diamond milestones · 9 dopants · 14 process steps · 225 references |
+| ✅ **[Tests](tests/)** | 34 checks tying model output to published numbers and every citation key to the bibliography |
 
 ## Twenty shapes of one switch
 
@@ -97,6 +97,16 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 
 <sub>Representative 300 K values from <a href="data/materials.json">data/materials.json</a>; FOMs computed by <code>sim/transistor_sim/materials.py</code>. Details and caveats in <a href="docs/10-compound-semiconductors.md">Chapter 10</a> and <a href="docs/11-diamond-and-beyond.md">Chapter 11</a>.</sub>
 
+## Build one: the 14-step process flow
+
+<table>
+<tr>
+<td width="33%"><img src="figures/process/step_02.svg" alt="Superlattice"><br><sub>2 · Si/SiGe superlattice</sub></td>
+<td width="33%"><img src="figures/process/step_11.svg" alt="Release"><br><sub>11 · Release the nanosheets</sub></td>
+<td width="33%"><img src="figures/process/step_14.svg" alt="Backside power"><br><sub>14 · Backside power</sub></td>
+</tr>
+</table>
+
 ## Diamond, niche and exotic devices
 
 <table>
@@ -136,7 +146,9 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 13. [Diamond electronics in depth](docs/13-diamond-electronics.md) — doping, transfer doping, kV MOSFETs, wafers, GaN-on-diamond, NV centres
 14. [Niche and forgotten transistors](docs/14-niche-and-forgotten.md) — alloy junction, JFET, IGBT, IGZO/organic/flexible, flash & 3D NAND, FD-SOI, junctionless, VTFET
 15. [Steep-slope and exotic switches](docs/15-steep-slope-and-exotic.md) — TFET, NC-FET/FeFET, single-electron, spin FET, memristor, vacuum, RSFQ
-16. [Glossary](docs/16-glossary.md)
+16. [How a 2 nm-class transistor is built](docs/16-process-flow.md) — 14-step GAA nanosheet flow, wafer to backside power
+17. [Packaging and 3D integration](docs/17-packaging-and-3d.md) — CoWoS interposers, HBM4, hybrid bonding
+18. [Glossary](docs/18-glossary.md)
 
 ## Quick start (Ubuntu / WSL2)
 
@@ -168,16 +180,16 @@ Open a generated layout in KLayout: `klayout figures/layout/inverter_22_nm_FinFE
 ```
 transistor-odyssey/
 ├── site/                  GitHub Pages website (index.html, css/, js/, vendor/ three.js + GSAP, assets/)
-├── docs/                  16 chapters, citations as [@key]
+├── docs/                  18 chapters, citations as [@key]
 ├── sim/
-│   ├── transistor_sim/    mosfet · hemt · bjt · dopants · steep · materials · scaling · crosssection · layout
+│   ├── transistor_sim/    mosfet · hemt · bjt · dopants · steep · process · materials · scaling · crosssection · layout
 │   ├── spice/             ngspice netlists
 │   └── make_figures.py    renders everything in figures/
 ├── figures/               generated PNG/SVG charts, cross_sections/, layout/ (SVG + GDS)
-├── data/                  chips · nodes · materials · timeline · niche · diamond · dopants · images · references
+├── data/                  chips · nodes · materials · timeline · niche · diamond · dopants · process · images · references
 ├── scripts/               setup_ubuntu.sh · build_data.py (site bundle, REFERENCES.md, CREDITS.md) · fetch_images.py
 ├── tests/                 pytest suite
-├── REFERENCES.md          219 sources, generated
+├── REFERENCES.md          225 sources, generated
 └── CREDITS.md             photo attribution, generated
 ```
 

@@ -4,6 +4,7 @@ import { initLab } from './lab.js';
 import { initMoore, initMaterials } from './charts.js';
 import { initDiamond } from './diamond.js';
 import { initNiche } from './niche.js';
+import { initFab } from './fab.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -153,6 +154,7 @@ safe(() => initMoore(DATA), 'moore');
 safe(() => initMaterials(DATA), 'materials');
 safe(() => initDiamond(DATA), 'diamond');
 safe(() => initNiche(DATA), 'niche');
+safe(() => initFab(DATA), 'fab');
 (async () => {
   try {
     const mod = await import('./explorer3d.js');

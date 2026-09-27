@@ -85,3 +85,12 @@ def test_niche_archs_exist():
     for dev in load("niche.json")["devices"]:
         assert dev["arch"] in ARCHS, dev["id"]
         assert dev["status"] in {"museum", "niche", "mainstream", "research"}
+
+
+def test_process_flow_complete():
+    steps = load("process.json")["steps"]
+    assert [s["step"] for s in steps] == list(range(1, len(steps) + 1))
+    assert len(steps) >= 12
+    for s in steps:
+        assert (ROOT / "site" / s["svg"]).exists(), s["svg"]
+        assert (ROOT / "figures" / "process" / f"step_{s['step']:02d}.svg").exists()

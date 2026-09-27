@@ -22,7 +22,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
-from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep  # noqa: E402
+from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep, process  # noqa: E402
 
 FIG = ROOT / "figures"
 FIG.mkdir(exist_ok=True)
@@ -313,6 +313,7 @@ def export_model_json():
 if __name__ == "__main__":
     crosssection.write_all()
     layout.write_all()
+    process.write_all()
     for f in (fig_moore, fig_node_vs_pitch, fig_iv_families, fig_transfer, fig_vtc, fig_hemt,
               fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel, fig_ionization, fig_steep):
         f()

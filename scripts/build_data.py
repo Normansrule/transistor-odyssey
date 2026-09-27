@@ -51,6 +51,7 @@ def build_js():
         presets=presets,
         niche=load("niche.json")["devices"],
         diamond=load("diamond.json")["milestones"],
+        process=load("process.json")["steps"] if (DATA / "process.json").exists() else [],
         dopants=json.loads((DATA / "dopants.json").read_text(encoding="utf-8")) if (DATA / "dopants.json").exists() else {},
         refs=[{**r, "link": ref_link(r)} for r in refs],
     )

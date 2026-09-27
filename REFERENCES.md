@@ -1,8 +1,8 @@
 # References
 
-219 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
+225 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
 
-**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic)
+**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging)
 
 ## History
 
@@ -273,3 +273,12 @@
 217. `strukov2008` — D. B. Strukov, G. S. Snider, D. R. Stewart, R. S. Williams, "The Missing Memristor Found," Nature 453, 80 (2008). [doi:10.1038/nature06932](https://doi.org/10.1038/nature06932)
 218. `kane1961` — E. O. Kane, "Theory of Tunneling," J. Appl. Phys. 32, 83 (1961). [doi:10.1063/1.1735965](https://doi.org/10.1063/1.1735965)
 219. `chua1971` — L. Chua, "Memristor—The Missing Circuit Element," IEEE Trans. Circuit Theory 18(5), 507 (1971). [doi:10.1109/TCT.1971.1083337](https://doi.org/10.1109/TCT.1971.1083337)
+
+## Packaging
+
+220. `tsmc_3dfabric` — TSMC, "3DFabric" (CoWoS, InFO and SoIC packaging family). [link](https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/3DFabric.htm)
+221. `tsmc_soic` — TSMC, "TSMC-SoIC" (wafer-level 3D stacking; bond pitch from the sub-10 µm rule; SoIC-X chip-on-wafer and wafer-on-wafer). [link](https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/SoIC.htm)
+222. `jedec_hbm4` — JEDEC, "JESD270-4 HBM4 Standard" press release (16 Apr 2025): 2048-bit interface, up to 8 Gb/s per pin, 2 TB/s, 4/8/12/16-high stacks, up to 64 GB. [link](https://www.jedec.org/news/pressreleases/jedec%C2%AE-and-industry-leaders-collaborate-release-jesd270-4-hbm4-standard-advancing)
+223. `hybrid_guide2026` — Inside Deep Tech, "Hybrid Bonding: A Full Guide to SoIC & Foveros Direct" (2026). [link](https://www.insidedeeptech.com/hybrid-bonding-soic-foveros-direct-full-guide/)
+224. `intel_packaging` — Intel Foundry, "Advanced Process Technologies for Data Center" (Foveros, EMIB, Foveros Direct). [link](https://www.intel.com/content/www/us/en/foundry/library/advanced-process-technologies-for-data-center.html)
+225. `iclink2026` — Tech Times, "IC-Link Joins TSMC 3DFabric Alliance; Showcases CoWoS ASIC Co-Design" (23 Sep 2026). [link](https://www.techtimes.com/articles/327952/20260923/ic-link-joins-tsmc-3dfabric-alliance-showcases-cowos-asic-co-design-oip-forum-today.htm)

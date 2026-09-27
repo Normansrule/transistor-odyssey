@@ -1,0 +1,109 @@
+{
+ "_about": "GAA nanosheet process flow (sim/transistor_sim/process.py)",
+ "refs": [
+  "loubet2017",
+  "plummer2000",
+  "tsmc_a16",
+  "intel_18a"
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "title": "Start with a silicon wafer",
+   "detail": "A 300 mm single-crystal silicon wafer, polished flat to a few atoms.",
+   "tool": "Czochralski crystal growth, CMP",
+   "svg": "assets/process/step_01.svg"
+  },
+  {
+   "step": 2,
+   "title": "Grow the Si/SiGe superlattice",
+   "detail": "Alternating layers of silicon-germanium and silicon are grown epitaxially, three of each. The SiGe layers are placeholders that will later be etched away.",
+   "tool": "Epitaxy (RPCVD)",
+   "svg": "assets/process/step_02.svg"
+  },
+  {
+   "step": 3,
+   "title": "Pattern the dummy gate",
+   "detail": "Polysilicon dummy gates are printed at the contacted gate pitch (~45 nm) with EUV lithography and etched.",
+   "tool": "EUV lithography, plasma etch",
+   "svg": "assets/process/step_03.svg"
+  },
+  {
+   "step": 4,
+   "title": "Add gate spacers",
+   "detail": "A thin dielectric film is deposited conformally and etched back to leave spacers on the gate walls.",
+   "tool": "ALD, anisotropic etch",
+   "svg": "assets/process/step_04.svg"
+  },
+  {
+   "step": 5,
+   "title": "Etch the source/drain cavities",
+   "detail": "The stack is etched away beside the spacers, down to the substrate.",
+   "tool": "Plasma etch",
+   "svg": "assets/process/step_05.svg"
+  },
+  {
+   "step": 6,
+   "title": "Indent the SiGe layers",
+   "detail": "A selective etch recesses only the SiGe under the spacers, leaving the silicon sheets sticking out.",
+   "tool": "Selective isotropic etch",
+   "svg": "assets/process/step_06.svg"
+  },
+  {
+   "step": 7,
+   "title": "Form inner spacers",
+   "detail": "Dielectric fills the indents. These inner spacers isolate the future metal gate from the source/drain.",
+   "tool": "ALD, etch-back",
+   "svg": "assets/process/step_07.svg"
+  },
+  {
+   "step": 8,
+   "title": "Grow source and drain",
+   "detail": "Phosphorus-doped silicon (nFET) or boron-doped SiGe (pFET) grows epitaxially from the exposed sheet ends.",
+   "tool": "Selective epitaxy",
+   "svg": "assets/process/step_08.svg"
+  },
+  {
+   "step": 9,
+   "title": "Fill and planarize",
+   "detail": "An inter-layer dielectric fills the gaps and is polished down to the top of the dummy gate.",
+   "tool": "CVD oxide, CMP",
+   "svg": "assets/process/step_09.svg"
+  },
+  {
+   "step": 10,
+   "title": "Remove the dummy gate",
+   "detail": "The polysilicon placeholder is etched out, opening a trench to the superlattice.",
+   "tool": "Wet/dry etch",
+   "svg": "assets/process/step_10.svg"
+  },
+  {
+   "step": 11,
+   "title": "Release the nanosheets",
+   "detail": "A highly selective etch removes the SiGe between the sheets. The silicon sheets now hang free between the source and drain.",
+   "tool": "Selective SiGe etch",
+   "svg": "assets/process/step_11.svg"
+  },
+  {
+   "step": 12,
+   "title": "Wrap high-k and metal gate",
+   "detail": "HfO₂ and work-function metals coat every sheet surface, then metal fills the gaps: the gate is all around.",
+   "tool": "ALD, CVD/PVD metal, CMP",
+   "svg": "assets/process/step_12.svg"
+  },
+  {
+   "step": 13,
+   "title": "Contacts and wiring",
+   "detail": "Trench contacts land on source/drain, then a dozen or more copper layers wire transistors together.",
+   "tool": "Middle-of-line + BEOL (dual damascene)",
+   "svg": "assets/process/step_13.svg"
+  },
+  {
+   "step": 14,
+   "title": "Optional: backside power",
+   "detail": "The wafer is bonded to a carrier, flipped, thinned to ~µm, and power rails are built on the back (PowerVia, Super Power Rail).",
+   "tool": "Wafer bonding, thinning, backside litho",
+   "svg": "assets/process/step_14.svg"
+  }
+ ]
+}

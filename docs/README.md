@@ -17,6 +17,8 @@
 | 13 | [Diamond electronics in depth](13-diamond-electronics.md) | 1989–2026 | ![](../figures/dopant_ionization.png) |
 | 14 | [Niche and forgotten transistors](14-niche-and-forgotten.md) | 1952–2024 | ![](../figures/cross_sections/igzo_tft.svg) |
 | 15 | [Steep-slope and exotic switches](15-steep-slope-and-exotic.md) | 1958–2026 | ![](../figures/steep_slope.png) |
-| 16 | [Glossary](16-glossary.md) | — | |
+| 16 | [How a 2 nm-class transistor is built](16-process-flow.md) | 2022–2026 | ![](../figures/process/step_11.svg) |
+| 17 | [Packaging and 3D integration](17-packaging-and-3d.md) | 2012–2026 | ![](../figures/cross_sections/cowos_interposer.svg) |
+| 18 | [Glossary](18-glossary.md) | — | |
 
 Citations are written as an at-sign key in square brackets, e.g. `[@kilby1976]`. Every key resolves to an entry in [REFERENCES.md](../REFERENCES.md) (search the page for the key); `tests/test_data.py` fails if one does not.

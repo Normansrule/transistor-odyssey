@@ -1,4 +1,4 @@
-# 16 · Glossary
+# 18 · Glossary
 
 | Term | Meaning |
 |---|---|
@@ -9,22 +9,28 @@
 | **CFET** | Complementary FET: pFET stacked directly on nFET. |
 | **CMOS** | Complementary metal-oxide-semiconductor logic: n- and p-type MOSFETs in pairs. |
 | **Coulomb blockade** | Suppression of current through a tiny island until one extra electron's charging energy is overcome. |
+| **CoWoS** | Chip-on-Wafer-on-Substrate: TSMC's 2.5D silicon-interposer packaging. |
 | **CPP** | Contacted (poly) gate pitch: distance between neighbouring gates. |
 | **DIBL** | Drain-induced barrier lowering: V_T falls as V_DS rises; a short-channel effect. |
+| **Dummy gate** | Sacrificial polysilicon gate that holds the place of the final metal gate during processing. |
 | **EOT** | Equivalent oxide thickness: the SiO₂ thickness giving the same capacitance as a high-k stack. |
+| **Epitaxy** | Growing a crystal layer that continues the lattice of the crystal underneath. |
 | **EUV** | Extreme-ultraviolet lithography at 13.5 nm. |
 | **FD-SOI** | Fully depleted silicon-on-insulator: a thin silicon film over buried oxide. |
 | **FeFET / NC-FET** | Transistors with a ferroelectric gate layer, used for memory (FeFET) or voltage amplification (negative capacitance). |
 | **FinFET** | Transistor whose channel is a vertical fin gated on three sides. |
 | **GAA** | Gate-all-around: gate surrounds the channel (nanosheet, nanowire). |
 | **gₘ** | Transconductance, ∂I_D/∂V_GS. |
+| **HBM** | High-bandwidth memory: stacked DRAM connected by through-silicon vias. |
 | **HEMT** | High-electron-mobility transistor: a heterojunction FET using a 2DEG channel. |
 | **HKMG** | High-k dielectric with metal gate. |
 | **HVM** | High-volume manufacturing. |
+| **Hybrid bonding** | Direct copper-to-copper and oxide-to-oxide bonding of two dies without solder. |
 | **I_on / I_off** | Drive current at full gate voltage / leakage with gate off. |
 | **IGBT** | Insulated-gate bipolar transistor: MOS-gated, bipolar-conducting power switch. |
 | **IGZO** | Amorphous indium–gallium–zinc oxide, a thin-film transistor semiconductor for displays and flexible circuits. |
 | **Inner spacer** | Dielectric between gate and source/drain between stacked nanosheets. |
+| **Inner spacer** | Dielectric plug between gate and source/drain in a nanosheet stack. |
 | **Ionization energy (dopant)** | Energy to free a carrier from a dopant; 0.045 eV for B in Si, 0.37 eV for B in diamond. |
 | **MESFET** | Metal-semiconductor (Schottky-gate) FET, common in GaAs. |
 | **MMP** | Minimum metal pitch. |
@@ -40,5 +46,6 @@
 | **TCAD** | Technology computer-aided design: process and device physics simulation. |
 | **TFET** | Tunnel FET: switches by band-to-band tunnelling and can beat 60 mV/decade. |
 | **TFT** | Thin-film transistor: deposited semiconductor on glass or plastic. |
+| **TSV** | Through-silicon via: a vertical copper connection through a thinned die. |
 | **V_T** | Threshold voltage. |
 | **λ rules** | Mead–Conway scalable design rules in units of λ (half the minimum gate length). |

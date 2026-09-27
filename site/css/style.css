@@ -383,3 +383,19 @@ footer a:hover { color: var(--amber-2); }
 .pill.niche { color: #7fd3d0; border-color: rgba(127,211,208,.45); }
 .pill.research { color: #f2b84b; border-color: rgba(242,184,75,.5); }
 .pill.museum { color: var(--ink-2); border-color: var(--line-2); }
+
+/* ---------- fab stepper ---------- */
+.fab { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; }
+@media (max-width: 960px) { .fab { grid-template-columns: 1fr; } }
+.fab-stage { padding: 14px; display: grid; gap: 14px; }
+.fab-frame { position: relative; aspect-ratio: 2 / 1; border-radius: var(--r); overflow: hidden; background: #10141a; outline-offset: 4px; }
+.fab-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .45s var(--ease); }
+.fab-ctl { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fab-ctl .btn { padding: 8px 14px; }
+.fab-ctl input[type="range"] { flex: 1 1 160px; min-width: 120px; }
+.fab-info { gap: 12px; }
+.fab-list { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 2px; counter-reset: fab; max-height: 340px; overflow-y: auto; }
+.fab-list button { width: 100%; text-align: left; background: none; border: 0; color: var(--ink-2); padding: 6px 8px; border-radius: 6px; cursor: pointer; font-size: 13.5px; display: flex; gap: 10px; }
+.fab-list button span { font-family: var(--mono); color: var(--muted); min-width: 22px; }
+.fab-list button:hover { background: var(--surface-2); color: var(--ink); }
+.fab-list button[aria-current="step"] { background: var(--surface-2); color: var(--ink); box-shadow: inset 2px 0 0 var(--amber); }

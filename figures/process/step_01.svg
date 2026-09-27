@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Step 1 of 14 · Start with a silicon wafer">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Step 1 of 14 · Start with a silicon wafer</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Czochralski crystal growth, CMP. Along-channel view of one GAA transistor (not to scale).</text>
+<rect x="40.0" y="330.0" width="460.0" height="64.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<polyline points="270.0,362.0 522.0,362.0 540.0,362.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="362.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="366.0" fill="#e8ecf1" font-size="12.5">Silicon wafer (p-type, 300 mm)</text>
+</svg>
