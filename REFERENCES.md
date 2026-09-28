@@ -1,6 +1,6 @@
 # References
 
-245 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
+254 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
 
 **Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab)
 
@@ -305,3 +305,12 @@
 243. `nanohub_pntoy` — nanoHUB, "PN Junction Lab" — free online pn-junction simulator (Purdue University). [link](https://nanohub.org/tools/pntoy)
 244. `nanohub_moscap` — nanoHUB, "MOSCap" — free online MOS capacitor simulator (Purdue University). [link](https://nanohub.org/tools/moscap)
 245. `katex` — KaTeX — fast math typesetting for the web (MIT licence), used for the Physics Lab equations. [link](https://katex.org/)
+246. `kronig1931` — R. de L. Kronig, W. G. Penney, "Quantum Mechanics of Electrons in Crystal Lattices," Proc. R. Soc. Lond. A 130, 499 (1931). [doi:10.1098/rspa.1931.0019](https://doi.org/10.1098/rspa.1931.0019)
+247. `ashcroft1976` — N. W. Ashcroft, N. D. Mermin, Solid State Physics, Holt, Rinehart and Winston (1976) — chapters 8–9 on Bloch electrons and the nearly-free-electron model.
+248. `bendaniel1966` — D. J. BenDaniel, C. B. Duke, "Space-Charge Effects on Electron Tunneling," Phys. Rev. 152, 683 (1966) — boundary conditions for position-dependent effective mass. [doi:10.1103/PhysRev.152.683](https://doi.org/10.1103/PhysRev.152.683)
+249. `tan1990` — I.-H. Tan, G. L. Snider, L. D. Chang, E. L. Hu, "A Self-Consistent Solution of Schrödinger–Poisson Equations Using a Nonuniform Mesh," J. Appl. Phys. 68, 4071 (1990). [doi:10.1063/1.346245](https://doi.org/10.1063/1.346245)
+250. `trellakis1997` — A. Trellakis, A. T. Galick, A. Pacelli, U. Ravaioli, "Iteration Scheme for the Solution of the Two-Dimensional Schrödinger–Poisson Equations in Quantum Structures," J. Appl. Phys. 81, 7880 (1997). [doi:10.1063/1.365396](https://doi.org/10.1063/1.365396)
+251. `paosah1966` — H. C. Pao, C. T. Sah, "Effects of Diffusion Current on Characteristics of Metal-Oxide (Insulator)-Semiconductor Transistors," Solid-State Electron. 9, 927 (1966). [doi:10.1016/0038-1101(66)90068-2](https://doi.org/10.1016/0038-1101(66)90068-2)
+252. `brews1978` — J. R. Brews, "A Charge-Sheet Model of the MOSFET," Solid-State Electron. 21, 345 (1978). [doi:10.1016/0038-1101(78)90264-2](https://doi.org/10.1016/0038-1101(78)90264-2)
+253. `hopkins1953` — H. H. Hopkins, "On the Diffraction Theory of Optical Images," Proc. R. Soc. Lond. A 217, 408 (1953) — partially coherent imaging. [doi:10.1098/rspa.1953.0071](https://doi.org/10.1098/rspa.1953.0071)
+254. `mack2007` — C. Mack, Fundamental Principles of Optical Lithography: The Science of Microfabrication, Wiley (2007). [doi:10.1002/9780470723876](https://doi.org/10.1002/9780470723876)

@@ -1459,6 +1459,59 @@
    "cat": "Physics lab",
    "cite": "KaTeX — fast math typesetting for the web (MIT licence), used for the Physics Lab equations.",
    "url": "https://katex.org/"
+  },
+  {
+   "id": "kronig1931",
+   "cat": "Physics lab",
+   "cite": "R. de L. Kronig, W. G. Penney, \"Quantum Mechanics of Electrons in Crystal Lattices,\" Proc. R. Soc. Lond. A 130, 499 (1931).",
+   "doi": "10.1098/rspa.1931.0019"
+  },
+  {
+   "id": "ashcroft1976",
+   "cat": "Physics lab",
+   "cite": "N. W. Ashcroft, N. D. Mermin, Solid State Physics, Holt, Rinehart and Winston (1976) — chapters 8–9 on Bloch electrons and the nearly-free-electron model."
+  },
+  {
+   "id": "bendaniel1966",
+   "cat": "Physics lab",
+   "cite": "D. J. BenDaniel, C. B. Duke, \"Space-Charge Effects on Electron Tunneling,\" Phys. Rev. 152, 683 (1966) — boundary conditions for position-dependent effective mass.",
+   "doi": "10.1103/PhysRev.152.683"
+  },
+  {
+   "id": "tan1990",
+   "cat": "Physics lab",
+   "cite": "I.-H. Tan, G. L. Snider, L. D. Chang, E. L. Hu, \"A Self-Consistent Solution of Schrödinger–Poisson Equations Using a Nonuniform Mesh,\" J. Appl. Phys. 68, 4071 (1990).",
+   "doi": "10.1063/1.346245"
+  },
+  {
+   "id": "trellakis1997",
+   "cat": "Physics lab",
+   "cite": "A. Trellakis, A. T. Galick, A. Pacelli, U. Ravaioli, \"Iteration Scheme for the Solution of the Two-Dimensional Schrödinger–Poisson Equations in Quantum Structures,\" J. Appl. Phys. 81, 7880 (1997).",
+   "doi": "10.1063/1.365396"
+  },
+  {
+   "id": "paosah1966",
+   "cat": "Physics lab",
+   "cite": "H. C. Pao, C. T. Sah, \"Effects of Diffusion Current on Characteristics of Metal-Oxide (Insulator)-Semiconductor Transistors,\" Solid-State Electron. 9, 927 (1966).",
+   "doi": "10.1016/0038-1101(66)90068-2"
+  },
+  {
+   "id": "brews1978",
+   "cat": "Physics lab",
+   "cite": "J. R. Brews, \"A Charge-Sheet Model of the MOSFET,\" Solid-State Electron. 21, 345 (1978).",
+   "doi": "10.1016/0038-1101(78)90264-2"
+  },
+  {
+   "id": "hopkins1953",
+   "cat": "Physics lab",
+   "cite": "H. H. Hopkins, \"On the Diffraction Theory of Optical Images,\" Proc. R. Soc. Lond. A 217, 408 (1953) — partially coherent imaging.",
+   "doi": "10.1098/rspa.1953.0071"
+  },
+  {
+   "id": "mack2007",
+   "cat": "Physics lab",
+   "cite": "C. Mack, Fundamental Principles of Optical Lithography: The Science of Microfabrication, Wiley (2007).",
+   "doi": "10.1002/9780470723876"
   }
  ]
 }

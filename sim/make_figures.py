@@ -8,6 +8,7 @@ palette (validated with the dataviz six-check validator against #10141a).
 from __future__ import annotations
 
 import csv
+import math
 import json
 import re
 import sys
@@ -16,6 +17,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.ticker
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
@@ -24,6 +26,7 @@ sys.path.insert(0, str(HERE))
 
 from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep, process  # noqa: E402
 from transistor_sim.physics import carriers, junction, moscap, tunnel, poisson2d, montecarlo, crystal  # noqa: E402
+from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho  # noqa: E402
 
 FIG = ROOT / "figures"
 FIG.mkdir(exist_ok=True)
@@ -412,6 +415,109 @@ def fig_montecarlo():
     save(fig, "velocity_saturation")
 
 
+def fig_kronig_penney():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 5.4), gridspec_kw=dict(wspace=0.25, width_ratios=[1, 1.1]))
+    a, b = 0.5, 0.2
+    Ezb = (bandstructure.HBAR * math.pi / ((a + b) * 1e-9)) ** 2 / (2 * bandstructure.M0) / bandstructure.QE
+    for i, V0 in enumerate([0.0, 1.0, 3.0]):
+        r = bandstructure.bands(V0, a, b, 1.0, Emax=6 * Ezb, n=3000)
+        a1.plot(r["kd"], r["E"], ".", ms=1.6, color=SERIES[i], label=f"V₀ = {V0:g} eV")
+    a1.set_xlim(0, 1); a1.set_ylim(0, 6 * Ezb)
+    a1.set_xlabel("wavevector k (units of π/d)"); a1.set_ylabel("energy (eV)")
+    a1.set_title("Bands and gaps from a periodic potential")
+    a1.legend(loc="upper left", fontsize=9, markerscale=6, frameon=True, facecolor=SURFACE, edgecolor=GRID, framealpha=1)
+    subtitle(a1, "Kronig–Penney, a = 0.5 nm wells, b = 0.2 nm barriers")
+    V = np.linspace(0.05, 5, 40)
+    a2.plot(V, [bandstructure.gaps(v, a, b)[0][1] - bandstructure.gaps(v, a, b)[0][0] for v in V], color=SERIES[0], label="first gap (exact)")
+    a2.plot(V, [bandstructure.nfe_first_gap(v, a, b) for v in V], color=MUTED, ls="--", label="2|V₁| (weak-potential theory)")
+    a2.plot(V, [bandstructure.effective_mass(v, a, b)[0] for v in V], color=SERIES[3], label="band-1 effective mass m*/m")
+    a2.set_xlabel("barrier height V₀ (eV)"); a2.set_title("Stronger crystal, wider gap, heavier electron")
+    subtitle(a2, "Weak-potential theory holds only while V₀ is small")
+    a2.legend(fontsize=9, loc="upper left")
+    save(fig, "kronig_penney")
+
+
+def fig_2deg():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.5, 5.4), gridspec_kw=dict(wspace=0.42))
+    r = qwell.hemt_sp(0.25, 20.0)
+    a1.plot(r["z_nm"], r["Ec"], color=INK2, lw=2)
+    a1.axhline(0, color=SERIES[3], ls="--", lw=1.2); a1.text(48, 0.05, "E_F", color=SERIES[3], ha="right")
+    sel = (r["z_nm"] > 17) & (r["z_nm"] < 42)
+    for k in range(3):
+        psi = r["psi"][k]; a1.plot(r["z_nm"][sel], r["E"][k] + psi[sel] / np.abs(psi).max() * 0.12, color=SERIES[k], lw=1.6, label=f"E{k} = {r['E'][k] * 1000:.0f} meV")
+    ax2 = a1.twinx(); ax2.fill_between(r["z_nm"], r["n"] / 1e19, color=SERIES[0], alpha=0.25, lw=0); ax2.set_ylabel("electron density (10¹⁹ cm⁻³)", color=INK2); ax2.grid(False)
+    a1.axvspan(0, 20, color="#7fd3d0", alpha=0.06); a1.set_ylim(-0.4, 1.4); a1.set_xlim(0, 50)
+    a1.set_xlabel("depth below the gate (nm)"); a1.set_ylabel("energy relative to E_F (eV)")
+    a1.set_title("AlGaN/GaN two-dimensional electron gas"); a1.legend(fontsize=9, loc="upper right")
+    subtitle(a1, f"Self-consistent, Al₀.₂₅Ga₀.₇₅N 20 nm: n_s = {r['ns'] / 1e13:.2f}×10¹³ cm⁻²")
+    d = [4, 6, 8, 10, 13, 16, 20, 25, 30, 35, 40]
+    for i, x in enumerate([0.15, 0.25, 0.35]):
+        a2.plot(d, [qwell.hemt_sp(x, dd)["ns"] / 1e13 for dd in d], "o-", ms=4, color=SERIES[i], label=f"x = {x:.2f}, self-consistent")
+        a2.plot(d, [float(hemt.sheet_density(x, dd)) / 1e13 for dd in d], "--", color=SERIES[i], lw=1, alpha=0.7)
+    a2.set_xlabel("AlGaN thickness d (nm)"); a2.set_ylabel("n_s (10¹³ cm⁻²)"); a2.set_title("Sheet density vs barrier")
+    subtitle(a2, "dashed: Ambacher analytic formula"); a2.legend(fontsize=9)
+    save(fig, "gan_2deg")
+
+
+def fig_chargesheet():
+    p = chargesheet.params()
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 5.2), gridspec_kw=dict(wspace=0.28))
+    vd = np.linspace(0, 1.5, 61)
+    for i, vg in enumerate([0.6, 0.8, 1.0, 1.2, 1.4]):
+        a1.plot(vd, [chargesheet.drain_current(vg, v, p) * 1e6 for v in vd], color=RAMP[i], label=f"V_GS = {vg} V")
+    a1.set_xlabel("V_DS (V)"); a1.set_ylabel("I_D (µA/µm)"); a1.set_title("Charge-sheet MOSFET: output"); a1.legend(fontsize=9)
+    subtitle(a1, "Long channel, N_A = 3×10¹⁷ cm⁻³, t_ox = 2 nm, µ = 300 cm²/V·s")
+    vg = np.linspace(0, 1.5, 151)
+    for i, v in enumerate([0.05, 1.0]):
+        a2.plot(vg, [max(chargesheet.drain_current(g, v, p), 1e-15) for g in vg], color=SERIES[i], label=f"V_DS = {v} V")
+    a2.set_yscale("log"); a2.set_ylim(1e-13, 1e-3); a2.axvline(p["Vt"], color=MUTED, ls=":", lw=1)
+    a2.set_xlabel("V_GS (V)"); a2.set_ylabel("I_D (A/µm)"); a2.set_title("Transfer"); a2.legend(fontsize=9)
+    subtitle(a2, f"Subthreshold swing {chargesheet.swing(p):.0f} mV/dec: diffusion below V_T, drift above")
+    save(fig, "charge_sheet_mosfet")
+
+
+def fig_thermal():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 5.2), gridspec_kw=dict(wspace=0.28))
+    subs = ["Sapphire", "Si", "SiC", "Diamond"]; cols = [MUTED, SERIES[0], SERIES[3], "#7fd3d0"]
+    P = np.linspace(1, 12, 12)
+    for s, c in zip(subs, cols):
+        r = thermal.peak_rise(s, 1.0)[0]
+        a1.plot(P, r * P, color=c, label=s)
+    a1.axhline(150, color=SERIES[1], ls="--", lw=1); a1.text(1.2, 158, "≈175 °C channel from a 27 °C sink", color=SERIES[1], fontsize=9)
+    a1.set_xlabel("dissipated power (W/mm)"); a1.set_ylabel("peak temperature rise (K)"); a1.set_ylim(0, 400)
+    a1.set_title("GaN hot spot vs substrate"); a1.legend(fontsize=9); subtitle(a1, "2D heat conduction, 1 µm heater, 2 µm GaN, 100 µm substrate, constant k")
+    tb = np.linspace(0, 60, 13)
+    a2.plot(tb, [thermal.peak_rise("Diamond", 5.0, tbr_m2K_GW=t)[0] for t in tb], color="#7fd3d0", label="GaN on diamond")
+    a2.plot(tb, [thermal.peak_rise("SiC", 5.0, tbr_m2K_GW=t)[0] for t in tb], color=SERIES[3], label="GaN on SiC")
+    a2.set_xlabel("thermal boundary resistance (m²K/GW)"); a2.set_ylabel("peak ΔT at 5 W/mm (K)")
+    a2.set_title("The interface can erase diamond's advantage"); a2.legend(fontsize=9)
+    subtitle(a2, "A 20-nm-thin interlayer, modelled as k = t / TBR")
+    save(fig, "gan_self_heating")
+
+
+def fig_litho():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 5.2), gridspec_kw=dict(wspace=0.28))
+    lam, NA = 193.0, 1.35
+    ps = np.geomspace(60, 400, 90)
+    for kind, kw, c, lab in [("coherent", {}, MUTED, "coherent"), ("conventional", dict(sigma=0.7), SERIES[0], "conventional σ = 0.7"),
+                             ("dipole", dict(sigma_c=0.85, sigma_w=0.08), SERIES[1], "dipole σc = 0.85")]:
+        a1.plot(ps, [litho.contrast(litho.aerial_image(p, lam, NA, kind=kind, npts=128, **kw)[1]) for p in ps], color=c, label=lab)
+    for p, t in [(lam / NA, "λ/NA"), (lam / (2 * NA), "λ/2NA")]:
+        a1.axvline(p, color=MUTED, ls=":", lw=1); a1.text(p * 1.02, 1.02, t, color=MUTED, fontsize=9)
+    a1.set_xscale("log"); a1.set_xticks([60, 80, 100, 150, 200, 300, 400]); a1.xaxis.set_major_formatter(matplotlib.ticker.ScalarFormatter()); a1.minorticks_off()
+    a1.set_ylim(0, 1.1); a1.set_xlabel("pitch (nm)"); a1.set_ylabel("aerial-image contrast")
+    a1.set_title("Resolution of 193 nm immersion (NA 1.35)"); a1.legend(fontsize=9, loc="lower right")
+    subtitle(a1, "Abbe imaging of equal lines and spaces")
+    for i, dz in enumerate([0, 40, 80]):
+        x, I = litho.aerial_image(110, lam, NA, sigma=0.7, defocus_nm=dz, npts=200)
+        a2.plot(x, I, color=SERIES[i], lw=2, label=f"defocus {dz} nm (contrast {litho.contrast(I):.2f})")
+    a2.axhline(0.3, color=SERIES[3], ls="--", lw=1); a2.text(218, 0.275, "resist threshold", color=SERIES[3], ha="right", fontsize=9)
+    a2.set_ylim(0.1, 0.6)
+    a2.set_xlabel("position on the wafer (nm)"); a2.set_ylabel("intensity (clear field = 1)"); a2.set_title("Depth of focus")
+    subtitle(a2, "110 nm pitch, conventional σ = 0.7: the image washes out within ~0.1 µm"); a2.legend(fontsize=9, loc="upper right")
+    save(fig, "litho_aerial")
+
+
 def export_physics_json():
     crystal.write_json(ROOT / "data" / "crystals.json")
     print("data/crystals.json")
@@ -426,6 +532,14 @@ def export_physics_json():
                    "sio2_1nm": float(tunnel.leakage_vs_eot([1.0], "SiO2")[0]),
                    "hfo2_1nm_il0.5": float(tunnel.leakage_vs_eot([1.0], "HfO2", il_nm=0.5)[0])},
         "dibl": {"SG20": poisson2d.dibl(20), "DG20": poisson2d.dibl(20, True)},
+        "kp": {"gap1": list(bandstructure.gaps(2.0, 0.5, 0.2)[0]), "mstar": bandstructure.effective_mass(2.0, 0.5, 0.2)[0]},
+        "qwell": {"E5": [float(e) for e in qwell.finite_well(5.0)["E"]], "ns_25_20": qwell.hemt_sp(0.25, 20.0)["ns"],
+                  "E0_25_20": float(qwell.hemt_sp(0.25, 20.0)["E"][0])},
+        "chargesheet": {f"{vg}_{vd}": chargesheet.drain_current(vg, vd, chargesheet.params()) for vg, vd in [(0.2, 0.05), (0.8, 0.1), (1.0, 1.5)]},
+        "thermal": {s_: thermal.peak_rise(s_, 5.0)[0] for s_ in ("Si", "Diamond")} | {"Diamond_tbr25": thermal.peak_rise("Diamond", 5.0, tbr_m2K_GW=25)[0]},
+        "litho": {"conv100": litho.contrast(litho.aerial_image(100, 193, 1.35, sigma=0.9)[1]),
+                  "dip80": litho.contrast(litho.aerial_image(80, 193, 1.35, kind="dipole", sigma_c=0.89, sigma_w=0.05)[1]),
+                  "def120": litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7, defocus_nm=80)[1])},
     }
     (ROOT / "data" / "physics_reference.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
     print("data/physics_reference.json")
@@ -437,7 +551,8 @@ if __name__ == "__main__":
     process.write_all()
     for f in (fig_moore, fig_node_vs_pitch, fig_iv_families, fig_transfer, fig_vtc, fig_hemt,
               fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel, fig_ionization, fig_steep,
-              fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo):
+              fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo,
+              fig_kronig_penney, fig_2deg, fig_chargesheet, fig_thermal, fig_litho):
         f()
     export_model_json()
     export_physics_json()

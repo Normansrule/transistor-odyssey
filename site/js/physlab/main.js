@@ -53,7 +53,8 @@ function renderTeX() {
 if (window.katex) renderTeX(); else addEventListener('load', renderTeX);
 
 // ---------- labs: load each module when its section approaches the viewport ----------
-const LABS = { bands: './bands.js', pn: './junction.js', mos: './moscap.js', tunnel: './tunnel.js', short: './shortchannel.js', drift: './drift.js', crystal: './crystal.js' };
+const LABS = { crystal: './crystal.js', kp: './kp.js', bands: './bands.js', pn: './junction.js', mos: './moscap.js', mosfet: './mosfet.js',
+  tunnel: './tunnel.js', qw: './qwell.js', short: './shortchannel.js', drift: './drift.js', heat: './heat.js', litho: './litho.js' };
 const started = new Set();
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return;

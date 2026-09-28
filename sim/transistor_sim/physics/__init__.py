@@ -14,5 +14,10 @@ tunnel     1D transfer-matrix tunnelling and gate-oxide leakage.
 poisson2d  2D Poisson solve of a short-channel MOSFET (DIBL, single vs double gate).
 montecarlo Ensemble Monte Carlo of electron drift in silicon (mobility, saturation).
 crystal    Atom positions for diamond, zincblende, wurtzite and MoS2 lattices.
+bandstructure  Kronig–Penney bands, gaps and effective mass of a 1D crystal.
+qwell      Quantum wells: nanosheet confinement, self-consistent AlGaN/GaN 2DEG.
+chargesheet    Brews charge-sheet MOSFET: I–V from the exact surface potential.
+thermal    2D heat spreading under a hot spot on Si, SiC, diamond or sapphire.
+litho      Fourier-optics aerial image of a line/space mask (Abbe imaging).
 """
 

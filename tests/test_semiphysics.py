@@ -157,3 +157,107 @@ def test_javascript_physics_matches_python():
     root = Path(__file__).resolve().parents[1]
     r = subprocess.run([node, str(root / "tests" / "js_parity.mjs")], capture_output=True, text=True, timeout=120)
     assert r.returncode == 0, r.stdout + r.stderr
+
+
+# --- band structure (Kronig–Penney) ----------------------------------------
+from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho  # noqa: E402
+
+
+def test_weak_potential_gap_matches_nearly_free_electrons():
+    g = bandstructure.gaps(0.05, 0.4, 0.1)[0]
+    assert g[1] - g[0] == pytest.approx(bandstructure.nfe_first_gap(0.05, 0.4, 0.1), rel=0.03)
+    # and the gap sits at the free-electron zone-boundary energy ħ²(π/d)²/2m
+    E_zb = (bandstructure.HBAR * math.pi / 0.5e-9) ** 2 / (2 * bandstructure.M0) / bandstructure.QE
+    assert 0.5 * (g[0] + g[1]) == pytest.approx(E_zb, rel=0.02)
+
+
+def test_free_electron_mass_and_heavier_bands_in_strong_crystals():
+    assert bandstructure.effective_mass(1e-3, 0.4, 0.1)[0] == pytest.approx(1.0, rel=0.01)
+    assert bandstructure.effective_mass(5.0, 0.5, 0.3)[0] > 2.0
+
+
+def test_stronger_barriers_open_wider_gaps():
+    assert (lambda a, b: a[1] - a[0] < b[1] - b[0])(bandstructure.gaps(0.5, 0.5, 0.2)[0], bandstructure.gaps(2.0, 0.5, 0.2)[0])
+
+
+# --- quantum wells ----------------------------------------------------------
+def test_finite_well_matches_transcendental_solution():
+    E = qwell.finite_well(5.0)["E"][0]
+    assert E == pytest.approx(qwell.finite_well_exact(5.0, 3.1, 0.916, 0.5), rel=0.01)
+    assert E < qwell.infinite_well_levels(5.0)[0]                      # leakage into the barrier lowers E
+
+
+def test_confinement_energy_scales_like_inverse_square():
+    e3, e6 = qwell.finite_well(3.0)["E"][0], qwell.finite_well(6.0)["E"][0]
+    assert 3.0 < e3 / e6 < 4.2                                          # 4 for an infinite well
+
+
+def test_algan_gan_2deg_density():
+    s = qwell.hemt_sp(0.25, 20.0)
+    assert 7e12 < s["ns"] < 1.4e13                                      # measured ~1e13 cm⁻² (Ambacher 1999)
+    assert s["E"][0] < 0                                                # ground subband below E_F
+    assert s["ns"] < s["sigma"] / qwell.QE * 1e-4                       # cannot exceed the polarization charge
+    assert qwell.hemt_sp(0.25, 30.0)["ns"] > s["ns"] > qwell.hemt_sp(0.25, 10.0)["ns"]
+
+
+# --- charge-sheet MOSFET ----------------------------------------------------
+def test_charge_sheet_linear_region_transconductance():
+    p = chargesheet.params()
+    vd = 0.01
+    gm = (chargesheet.drain_current(1.2, vd, p) - chargesheet.drain_current(1.0, vd, p)) / 0.2
+    # slightly below µC_ox(W/L)V_DS because ψ_s still creeps up with V_G in strong inversion
+    assert 0.85 < gm / (p["W"] / p["L"] * p["mu"] * p["Cox"] * vd) < 1.0
+
+
+def test_charge_sheet_saturates_and_matches_square_law():
+    p = chargesheet.params()
+    i1, i2 = chargesheet.drain_current(1.0, 1.2, p), chargesheet.drain_current(1.0, 1.8, p)
+    assert i2 == pytest.approx(i1, rel=1e-3)                            # flat in saturation (long channel)
+    # square law: √I_Dsat is a straight line in V_GS with slope √(µC_ox W / 2nL)
+    vgs = [0.9, 1.1, 1.3]
+    r = [math.sqrt(chargesheet.drain_current(v, 2.0, p)) for v in vgs]
+    assert (r[2] - r[1]) == pytest.approx(r[1] - r[0], rel=0.03)
+    n = 1 + p["gamma"] / (2 * math.sqrt(2 * p["phiF"]))
+    slope2 = ((r[2] - r[0]) / 0.4) ** 2
+    assert slope2 == pytest.approx(p["W"] / p["L"] * p["mu"] * p["Cox"] / (2 * n), rel=0.15)
+
+
+def test_charge_sheet_subthreshold_swing():
+    p = chargesheet.params()
+    assert 60 < chargesheet.swing(p) < 75                               # n·60 mV/dec with n ≈ 1.1
+
+
+# --- heat -------------------------------------------------------------------
+def test_thermal_solver_matches_1d_limit():
+    g = thermal.build("Si", w_um=300, half_width_um=150, t_sub_um=100, tbr_m2K_GW=20)
+    T = thermal.solve(g, 5.0)
+    exact = thermal.one_d_rise(5.0, 300, [(2, 130), (100, 150)]) + 5e3 / 300e-6 * 20e-9
+    assert T.max() - 300 == pytest.approx(exact, rel=1e-3)
+
+
+def test_better_substrates_run_cooler():
+    r = {s: thermal.peak_rise(s, 5.0)[0] for s in ("Sapphire", "Si", "SiC", "Diamond")}
+    assert r["Sapphire"] > r["Si"] > r["SiC"] > r["Diamond"]
+    assert thermal.peak_rise("Diamond", 5.0, tbr_m2K_GW=25)[0] > r["Diamond"]   # boundary resistance costs
+
+
+# --- lithography ------------------------------------------------------------
+def test_coherent_cutoff_at_lambda_over_na():
+    lam, NA = 193.0, 1.35
+    assert litho.contrast(litho.aerial_image(lam / NA * 1.05, lam, NA, kind="coherent")[1]) > 0.9
+    assert litho.contrast(litho.aerial_image(lam / NA * 0.95, lam, NA, kind="coherent")[1]) < 1e-9
+
+
+def test_off_axis_illumination_extends_resolution_to_k1_quarter():
+    lam, NA, p = 193.0, 1.35, 76.0                                      # k1 ≈ 0.266
+    dip = litho.aerial_image(p, lam, NA, kind="dipole", sigma_c=lam / (2 * p * NA), sigma_w=0.05)[1]
+    conv = litho.aerial_image(p, lam, NA, kind="conventional", sigma=0.5)[1]
+    assert litho.contrast(dip) > 0.5 and litho.contrast(conv) < 0.05
+    below = litho.aerial_image(lam / (2 * NA) * 0.95, lam, NA, kind="dipole", sigma_c=0.99, sigma_w=0.01)[1]
+    assert litho.contrast(below) < 1e-9                                 # nothing below k1 = 0.25
+
+
+def test_defocus_degrades_contrast():
+    a = litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7)[1])
+    b = litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7, defocus_nm=80)[1])
+    assert b < a

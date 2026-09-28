@@ -7,6 +7,11 @@ import * as M from '../site/js/physics/moscap.js';
 import * as T from '../site/js/physics/tunnel.js';
 import * as P from '../site/js/physics/poisson2d.js';
 import * as MC from '../site/js/physics/montecarlo.js';
+import * as KP from '../site/js/physics/bandstructure.js';
+import * as QW from '../site/js/physics/qwell.js';
+import * as CS from '../site/js/physics/chargesheet.js';
+import * as TH from '../site/js/physics/thermal.js';
+import * as LI from '../site/js/physics/litho.js';
 
 const ref = JSON.parse(readFileSync(new URL('../data/physics_reference.json', import.meta.url)));
 let fails = 0;
@@ -30,6 +35,20 @@ for (const [key, dg] of [['SG20', false], ['DG20', true]]) {
   const a = P.solve(g, { Vgs: 0, Vds: 0.05 }), b = P.solve(g, { Vgs: 0, Vds: 0.7, psi0: a.psi });
   check(`DIBL ${key}`, (P.barrier(g, a.psi).Eb - P.barrier(g, b.psi).Eb) / 0.65 * 1000, ref.dibl[key], 0.02);
 }
+const g1 = KP.gaps(2.0, 0.5, 0.2)[0];
+check('KP gap lower edge', g1[0], ref.kp.gap1[0], 1e-6); check('KP gap upper edge', g1[1], ref.kp.gap1[1], 1e-6);
+check('KP m*', KP.effectiveMass(2.0, 0.5, 0.2)[0], ref.kp.mstar, 1e-4);
+QW.finiteWell(5.0).E.forEach((e, i) => check(`well E${i}`, e, ref.qwell.E5[i], 1e-6));
+const sp = QW.hemtSP(0.25, 20.0);
+check('2DEG ns', sp.ns, ref.qwell.ns_25_20, 1e-4); check('2DEG E0', sp.E[0], ref.qwell.E0_25_20, 1e-4);
+const csp = CS.params();
+for (const [k, v] of Object.entries(ref.chargesheet)) { const [vg, vd] = k.split('_').map(Number); check(`charge-sheet I(${vg},${vd})`, CS.drainCurrent(vg, vd, csp), v, 1e-6); }
+check('thermal Si', TH.peakRise('Si', 5.0).rise, ref.thermal.Si, 1e-6);
+check('thermal diamond', TH.peakRise('Diamond', 5.0).rise, ref.thermal.Diamond, 1e-6);
+check('thermal diamond+TBR', TH.peakRise('Diamond', 5.0, { tbr: 25 }).rise, ref.thermal.Diamond_tbr25, 1e-6);
+check('litho conventional', LI.contrast(LI.aerialImage(100, { sigma: 0.9 }).I), ref.litho.conv100, 1e-6);
+check('litho dipole', LI.contrast(LI.aerialImage(80, { kind: 'dipole', sigmaC: 0.89, sigmaW: 0.05 }).I), ref.litho.dip80, 1e-6);
+check('litho defocus', LI.contrast(LI.aerialImage(120, { sigma: 0.7, defocus: 80 }).I), ref.litho.def120, 1e-6);
 const v = MC.simulate(1e5, { n: 1000, tPs: 3 });
 check('MC v(1e5 V/cm) within 25% of 1.07e7', v, 1.07e7, 0.25);
 if (fails) { console.error(`${fails} parity check(s) failed`); process.exit(1); }

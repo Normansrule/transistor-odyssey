@@ -4,9 +4,9 @@
 
 <p align="center">
   <a href="https://normansrule.github.io/transistor-odyssey/"><img alt="Live site" src="https://img.shields.io/badge/live%20site-GitHub%20Pages-f2b84b?style=for-the-badge&labelColor=10141a"></a>
-  <a href="REFERENCES.md"><img alt="245 references" src="https://img.shields.io/badge/references-245-7fd3d0?style=for-the-badge&labelColor=10141a"></a>
+  <a href="REFERENCES.md"><img alt="254 references" src="https://img.shields.io/badge/references-254-7fd3d0?style=for-the-badge&labelColor=10141a"></a>
   <a href="docs/README.md"><img alt="19 chapters" src="https://img.shields.io/badge/chapters-19-b58fd6?style=for-the-badge&labelColor=10141a"></a>
-  <a href="https://normansrule.github.io/transistor-odyssey/physics.html"><img alt="Physics Lab" src="https://img.shields.io/badge/physics%20lab-7%20live%20simulations-3987e5?style=for-the-badge&labelColor=10141a"></a>
+  <a href="https://normansrule.github.io/transistor-odyssey/physics.html"><img alt="Physics Lab" src="https://img.shields.io/badge/physics%20lab-12%20live%20simulations-3987e5?style=for-the-badge&labelColor=10141a"></a>
   <a href=".github/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Normansrule/transistor-odyssey/ci.yml?style=for-the-badge&labelColor=10141a&label=tests"></a>
   <a href="LICENSE"><img alt="MIT + CC BY 4.0" src="https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY%204.0-d9825b?style=for-the-badge&labelColor=10141a"></a>
 </p>
@@ -24,13 +24,13 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 | | |
 |---|---|
 | 🌐 **[Interactive website](site/)** | WebGL fluid hero · GSAP scroll-pinned timeline · three.js explorer that explodes seven architectures (incl. an H-terminated diamond FET) and animates carrier flow · live device lab · Moore's-law chart · die-photo vs generated-drawing slider · materials ranking · **Diamond lab** (dopant ionization simulator + milestones) · **Fab stepper** (14-step animated nanosheet process flow) · **Niche atlas** of 31 forgotten, exotic and packaging structures · lithography calculator · searchable bibliography |
-| 🔬 **[Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html)** | Seven live simulations with guided experiments and typeset equations: **bands & carriers** in six materials · **pn junction** with animated depletion region · exact **MOS capacitor** band bending and C–V · **quantum tunnelling** by transfer matrix (resonant double barriers, gate-oxide leakage) · a live **2D Poisson solver** showing DIBL, single vs double gate · **ensemble Monte Carlo** of hot electrons (velocity saturation and overshoot) · **3D crystal lattices** (diamond, zincblende, wurtzite, 4H-SiC, MoS₂). Every browser model is checked in CI against its Python twin. |
+| 🔬 **[Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html)** | Twelve live simulations in five parts, with guided experiments and typeset equations. **Materials:** 3D crystal lattices · Kronig–Penney **band structure** · **bands & carriers** in six materials. **Junctions and gates:** animated **pn junction** · exact **MOS capacitor** and C–V · **charge-sheet MOSFET** with channel pinch-off. **Quantum:** transfer-matrix **tunnelling** · **quantum wells** and a self-consistent Schrödinger–Poisson **GaN 2DEG**. **Scaling and transport:** live **2D Poisson** solver for DIBL · **ensemble Monte Carlo** of hot electrons · **2D self-heating** on Si/SiC/diamond. **Manufacturing:** Fourier-optics **lithography** aerial images. Every browser model is checked in CI against its Python twin. |
 | 📚 **[19 chapters](docs/README.md)** | 1947 point contact → planar → MOSFET/CMOS → scaling → strain/HKMG → FinFET → lithography → GAA/backside power/ångström era → 2D MoS₂ → GaAs/GaN/SiC/Ga₂O₃ → diamond/CNT/beyond-CMOS → simulation methods → **diamond electronics in depth** → **niche & forgotten transistors** → **steep-slope & exotic switches** → **how a 2 nm transistor is built** → **packaging & 3D integration** → glossary → **the Physics Lab explained** |
-| 🧮 **[Simulation package](sim/transistor_sim)** | Compact MOSFET model with 8 era presets · AlGaN/GaN polarization 2DEG model · BJT Gummel model · dopant-ionization model (why diamond is hard to dope) · tunnel-FET and negative-capacitance steep-slope models · Baliga/Johnson figures of merit · Moore/Dennard scaling · **`physics/`**: carrier statistics, pn junction, exact MOS capacitor, transfer-matrix tunnelling, 2D Poisson (SOR), ensemble Monte Carlo, crystal generator |
-| 🖼️ **Generated drawings** | [43 labelled cross-sections](figures/cross_sections) · [14-step process flow](figures/process) · [6 GDS mask layouts](figures/layout) (open in KLayout/Magic) · [19 charts](figures) |
+| 🧮 **[Simulation package](sim/transistor_sim)** | Compact MOSFET model with 8 era presets · AlGaN/GaN polarization 2DEG model · BJT Gummel model · dopant-ionization model (why diamond is hard to dope) · tunnel-FET and negative-capacitance steep-slope models · Baliga/Johnson figures of merit · Moore/Dennard scaling · **`physics/`**: carrier statistics, Kronig–Penney bands, pn junction, exact MOS capacitor, charge-sheet MOSFET, transfer-matrix tunnelling, Schrödinger–Poisson quantum wells, 2D Poisson (SOR), ensemble Monte Carlo, 2D heat conduction, Abbe lithography imaging, crystal generator |
+| 🖼️ **Generated drawings** | [43 labelled cross-sections](figures/cross_sections) · [14-step process flow](figures/process) · [6 GDS mask layouts](figures/layout) (open in KLayout/Magic) · [24 charts](figures) |
 | ⚡ **[SPICE netlists](sim/spice)** | ngspice inverters (1.5 µm, 180 nm), a 5-stage ring oscillator and a behavioural GaN HEMT |
-| 🗂️ **[Open data](data/)** | 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 31 niche devices · 16 diamond milestones · 9 dopants · 14 process steps · 7 crystal structures · 245 references |
-| ✅ **[Tests](tests/)** | 70 checks tying model output to published numbers or closed forms, every citation key to the bibliography, and the browser physics to the Python reference (`tests/js_parity.mjs`) |
+| 🗂️ **[Open data](data/)** | 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 31 niche devices · 16 diamond milestones · 9 dopants · 14 process steps · 7 crystal structures · 254 references |
+| ✅ **[Tests](tests/)** | 84 checks tying model output to published numbers or closed forms, every citation key to the bibliography, and the browser physics to the Python reference (`tests/js_parity.mjs`) |
 
 ## Twenty shapes of one switch
 
@@ -133,7 +133,7 @@ Every number traces to a source. Every picture on the "simulation" side is gener
 
 ## Physics Lab: the equations, live
 
-The [Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html) page turns the semiconductor physics behind the history into seven experiments you can run. Each lab has sliders, guided "try this" experiments, the equations typeset with KaTeX, and a note on why it matters for transistors. The same models render these figures:
+The [Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html) page turns the semiconductor physics behind the history into twelve experiments you can run, grouped as materials → junctions and gates → quantum effects → scaling and transport → manufacturing. Each lab has sliders, guided "try this" experiments, the equations typeset with KaTeX, and a note on why it matters for transistors. The same models render these figures:
 
 <table>
 <tr>
@@ -147,6 +147,17 @@ The [Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html)
 <tr>
 <td><img src="figures/pn_junction.png" alt="pn junction"><br><sub>Charge, field and band bending across an abrupt junction.</sub></td>
 <td><img src="figures/intrinsic_density.png" alt="Intrinsic density"><br><sub>Why wide-gap semiconductors survive heat.</sub></td>
+</tr>
+<tr>
+<td><img src="figures/gan_2deg.png" alt="GaN 2DEG"><br><sub>Self-consistent Schrödinger–Poisson: the AlGaN/GaN two-dimensional electron gas with no doping at all.</sub></td>
+<td><img src="figures/kronig_penney.png" alt="Kronig–Penney"><br><sub>Band gaps open where the crystal Bragg-reflects the electron wave.</sub></td>
+</tr>
+<tr>
+<td><img src="figures/charge_sheet_mosfet.png" alt="Charge-sheet MOSFET"><br><sub>The long-channel MOSFET from the exact surface potential: subthreshold, linear and saturation in one model.</sub></td>
+<td><img src="figures/gan_self_heating.png" alt="GaN self-heating"><br><sub>2D heat conduction: the substrate, and the interface to it, set how hot a GaN amplifier runs.</sub></td>
+</tr>
+<tr>
+<td colspan="2"><img src="figures/litho_aerial.png" alt="Lithography aerial images"><br><sub>Abbe imaging: coherent light stops at λ/NA, tilted light reaches λ/2NA, and defocus washes the image out.</sub></td>
 </tr>
 </table>
 
@@ -170,7 +181,7 @@ The [Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html)
 16. [How a 2 nm-class transistor is built](docs/16-process-flow.md) — 14-step GAA nanosheet flow, wafer to backside power
 17. [Packaging and 3D integration](docs/17-packaging-and-3d.md) — CoWoS interposers, HBM4, hybrid bonding
 18. [Glossary](docs/18-glossary.md)
-19. [The Physics Lab: semiconductor physics you can run](docs/19-physics-lab.md) — what each of the seven simulations solves and leaves out
+19. [The Physics Lab: semiconductor physics you can run](docs/19-physics-lab.md) — what each of the twelve simulations solves and leaves out
 
 ## Quick start (Ubuntu / WSL2)
 
@@ -206,14 +217,14 @@ transistor-odyssey/
 ├── docs/                  19 chapters, citations as [@key]
 ├── sim/
 │   ├── transistor_sim/    mosfet · hemt · bjt · dopants · steep · process · materials · scaling · crosssection · layout
-│   │   └── physics/       carriers · junction · moscap · tunnel · poisson2d · montecarlo · crystal
+│   │   └── physics/       carriers · bandstructure · junction · moscap · chargesheet · tunnel · qwell · poisson2d · montecarlo · thermal · litho · crystal
 │   ├── spice/             ngspice netlists
 │   └── make_figures.py    renders everything in figures/
 ├── figures/               generated PNG/SVG charts, cross_sections/, layout/ (SVG + GDS)
 ├── data/                  chips · nodes · materials · timeline · niche · diamond · dopants · process · images · references
 ├── scripts/               setup_ubuntu.sh · build_data.py (site bundle, REFERENCES.md, CREDITS.md) · fetch_images.py
 ├── tests/                 pytest suite
-├── REFERENCES.md          245 sources, generated
+├── REFERENCES.md          254 sources, generated
 └── CREDITS.md             photo attribution, generated
 ```
 

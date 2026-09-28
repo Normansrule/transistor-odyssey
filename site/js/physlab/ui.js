@@ -153,7 +153,7 @@ export function coalesce(fn) { let q = false, args; return (...a) => { args = a;
 // perceptual colour ramp (dark → blue → teal → amber → light) for heatmaps
 const STOPS = [[16, 20, 26], [28, 72, 150], [57, 135, 229], [60, 190, 180], [242, 184, 75], [255, 236, 190]];
 export function ramp(t) {
-  t = clamp(t, 0, 1) * (STOPS.length - 1); const i = Math.min(Math.floor(t), STOPS.length - 2), f = t - i;
+  t = clamp(t || 0, 0, 1) * (STOPS.length - 1); const i = Math.min(Math.floor(t), STOPS.length - 2), f = t - i;
   const a = STOPS[i], b = STOPS[i + 1];
   return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
 }

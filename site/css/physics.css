@@ -31,11 +31,11 @@ body.physics { --maxw: 1440px; }
 .pl-hero { min-height: min(760px, 92vh); display: grid; align-items: end; }
 .pl-hero #plHero { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; display: block; }
 .pl-hero h1 { max-width: 14ch; }
-.pl-map { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+.pl-map { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
 .pl-map a { display: grid; gap: 6px; padding: 14px 14px 16px; height: 100%; background: color-mix(in srgb, var(--surface) 86%, transparent); text-decoration: none; color: var(--ink-2); font-size: 13.5px; line-height: 1.35; transition: background .2s, color .2s; }
 .pl-map a b { font: 600 22px/1 var(--display); color: var(--amber); }
 .pl-map a:hover { background: var(--surface-2); color: var(--ink); }
-@media (max-width: 1100px) { .pl-map { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 1100px) { .pl-map { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .pl-map { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- layout ---------- */
@@ -78,7 +78,7 @@ body.physics { --maxw: 1440px; }
 .pl-tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
 .pl-tile { background: var(--surface); padding: 12px 14px; display: grid; gap: 2px; align-content: start; min-width: 0; }
 .pl-tile .l { font-size: 11.5px; color: var(--muted); line-height: 1.3; }
-.pl-tile .v { font: 600 19px/1.25 var(--display); color: var(--ink); overflow-wrap: anywhere; }
+.pl-tile .v { font: 600 clamp(15px, 1.35vw, 19px)/1.25 var(--display); color: var(--ink); overflow-wrap: anywhere; }
 .pl-tile .u { font: 11px var(--mono); color: var(--ink-2); }
 @media (max-width: 1180px) { .pl-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .pl-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -133,3 +133,15 @@ footer.foot .wrap { grid-template-columns: 1fr auto; align-items: center; }
 .lab-ctl .ctl label.switch { justify-content: flex-start; }
 .pl-tile .v small { display: block; font: 400 11px/1.3 var(--mono); color: var(--ink-2); margin-top: 2px; }
 .pl-extra { display: grid; gap: 14px; }
+
+/* parts */
+.pl-part { padding: clamp(56px, 7vw, 96px) 0 0; display: grid; gap: 8px; scroll-margin-top: 64px; }
+.pl-part-n { font: 500 12px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--amber); }
+.pl-part h2 { font-size: clamp(34px, 5vw, 64px); background: linear-gradient(100deg, var(--ink) 0%, var(--ink) 55%, var(--muted) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pl-part p { color: var(--ink-2); max-width: 60ch; }
+.pl-part + .lab-sec { padding-top: clamp(32px, 4vw, 56px); }
+.pl-toc-part { font: 500 10.5px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 14px 12px 4px; margin-left: -1px; }
+.pl-toc-part:first-child { padding-top: 2px; }
+.pl-toc { max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; }
+
+.physics [hidden] { display: none !important; }
