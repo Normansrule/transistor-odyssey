@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- Source for assets/banner.png. Render: python3 scripts/render_banner.py (needs Playwright). -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../site/css/fonts.css">
+<style>
+  :root { --bg:#0a0d11; --ink:#e8ecf1; --ink2:#aab3c0; --muted:#8a94a3; --amber:#f2b84b; --line:#232a34; }
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1600px; height: 600px; background: var(--bg); overflow: hidden; font-family: "IBM Plex Sans", sans-serif; color: var(--ink); position: relative; }
+  .grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 48px 48px; opacity: .45; mask-image: radial-gradient(ellipse at 60% 30%, black 10%, transparent 75%); }
+  .glow { position: absolute; inset: 0; background: radial-gradient(600px 300px at 12% 0%, rgba(242,184,75,.16), transparent 70%), radial-gradient(700px 360px at 92% 20%, rgba(127,211,208,.10), transparent 70%); }
+  svg.bands { position: absolute; left: 0; top: 0; width: 1600px; height: 600px; }
+  .txt { position: absolute; left: 72px; top: 44px; width: 840px; }
+  .eyebrow { font: 500 17px "IBM Plex Mono", monospace; letter-spacing: .22em; color: var(--amber); text-transform: uppercase; display: flex; align-items: center; gap: 14px; }
+  .eyebrow::before { content: ""; width: 34px; height: 1.5px; background: var(--amber); }
+  h1 { white-space: nowrap; font: 700 92px/1 "Oxanium", sans-serif; letter-spacing: -.01em; margin-top: 14px; }
+  h1 span { background: linear-gradient(100deg, #7fd3d0 0%, #b58fd6 38%, #f2b84b 70%, #d9825b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  p.tag { font-size: 20px; line-height: 1.4; color: var(--ink2); margin-top: 14px; max-width: 880px; }
+  .chips { display: flex; gap: 10px; margin-top: 20px; }
+  .chips b { font: 500 13px "IBM Plex Mono", monospace; color: var(--ink); border: 1px solid #2f3845; background: rgba(16,20,26,.85); border-radius: 999px; padding: 7px 14px; }
+  .chips b i { font-style: normal; color: var(--amber); }
+  .cards { position: absolute; left: 72px; right: 72px; bottom: 34px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .card { background: rgba(16,20,26,.92); border: 1px solid #232a34; border-radius: 14px; padding: 12px; height: 190px; display: grid; grid-template-rows: 1fr auto auto; }
+  .card img { width: 100%; height: 106px; object-fit: contain; object-position: center; }
+  .card .y { font: 700 34px/1 "Oxanium", sans-serif; margin-top: 8px; }
+  .card .n { font-size: 15px; color: var(--ink2); margin-top: 2px; }
+</style></head>
+<body>
+<div class="glow"></div><div class="grid"></div>
+<svg class="bands" viewBox="0 0 1600 600" aria-hidden="true">
+  <defs><filter id="g" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="6"/></filter></defs>
+  <g id="curves"></g>
+</svg>
+<div class="txt">
+  <div class="eyebrow">An open history of the transistor · 1947 → 2026</div>
+  <h1>Transistor <span>Odyssey</span></h1>
+  <p class="tag">From a germanium point contact to gate-all-around nanosheets, IBM's 7 Å nanostack and a 0.42 nm MoS₂ interface, plus GaN, GaAs, SiC and diamond. Simulated, animated and sourced.</p>
+  <div class="chips"><b><i>19</i> animated devices</b><b><i>38</i> band diagrams</b><b><i>12</i> physics labs</b><b><i>20</i> chapters</b><b><i>256</i> references</b></div>
+</div>
+<div class="cards">
+  <div class="card"><img src="../figures/cross_sections/point_contact.svg"><div class="y">1947</div><div class="n">Point contact</div></div>
+  <div class="card"><img src="../figures/cross_sections/planar_mosfet_metal.svg"><div class="y">1960</div><div class="n">MOSFET</div></div>
+  <div class="card"><img src="../figures/cross_sections/planar_hkmg.svg"><div class="y">2007</div><div class="n">High-k metal gate</div></div>
+  <div class="card"><img src="../figures/cross_sections/finfet.svg"><div class="y">2011</div><div class="n">FinFET</div></div>
+  <div class="card"><img src="../figures/cross_sections/gaa.svg"><div class="y">2025</div><div class="n">GAA nanosheet</div></div>
+  <div class="card"><img src="../figures/cross_sections/mos2_interface.svg"><div class="y">2026</div><div class="n">0.42 nm interface</div></div>
+</div>
+<script type="module">
+  import { DEVICES } from '../site/js/devices/data.js';
+  import { lateral } from '../site/js/devices/bands.js';
+  const dev = DEVICES.find(d => d.id === 'finfet');
+  const g = document.getElementById('curves');
+  const X = x => 930 + x * 620, Y = E => 130 - E * 120;
+  const path = arr => arr.x.map((x, i) => `${i ? 'L' : 'M'}${X(x).toFixed(1)},${Y(arr.v[i]).toFixed(1)}`).join('');
+  const add = (d, col, w, op, blur) => { const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); p.setAttribute('fill', 'none'); p.setAttribute('stroke', col); p.setAttribute('stroke-width', w); p.setAttribute('opacity', op); if (blur) p.setAttribute('filter', 'url(#g)'); g.appendChild(p); };
+  const off = lateral(dev, 0.05, 0.7, 161), on = lateral(dev, 1.0, 0.7, 161);
+  for (const [L, a] of [[off, .35], [on, 1]]) {
+    const ec = path({ x: L.x, v: L.Ec }), ev = path({ x: L.x, v: L.Ev });
+    add(ec, '#3987e5', 10, .35 * a, true); add(ec, '#5aa2ff', 3, .75 * a); add(ev, '#d95926', 10, .3 * a, true); add(ev, '#ff8a55', 3, .6 * a);
+  }
+  // electrons riding the on-state conduction band
+  const rnd = (s => () => (s = (s * 16807) % 2147483647) / 2147483647)(7);
+  for (let k = 0; k < 46; k++) {
+    const x = rnd(), i = Math.round(x * 160), y = Y(on.Ec[i]) - 5 - rnd() * 16;
+    const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('cx', X(x)); c.setAttribute('cy', y); c.setAttribute('r', 3.4); c.setAttribute('fill', '#5aa2ff'); c.setAttribute('opacity', .55 + .45 * rnd()); g.appendChild(c);
+  }
+  const t = document.createElementNS('http://www.w3.org/2000/svg', 'text'); t.setAttribute('x', X(0.5)); t.setAttribute('y', 30); t.setAttribute('text-anchor', 'middle'); t.setAttribute('fill', '#8a94a3'); t.setAttribute('font-family', 'IBM Plex Mono'); t.setAttribute('font-size', 14); t.textContent = 'FinFET conduction and valence bands, gate off → on'; g.appendChild(t);
+  await document.fonts.ready; window.__ready = true;
+</script>
+</body></html>

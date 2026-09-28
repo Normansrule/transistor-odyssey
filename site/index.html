@@ -6,11 +6,9 @@
 <title>Transistor Odyssey</title>
 <meta name="description" content="An interactive history of the transistor from the 1947 point-contact device to 2 nm gate-all-around, IBM's 0.7 nm nanostack and 2D MoS₂ with a 0.42 nm interface, plus GaN, GaAs, SiC, diamond and nanotube alternatives.">
 <meta property="og:title" content="Transistor Odyssey — 1947 to the ångström era">
-<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, twelve live physics labs and 254 references.">
+<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, nineteen animated devices, twelve live physics labs and 256 references.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Oxanium:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 <script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/OrbitControls.js": "./vendor/OrbitControls.js" } }</script>
 <script>document.documentElement.classList.add('js')</script>
@@ -38,7 +36,8 @@
       <a href="#frontier">Frontier</a>
       <a href="#sources">Sources</a>
     </div>
-    <a class="nav-lab" href="physics.html">Physics Lab</a>
+    <a class="nav-lab" href="devices.html">Device Atlas</a>
+    <a class="nav-lab nav-lab2" href="physics.html">Physics Lab</a>
     <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       Source
@@ -57,6 +56,7 @@
       <a class="btn primary" href="#timeline">Walk the timeline</a>
       <a class="btn" href="#explorer">Open the 3D explorer</a>
       <a class="btn" href="#lab">Run the device lab</a>
+      <a class="btn" href="devices.html">Device Atlas: how each transistor works →</a>
       <a class="btn" href="physics.html">Physics Lab: 12 live simulations →</a>
     </div>
     <p class="hint">Drag across the background to stir the fluid.</p>
@@ -223,6 +223,26 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ DEVICE ATLAS TEASER ============ -->
+<section class="sec" id="atlas-teaser">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">New · Device Atlas</span>
+      <h2>Watch each transistor switch</h2>
+      <p class="lead">Nineteen devices from the 1947 point contact to the 2026 complementary FET, each as an animated cross-section beside live energy band diagrams along the current path and through the gate, plus a chart of 21 materials on one energy scale and a heterojunction builder.</p>
+    </div>
+    <div class="at-teaser">
+      <a class="card glow" href="devices.html#bjt"><img src="assets/atlas/bjt.webp" width="600" height="338" loading="lazy" alt="Cross-section and band diagram of the Bipolar junction transistor"><h3>Bipolar junction transistor</h3><p>Forward bias drops the emitter barrier; electrons diffuse across a thin base.</p></a>
+      <a class="card glow" href="devices.html#planar_mosfet"><img src="assets/atlas/planar_mosfet.webp" width="600" height="338" loading="lazy" alt="Cross-section and band diagram of the Planar MOSFET"><h3>Planar MOSFET</h3><p>The gate pulls the source barrier down; above threshold a channel forms.</p></a>
+      <a class="card glow" href="devices.html#finfet"><img src="assets/atlas/finfet.webp" width="600" height="338" loading="lazy" alt="Cross-section and band diagram of the FinFET"><h3>FinFET</h3><p>Gating from three sides keeps the drain from reaching the source.</p></a>
+      <a class="card glow" href="devices.html#gaa"><img src="assets/atlas/gaa.webp" width="600" height="338" loading="lazy" alt="Cross-section and band diagram of the Gate-all-around nanosheet"><h3>Gate-all-around nanosheet</h3><p>Four-sided control of stacked silicon sheets: the 2 nm generation.</p></a>
+      <a class="card glow" href="devices.html#gan_hemt"><img src="assets/atlas/gan_hemt.webp" width="600" height="338" loading="lazy" alt="Cross-section and band diagram of the AlGaN/GaN HEMT"><h3>AlGaN/GaN HEMT</h3><p>Polarization builds a quantum well full of electrons with no doping.</p></a>
+      <a class="card glow" href="devices.html#tfet"><img src="assets/atlas/tfet.webp" width="600" height="338" loading="lazy" alt="Cross-section and band diagram of the Tunnel FET"><h3>Tunnel FET</h3><p>Electrons tunnel through a gate-opened window instead of climbing over.</p></a>
+    </div>
+    <p class="at-more"><a class="btn primary" href="devices.html">Open all 19 devices →</a></p>
   </div>
 </section>
 

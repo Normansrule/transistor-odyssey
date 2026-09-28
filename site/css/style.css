@@ -417,3 +417,20 @@ footer a:hover { color: var(--amber-2); }
 .nav-lab { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(242,184,75,.45); color: var(--amber-2); text-decoration: none; font-size: 13px; white-space: nowrap; }
 .nav-lab:hover { background: rgba(242,184,75,.1); color: var(--amber); }
 @media (max-width: 1100px) { .nav-lab { margin-left: auto; } .nav-lab + .nav-gh { margin-left: 0; } }
+
+/* device atlas teaser (index) */
+.at-teaser { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.at-teaser a { padding: 12px 12px 18px; display: grid; gap: 8px; align-content: start; text-decoration: none; color: var(--ink-2); }
+.at-teaser img { width: 100%; height: auto; display: block; border-radius: var(--r-sm); border: 1px solid var(--line); }
+.at-teaser h3 { color: var(--ink); font-size: 18px; margin: 6px 4px 0; }
+.at-teaser p { font-size: 14px; margin: 0 4px; }
+.at-more { margin-top: 22px; }
+@media (max-width: 1100px) { .nav-lab2 { margin-left: 0; } }
+@media (max-width: 480px) { .nav-lab2 { display: none; } }
+@media (max-width: 480px) {
+  .nav .wrap { gap: 10px; }
+  .brand { font-size: 15px; }
+  .nav-gh { padding: 6px 9px; font-size: 0; gap: 0; }
+  .nav-gh svg { width: 16px; height: 16px; }
+  .nav-lab { padding: 5px 10px; font-size: 12px; }
+}

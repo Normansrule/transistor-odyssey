@@ -12,6 +12,7 @@ import * as QW from '../site/js/physics/qwell.js';
 import * as CS from '../site/js/physics/chargesheet.js';
 import * as TH from '../site/js/physics/thermal.js';
 import * as LI from '../site/js/physics/litho.js';
+import * as BA from '../site/js/devices/bands.js';
 
 const ref = JSON.parse(readFileSync(new URL('../data/physics_reference.json', import.meta.url)));
 let fails = 0;
@@ -49,6 +50,17 @@ check('thermal diamond+TBR', TH.peakRise('Diamond', 5.0, { tbr: 25 }).rise, ref.
 check('litho conventional', LI.contrast(LI.aerialImage(100, { sigma: 0.9 }).I), ref.litho.conv100, 1e-6);
 check('litho dipole', LI.contrast(LI.aerialImage(80, { kind: 'dipole', sigmaC: 0.89, sigmaW: 0.05 }).I), ref.litho.dip80, 1e-6);
 check('litho defocus', LI.contrast(LI.aerialImage(120, { sigma: 0.7, defocus: 80 }).I), ref.litho.def120, 1e-6);
+const devs = JSON.parse(readFileSync(new URL('../data/devices.json', import.meta.url))).devices;
+for (const d of devs) {
+  const r = ref.atlas[d.id], vg = 0.5 * (d.model.vg[0] + d.model.vg[1]), vd = 0.3 * d.model.vd[1];
+  check(`atlas ${d.id} barrier`, BA.barrier(d, vg, vd), r.barrier_mid, 1e-9);
+  check(`atlas ${d.id} on-fraction`, BA.onFraction(d, d.model.vt + 0.1 * (d.model.vg[1] - d.model.vg[0])), r.f_vt, 1e-9);
+  const L = BA.lateral(d, vg, vd, 21); let worst = 0;
+  L.Ec.forEach((e, i) => { const want = r.Ec_mid[i], got = isNaN(e) ? -99 : e; worst = Math.max(worst, Math.abs(got - want)); });
+  if (worst > 1e-9) fails++;
+  console.log(`${worst > 1e-9 ? 'FAIL' : 'ok  '} atlas ${d.id} lateral Ec (max diff ${worst.toExponential(1)})`);
+  if (r.vert0 !== null) { const V = BA.vertical(d, vg); check(`atlas ${d.id} vertical Ec(0)`, V.Ec[0], r.vert0, d.model.vertical === 'hemt' ? 1e-3 : 1e-6); }
+}
 const v = MC.simulate(1e5, { n: 1000, tPs: 3 });
 check('MC v(1e5 V/cm) within 25% of 1.07e7', v, 1.07e7, 0.25);
 if (fails) { console.error(`${fails} parity check(s) failed`); process.exit(1); }

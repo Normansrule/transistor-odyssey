@@ -261,3 +261,101 @@ def test_defocus_degrades_contrast():
     a = litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7)[1])
     b = litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7, defocus_nm=80)[1])
     assert b < a
+
+
+# --- device atlas (bands for every transistor) ------------------------------
+from transistor_sim import bandatlas  # noqa: E402
+
+DEVICES = bandatlas.load_devices()
+
+
+def test_device_atlas_entries_are_complete():
+    import json
+    refs = {r["id"] for r in json.loads((Path(__file__).resolve().parents[1] / "data" / "references.json").read_text(encoding="utf-8"))["references"]}
+    assert len(DEVICES) >= 18
+    for k, d in DEVICES.items():
+        for f in ("name", "short", "family", "year", "summary", "steps", "facts", "refs", "model", "labels", "where"):
+            assert f in d, (k, f)
+        assert len(d["steps"]) == 4 and {s["when"] for s in d["steps"]} <= {"off", "sub", "on", "sat"}
+        assert set(d["refs"]) <= refs, (k, set(d["refs"]) - refs)
+        assert d["model"]["lateral"] in ("fet", "bjt", "tfet", "sbfet")
+
+
+@pytest.mark.parametrize("key", sorted(DEVICES))
+def test_every_device_switches_off_and_on(key):
+    d = DEVICES[key]; m = d["model"]
+    lo, hi = m["vg"]
+    f_lo, f_hi = bandatlas.on_fraction(d, lo), bandatlas.on_fraction(d, hi)
+    assert min(f_lo, f_hi) < 0.06 and max(f_lo, f_hi) > 0.94
+    L = bandatlas.lateral(d, lo, m["vd"][1] * 0.5)
+    assert np.all(np.nan_to_num(L["Ec"], nan=1e9) > np.nan_to_num(L["Ev"], nan=-1e9))   # gap everywhere
+
+
+def test_fet_barrier_falls_with_gate_and_drain():
+    d = DEVICES["planar_mosfet"]
+    b = [bandatlas.barrier(d, v, 0.05) for v in (0.0, 0.3, 0.6)]
+    assert b[0] > b[1] > b[2]
+    assert bandatlas.barrier(d, 0.2, 1.0) < bandatlas.barrier(d, 0.2, 0.05)      # DIBL
+    # better electrostatics → less DIBL
+    dibl = {k: bandatlas.barrier(DEVICES[k], 0.1, 0.05) - bandatlas.barrier(DEVICES[k], 0.1, 0.8) for k in ("planar_mosfet", "finfet", "gaa")}
+    assert dibl["planar_mosfet"] > dibl["finfet"] > dibl["gaa"]
+
+
+def test_bjt_barrier_is_vbi_minus_vbe():
+    d = DEVICES["bjt"]
+    for vbe in (0.2, 0.5, 0.7):
+        assert bandatlas.lateral(d, vbe, 2.0)["barrier"] == pytest.approx(0.9 - vbe, abs=1e-9)
+
+
+def test_hbt_valence_step_in_base():
+    d = DEVICES["hbt"]; L = bandatlas.lateral(d, 0.6, 2.0)
+    base = (L["x"] > 0.42) & (L["x"] < 0.54)
+    assert np.allclose((L["Ec"] - L["Ev"])[base], 1.12 - 0.15)
+
+
+def test_tfet_window_opens_with_gate():
+    d = DEVICES["tfet"]
+    assert bandatlas.lateral(d, 0.1, 0.5)["window"] < 0 < bandatlas.lateral(d, 0.9, 0.5)["window"]
+
+
+def test_hemt_vertical_subband_crosses_fermi_level():
+    d = DEVICES["gan_hemt"]
+    on, off = bandatlas.vertical(d, 0.0), bandatlas.vertical(d, -5.0)
+    assert on["E"][0] < 0 < off["E"][0] and on["ns"] > 5e12 and off["ns"] < 1e11
+
+
+def test_mos_vertical_inverts_above_threshold():
+    d = DEVICES["planar_mosfet"]
+    lo, hi = bandatlas.vertical(d, 0.0), bandatlas.vertical(d, 1.2)
+    assert hi["psi_s"] > lo["psi_s"]
+    assert hi["Ec"][0] < 0.15                                     # conduction band near E_F at the surface
+
+
+def test_flash_programming_raises_threshold():
+    d = DEVICES["flash"]
+    assert bandatlas.on_fraction(d, 2.5, prog=1.0) < bandatlas.on_fraction(d, 2.5, prog=0.0)
+
+
+def test_band_alignment_offsets():
+    h = bandatlas.heterojunction("GaAs", "AlGaAs")
+    assert h["type"].startswith("I ") and h["dEc"] == pytest.approx(0.22, abs=0.01)
+    assert bandatlas.heterojunction("Si", "Ge")["type"].startswith("II")          # Si/Ge is staggered
+    from transistor_sim.physics import tunnel
+    for ox in ("SiO2", "HfO2", "Al2O3"):                                          # consistent with the tunnelling lab
+        assert bandatlas.heterojunction("Si", ox)["dEc"] == pytest.approx(tunnel.DIELECTRICS[ox]["phiB"], abs=0.02)
+
+
+def test_device_atlas_links_resolve():
+    """Every atlas device has a scene, an engineering cross-section, a chapter and a Physics Lab section."""
+    import re
+    from pathlib import Path
+    root = Path(__file__).resolve().parent.parent
+    scenes = (root / "site/js/devices/scenes.js").read_text(encoding="utf-8")
+    physics = (root / "site/physics.html").read_text(encoding="utf-8")
+    lab_ids = set(re.findall(r'<section class="lab-sec" id="([a-z]+)"', physics))
+    for k, d in bandatlas.load_devices().items():
+        assert re.search(rf"^\s+{k}: ", scenes, re.M) or f"{k}:" in scenes, k
+        assert (root / "site/assets/xsec" / f"{d['xsec']}.svg").exists(), d["xsec"]
+        assert (root / "docs" / d["docs"]).exists(), d["docs"]
+        assert d["lab"] in lab_ids, d["lab"]
+        assert (root / "figures/bands" / f"{k}.png").exists(), k

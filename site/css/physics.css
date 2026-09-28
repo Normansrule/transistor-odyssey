@@ -3,7 +3,7 @@
    section: header, control panel + live views, and a learning strip
    (experiments, equations, why it matters). */
 
-body.physics { --maxw: 1440px; }
+body.physics { --maxw: 1440px; overflow-x: clip; }
 
 .nav-crumb { font: 500 13px var(--mono); color: var(--amber); white-space: nowrap; }
 @media (max-width: 560px) { .nav-crumb { display: none; } }
@@ -145,3 +145,4 @@ footer.foot .wrap { grid-template-columns: 1fr auto; align-items: center; }
 .pl-toc { max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; }
 
 .physics [hidden] { display: none !important; }
+.pl-eqs .eq, .pl-eqs .katex-display { position: relative; }

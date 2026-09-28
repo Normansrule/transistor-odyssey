@@ -1512,6 +1512,18 @@
    "cat": "Physics lab",
    "cite": "C. Mack, Fundamental Principles of Optical Lithography: The Science of Microfabrication, Wiley (2007).",
    "doi": "10.1002/9780470723876"
+  },
+  {
+   "id": "maier2001",
+   "cat": "Diamond",
+   "cite": "F. Maier, J. Ristein, L. Ley, \"Electron Affinity of Plasma-Hydrogenated and Chemically Oxidized Diamond (100) Surfaces,\" Phys. Rev. B 64, 165411 (2001).",
+   "doi": "10.1103/PhysRevB.64.165411"
+  },
+  {
+   "id": "anderson1962",
+   "cat": "Device physics",
+   "cite": "R. L. Anderson, \"Experiments on Ge-GaAs Heterojunctions,\" Solid-State Electron. 5, 341 (1962).",
+   "doi": "10.1016/0038-1101(62)90115-6"
   }
  ]
 }

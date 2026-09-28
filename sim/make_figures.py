@@ -18,6 +18,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.ticker
+import matplotlib.patches
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
@@ -27,6 +28,7 @@ sys.path.insert(0, str(HERE))
 from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep, process  # noqa: E402
 from transistor_sim.physics import carriers, junction, moscap, tunnel, poisson2d, montecarlo, crystal  # noqa: E402
 from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho  # noqa: E402
+from transistor_sim import bandatlas  # noqa: E402
 
 FIG = ROOT / "figures"
 FIG.mkdir(exist_ok=True)
@@ -537,12 +539,122 @@ def export_physics_json():
                   "E0_25_20": float(qwell.hemt_sp(0.25, 20.0)["E"][0])},
         "chargesheet": {f"{vg}_{vd}": chargesheet.drain_current(vg, vd, chargesheet.params()) for vg, vd in [(0.2, 0.05), (0.8, 0.1), (1.0, 1.5)]},
         "thermal": {s_: thermal.peak_rise(s_, 5.0)[0] for s_ in ("Si", "Diamond")} | {"Diamond_tbr25": thermal.peak_rise("Diamond", 5.0, tbr_m2K_GW=25)[0]},
+        "atlas": {k: {"barrier_mid": bandatlas.barrier(d, 0.5 * sum(d["model"]["vg"]), 0.3 * d["model"]["vd"][1]),
+                      "f_vt": bandatlas.on_fraction(d, d["model"]["vt"] + 0.1 * (d["model"]["vg"][1] - d["model"]["vg"][0])),
+                      "Ec_mid": [float(v) for v in np.nan_to_num(bandatlas.lateral(d, 0.5 * sum(d["model"]["vg"]), 0.3 * d["model"]["vd"][1], n=21)["Ec"], nan=-99)],
+                      "vert0": (lambda V: None if V is None else float(np.asarray(V["Ec"])[0]))(bandatlas.vertical(d, 0.5 * sum(d["model"]["vg"])))}
+                  for k, d in bandatlas.load_devices().items()},
         "litho": {"conv100": litho.contrast(litho.aerial_image(100, 193, 1.35, sigma=0.9)[1]),
                   "dip80": litho.contrast(litho.aerial_image(80, 193, 1.35, kind="dipole", sigma_c=0.89, sigma_w=0.05)[1]),
                   "def120": litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7, defocus_nm=80)[1])},
     }
     (ROOT / "data" / "physics_reference.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
     print("data/physics_reference.json")
+
+
+# ---------------------------------------------------------------------------
+# Device atlas: band diagrams for every transistor and the material line-up.
+def _ends(d):
+    a, b = d["model"]["vg"]
+    return (a, b) if bandatlas.on_fraction(d, a) <= bandatlas.on_fraction(d, b) else (b, a)
+
+
+def _lat_axes(ax, d, show_labels=True, lw=2.0):
+    off_v, on_v = _ends(d)
+    vd = d["model"]["vd"][1] * (0.3 if d["model"]["lateral"] == "bjt" else 0.5)
+    off, on = bandatlas.lateral(d, off_v, vd), bandatlas.lateral(d, on_v, vd)
+    for i, (a, b_, name) in enumerate(on["regions"]):
+        if i % 2 == 1:
+            ax.axvspan(a, b_, color="#ffffff", alpha=0.035, lw=0)
+        if show_labels:
+            ax.text((a + b_) / 2, 1.01, name, transform=ax.get_xaxis_transform(), ha="center", va="bottom", color=MUTED, fontsize=8.5)
+    ax.plot(off["x"], off["Ec"], color=INK2, lw=1.2, ls="--", alpha=0.7, label="off")
+    ax.plot(off["x"], off["Ev"], color=INK2, lw=1.2, ls="--", alpha=0.7)
+    ax.plot(on["x"], on["Ec"], color=SERIES[0], lw=lw, label="on: E_c")
+    ax.plot(on["x"], on["Ev"], color=SERIES[1], lw=lw, label="on: E_v")
+    if "EF" in on:
+        ax.plot(on["x"], on["EF"], color=SERIES[3], lw=1, ls=":")
+    else:
+        ax.plot([0, 0.3], [on["EFs"]] * 2, color=SERIES[3], lw=1, ls=":")
+        ax.plot([0.7, 1], [on["EFd"]] * 2, color=SERIES[3], lw=1, ls=":")
+    ax.set_xlim(0, 1); ax.set_xticks([]); ax.grid(False)
+    return off_v, on_v, vd
+
+
+def fig_band_atlas():
+    devs = list(bandatlas.load_devices().values())
+    cols = 5
+    rows = math.ceil(len(devs) / cols)
+    fig, axs = plt.subplots(rows, cols, figsize=(15, 2.55 * rows), gridspec_kw=dict(hspace=0.62, wspace=0.14))
+    for ax, d in zip(axs.flat, devs):
+        _lat_axes(ax, d, show_labels=False, lw=1.8)
+        ax.set_yticks([])
+        ax.set_title(f"{d['short']}  ·  {d['year']}", fontsize=10.5, pad=6)
+        ax.text(0, -0.1, d["family"], transform=ax.transAxes, color=MUTED, fontsize=8, va="top")
+    for ax in list(axs.flat)[len(devs):]:
+        ax.axis("off")
+    ax = list(axs.flat)[-1]
+    ax.plot([], [], color=INK2, ls="--", lw=1.2, label="gate off"); ax.plot([], [], color=SERIES[0], label="gate on: E_c")
+    ax.plot([], [], color=SERIES[1], label="gate on: E_v"); ax.plot([], [], color=SERIES[3], ls=":", lw=1, label="Fermi level")
+    ax.legend(loc="center", fontsize=10)
+    fig.suptitle("Band edges along the current path for all 19 devices, gate off and on", x=0.125, ha="left", fontsize=14, fontweight="bold", y=0.995)
+    fig.text(0.125, 0.965, "sim/transistor_sim/bandatlas.py · source (left) → drain (right) · electron energy up", color=MUTED, fontsize=9.5)
+    save(fig, "band_atlas")
+
+
+def fig_band_alignment():
+    mats = sorted(bandatlas.alignment().values(), key=lambda m: m["kind"] == "insulator")
+    fig, ax = plt.subplots(figsize=(13, 5.6))
+    for i, m in enumerate(mats):
+        ec, ev = -m["chi"], -m["chi"] - m["Eg"]
+        col = "#b58fd6" if m["kind"] == "insulator" else "#7fd3d0"
+        ax.add_patch(matplotlib.patches.Rectangle((i - 0.34, ev), 0.68, m["Eg"], color=col, alpha=0.16, lw=0))
+        ax.plot([i - 0.34, i + 0.34], [ec, ec], color=SERIES[0], lw=3)
+        ax.plot([i - 0.34, i + 0.34], [ev, ev], color=SERIES[1], lw=3)
+        ax.text(i, (ec + ev) / 2, f"{m['Eg']:.2g}", ha="center", va="center", color=INK2, fontsize=8.5)
+    ax.axhline(0, color=INK, ls="--", lw=1, alpha=0.5); ax.text(len(mats) - 0.5, 0.15, "vacuum level", ha="right", color=MUTED, fontsize=9)
+    si = bandatlas.alignment()["Si"]; ax.axhspan(-si["chi"] - si["Eg"], -si["chi"], color="#7fd3d0", alpha=0.05, lw=0)
+    ins = next(i for i, m in enumerate(mats) if m["kind"] == "insulator")
+    ax.axvline(ins - 0.5, color=AXIS, lw=1)
+    ax.text(-0.4, 1.7, "semiconductors", color=MUTED, fontsize=9); ax.text(ins - 0.4, 1.7, "gate dielectrics", color=MUTED, fontsize=9)
+    ax.set_xticks(range(len(mats))); ax.set_xticklabels([m["id"].replace("C-H", "C:H").replace("C-O", "C:O") for m in mats], rotation=40, ha="right")
+    ax.set_xlim(-0.6, len(mats) - 0.4); ax.set_ylim(-10.6, 2.2); ax.grid(axis="x", visible=False)
+    ax.set_ylabel("energy relative to vacuum (eV)")
+    ax.set_title("Band edges of 21 transistor materials on one energy scale")
+    subtitle(ax, "E_c = −χ, E_v = −χ − E_g; the number is the gap in eV; the faint strip is silicon's gap")
+    save(fig, "band_alignment")
+
+
+def fig_device_bands():
+    """One PNG per device: lateral off/on plus the gate-stack cut when the device has one."""
+    out = FIG / "bands"
+    out.mkdir(exist_ok=True)
+    for k, d in bandatlas.load_devices().items():
+        off_v, on_v = _ends(d)
+        V = bandatlas.vertical(d, on_v)
+        fig, axs = plt.subplots(1, 2 if V is not None else 1, figsize=(12 if V is not None else 7, 3.9),
+                                gridspec_kw=dict(wspace=0.22, width_ratios=[1.25, 1]) if V is not None else None, squeeze=False)
+        a1 = axs[0][0]
+        _, _, vd = _lat_axes(a1, d)
+        a1.set_ylabel("electron energy (eV)")
+        a1.set_title(d["name"], pad=22)
+        a1.legend(fontsize=8.5, loc="lower left", ncol=3)
+        a1.text(0, -0.05, f"along the current path · gate {off_v:g} V (off) → {on_v:g} V (on), drain {vd:g} V", transform=a1.transAxes, color=MUTED, fontsize=8.5, va="top")
+        if V is not None:
+            a2 = axs[0][1]
+            z = np.asarray(V["z"], float)
+            a2.plot(z, V["Ec"], color=SERIES[0]); a2.plot(z, V["Ev"], color=SERIES[1])
+            a2.axhline(0, color=SERIES[3], lw=1, ls=":")
+            if V["kind"] == "hemt":
+                for j, E in enumerate(V["E"][:2]):
+                    a2.axhline(E, color=SERIES[2 + j], lw=0.9, ls="--", xmin=0.3, xmax=0.75)
+                a2.text(0.98, 0.95, f"n_s = {V['ns'] / 1e13:.2f}×10¹³ cm⁻²", transform=a2.transAxes, ha="right", va="top", color=INK2, fontsize=9)
+            a2.set_xlabel("depth into the semiconductor (nm)")
+            a2.set_title("Through the gate (gate on)", pad=22, fontsize=11.5)
+            a2.text(0, 1.01, "solved" if V["kind"] in ("mos", "hemt") else "schematic", transform=a2.transAxes, color=MUTED, fontsize=8.5, va="bottom")
+        fig.savefig(out / f"{k}.png", dpi=110, bbox_inches="tight", pad_inches=0.2, metadata={"Software": None})
+        plt.close(fig)
+    print("figures/bands/*.png")
 
 
 if __name__ == "__main__":
@@ -552,7 +664,8 @@ if __name__ == "__main__":
     for f in (fig_moore, fig_node_vs_pitch, fig_iv_families, fig_transfer, fig_vtc, fig_hemt,
               fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel, fig_ionization, fig_steep,
               fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo,
-              fig_kronig_penney, fig_2deg, fig_chargesheet, fig_thermal, fig_litho):
+              fig_kronig_penney, fig_2deg, fig_chargesheet, fig_thermal, fig_litho,
+              fig_band_atlas, fig_band_alignment, fig_device_bands):
         f()
     export_model_json()
     export_physics_json()

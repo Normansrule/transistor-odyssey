@@ -21,5 +21,6 @@
 | 17 | [Packaging and 3D integration](17-packaging-and-3d.md) | 2012–2026 | ![](../figures/cross_sections/cowos_interposer.svg) |
 | 18 | [Glossary](18-glossary.md) | — | |
 | 19 | [The Physics Lab: semiconductor physics you can run](19-physics-lab.md) | — | ![](../figures/dibl_2d.png) |
+| 20 | [How each transistor works: cross-sections and energy band diagrams](20-how-transistors-work.md) | 1947–2026 | ![](../figures/anim/finfet.gif) |
 
 Citations are written as an at-sign key in square brackets, e.g. `[@kilby1976]`. Every key resolves to an entry in [REFERENCES.md](../REFERENCES.md) (search the page for the key); `tests/test_data.py` fails if one does not.
