@@ -27,7 +27,7 @@ sys.path.insert(0, str(HERE))
 
 from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep, process  # noqa: E402
 from transistor_sim.physics import carriers, junction, moscap, tunnel, poisson2d, montecarlo, crystal  # noqa: E402
-from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho  # noqa: E402
+from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho, hetero  # noqa: E402
 from transistor_sim import bandatlas  # noqa: E402
 
 FIG = ROOT / "figures"
@@ -520,6 +520,10 @@ def fig_litho():
     save(fig, "litho_aerial")
 
 
+HETERO_CASES = [("Si", "Si", -1e17, 1e17, 0.0), ("Si", "Si", -1e17, 1e17, -2.0), ("GaAs", "AlGaAs", 1e15, 2e18, 0.0),
+                ("Si", "SiGe", 1e18, -1e18, 0.3), ("InAs", "C-H", 1e16, 0.0, 0.0), ("Si", "HfO2", -1e17, 0.0, 0.0)]
+
+
 def export_physics_json():
     crystal.write_json(ROOT / "data" / "crystals.json")
     print("data/crystals.json")
@@ -544,6 +548,10 @@ def export_physics_json():
                       "Ec_mid": [float(v) for v in np.nan_to_num(bandatlas.lateral(d, 0.5 * sum(d["model"]["vg"]), 0.3 * d["model"]["vd"][1], n=21)["Ec"], nan=-99)],
                       "vert0": (lambda V: None if V is None else float(np.asarray(V["Ec"])[0]))(bandatlas.vertical(d, 0.5 * sum(d["model"]["vg"])))}
                   for k, d in bandatlas.load_devices().items()},
+        "hetero": [(lambda r, c: {"case": c, "Ec": [float(r["Ec"][i]) for i in range(0, 601, 60)], "VA": r["VA"], "VB": r["VB"],
+                                  "W_nm": r["W_nm"], "ns": r["ns"], "ps": r["ps"], "iters": r["iters"]})(
+                       hetero.solve(bandatlas.alignment()[c[0]], bandatlas.alignment()[c[1]], c[2], c[3], c[4]), c)
+                   for c in HETERO_CASES],
         "litho": {"conv100": litho.contrast(litho.aerial_image(100, 193, 1.35, sigma=0.9)[1]),
                   "dip80": litho.contrast(litho.aerial_image(80, 193, 1.35, kind="dipole", sigma_c=0.89, sigma_w=0.05)[1]),
                   "def120": litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7, defocus_nm=80)[1])},
@@ -625,6 +633,48 @@ def fig_band_alignment():
     save(fig, "band_alignment")
 
 
+def fig_heterojunction():
+    M = bandatlas.alignment()
+    fig, axs = plt.subplots(1, 3, figsize=(15.5, 5.0), gridspec_kw=dict(wspace=0.34))
+    panels = [
+        ("Silicon pn junction, 0 V and −2 V", [("Si", "Si", -1e17, 1e17, 0.0), ("Si", "Si", -1e17, 1e17, -2.0)], 300,
+         "p-Si 10¹⁷ | n-Si 10¹⁷ cm⁻³: reverse bias widens the junction"),
+        ("Modulation doping: n-AlGaAs on GaAs", [("GaAs", "AlGaAs", 1e15, 2e18, 0.0)], 60,
+         "electrons leave their donors and collect in the GaAs well"),
+        ("Broken gap: InAs on H-terminated diamond", [("InAs", "C-H", 1e16, 0.0, 0.0)], 60,
+         "diamond's valence band sits above InAs's conduction band"),
+    ]
+    for ax, (title, cases, span, sub) in zip(axs, panels):
+        for k, c in enumerate(cases):
+            r = hetero.solve(M[c[0]], M[c[1]], c[2], c[3], c[4])
+            x = r["x_nm"]; sel = np.abs(x) <= span
+            ls, a = ("-", 1.0) if k == 0 else ("--", 0.75)
+            ax.plot(x[sel], r["Ec"][sel], color=SERIES[0], ls=ls, alpha=a, label="E_c" if k == 0 else None)
+            ax.plot(x[sel], r["Ev"][sel], color=SERIES[1], ls=ls, alpha=a, label="E_v" if k == 0 else None)
+            ax.plot([-span, 0], [r["EFA"], r["EFA"]], color=SERIES[3], lw=1, ls=":", alpha=a, label="E_F" if k == 0 else None)
+            ax.plot([0, span], [r["EFB"], r["EFB"]], color=SERIES[3], lw=1, ls=":", alpha=a)
+            if k == 1:
+                ax.text(-span * 0.95, r["Ec"][sel][0] + 0.12, f"{c[4]:+g} V", color=INK2, fontsize=9)
+            if c[0] == "GaAs":
+                t = ax.twinx(); t.fill_between(x[sel], r["n"][sel] / 1e18, color=SERIES[0], alpha=0.16, lw=0)
+                t.set_ylabel("electron density (10¹⁸ cm⁻³)", color=INK2); t.grid(False); t.set_ylim(0, None)
+                ax.text(0.02, 0.04, f"sheet density ≈ {r['ns'] / 1e12:.1f}×10¹² cm⁻²", transform=ax.transAxes, color=INK2, fontsize=9)
+            if c[1] == "C-H":
+                ax.text(0.02, 0.04, f"electrons ≈ {r['ns'] / 1e12:.1f}, holes ≈ {r['ps'] / 1e12:.1f} ×10¹² cm⁻²", transform=ax.transAxes, color=INK2, fontsize=9)
+        ax.axvline(0, color=AXIS, lw=1)
+        ax.text(0.25, 0.97, cases[0][0], transform=ax.transAxes, ha="center", va="top", color=INK, fontsize=10, fontweight="bold")
+        ax.text(0.75, 0.97, cases[0][1], transform=ax.transAxes, ha="center", va="top", color=INK, fontsize=10, fontweight="bold")
+        if cases[0][0] == "GaAs":
+            ax.set_ylim(-0.3, 0.4); ax.text(0.98, 0.12, "E_v below, off scale", transform=ax.transAxes, ha="right", color=MUTED, fontsize=8.5)
+        if cases[0][1] == "C-H":
+            ax.set_ylim(-0.7, 0.9); ax.text(0.98, 0.88, "diamond E_c ≈ +5.3 eV, off scale", transform=ax.transAxes, ha="right", color=MUTED, fontsize=8.5)
+        ax.set_xlim(-span, span); ax.set_xlabel("position (nm)"); ax.set_title(title, pad=30)
+        subtitle(ax, sub)
+        ax.set_ylabel("energy (eV, right-hand E_F = 0)")
+    axs[0].legend(fontsize=9, loc="lower left")
+    save(fig, "heterojunction_equilibrium")
+
+
 def fig_device_bands():
     """One PNG per device: lateral off/on plus the gate-stack cut when the device has one."""
     out = FIG / "bands"
@@ -665,7 +715,7 @@ if __name__ == "__main__":
               fig_bfom, fig_gap_field, fig_litho, fig_dennard, fig_gummel, fig_ionization, fig_steep,
               fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo,
               fig_kronig_penney, fig_2deg, fig_chargesheet, fig_thermal, fig_litho,
-              fig_band_atlas, fig_band_alignment, fig_device_bands):
+              fig_band_atlas, fig_band_alignment, fig_device_bands, fig_heterojunction):
         f()
     export_model_json()
     export_physics_json()

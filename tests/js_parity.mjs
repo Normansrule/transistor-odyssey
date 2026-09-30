@@ -13,6 +13,7 @@ import * as CS from '../site/js/physics/chargesheet.js';
 import * as TH from '../site/js/physics/thermal.js';
 import * as LI from '../site/js/physics/litho.js';
 import * as BA from '../site/js/devices/bands.js';
+import * as HJ from '../site/js/physics/hetero.js';
 
 const ref = JSON.parse(readFileSync(new URL('../data/physics_reference.json', import.meta.url)));
 let fails = 0;
@@ -60,6 +61,14 @@ for (const d of devs) {
   if (worst > 1e-9) fails++;
   console.log(`${worst > 1e-9 ? 'FAIL' : 'ok  '} atlas ${d.id} lateral Ec (max diff ${worst.toExponential(1)})`);
   if (r.vert0 !== null) { const V = BA.vertical(d, vg); check(`atlas ${d.id} vertical Ec(0)`, V.Ec[0], r.vert0, d.model.vertical === 'hemt' ? 1e-3 : 1e-6); }
+}
+const mats = Object.fromEntries(JSON.parse(readFileSync(new URL('../data/band_alignment.json', import.meta.url))).materials.map(m => [m.id, m]));
+for (const r of ref.hetero) {
+  const [a, b, da, db, V] = r.case, s = HJ.solve(mats[a], mats[b], da, db, V), tag = `hetero ${a}/${b} ${da}/${db} V=${V}`;
+  let worst = 0; r.Ec.forEach((e, k) => { worst = Math.max(worst, Math.abs(s.Ec[k * 60] - e)); });
+  if (worst > 1e-6) fails++;
+  console.log(`${worst > 1e-6 ? 'FAIL' : 'ok  '} ${tag} Ec (max diff ${worst.toExponential(1)})`);
+  check(`${tag} VA`, s.VA, r.VA, 1e-6); check(`${tag} VB`, s.VB, r.VB, 1e-6); check(`${tag} W`, s.W_nm, r.W_nm, 1e-4);
 }
 const v = MC.simulate(1e5, { n: 1000, tPs: 3 });
 check('MC v(1e5 V/cm) within 25% of 1.07e7', v, 1.07e7, 0.25);

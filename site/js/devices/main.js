@@ -5,6 +5,9 @@ import { XSec } from './xsec.js';
 import { LateralView, VerticalView } from './bandview.js';
 import { lateral, vertical, onFraction, vtEff, heterojunction } from './bands.js';
 import { panel, tiles, sci, clamp } from '../physlab/ui.js';
+import { EqView, sciShort } from './hjeq.js';
+import { initCompare } from './compare.js';
+import { initQuiz } from './quiz.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -253,7 +256,7 @@ function frame(dt) {
 function drawTransfer() {
   const cv = $('#dvTf'); if (!cv) return;
   const dpr = Math.min(devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
-  if (cv.width !== Math.round(w * dpr)) { cv.width = w * dpr; cv.height = h * dpr; }
+  if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
   const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
   const dev = S.dev, [a, b] = dev.model.vg, pad = { l: 40, r: 12, t: 10, b: 24 }, W = w - pad.l - pad.r, H = h - pad.t - pad.b;
   let bottom = 0; for (let i = 0; i <= 60; i++) bottom = Math.min(bottom, Math.log10(onFraction(dev, a + (b - a) * i / 60, 0)), Math.log10(onFraction(dev, a + (b - a) * i / 60, 1)));
@@ -339,22 +342,64 @@ function buildAlign() {
 function markPicks() { document.querySelectorAll('#dvAlign .dv-bar').forEach(b => b.classList.toggle('picked', hjPick.includes(b.dataset.id))); }
 
 // ---------------------------------------------------------------- heterojunction builder
-const HJ_PRESETS = [
-  ['GaN', 'AlGaN', 'AlGaN / GaN (HEMT)'], ['GaAs', 'AlGaAs', 'AlGaAs / GaAs'], ['Si', 'SiGe', 'Si / SiGe (HBT)'], ['InGaAs', 'InP', 'InP / InGaAs'],
-  ['Si', 'SiO2', 'Si / SiO₂'], ['Si', 'HfO2', 'Si / HfO₂'], ['Si', 'Ge', 'Si / Ge'], ['InAs', 'C-H', 'InAs / H-diamond'],
+const HJ_PRESETS = [ // A, B, label, doping A, doping B (cm^-3, + = n), bias
+  ['GaN', 'AlGaN', 'AlGaN / GaN (HEMT)', 1e15, 1e18, 0], ['GaAs', 'AlGaAs', 'AlGaAs / GaAs (modulation doping)', 1e15, 2e18, 0],
+  ['Si', 'SiGe', 'Si / SiGe (HBT emitter–base)', 1e18, -1e18, 0], ['InGaAs', 'InP', 'InP / InGaAs', 1e15, 1e18, 0],
+  ['Si', 'Si', 'Silicon pn junction', -1e17, 1e17, 0], ['Si', 'SiO2', 'Si / SiO₂', -1e17, 0, 0], ['Si', 'HfO2', 'Si / HfO₂', -1e17, 0, 0],
+  ['Si', 'Ge', 'Si / Ge', 1e17, -1e17, 0], ['InAs', 'C-H', 'InAs / H-diamond (broken gap)', 1e16, 0, 0],
 ];
+const HJ = { dop: { A: 1e15, B: 1e18 }, V: 0 };
+let eqView;
+function dopUI(side) {
+  const host = $(`#hjDop${side}`), inp = host.querySelector('input'), out = host.querySelector('output');
+  const d = HJ.dop[side], type = Math.abs(d) < 1 ? 'i' : d > 0 ? 'n' : 'p', ins = MATS[$(`#hj${side}`).value].kind === 'insulator';
+  host.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === type)));
+  host.classList.toggle('off', ins);
+  inp.disabled = type === 'i' || ins;
+  if (type !== 'i') inp.value = Math.log10(Math.abs(d));
+  inp.style.setProperty('--fill', ((+inp.value - 14) / 5 * 100) + '%');
+  out.textContent = ins ? 'insulator' : type === 'i' ? 'undoped' : `${sciShort(Math.abs(d))} cm⁻³`;
+}
 function buildHJ() {
   const opts = ALIGN.materials.map(m => `<option value="${m.id}">${esc(m.name)}</option>`).join('');
   $('#hjA').innerHTML = opts; $('#hjB').innerHTML = opts;
   $('#hjPresets').innerHTML = HJ_PRESETS.map(([a, b, l], i) => `<button type="button" data-i="${i}">${l}</button>`).join('');
-  $('#hjPresets').onclick = e => { const b = e.target.closest('button'); if (!b) return; const [A, B] = HJ_PRESETS[+b.dataset.i]; setHJ(A, B); };
+  $('#hjPresets').onclick = e => { const b = e.target.closest('button'); if (!b) return; const [A, B, , dA, dB, V] = HJ_PRESETS[+b.dataset.i]; HJ.dop.A = dA; HJ.dop.B = dB; HJ.V = V; setHJ(A, B); };
   $('#hjA').onchange = $('#hjB').onchange = () => drawHJ();
+  for (const side of ['A', 'B']) {
+    const host = $(`#hjDop${side}`), inp = host.querySelector('input');
+    host.querySelector('.seg').onclick = e => {
+      const b = e.target.closest('button'); if (!b) return;
+      const mag = 10 ** +inp.value; HJ.dop[side] = b.dataset.v === 'n' ? mag : b.dataset.v === 'p' ? -mag : 0; drawHJ();
+    };
+    inp.oninput = () => { const s = Math.sign(HJ.dop[side]) || 1; HJ.dop[side] = s * 10 ** +inp.value; drawHJ(); };
+  }
+  $('#hjV').oninput = e => { HJ.V = +e.target.value; drawHJ(); };
+  $('#hjZoom').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#hjZoom').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); eqView.setZoom(b.dataset.v); eqView.draw(0); };
+  eqView = new EqView($('#hjEq'), $('#hjDens'));
   setHJ('GaN', 'AlGaN');
+  let last = performance.now(), vis = false;
+  new IntersectionObserver(([en]) => { vis = en.isIntersecting; }).observe($('#hjEq'));
+  const tick = now => { const dt = Math.min((now - last) / 1000, 0.05); last = now; if (vis && !document.hidden) safe(() => eqView.draw(reduce ? 0 : dt), 'eq'); requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
 }
 function setHJ(a, b) { $('#hjA').value = a; $('#hjB').value = b; drawHJ(); }
+function drawEq(A, B) {
+  const v = $('#hjV'), ins = A.kind === 'insulator' || B.kind === 'insulator';
+  v.disabled = ins; v.value = ins ? 0 : HJ.V; v.style.setProperty('--fill', ((+v.value + 2) / 2.8 * 100) + '%');
+  $('#hjVo').textContent = ins ? 'n/a (insulator)' : `${(+v.value).toFixed(2)} V`;
+  dopUI('A'); dopUI('B');
+  const r = eqView.update(A, B, A.kind === 'insulator' ? 0 : HJ.dop.A, B.kind === 'insulator' ? 0 : HJ.dop.B, ins ? 0 : HJ.V);
+  eqView.draw(0);
+  const t = (l, v, u) => `<div class="pl-tile"><span class="l">${l}</span><span class="v tabnum">${v}</span>${u ? `<span class="u">${u}</span>` : ''}</div>`;
+  const bend = v => Math.abs(v) < 0.005 ? '0.00' : `${Math.abs(v).toFixed(2)} ${v < 0 ? '↓' : '↑'}`;
+  const len = nm => nm >= 1000 ? `${(nm / 1000).toFixed(nm >= 1e4 ? 0 : 2)} µm` : `${nm.toFixed(nm < 10 ? 1 : 0)} nm`;
+  $('#hjEqTiles').innerHTML = `<div class="pl-tiles dv-eq-tiles">${t('Built-in potential', (ins ? 0 : Math.abs(r.Vbi)).toFixed(2), 'V')}${t('Band bending in A', bend(r.VA), 'eV at the interface')}${t('Band bending in B', bend(r.VB), 'eV at the interface')}${t('Space-charge width', len(r.W_nm))}${t('Electrons at interface', r.ns > 1e8 ? sciShort(r.ns) : '—', 'cm⁻² (±30 nm)')}${t('Holes at interface', r.ps > 1e8 ? sciShort(r.ps) : '—', 'cm⁻² (±30 nm)')}</div>`;
+}
 function drawHJ() {
   const A = MATS[$('#hjA').value], B = MATS[$('#hjB').value], r = heterojunction(A, B);
-  document.querySelectorAll('#hjPresets button').forEach((btn, i) => btn.setAttribute('aria-pressed', String(HJ_PRESETS[i][0] === A.id && HJ_PRESETS[i][1] === B.id)));
+  document.querySelectorAll('#hjPresets button').forEach((btn, i) => { const P = HJ_PRESETS[i]; btn.setAttribute('aria-pressed', String(P[0] === A.id && P[1] === B.id && P[3] === HJ.dop.A && P[4] === HJ.dop.B)); });
+  safe(() => drawEq(A, B), 'eq-solve');
   const W = 720, H = 420, pad = { l: 60, r: 60, t: 40, b: 40 }, xm = W / 2;
   const top = Math.max(0.6, Math.max(r.Ec1, r.Ec2) + 0.6), bot = Math.min(r.Ev1, r.Ev2) - 0.6;
   const Y = E => pad.t + (top - E) / (top - bot) * (H - pad.t - pad.b);
@@ -380,7 +425,8 @@ function drawHJ() {
   const ins = A.kind === 'insulator' || B.kind === 'insulator';
   const low = r.Ec1 < r.Ec2 ? A : B, lowV = r.Ev1 > r.Ev2 ? A : B;
   let why;
-  if (ins) why = `The conduction-band offset of ${Math.abs(r.dEc).toFixed(2)} eV is the barrier gate-leakage electrons must tunnel through, and the valence-band offset of ${Math.abs(r.dEv).toFixed(2)} eV is the barrier for holes. A dielectric needs both above roughly 1 eV: this is why hafnium oxide (1.5 eV to silicon) replaced silicon dioxide (3.1 eV) only because its higher permittivity allows a physically thicker layer. Try it in <a href="physics.html#tunnel">Physics Lab 07</a>.`;
+  if (A.id === B.id) why = `Same material on both sides: there are no band offsets, so this is a homojunction. All of the band bending in the solved diagram comes from the different doping, exactly as in the pn junction of <a href="physics.html#pn">Physics Lab 04</a>. Try reverse bias (negative V with p-type on the left) and watch the space-charge region widen.`;
+  else if (ins) why = `The conduction-band offset of ${Math.abs(r.dEc).toFixed(2)} eV is the barrier gate-leakage electrons must tunnel through, and the valence-band offset of ${Math.abs(r.dEv).toFixed(2)} eV is the barrier for holes. A dielectric needs both above roughly 1 eV: this is why hafnium oxide (1.5 eV to silicon) replaced silicon dioxide (3.1 eV) only because its higher permittivity allows a physically thicker layer. Try it in <a href="physics.html#tunnel">Physics Lab 07</a>.`;
   else if (r.type.startsWith('I ')) why = `Type I (straddling): both band edges of ${esc(low.name)} sit inside the gap of the other material, so electrons and holes both collect on the ${esc(low.name)} side. This is the geometry of quantum wells, semiconductor lasers and the HEMT channel${A.id === 'GaN' || B.id === 'GaN' ? '; in AlGaN/GaN, polarization charge fills the well with electrons even without doping' : ''}.`;
   else if (r.type.startsWith('II')) why = `Type II (staggered): electrons prefer ${esc(low.name)} (lower E<sub>c</sub>) while holes prefer ${esc(lowV.name)} (higher E<sub>v</sub>), so the two carriers are separated across the interface. Useful for tunnel FET junctions, where the effective gap across the interface is smaller than either material's own gap.`;
   else why = `Type III (broken gap): the conduction band on one side lies below the valence band on the other, so electrons flow across with no voltage at all until the charge built up stops them. Hydrogen-terminated diamond's surface conductivity works in a related way: electrons leave diamond's valence band for surface acceptors, leaving a sheet of holes.`;
@@ -405,7 +451,7 @@ function hero() {
     if (visible && !document.hidden) {
       t += reduce ? 0 : dt;
       const dpr = Math.min(devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
-      if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = w * dpr; cv.height = h * dpr; }
+      if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
       const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
       const vg = 0.2 + 0.8 * (0.5 - 0.5 * Math.cos(t * 0.5)), L = lateral(dev, vg, 0.6, 161);
       const X = x => w * (0.02 + x * 0.96), Y = E => h * 0.3 + (0.45 - E) / 2.3 * h * 0.62;
@@ -435,30 +481,68 @@ function progress() {
 }
 
 // ---------------------------------------------------------------- record mode (deterministic frames for GIF capture)
+function recordFonts(scale) { // enlarge every canvas label for GIF capture
+  const d = Object.getOwnPropertyDescriptor(CanvasRenderingContext2D.prototype, 'font');
+  Object.defineProperty(CanvasRenderingContext2D.prototype, 'font', { configurable: true, get() { return d.get.call(this); },
+    set(v) { d.set.call(this, String(v).replace(/([\d.]+)px/, (m, n) => (n * scale).toFixed(1) + 'px')); } });
+}
+const recFoot = extra => `<div class="rec-foot"><span><i class="e"></i>electron</span><span><i class="h"></i>hole</span><span id="recV">${extra || ''}</span><span class="rec-brand">Transistor Odyssey · Device Atlas</span></div>`;
 function recordMode(id) {
-  document.body.classList.add('record');
-  const dev = BY_ID[id] || DEVICES[0];
-  const stage = document.createElement('div'); stage.id = 'rec';
-  stage.innerHTML = `<div class="rec-head"><span class="eyebrow">${esc(dev.family)} · ${dev.year}</span><h2>${esc(dev.name)}</h2><span class="rec-state" id="recState"></span></div>
-    <canvas id="recX"></canvas><canvas id="recL"></canvas><div class="rec-foot"><span><i class="e"></i>electron</span><span><i class="h"></i>hole</span><span id="recV"></span><span class="rec-brand">Transistor Odyssey · Device Atlas</span></div>`;
-  document.body.appendChild(stage);
-  xsec = new XSec($('#recX'), rnd); latView = new LateralView($('#recL'), rnd);
-  S.dev = dev; xsec.setScene(SCENES[dev.id], dev); latView.reset(dev);
-  const e = ends(dev), m = dev.model, FR = 15;
-  S.vd = m.vd[1] * (m.lateral === 'bjt' ? 0.4 : 0.6);
-  let k = 0;
+  document.body.classList.add('record'); recordFonts(1.2);
+  const stage = document.createElement('div'); stage.id = 'rec'; document.body.appendChild(stage);
+  const FR = 12; let k = 0;
   window.__reset = () => { k = 0; };
-  window.__frame = (nFrames = 90) => {
-    const ph = (k / nFrames) * 2 * Math.PI; k++;
-    S.vg = e.off + (e.on - e.off) * (0.5 - 0.5 * Math.cos(ph));
-    const L = lateral(dev, S.vg, S.vd, 241, 0), f = onFraction(dev, S.vg), g01 = clamp((S.vg - e.off) / (e.on - e.off), 0, 1);
-    const st = { f, vd01: S.vd / m.vd[1], vg01: m.pol < 0 ? -g01 : g01, prog: 0, dt: 1 / FR, speed: 1, labels: true, termLabels: dev.labels, termVolts: { g: `${S.vg.toFixed(Math.abs(m.vg[1] - m.vg[0]) > 5 ? 1 : 2)} V`, d: `${S.vd.toFixed(1)} V` } };
-    xsec.draw(st); latView.draw(L, st);
-    const s = classify(dev, S.vg, S.vd, 0);
-    $('#recState').textContent = STATE_TXT[stateSet(dev)][s]; $('#recState').style.color = STATE_COL[s];
-    $('#recV').textContent = `gate ${S.vg.toFixed(2)} V`;
-    return k;
-  };
+  if (id === 'compare') {
+    const ids = ['planar_mosfet', 'finfet', 'gaa'];
+    stage.className = 'rec-cmp';
+    stage.innerHTML = `<div class="rec-head"><span class="eyebrow">Gate off · drain rising</span><h2>Why the FinFET had to happen</h2><span class="rec-state" id="recState"></span></div>
+      <div class="rec-row">${ids.map(i => `<figure><figcaption>${esc(BY_ID[i].short)} <span id="rb_${i}"></span></figcaption><canvas id="rc_${i}"></canvas></figure>`).join('')}</div>${recFoot('drain-induced barrier lowering (DIBL)')}`;
+    const views = ids.map(i => { const v = new LateralView($(`#rc_${i}`), rnd); v.reset(BY_ID[i]); return [i, v]; });
+    window.__frame = (n = 72) => {
+      const ph = (k / n) * 2 * Math.PI; k++; const d01 = 0.5 - 0.5 * Math.cos(ph);
+      for (const [i, v] of views) {
+        const d = BY_ID[i], vd = d.model.vd[1] * d01, L = lateral(d, ends(d).off, vd, 181);
+        v.draw(L, { dt: 1 / FR, speed: 1, vd01: Math.max(d01, 0.05), f: onFraction(d, ends(d).off) });
+        const L0 = lateral(d, ends(d).off, 0, 181);
+        $(`#rb_${i}`).textContent = `drain lowers the barrier by ${Math.round((L0.barrier - L.barrier) * 1000)} meV`;
+      }
+      $('#recState').textContent = `drain ${Math.round(d01 * 100)}% of rated`;
+      return k;
+    };
+  } else if (id === 'pn') {
+    stage.className = 'rec-pn';
+    stage.innerHTML = `<div class="rec-head"><span class="eyebrow">Solved · Poisson + Boltzmann</span><h2>A silicon pn junction under bias</h2><span class="rec-state" id="recState"></span></div>
+      <canvas id="recE"></canvas><canvas id="recD"></canvas>${recFoot('amber band: space-charge region')}`;
+    const ev = new EqView($('#recE'), $('#recD'), rnd); ev.setZoom('250');
+    window.__frame = (n = 72) => {
+      const ph = (k / n) * 2 * Math.PI; k++;
+      const bias = -0.7 + 1.3 * Math.cos(ph);                     // swings between forward 0.6 V and reverse -2 V
+      ev.update(MATS.Si, MATS.Si, -1e17, 1e17, bias); ev.draw(1 / FR);
+      $('#recState').textContent = `${bias >= 0 ? 'forward' : 'reverse'} bias ${bias.toFixed(2)} V`;
+      $('#recState').style.color = bias >= 0 ? '#199e70' : '#f2b84b';
+      return k;
+    };
+  } else {
+    const dev = BY_ID[id] || DEVICES[0];
+    stage.innerHTML = `<div class="rec-head"><span class="eyebrow">${esc(dev.family)} · ${dev.year}</span><h2>${esc(dev.name)}</h2><span class="rec-state" id="recState"></span></div>
+      <canvas id="recX"></canvas><canvas id="recL"></canvas>${recFoot()}`;
+    xsec = new XSec($('#recX'), rnd); latView = new LateralView($('#recL'), rnd);
+    S.dev = dev; xsec.setScene(SCENES[dev.id], dev); latView.reset(dev);
+    const e = ends(dev), m = dev.model;
+    S.vd = m.vd[1] * (m.lateral === 'bjt' ? 0.4 : 0.6);
+    window.__frame = (nFrames = 72) => {
+      const ph = (k / nFrames) * 2 * Math.PI; k++;
+      S.vg = e.off + (e.on - e.off) * (0.5 - 0.5 * Math.cos(ph));
+      const L = lateral(dev, S.vg, S.vd, 241, 0), f = onFraction(dev, S.vg), g01 = clamp((S.vg - e.off) / (e.on - e.off), 0, 1);
+      const big = Math.abs(m.vg[1] - m.vg[0]) > 5;
+      const st = { f, vd01: S.vd / m.vd[1], vg01: m.pol < 0 ? -g01 : g01, prog: 0, dt: 1 / FR, speed: 1, labels: true, termLabels: Object.fromEntries(Object.entries(dev.labels).map(([k2, v]) => [k2, v.split(' (')[0]])), termVolts: { g: `${S.vg.toFixed(big ? 1 : 2)} V`, d: `${S.vd.toFixed(1)} V` } };
+      xsec.draw(st); latView.draw(L, st);
+      const s = classify(dev, S.vg, S.vd, 0);
+      $('#recState').textContent = STATE_TXT[stateSet(dev)][s]; $('#recState').style.color = STATE_COL[s];
+      $('#recV').textContent = `${m.lateral === 'bjt' ? 'base' : 'gate'} ${S.vg.toFixed(big ? 1 : 2)} V`;
+      return k;
+    };
+  }
   window.__ready = true;
 }
 
@@ -473,6 +557,8 @@ if (RECORD) {
   select(initial);
   if (BY_ID[location.hash.slice(1)]) requestAnimationFrame(() => $('#atlas').scrollIntoView());
   safe(buildGallery, 'gallery'); safe(buildAlign, 'align'); safe(buildHJ, 'hetero'); safe(buildRefs, 'refs');
+  const openDev = id => { select(id); $('#atlas').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); };
+  safe(() => initCompare(DEVICES, { onOpen: openDev }), 'compare'); safe(() => initQuiz(DEVICES, ALIGN, { onOpen: openDev }), 'quiz');
 
   $('#dvPlay').onclick = () => setPlaying(!S.playing);
   $('#dvSpeed').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.speed = +b.dataset.v; $('#dvSpeed').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); };

@@ -67,7 +67,7 @@ Two gold contacts 50 µm apart press on n-type germanium. Forward-biasing the em
 
 <sub>W. Shockley (Bell Labs) · material: Si · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#bjt)</sub>
 
-<p align="center"><img src="../figures/anim/bjt.gif" width="720" alt="Animated cross-section and band diagram of the Bipolar junction transistor (npn)"></p>
+<p align="center"><img src="../figures/anim/bjt.gif" width="100%" alt="Animated cross-section and band diagram of the Bipolar junction transistor (npn)"></p>
 
 A thin p-type base sits between an n⁺ emitter and an n collector. The base–emitter voltage lowers the barrier for electrons exponentially; almost all injected electrons cross the thin base and fall into the collector.
 
@@ -179,7 +179,7 @@ GaAs has no good native oxide, so the gate is a metal Schottky contact directly 
 
 <sub>Concept: T. Mimura (GaAs, 1980); first AlGaN/GaN HEMT: M. A. Khan et al. (1993) · material: GaN · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#gan_hemt)</sub>
 
-<p align="center"><img src="../figures/anim/gan_hemt.gif" width="720" alt="Animated cross-section and band diagram of the AlGaN/GaN HEMT"></p>
+<p align="center"><img src="../figures/anim/gan_hemt.gif" width="100%" alt="Animated cross-section and band diagram of the AlGaN/GaN HEMT"></p>
 
 Polarization charge at the AlGaN/GaN interface creates a sheet of ~10¹³ electrons/cm² with no doping — a two-dimensional electron gas with high mobility. A negative gate voltage lifts the triangular well above the Fermi level to switch it off.
 
@@ -206,6 +206,8 @@ Polarization charge at the AlGaN/GaN interface creates a sheet of ~10¹³ electr
 
 <sub>H. Kawarada et al. (Waseda, 1994); transfer doping: F. Maier et al. (2000) · material: C-H · hole current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#diamond_fet)</sub>
 
+<p align="center"><img src="../figures/anim/diamond_fet.gif" width="100%" alt="Animated cross-section and band diagram of the Hydrogen-terminated diamond FET"></p>
+
 Diamond is nearly impossible to dope usefully, but a hydrogen-terminated surface under air or Al₂O₃ loses electrons to acceptors outside the crystal. A 2D hole gas ~1 nm deep forms: a p-channel with no dopants in the diamond at all.
 
 **What the band diagram shows, step by step:**
@@ -231,12 +233,16 @@ Diamond is nearly impossible to dope usefully, but a hydrogen-terminated surface
 
 Every metal-oxide-semiconductor field-effect transistor (MOSFET) on this list works the same way in the band diagram: a barrier between source and channel that the gate pulls down. What changes from planar to FD-SOI, FinFET, gate-all-around and CFET is how completely the gate controls that barrier, and so how little the drain can lower it when the gate is off. That drain effect is drain-induced barrier lowering (DIBL); the 2D Poisson lab in the Physics Lab shows it directly [@taur2013; @frank2001].
 
+<p align="center"><img src="../figures/anim/compare.gif" width="100%" alt="Planar MOSFET, FinFET and gate-all-around nanosheet with the gate off and the drain voltage rising"></p>
+
+The animation drives all three silicon devices the same way: gate off, drain voltage rising from zero to its rated value. The drain lowers the planar transistor's barrier by about 120 meV, the FinFET's by about 40 meV and the nanosheet's by about 22 meV. Since leakage grows tenfold for every 60 meV of barrier lost, that difference is the whole case for wrapping the gate around the channel [@hisamoto2000; @loubet2017]. The same comparison is live on the [Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#compare).
+
 
 ### Planar MOSFET (bulk silicon) · 1960
 
 <sub>D. Kahng, M. Atalla (Bell Labs) · material: Si · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#planar_mosfet)</sub>
 
-<p align="center"><img src="../figures/anim/planar_mosfet.gif" width="720" alt="Animated cross-section and band diagram of the Planar MOSFET (bulk silicon)"></p>
+<p align="center"><img src="../figures/anim/planar_mosfet.gif" width="100%" alt="Animated cross-section and band diagram of the Planar MOSFET (bulk silicon)"></p>
 
 A gate on thin oxide pulls electrons to the surface of p-type silicon, forming an inversion layer that connects source and drain. From 1970 to 2011 this flat design, shrunk from 10 µm to 32 nm, built the digital world.
 
@@ -288,7 +294,7 @@ The channel is an ultra-thin silicon film (~7 nm) on a buried oxide. There is no
 
 <sub>D. Hisamoto, C. Hu et al. (1998–2000); first in production: Intel 22 nm (2011) · material: Si · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#finfet)</sub>
 
-<p align="center"><img src="../figures/anim/finfet.gif" width="720" alt="Animated cross-section and band diagram of the FinFET (tri-gate)"></p>
+<p align="center"><img src="../figures/anim/finfet.gif" width="100%" alt="Animated cross-section and band diagram of the FinFET (tri-gate)"></p>
 
 The channel stands up as a thin fin and the gate wraps its top and both sides. Gating from three sides shrinks the electrostatic natural length, so the gate keeps control at ~20 nm lengths where planar devices leaked.
 
@@ -315,7 +321,7 @@ The channel stands up as a thin fin and the gate wraps its top and both sides. G
 
 <sub>Research: IBM, imec (2017); production: Samsung 3 nm (2022), TSMC N2 and Intel 18A (2025) · material: Si · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#gaa)</sub>
 
-<p align="center"><img src="../figures/anim/gaa.gif" width="720" alt="Animated cross-section and band diagram of the Gate-all-around nanosheet"></p>
+<p align="center"><img src="../figures/anim/gaa.gif" width="100%" alt="Animated cross-section and band diagram of the Gate-all-around nanosheet"></p>
 
 Three or four horizontal silicon sheets, each ~5 nm thick, are stacked and completely surrounded by the gate. Four-sided control is the best electrostatics silicon can get, and the sheet width can be tuned per transistor.
 
@@ -397,7 +403,7 @@ Current flows through a short MOS channel at the surface of the p-body, then ver
 
 <sub>B. J. Baliga (GE, 1982) · material: Si · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#igbt)</sub>
 
-<p align="center"><img src="../figures/anim/igbt.gif" width="720" alt="Animated cross-section and band diagram of the Insulated-gate bipolar transistor"></p>
+<p align="center"><img src="../figures/anim/igbt.gif" width="100%" alt="Animated cross-section and band diagram of the Insulated-gate bipolar transistor"></p>
 
 A MOSFET on top, a bipolar p⁺ layer at the bottom. When the MOS channel turns on, electrons flow down and trigger hole injection from the p⁺ collector; the drift region floods with both carriers (conductivity modulation), so it conducts far better than a MOSFET's.
 
@@ -454,6 +460,8 @@ The channel is a single molecular layer of MoS₂, 0.65 nm thick, with no dangli
 
 <sub>S. Tans, A. Verschueren, C. Dekker (Delft, 1998); RV16X-NANO CPU: MIT (2019) · material: CNT · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#cnt_fet)</sub>
 
+<p align="center"><img src="../figures/anim/cnt_fet.gif" width="100%" alt="Animated cross-section and band diagram of the Carbon-nanotube FET"></p>
+
 A single semiconducting nanotube ~1.5 nm across bridges two metal contacts. Where metal meets tube a Schottky barrier forms; the gate thins that barrier until electrons tunnel through, so a CNT FET switches at the contacts, not in the middle.
 
 **What the band diagram shows, step by step:**
@@ -479,7 +487,7 @@ A single semiconducting nanotube ~1.5 nm across bridges two metal contacts. Wher
 
 <sub>Band-to-band tunnelling: L. Esaki (1958); TFET review: A. Ionescu, H. Riel (2011) · material: Si · electron current · [open in the Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html#tfet)</sub>
 
-<p align="center"><img src="../figures/anim/tfet.gif" width="720" alt="Animated cross-section and band diagram of the Tunnel FET"></p>
+<p align="center"><img src="../figures/anim/tfet.gif" width="100%" alt="Animated cross-section and band diagram of the Tunnel FET"></p>
 
 Instead of lifting electrons over a barrier (which can't switch faster than 60 mV/decade), the gate pulls the channel's conduction band below the source's valence band so electrons tunnel straight through the gap. The turn-on can be steeper than the thermal limit.
 
@@ -569,7 +577,21 @@ When two semiconductors meet, their band edges have to line up somehow, and the 
 
 The gate dielectric is a heterojunction too. Its conduction-band offset to the channel is the barrier that gate-leakage electrons must tunnel through: about 3.1 eV for SiO₂ on silicon, but only about 1.5 eV for HfO₂. Hafnium oxide won anyway because its dielectric constant (about 20 against 3.9) lets the layer be several times thicker for the same capacitance, and tunnelling falls exponentially with thickness [@robertson2006]. Physics Lab 07 computes exactly this trade-off.
 
-The [heterojunction builder](https://normansrule.github.io/transistor-odyssey/devices.html#hetero) on the Device Atlas page lets you pick any two of the 21 materials and shows the resulting offsets and alignment type.
+### What happens when the materials touch
+
+Anderson's rule gives the band edges *before* the two materials exchange charge. Once they touch, electrons flow from the side with the higher Fermi level to the side with the lower one until the Fermi level is flat, leaving behind ionized donors and acceptors whose charge bends the bands. `sim/transistor_sim/physics/hetero.py` solves this exactly within Boltzmann statistics: Poisson's equation
+
+d/dx (ε dE<sub>vac</sub>/dx) = q (p − n + N<sub>D</sub> − N<sub>A</sub>),  with n = N<sub>c</sub> e<sup>(E<sub>F</sub> − E<sub>c</sub>)/kT</sup> and p = N<sub>v</sub> e<sup>(E<sub>v</sub> − E<sub>F</sub>)/kT</sup>,
+
+on a grid that is sub-nanometre at the interface, with Newton's method and charge neutrality far away on each side. A bias splits the electron and hole quasi-Fermi levels across the junction. Tests pin it to the depletion-approximation built-in voltage and width of a silicon pn junction and check that the total charge is zero [@sze2006; @anderson1962].
+
+<p align="center"><img src="../figures/heterojunction_equilibrium.png" width="100%" alt="Solved band diagrams: silicon pn junction, AlGaAs/GaAs modulation doping and InAs on hydrogen-terminated diamond"></p>
+
+The three panels show the three things band bending does. In a silicon pn junction the bands drop by the built-in voltage (0.84 V here) across a depletion region about 160 nm wide, which widens as the square root of the reverse bias. In modulation doping, the donors sit in AlGaAs but their electrons fall into the lower conduction band of undoped GaAs and pile up against the interface, a two-dimensional electron gas without dopants in its way: the idea behind Mimura's high-electron-mobility transistor [@mimura1980]. On the right, hydrogen-terminated diamond's valence band sits above indium arsenide's conduction band, so electrons cross spontaneously and leave holes behind in the diamond. Boltzmann statistics overstate how many move, because the states fill up, but the direction and the mechanism are right.
+
+<p align="center"><img src="../figures/anim/pn.gif" width="100%" alt="A silicon pn junction swept from reverse to forward bias, solved live"></p>
+
+The [heterojunction builder](https://normansrule.github.io/transistor-odyssey/devices.html#hetero) on the Device Atlas page does all of this live: pick any two of the 21 materials, set the doping type and level on each side and the bias, and it shows the flat-band alignment next to the solved band diagram, the carrier densities, the band bending and the charge collected at the interface.
 
 ## Limits of these pictures
 

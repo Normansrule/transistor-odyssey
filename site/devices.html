@@ -27,9 +27,11 @@
     <div class="nav-links">
       <a href="#primer">Primer</a>
       <a href="#atlas">Atlas</a>
-      <a href="#gallery">All band diagrams</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#compare">Compare</a>
       <a href="#align">Materials</a>
       <a href="#hetero">Heterojunctions</a>
+      <a href="#quiz">Quiz</a>
       <a class="active" href="devices.html">Device Atlas</a>
       <a href="physics.html">Physics Lab</a>
     </div>
@@ -172,6 +174,32 @@
   </div>
 </section>
 
+<!-- ============ COMPARE ============ -->
+<section class="sec dv-sec" id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Compare · same drive, different device</span>
+      <h2>Put transistors side by side</h2>
+      <p class="lead">Pick up to three devices and drive them together. The gate slider moves each one from its own "off" voltage to its own "on" voltage, and the drain slider sets each to the same fraction of its rated drain voltage, so the band diagrams line up even though the volts differ.</p>
+    </div>
+    <div class="cmp" id="cmp">
+      <div class="card panel cmp-ctl">
+        <div class="pl-label">Guided comparisons</div>
+        <div class="seg" id="cmpPresets"></div>
+        <p class="cmp-note" id="cmpNote" aria-live="polite"></p>
+        <div class="cmp-sl">
+          <div class="ctl"><label for="cmpG"><span>Gate drive (off → on)</span><output id="cmpGo"></output></label><input type="range" id="cmpG" min="0" max="1" step="0.01"></div>
+          <div class="ctl"><label for="cmpD"><span>Drain bias (share of rated)</span><output id="cmpDo"></output></label><input type="range" id="cmpD" min="0" max="1" step="0.01"></div>
+        </div>
+        <div class="pl-label">Devices (choose up to three)</div>
+        <div class="seg cmp-chips" id="cmpChips"></div>
+      </div>
+      <div class="cmp-cards" id="cmpCards"></div>
+      <div class="card cmp-table" id="cmpTable"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ ALIGNMENT ============ -->
 <section class="sec dv-sec" id="align">
   <div class="wrap">
@@ -193,7 +221,7 @@
 <section class="sec dv-sec" id="hetero">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Builder · Anderson's rule</span>
+      <span class="eyebrow">Builder · Anderson's rule + Poisson solver</span>
       <h2>Put two materials together</h2>
       <p class="lead">When two semiconductors meet, the step in the conduction band (ΔE<sub>c</sub>) and in the valence band (ΔE<sub>v</sub>) decides where electrons and holes collect. That step is why an aluminium gallium nitride / gallium nitride (AlGaN/GaN) stack traps a sheet of electrons, why a silicon-germanium (SiGe) base speeds up a bipolar transistor, and why hafnium oxide leaks more than silicon dioxide.</p>
     </div>
@@ -203,9 +231,49 @@
         <label class="ctl"><span class="pl-label">Material B (right)</span><select id="hjB" class="dv-sel"></select></label>
         <div class="pl-label">Classic pairs</div>
         <div class="seg" id="hjPresets"></div>
-        <div class="dv-hj-out" id="hjOut" aria-live="polite"></div>
+        <div class="pl-subhead">Doping and bias (solved diagram)</div>
+        <div class="dv-dop" id="hjDopA">
+          <div class="pl-label">Material A doping</div>
+          <div class="seg" role="group" aria-label="Material A doping type"><button type="button" data-v="n">n-type</button><button type="button" data-v="i">undoped</button><button type="button" data-v="p">p-type</button></div>
+          <div class="ctl"><label for="hjNA"><span>Concentration</span><output></output></label><input type="range" id="hjNA" min="14" max="19" step="0.1" value="17"></div>
+        </div>
+        <div class="dv-dop" id="hjDopB">
+          <div class="pl-label">Material B doping</div>
+          <div class="seg" role="group" aria-label="Material B doping type"><button type="button" data-v="n">n-type</button><button type="button" data-v="i">undoped</button><button type="button" data-v="p">p-type</button></div>
+          <div class="ctl"><label for="hjNB"><span>Concentration</span><output></output></label><input type="range" id="hjNB" min="14" max="19" step="0.1" value="17"></div>
+        </div>
+        <div class="ctl"><label for="hjV"><span>Bias on A relative to B</span><output id="hjVo">0.00 V</output></label><input type="range" id="hjV" min="-2" max="0.8" step="0.01" value="0"></div>
       </div>
-      <figure class="card dv-hj-fig"><div class="dv-hj-scroll"><svg id="hjSvg" role="img" aria-label="Heterojunction band alignment"></svg></div></figure>
+      <div class="dv-hj-figs">
+        <figure class="card dv-hj-fig">
+          <figcaption><h4>Before contact: where the bands sit</h4><span class="dv-kind">Anderson's rule · flat bands</span></figcaption>
+          <div class="dv-hj-scroll"><svg id="hjSvg" role="img" aria-label="Heterojunction band alignment"></svg></div>
+        </figure>
+        <figure class="card dv-hj-eq">
+          <figcaption><h4>In contact: charge moves until the Fermi level is flat</h4><span class="dv-kind solved">solved · Poisson</span></figcaption>
+          <div class="dv-hj-zoom"><span class="pl-label">Window</span><div class="seg" id="hjZoom" role="group" aria-label="Zoom"><button type="button" data-v="auto" aria-pressed="true">auto</button><button type="button" data-v="50">±50 nm</button><button type="button" data-v="500">±500 nm</button><button type="button" data-v="5000">±5 µm</button></div></div>
+          <canvas id="hjEq" aria-label="Solved heterojunction band diagram with carriers"></canvas>
+          <canvas id="hjDens" aria-label="Electron and hole densities on a log scale"></canvas>
+          <div id="hjEqTiles"></div>
+          <p class="sub">Solved from Poisson's equation with Boltzmann statistics and Anderson's rule, in <code>sim/transistor_sim/physics/hetero.py</code> and its browser twin. The amber band marks the space-charge region; dots are electrons and holes placed where the solved densities are. Not included: interface dipoles and traps, GaN polarization (see Physics Lab 08), quantization and degeneracy.</p>
+        </figure>
+      </div>
+    </div>
+    <div class="card dv-hj-explain" id="hjOut" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="sec dv-sec" id="quiz">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Test yourself · 8 questions</span>
+      <h2>Can you read a band diagram?</h2>
+      <p class="lead">Every question is drawn fresh from the same models as the atlas: is the transistor on or off, which device made this diagram, what kind of heterojunction is this, and which device leaks more. Each answer comes with the reason.</p>
+    </div>
+    <div class="card qz">
+      <div class="qz-top"><span id="quizScore"></span><div class="qz-bar" id="quizBar"><i></i></div></div>
+      <div id="quizView" aria-live="polite"></div>
     </div>
   </div>
 </section>

@@ -359,3 +359,64 @@ def test_device_atlas_links_resolve():
         assert (root / "docs" / d["docs"]).exists(), d["docs"]
         assert d["lab"] in lab_ids, d["lab"]
         assert (root / "figures/bands" / f"{k}.png").exists(), k
+
+
+# ---------------------------------------------------------------------------
+# Equilibrium heterojunction solver
+def _hj(a, b, da, db, V=0.0):
+    from transistor_sim.physics import hetero
+    M = bandatlas.alignment()
+    return hetero.solve(M[a], M[b], da, db, V)
+
+
+def test_hetero_homojunction_matches_depletion_theory():
+    import math
+    from transistor_sim.physics import hetero
+    M = bandatlas.alignment()
+    r = _hj("Si", "Si", -1e17, 1e17)
+    nA, pA, dA = hetero.neutral(M["Si"], -1e17)
+    nB, pB, dB = hetero.neutral(M["Si"], 1e17)
+    kT = hetero.K_B * 300
+    ni2 = M["Si"]["Nc"] * M["Si"]["Nv"] * math.exp(-M["Si"]["Eg"] / kT)
+    assert abs(r["Vbi"] - kT * math.log(1e34 / ni2)) < 1e-3          # qVbi = kT ln(Na Nd / ni^2)
+    assert abs((r["VA"] + r["VB"]) + r["Vbi"]) < 1e-6                # all of Vbi drops across the junction
+    assert abs(r["VA"] - r["VB"]) < 1e-3                             # symmetric doping splits it evenly
+    eps = M["Si"]["eps"] * hetero.EPS0
+    W = math.sqrt(2 * eps * r["Vbi"] / hetero.Q * 2 / 1e17) * 1e7
+    assert 0.95 < r["W_nm"] / W < 1.2                                # Boltzmann tails widen it slightly
+    rb = _hj("Si", "Si", -1e17, 1e17, -2.0)
+    Wb = W * math.sqrt((r["Vbi"] + 2.0) / r["Vbi"])
+    assert abs(rb["W_nm"] / Wb - 1) < 0.06                           # reverse bias: W grows as sqrt(Vbi - V)
+    assert abs(rb["VA"] + rb["VB"] + r["Vbi"] + 2.0) < 1e-6
+
+
+def test_hetero_charge_neutral_and_offsets():
+    import numpy as np
+    for case in [("GaAs", "AlGaAs", 1e15, 2e18), ("Si", "SiGe", 1e18, -1e18), ("InGaAs", "InP", 1e15, 1e18)]:
+        r = _hj(*case)
+        Q = np.trapezoid(r["rho"], r["x_nm"] * 1e-7) / 1.602e-19
+        dep = abs(r["VA"]) + abs(r["VB"])
+        assert abs(Q) < 1e-3 * 1e18 * r["W_nm"] * 1e-7 + 1e9, case   # net charge ~ 0
+        i0 = r["i0"]
+        assert abs((r["Ec"][i0] - r["Ec"][i0 - 1]) - (r["Evac"][i0] - r["Evac"][i0 - 1]) - r["dEc"]) < 1e-9
+        assert dep > 0.05
+
+
+def test_hetero_modulation_doping_accumulates_electrons():
+    """n-AlGaAs next to undoped GaAs: electrons transfer into the GaAs side of the interface."""
+    r = _hj("GaAs", "AlGaAs", 1e15, 2e18)
+    i0 = r["i0"]
+    assert r["n"][i0 - 1] > 1e17                     # far above the 1e15 background
+    assert r["ns"] > 5e11                            # a sheet of electrons (no polarization in this model)
+    assert r["VA"] < -0.1 and r["VB"] < -0.1         # GaAs bends down, AlGaAs is depleted
+
+
+def test_hetero_insulator_gives_flat_bands_and_true_offsets():
+    r = _hj("Si", "SiO2", -1e17, 0.0)
+    assert abs(r["VA"]) < 1e-9 and abs(r["VB"]) < 1e-9
+    assert abs(r["dEc"] - (4.05 - 0.95)) < 1e-9       # 3.1 eV electron barrier
+
+
+def test_hetero_forward_bias_narrows_junction():
+    w = [_hj("Si", "Si", -1e17, 1e17, V)["W_nm"] for V in (-1.0, 0.0, 0.4)]
+    assert w[0] > w[1] > w[2]

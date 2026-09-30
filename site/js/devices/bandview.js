@@ -4,7 +4,7 @@ const KT_VIS = 0.05; // thermal energy used for the animation (≈2 kT, exaggera
 
 function hi(cv) {
   const ctx = cv.getContext('2d'), dpr = Math.min(devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
-  if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = w * dpr; cv.height = h * dpr; }
+  if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return { ctx, w, h };
 }
 const expo = r => -KT_VIS * Math.log(Math.max(r(), 1e-6));
@@ -32,7 +32,7 @@ export class LateralView {
     ctx.font = '11px "IBM Plex Mono", monospace'; ctx.textAlign = 'center';
     (L.regions || []).forEach(([a, b, name], i) => {
       ctx.fillStyle = i % 2 ? 'rgba(255,255,255,.025)' : 'rgba(255,255,255,.05)'; ctx.fillRect(X(a), pad.t, (b - a) * W, H);
-      ctx.fillStyle = MUTED; ctx.fillText(name, X((a + b) / 2), pad.t - 9);
+      ctx.fillStyle = MUTED; const nm = ctx.measureText(name).width > (b - a) * W - 6 ? name.split(/[ (]/)[0] : name; ctx.fillText(nm, X((a + b) / 2), pad.t - 9);
     });
     // metal Fermi seas (Schottky contacts)
     if (L.metal) {
@@ -75,7 +75,7 @@ export class LateralView {
       }
     }
     ctx.fillStyle = MUTED; ctx.textAlign = 'center'; ctx.font = '11px "IBM Plex Mono", monospace';
-    ctx.fillText('position along the current path →', pad.l + W / 2, h - 7);
+    const xl = 'position along the current path →'; ctx.fillText(ctx.measureText(xl).width > W ? 'source → drain' : xl, pad.l + W / 2, h - 7);
     ctx.save(); ctx.translate(13, pad.t + H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText('electron energy (eV)', 0, 0); ctx.restore();
     this.animate(L, st);
   }
