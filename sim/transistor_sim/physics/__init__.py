@@ -19,5 +19,8 @@ qwell      Quantum wells: nanosheet confinement, self-consistent AlGaN/GaN 2DEG.
 chargesheet    Brews charge-sheet MOSFET: I–V from the exact surface potential.
 thermal    2D heat spreading under a hot spot on Si, SiC, diamond or sapphire.
 litho      Fourier-optics aerial image of a line/space mask (Abbe imaging).
+logic      Static CMOS gates, switch-level simulation, logical effort, ripple and prefix adders.
+sram       Six-transistor SRAM: butterfly curves, static noise margin, read disturb.
+flash      Floating-gate flash: Fowler-Nordheim programming, ISPP, multi-level cells.
 """
 

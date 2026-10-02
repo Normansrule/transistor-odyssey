@@ -19,7 +19,9 @@
 | **FD-SOI** | Fully depleted silicon-on-insulator: a thin silicon film over buried oxide. |
 | **FeFET / NC-FET** | Transistors with a ferroelectric gate layer, used for memory (FeFET) or voltage amplification (negative capacitance). |
 | **FinFET** | Transistor whose channel is a vertical fin gated on three sides. |
+| **Fowler–Nordheim tunnelling** | Field emission of electrons through a triangular oxide barrier, J = A·E²·exp(−B/E); how flash cells are programmed and erased. |
 | **GAA** | Gate-all-around: gate surrounds the channel (nanosheet, nanowire). |
+| **Glitch** | A transient wrong value on a logic signal before it settles; it costs switching energy without doing work. |
 | **gₘ** | Transconductance, ∂I_D/∂V_GS. |
 | **HBM** | High-bandwidth memory: stacked DRAM connected by through-silicon vias. |
 | **HEMT** | High-electron-mobility transistor: a heterojunction FET using a 2DEG channel. |
@@ -29,9 +31,10 @@
 | **I_on / I_off** | Drive current at full gate voltage / leakage with gate off. |
 | **IGBT** | Insulated-gate bipolar transistor: MOS-gated, bipolar-conducting power switch. |
 | **IGZO** | Amorphous indium–gallium–zinc oxide, a thin-film transistor semiconductor for displays and flexible circuits. |
-| **Inner spacer** | Dielectric between gate and source/drain between stacked nanosheets. |
 | **Inner spacer** | Dielectric plug between gate and source/drain in a nanosheet stack. |
 | **Ionization energy (dopant)** | Energy to free a carrier from a dopant; 0.045 eV for B in Si, 0.37 eV for B in diamond. |
+| **ISPP** | Incremental step pulse programming: raising a flash cell's gate voltage by a fixed step each pulse, with a verify read in between. |
+| **Logical effort** | How much more input capacitance a gate needs than an inverter to deliver the same output current; delay d = g·h + p. |
 | **MESFET** | Metal-semiconductor (Schottky-gate) FET, common in GaAs. |
 | **MMP** | Minimum metal pitch. |
 | **MOSFET** | Metal-oxide-semiconductor field-effect transistor. |
@@ -40,9 +43,13 @@
 | **Node** | A process generation label (e.g. "2 nm"); no longer a physical dimension. |
 | **NV centre** | Nitrogen-vacancy defect in diamond with an optically readable spin. |
 | **PDK** | Process design kit: device models, rules and cells for a fab process. |
+| **Read disturb (SRAM)** | The rise of a cell's 0 node when the access transistor connects it to a precharged bitline during a read. |
+| **SLC / MLC / TLC / QLC** | One, two, three or four bits per flash cell, stored as 2, 4, 8 or 16 threshold levels. |
+| **SNM** | Static noise margin: the largest DC noise an SRAM cell tolerates, the side of the largest square in its butterfly curve. |
 | **SS** | Subthreshold swing: gate voltage per decade of current below threshold; ≥ 59.5 mV/dec at 300 K for thermionic devices. |
 | **STI** | Shallow-trench isolation between transistors. |
 | **Surface transfer doping** | Doping a surface by electron transfer to adsorbed acceptors, as on H-terminated diamond. |
+| **Switch-level simulation** | Treating each transistor as an on/off switch and finding which nodes are connected to the supplies; fast enough for whole chips. |
 | **TCAD** | Technology computer-aided design: process and device physics simulation. |
 | **TFET** | Tunnel FET: switches by band-to-band tunnelling and can beat 60 mV/decade. |
 | **TFT** | Thin-film transistor: deposited semiconductor on glass or plastic. |

@@ -1,8 +1,8 @@
 # References
 
-262 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
+282 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
 
-**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab)
+**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab) · [Circuit lab](#circuit-lab)
 
 ## History
 
@@ -322,3 +322,26 @@
 260. `sondheimer1952` — E. H. Sondheimer, "The Mean Free Path of Electrons in Metals," Adv. Phys. 1, 1 (1952). [doi:10.1080/00018735200101151](https://doi.org/10.1080/00018735200101151)
 261. `gall2016` — D. Gall, "Electron Mean Free Path in Elemental Metals," J. Appl. Phys. 119, 085101 (2016). [doi:10.1063/1.4942216](https://doi.org/10.1063/1.4942216)
 262. `elmore1948` — W. C. Elmore, "The Transient Response of Damped Linear Networks with Particular Regard to Wideband Amplifiers," J. Appl. Phys. 19, 55 (1948). [doi:10.1063/1.1697872](https://doi.org/10.1063/1.1697872)
+
+## Circuit lab
+
+263. `sutherland1999` — I. E. Sutherland, R. F. Sproull, D. Harris, "Logical Effort: Designing Fast CMOS Circuits," Morgan Kaufmann (1999). [link](https://books.google.com/books?id=OnlnI3s0vWUC)
+264. `bryant1984` — R. E. Bryant, "A Switch-Level Model and Simulator for MOS Digital Systems," IEEE Trans. Computers C-33, 160 (1984). [doi:10.1109/TC.1984.1676408](https://doi.org/10.1109/TC.1984.1676408)
+265. `koggestone1973` — P. M. Kogge, H. S. Stone, "A Parallel Algorithm for the Efficient Solution of a General Class of Recurrence Equations," IEEE Trans. Computers C-22, 786 (1973). [doi:10.1109/TC.1973.5009159](https://doi.org/10.1109/TC.1973.5009159)
+266. `seevinck1987` — E. Seevinck, F. J. List, J. Lohstroh, "Static-Noise Margin Analysis of MOS SRAM Cells," IEEE J. Solid-State Circuits 22, 748 (1987). [doi:10.1109/JSSC.1987.1052809](https://doi.org/10.1109/JSSC.1987.1052809)
+267. `fowler1928` — R. H. Fowler, L. Nordheim, "Electron Emission in Intense Electric Fields," Proc. R. Soc. Lond. A 119, 173 (1928). [doi:10.1098/rspa.1928.0091](https://doi.org/10.1098/rspa.1928.0091)
+268. `lenzlinger1969` — M. Lenzlinger, E. H. Snow, "Fowler-Nordheim Tunneling into Thermally Grown SiO2," J. Appl. Phys. 40, 278 (1969). [doi:10.1063/1.1657043](https://doi.org/10.1063/1.1657043)
+269. `suh1995` — K.-D. Suh et al., "A 3.3 V 32 Mb NAND Flash Memory with Incremental Step Pulse Programming Scheme," IEEE J. Solid-State Circuits 30, 1149 (1995). [link](https://ui.adsabs.harvard.edu/abs/1995IJSSC..30.1149S/abstract)
+270. `masuoka1987` — F. Masuoka, M. Momodomi, Y. Iwata, R. Shirota, "New Ultra High Density EPROM and Flash EEPROM with NAND Structure Cell," IEDM Tech. Dig., 552 (1987). [doi:10.1109/IEDM.1987.191485](https://doi.org/10.1109/IEDM.1987.191485)
+271. `park2015vnand` — K.-T. Park et al., "Three-Dimensional 128 Gb MLC Vertical NAND Flash Memory with 24-WL Stacked Layers and 50 MB/s High-Speed Programming," IEEE J. Solid-State Circuits 50, 204 (2015). [link](https://ui.adsabs.harvard.edu/abs/2015IJSSC..50..204P/abstract)
+272. `wikichip_sram2022` — WikiChip Fuse, "IEDM 2022: Did We Just Witness the Death of SRAM?" (TSMC N5, N3B and N3E high-density bitcells) (2022). [link](https://fuse.wikichip.org/news/7343/iedm-2022-did-we-just-witness-the-death-of-sram/)
+273. `tsmc_n2_sram` — Tom's Hardware, "SRAM scaling isn't dead after all: TSMC's 2nm process tech claims major improvements" (N2 bitcell 0.0175 µm², 38 Mb/mm²) (2025). [link](https://www.tomshardware.com/tech-industry/sram-scaling-isnt-dead-after-all-tsmcs-2nm-process-tech-claims-major-improvements)
+274. `skhynix321` — SK hynix, "SK hynix Starts Mass Production of World's First 321-High NAND" (Nov. 2024). [link](https://news.skhynix.com/sk-hynix-starts-mass-production-of-world-first-321-high-nand/)
+275. `semieng_3dnand` — Semiconductor Engineering, "3D NAND's Vertical Scaling Race" (2020). [link](https://semiengineering.com/3d-nands-vertical-scaling-race/)
+276. `eetimes_sram90` — EE Times, "Intel claims smallest SRAM cell with 90-nm process, preps technology for 2003 production" (1.0 µm² six-transistor cell) (2002). [link](https://www.eetimes.com/intel-claims-smallest-sram-cell-with-90-nm-process-preps-technology-for-2003-production/)
+277. `sram65_intel` — Silicon Semiconductor, "Intel produces 65nm SRAM" (0.57 µm² cell) (2003). [link](https://siliconsemiconductor.net/article/66658/Intel_produces_65nm_SRAM)
+278. `rwt_intel45` — Real World Technologies, "Intel's 45nm Surprise: High-k Dielectrics and Metal Gates" (0.346 µm² SRAM cell) (2007). [link](https://www.realworldtech.com/intel-45nm-hkmg/4/)
+279. `natarajan2008` — S. Natarajan et al., "A 32nm Logic Technology Featuring 2nd-Generation High-k + Metal-Gate Transistors, Enhanced Channel Strain and 0.171 µm² SRAM Cell Size in a 291Mb Array," IEDM Tech. Dig. (2008). [link](https://scholar.google.com/scholar?q=%22A+32nm+logic+technology+featuring+2nd-generation+high-k+%2B+metal-gate+transistors%22)
+280. `intel22_pres` — Intel, "Silicon Technology Leadership for the Mobility Era" (22 nm: 0.092 µm² and 0.108 µm² SRAM cells) (2012). [link](https://www.intel.com/content/dam/www/public/us/en/documents/presentation/silicon-technology-leadership-presentation.pdf)
+281. `intel10_iedm2017` — Semiconductor Digest (TechInsights), "IEDM 2017: Intel's 10nm Platform Process" (0.0312 µm² high-density SRAM cell) (2017). [link](https://sst.semiconductor-digest.com/chipworks_real_chips_blog/2017/12/18/iedm-2017-intels-10nm-platform-process/)
+282. `wu2016_n7` — S.-Y. Wu et al., "A 7nm CMOS Platform Technology Featuring 4th Generation FinFET Transistors with a 0.027 µm² High Density 6-T SRAM Cell for Mobile SoC Applications," IEDM Tech. Dig. (2016). [link](https://www.semanticscholar.org/paper/985acfee298f91e10443efe918388e2adee0325f)

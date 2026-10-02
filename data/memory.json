@@ -1,0 +1,220 @@
+{
+ "_about": "Memory scaling data used by the Circuit Lab. SRAM: smallest published high-density six-transistor (6T) bitcell per node, by year of volume production. NAND: highest layer count reaching volume production each year. 'approx' marks rounded or press-release figures.",
+ "sram": [
+  {
+   "node": "90 nm",
+   "maker": "Intel",
+   "year": 2003,
+   "area_um2": 1.0,
+   "refs": [
+    "eetimes_sram90"
+   ]
+  },
+  {
+   "node": "65 nm",
+   "maker": "Intel",
+   "year": 2005,
+   "area_um2": 0.57,
+   "refs": [
+    "sram65_intel"
+   ]
+  },
+  {
+   "node": "45 nm",
+   "maker": "Intel",
+   "year": 2007,
+   "area_um2": 0.346,
+   "refs": [
+    "rwt_intel45"
+   ]
+  },
+  {
+   "node": "32 nm",
+   "maker": "Intel",
+   "year": 2009,
+   "area_um2": 0.171,
+   "refs": [
+    "natarajan2008"
+   ]
+  },
+  {
+   "node": "22 nm",
+   "maker": "Intel",
+   "year": 2011,
+   "area_um2": 0.092,
+   "refs": [
+    "intel22_pres"
+   ]
+  },
+  {
+   "node": "14 nm",
+   "maker": "Intel",
+   "year": 2014,
+   "area_um2": 0.0588,
+   "refs": [
+    "natarajan2014"
+   ]
+  },
+  {
+   "node": "10 nm",
+   "maker": "Intel",
+   "year": 2017,
+   "area_um2": 0.0312,
+   "refs": [
+    "intel10_iedm2017"
+   ]
+  },
+  {
+   "node": "N7",
+   "maker": "TSMC",
+   "year": 2018,
+   "area_um2": 0.027,
+   "refs": [
+    "wu2016_n7"
+   ]
+  },
+  {
+   "node": "N5",
+   "maker": "TSMC",
+   "year": 2020,
+   "area_um2": 0.021,
+   "refs": [
+    "wikichip_sram2022"
+   ]
+  },
+  {
+   "node": "N3B",
+   "maker": "TSMC",
+   "year": 2022,
+   "area_um2": 0.0199,
+   "refs": [
+    "wikichip_sram2022",
+    "tsmc_n2_sram"
+   ]
+  },
+  {
+   "node": "N3E",
+   "maker": "TSMC",
+   "year": 2023,
+   "area_um2": 0.021,
+   "refs": [
+    "wikichip_sram2022",
+    "tsmc_n2_sram"
+   ]
+  },
+  {
+   "node": "N2",
+   "maker": "TSMC",
+   "year": 2025,
+   "area_um2": 0.0175,
+   "refs": [
+    "tsmc_n2_sram"
+   ]
+  }
+ ],
+ "nand": [
+  {
+   "year": 1987,
+   "layers": 1,
+   "maker": "Toshiba",
+   "note": "NAND flash cell string proposed (planar)",
+   "refs": [
+    "masuoka1987"
+   ]
+  },
+  {
+   "year": 2007,
+   "layers": 1,
+   "maker": "Toshiba",
+   "note": "BiCS vertical-channel 3D NAND concept",
+   "refs": [
+    "tanaka2007"
+   ]
+  },
+  {
+   "year": 2013,
+   "layers": 24,
+   "maker": "Samsung",
+   "note": "first 3D NAND in volume (V-NAND, 128 Gb)",
+   "refs": [
+    "park2015vnand",
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2014,
+   "layers": 32,
+   "maker": "Samsung",
+   "note": "2nd-generation V-NAND",
+   "approx": true,
+   "refs": [
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2015,
+   "layers": 48,
+   "maker": "Samsung",
+   "note": "3rd-generation V-NAND",
+   "approx": true,
+   "refs": [
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2017,
+   "layers": 64,
+   "maker": "Samsung, Toshiba/WD",
+   "note": "64-layer TLC in volume",
+   "refs": [
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2018,
+   "layers": 96,
+   "maker": "Samsung, Toshiba/WD",
+   "note": "9x-layer generation",
+   "refs": [
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2019,
+   "layers": 128,
+   "maker": "SK hynix",
+   "note": "128-layer TLC",
+   "refs": [
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2020,
+   "layers": 176,
+   "maker": "Micron",
+   "note": "176 word lines, replacement gate",
+   "refs": [
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2022,
+   "layers": 232,
+   "maker": "Micron",
+   "note": "232-layer TLC",
+   "approx": true,
+   "refs": [
+    "semieng_3dnand"
+   ]
+  },
+  {
+   "year": 2024,
+   "layers": 321,
+   "maker": "SK hynix",
+   "note": "first 300+ layer NAND in mass production",
+   "refs": [
+    "skhynix321"
+   ]
+  }
+ ]
+}

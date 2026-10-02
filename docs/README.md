@@ -22,5 +22,6 @@
 | 18 | [Glossary](18-glossary.md) | — | |
 | 19 | [The Physics Lab: semiconductor physics you can run](19-physics-lab.md) | — | ![](../figures/cmos_inverter.png) |
 | 20 | [How each transistor works: cross-sections and energy band diagrams](20-how-transistors-work.md) | 1947–2026 | ![](../figures/anim/finfet.gif) |
+| 21 | [From transistor to computer: the Circuit Lab](21-circuit-lab.md) | 1967–2026 | ![](../figures/sram_cell.png) |
 
 Citations are written as an at-sign key in square brackets, e.g. `[@kilby1976]`. Every key resolves to an entry in [REFERENCES.md](../REFERENCES.md) (search the page for the key); `tests/test_data.py` fails if one does not.

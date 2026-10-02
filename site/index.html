@@ -6,7 +6,7 @@
 <title>Transistor Odyssey</title>
 <meta name="description" content="An interactive history of the transistor from the 1947 point-contact device to 2 nm gate-all-around, IBM's 0.7 nm nanostack and 2D MoS₂ with a 0.42 nm interface, plus GaN, GaAs, SiC, diamond and nanotube alternatives.">
 <meta property="og:title" content="Transistor Odyssey — 1947 to the ångström era">
-<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, nineteen animated devices, fifteen live physics labs and 262 references.">
+<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, nineteen animated devices, fifteen live physics labs, a circuit lab from gates to flash memory and 282 references.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
@@ -38,6 +38,7 @@
     </div>
     <a class="nav-lab" href="devices.html">Device Atlas</a>
     <a class="nav-lab nav-lab2" href="physics.html">Physics Lab</a>
+    <a class="nav-lab nav-lab2 nav-lab3" href="circuits.html">Circuit Lab</a>
     <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       Source
@@ -58,6 +59,7 @@
       <a class="btn" href="#lab">Run the device lab</a>
       <a class="btn" href="devices.html">Device Atlas: how each transistor works →</a>
       <a class="btn" href="physics.html">Physics Lab: 15 live simulations →</a>
+      <a class="btn" href="circuits.html">Circuit Lab: gates, adders and memory →</a>
     </div>
     <p class="hint">Drag across the background to stir the fluid.</p>
     <div class="stats" aria-label="Key numbers">
@@ -270,6 +272,24 @@
       <a class="card glow" href="physics.html#inverter"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M6 8 L48 8 C56 8 58 46 66 46 L114 46" fill="none" stroke="#3987e5" stroke-width="2.4"/><path d="M6 46 L48 46 C56 46 58 8 66 8 L114 8" fill="none" stroke="#8a94a3" stroke-width="1.2" stroke-dasharray="4 3"/><circle cx="57" cy="27" r="3.5" fill="#f2b84b"/></svg><b>13</b><h3>From one transistor to a logic gate</h3><p>The CMOS inverter: transfer curve, noise margins, delay and energy per switch across generations.</p><span class="go">Open lab →</span></a>
       <a class="card glow" href="physics.html#ballistic"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M4 34 Q24 34 30 20 Q36 14 46 22 L116 46" fill="none" stroke="#3987e5" stroke-width="2.4"/><circle cx="34" cy="10" r="2.6" fill="#5aa2ff"/><circle cx="58" cy="12" r="2.6" fill="#5aa2ff"/><circle cx="82" cy="12" r="2.6" fill="#5aa2ff"/><circle cx="44" cy="8" r="2.6" fill="#d55181"/><path d="M40 8 L30 8" stroke="#d55181" stroke-width="1.2"/></svg><b>14</b><h3>How fast can a transistor possibly be?</h3><p>The top-of-barrier model: ballistic limits, backscattering and the density-of-states bottleneck.</p><span class="go">Open lab →</span></a>
       <a class="card glow" href="physics.html#wires"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><defs><linearGradient id="wg" x1="0" x2="1"><stop offset="0" stop-color="#f2b84b"/><stop offset=".5" stop-color="#3cbeb4"/><stop offset="1" stop-color="#1c48a0"/></linearGradient></defs><rect x="4" y="18" width="112" height="16" rx="3" fill="url(#wg)"/><rect x="8" y="38" width="10" height="12" fill="#d9825b"/><rect x="22" y="38" width="10" height="12" fill="#d9825b"/><rect x="36" y="38" width="10" height="12" fill="#b58fd6"/></svg><b>15</b><h3>Why the wires are now slower</h3><p>Size effects in copper, ruthenium and cobalt lines, RC delay and repeaters.</p><span class="go">Open lab →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIRCUIT LAB TEASER ============ -->
+<section class="sec" id="circuits-teaser">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">New · Circuit Lab</span>
+      <h2>From transistor to computer</h2>
+      <p class="lead">What billions of switches are for. Zoom nine powers of ten from a 300 mm wafer to a silicon bond, then build the circuits in between: logic gates simulated switch by switch, an 8-bit adder with its carry wave, the six-transistor SRAM cell behind every cache and the floating-gate flash cell behind every SSD.</p>
+    </div>
+    <div class="pl-teaser five">
+      <a class="card glow" href="circuits.html#zoom"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><circle cx="22" cy="27" r="20" fill="#3a4a64" stroke="#8a94a3"/><rect x="12" y="17" width="6" height="5" fill="#5a7bb0"/><rect x="19" y="17" width="6" height="5" fill="#6b8bc0"/><rect x="26" y="17" width="6" height="5" fill="#5a7bb0"/><rect x="12" y="23" width="6" height="5" fill="#6b8bc0"/><rect x="19" y="23" width="6" height="5" fill="#f2b84b"/><rect x="26" y="23" width="6" height="5" fill="#6b8bc0"/><path d="M25 25 L60 8 M25 28 L60 46" stroke="#f2b84b" stroke-dasharray="3 3"/><rect x="60" y="8" width="54" height="38" fill="#141b26" stroke="#f2b84b"/><rect x="66" y="12" width="5" height="30" fill="#b07ae8"/><rect x="78" y="12" width="5" height="30" fill="#b07ae8"/><rect x="90" y="12" width="5" height="30" fill="#b07ae8"/><rect x="102" y="12" width="5" height="30" fill="#b07ae8"/><rect x="60" y="20" width="54" height="5" fill="#ff8a55" opacity=".35"/><rect x="60" y="30" width="54" height="5" fill="#5aa2ff" opacity=".35"/></svg><b>00</b><h3>Powers of ten</h3><p>Wafer, die, core, standard cells, a NAND gate, a nanosheet, atoms and one covalent bond.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="circuits.html#gates"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><line x1="20" y1="4" x2="100" y2="4" stroke="#f2b84b" stroke-width="2"/><line x1="20" y1="50" x2="100" y2="50" stroke="#56739e" stroke-width="2"/><rect x="40" y="9" width="6" height="12" fill="#ff8a55"/><rect x="74" y="9" width="6" height="12" fill="#ff8a55"/><path d="M43 4 V9 M77 4 V9 M43 21 V27 H77 V21 M60 27 V31" stroke="#f2b84b" fill="none"/><rect x="57" y="31" width="6" height="7" fill="#5aa2ff"/><rect x="57" y="41" width="6" height="7" fill="#5aa2ff"/><path d="M60 27 H108" stroke="#f2b84b"/><circle cx="108" cy="27" r="3" fill="#f2b84b"/></svg><b>01</b><h3>Build a gate from switches</h3><p>NAND, NOR, AOI, XOR and the carry gate: switch-level simulation, truth tables and logical effort.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="circuits.html#adder"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="4" y="16" width="20" height="18" rx="3" fill="#1b2230" stroke="#4c6a96"/><rect x="33" y="16" width="20" height="18" rx="3" fill="#1b2230" stroke="#4c6a96"/><rect x="62" y="16" width="20" height="18" rx="3" fill="#1b2230" stroke="#4c6a96"/><rect x="91" y="16" width="20" height="18" rx="3" fill="#1b2230" stroke="#4c6a96"/><path d="M118 25 H111 M91 25 H82 M62 25 H53" stroke="#f2b84b" stroke-width="2.5"/><path d="M33 25 H24 M4 25 H0" stroke="#56739e" stroke-width="2.5"/><path d="M6 46 H30 V40 H46 V46 H116" fill="none" stroke="#ff8a7a" stroke-width="1.4"/></svg><b>02</b><h3>Add two numbers</h3><p>An 8-bit ripple-carry adder, event by event: the carry wave, glitches and the parallel-prefix alternative.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="circuits.html#sram"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M10 6 C40 6 44 8 50 28 C54 46 60 48 110 48" fill="none" stroke="#3987e5" stroke-width="2"/><path d="M10 48 C40 48 46 46 54 26 C58 8 70 6 110 6" fill="none" stroke="#ff8a55" stroke-width="2"/><rect x="16" y="10" width="20" height="20" fill="#f2b84b" fill-opacity=".2" stroke="#f2b84b"/><rect x="70" y="24" width="20" height="20" fill="#f2b84b" fill-opacity=".2" stroke="#f2b84b"/></svg><b>03</b><h3>Store a bit with six transistors</h3><p>The SRAM cell: read disturb, butterfly curves, noise margins and why bitcells stopped shrinking.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="circuits.html#flash"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="30" y="4" width="60" height="10" fill="#f2b84b"/><rect x="30" y="14" width="60" height="4" fill="#9a80dc" opacity=".6"/><rect x="30" y="18" width="60" height="10" fill="#3a4352"/><rect x="30" y="22" width="60" height="6" fill="#5aa2ff" opacity=".7"/><rect x="30" y="28" width="60" height="5" fill="#e0b14d" opacity=".6"/><rect x="4" y="33" width="26" height="12" fill="#2f4f7e"/><rect x="90" y="33" width="26" height="12" fill="#2f4f7e"/><circle cx="48" cy="31" r="1.8" fill="#bcd8ff"/><circle cx="62" cy="30" r="1.8" fill="#bcd8ff"/><circle cx="74" cy="31" r="1.8" fill="#bcd8ff"/></svg><b>04</b><h3>Keep a bit with the power off</h3><p>Floating-gate flash: Fowler–Nordheim tunnelling, ISPP, 1 to 4 bits per cell and 321-layer 3D NAND.</p><span class="go">Open lab →</span></a>
     </div>
   </div>
 </section>

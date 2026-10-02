@@ -17,6 +17,9 @@ import * as HJ from '../site/js/physics/hetero.js';
 import * as INV from '../site/js/physics/inverter.js';
 import * as BAL from '../site/js/physics/ballistic.js';
 import * as WR from '../site/js/physics/interconnect.js';
+import * as LG from '../site/js/physics/logic.js';
+import * as SR from '../site/js/physics/sram.js';
+import * as FL from '../site/js/physics/flash.js';
 
 const ref = JSON.parse(readFileSync(new URL('../data/physics_reference.json', import.meta.url)));
 let fails = 0;
@@ -88,6 +91,34 @@ check('wire c 14', WR.cPerUm(14, 28, 14), ref.wires.c_14, 1e-9); check('Elmore',
 { const sim = WR.lineSim(458.0, 1.6e-16, 50, 2e3, 1e-15, 51); const V = sim.step(4e-11 / 200, 200);
   let worst = 0; ref.wires.line.forEach((v, i) => { worst = Math.max(worst, Math.abs(V[i * 10] - v)); });
   if (worst > 1e-9) fails++; console.log(`${worst > 1e-9 ? 'FAIL' : 'ok  '} RC line Crank–Nicolson (max diff ${worst.toExponential(1)})`); }
+for (const [k, e] of Object.entries(ref.logic.effort)) {
+  const j = LG.effort(k);
+  check(`effort ${k} p`, j.p, e.p, 1e-12); check(`effort ${k} n`, j.n, e.n, 0);
+  for (const [x, g] of Object.entries(e.g)) check(`effort ${k} g_${x}`, j.g[x], g, 1e-12);
+  const tt = LG.truth(k).map(r => r[1]), net = LG.netlist(k);
+  const sw = LG.truth(k).map(([bits]) => +LG.simulate(net, Object.fromEntries(net.inputs.map((x, i) => [x, bits[i]]))).y);
+  const ok = JSON.stringify(tt) === JSON.stringify(ref.logic.truth[k]) && JSON.stringify(sw) === JSON.stringify(ref.logic.truth[k]);
+  if (!ok) fails++; console.log(`${ok ? 'ok  ' : 'FAIL'} ${k} truth table and switch-level simulation`);
+}
+for (const r of ref.logic.adder) {
+  const s = LG.rippleAdd(...r.case, 8);
+  for (const q of ['settle', 'transitions', 'sum']) check(`adder ${r.case.join(',')} ${q}`, s[q], r[q], 1e-12);
+}
+for (const [n, d] of Object.entries(ref.logic.ks)) check(`Kogge–Stone ${n}`, LG.koggeStoneDelay(+n), d, 1e-12);
+check('KS count 32', LG.koggeStoneCount(32), ref.logic.ksn, 0); check('ripple count 32', LG.rippleCount(32), ref.logic.rcn, 0);
+for (const r of ref.sram) {
+  const [k, cr, dvt] = r.case, c = SR.cell(presets[k], { cr, beta: SR.BETA[k], dvt });
+  for (const q of ['hold_snm', 'read_snm', 'v_read', 'i_read_uA', 't_sense_ps']) check(`sram ${k} cr=${cr} dvt=${dvt} ${q}`, c[q], r[q], 1e-6);
+}
+check('FN B', FL.fnCoeffs().B, ref.flash.B, 1e-12); check('FN J(10 MV/cm)', FL.fnCurrent(1e9), ref.flash.J1e9, 1e-9);
+check('FN rate', FL.rate(-2, 17), ref.flash.rate, 1e-9); check('flash pulse', FL.pulse(-2, 18, 1e-5).v, ref.flash.pulse, 1e-6);
+{ const r = FL.ispp(3.0, { step: 0.5 }).vt; let worst = Math.abs(r.length - ref.flash.ispp.length);
+  ref.flash.ispp.forEach((v, i) => { worst = Math.max(worst, Math.abs(r[i] - v)); });
+  if (worst > 1e-6) fails++; console.log(`${worst > 1e-6 ? 'FAIL' : 'ok  '} ISPP staircase (max diff ${worst.toExponential(1)})`); }
+for (const [b, L] of Object.entries(ref.flash.levels)) {
+  const st = b === '1' ? 0.5 : 0.15, j = FL.levels(+b, { step: st });
+  for (const q of ['spacing', 'width', 'margin']) check(`levels ${b} bit ${q}`, j[q], L[q], 1e-12);
+}
 const v = MC.simulate(1e5, { n: 1000, tPs: 3 });
 check('MC v(1e5 V/cm) within 25% of 1.07e7', v, 1.07e7, 0.25);
 if (fails) { console.error(`${fails} parity check(s) failed`); process.exit(1); }

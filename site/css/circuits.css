@@ -1,0 +1,75 @@
+/* Circuit Lab — layered on style.css and physics.css. */
+
+/* ---------- hero: powers-of-ten zoom ---------- */
+.cz-hero { position: relative; min-height: min(880px, 100svh); display: grid; align-items: end; overflow: hidden; border-bottom: 1px solid var(--line); background: #07090c; }
+.cz-hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cz-shade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(7,9,12,.94) 0%, rgba(7,9,12,.78) 30%, rgba(7,9,12,0) 58%), linear-gradient(0deg, rgba(7,9,12,.9) 0%, rgba(7,9,12,0) 34%); }
+.cz-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(300px, 400px); gap: 32px; align-items: end; padding-block: 120px 44px; }
+.cz-copy { display: grid; gap: 18px; max-width: 640px; }
+.cz-copy h1 { max-width: 13ch; }
+.cz-hud { padding: 16px 18px; display: grid; gap: 12px; background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.cz-hud-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.cz-scale { font: 600 clamp(30px, 3.4vw, 44px)/1 var(--display); color: var(--amber); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.cz-level { font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); text-align: right; }
+.cz-desc { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink); min-height: 4.5em; }
+.cz-bar { display: flex; align-items: center; gap: 10px; font: 12px var(--mono); color: var(--ink-2); }
+.cz-bar i { display: block; height: 6px; border: 2px solid var(--ink); border-top: 0; width: 80px; transition: width .1s linear; }
+.cz-ctl { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; }
+.cz-ctl input { --fill: 0%; }
+.cz-chips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.cz-chips button { width: 100%; font: 500 11px var(--mono); color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 5px 4px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .2s, border-color .2s; }
+.cz-chips button:hover { color: var(--ink); border-color: var(--muted); }
+.cz-chips button.on { color: var(--amber-ink); background: var(--amber); border-color: var(--amber); }
+@media (max-width: 900px) {
+  .cz-hero { min-height: auto; align-items: stretch; }
+  .cz-hero canvas { position: relative; height: 56svh; min-height: 340px; }
+  .cz-shade { display: none; }
+  .cz-hero { display: block; }
+  .cz-inner { grid-template-columns: 1fr; padding-block: 24px 32px; }
+}
+
+/* ---------- gate builder ---------- */
+.cg-inputs { display: flex; flex-wrap: wrap; gap: 8px; }
+.cg-in { min-width: 64px; display: grid; gap: 2px; justify-items: center; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--ink-2); cursor: pointer; font: 600 15px var(--mono); transition: all .2s; }
+.cg-in small { font: 500 11px var(--mono); color: var(--muted); }
+.cg-in[aria-pressed="true"] { background: color-mix(in srgb, var(--amber) 16%, var(--surface-2)); border-color: var(--amber); color: var(--amber-2); }
+.cg-in[aria-pressed="true"] small { color: var(--amber-2); }
+.cg-in:hover { border-color: var(--muted); }
+.cg-truth { overflow-x: auto; }
+.cg-truth table { border-collapse: collapse; width: 100%; font: 13px var(--mono); }
+.cg-truth th, .cg-truth td { padding: 5px 8px; text-align: center; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.cg-truth th { color: var(--muted); font-weight: 500; }
+.cg-truth th.y, .cg-truth td.y { border-left: 1px solid var(--line-2); color: var(--ink); font-weight: 600; }
+.cg-truth tr.on td { background: color-mix(in srgb, var(--amber) 14%, transparent); color: var(--ink); }
+.cg-truth tr.on td.y { color: var(--amber-2); }
+.cg-truth tbody tr { cursor: pointer; }
+.cg-truth tbody tr:hover td { color: var(--ink); }
+.cg-truth-card { align-self: start; }
+
+/* ---------- adder ---------- */
+.ca-bits { display: grid; gap: 10px; }
+.ca-row { display: grid; gap: 4px; }
+.ca-row .pl-label { display: flex; justify-content: space-between; }
+.ca-row .pl-label output { font-family: var(--mono); color: var(--ink); }
+.ca-byte { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px; }
+.ca-byte button { font: 600 13px var(--mono); padding: 6px 0; border-radius: 6px; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--muted); cursor: pointer; }
+.ca-byte button[aria-pressed="true"] { background: color-mix(in srgb, var(--amber) 18%, var(--surface-2)); color: var(--amber-2); border-color: var(--amber); }
+
+/* ---------- record mode (GIF capture): fixed 800×450 stage rendered at 1.25× ---------- */
+body.record { overflow: hidden; background: var(--bg); }
+body.record > :not(#rec) { display: none !important; }
+#rec { width: 800px; height: 450px; position: relative; overflow: hidden; background: #07090c; }
+#rec canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#rec .rec-head { position: absolute; left: 16px; top: 12px; right: 16px; display: flex; align-items: baseline; gap: 12px; z-index: 2; pointer-events: none; }
+#rec .rec-head .eyebrow { font-size: 11px; white-space: nowrap; }
+#rec .rec-head h2 { font: 600 22px var(--display); margin: 0; white-space: nowrap; }
+#rec .rec-state { margin-left: auto; font: 600 14px var(--mono); white-space: nowrap; color: var(--amber-2); }
+#rec .rec-foot { position: absolute; left: 16px; right: 16px; bottom: 8px; display: flex; gap: 16px; font: 12px var(--mono); color: var(--muted); z-index: 2; }
+#rec .rec-brand { margin-left: auto; color: var(--amber); }
+#rec.rec-panel { background: radial-gradient(120% 90% at 30% 0%, #121a24 0%, var(--bg) 70%); }
+#rec.rec-panel canvas { top: 44px; bottom: 28px; height: auto; left: 12px; right: 12px; width: calc(100% - 24px); border: 1px solid var(--line); border-radius: var(--r); background: rgba(16,20,26,.6); }
+#rec .rec-zoomhud { position: absolute; right: 16px; bottom: 34px; width: 300px; padding: 12px 14px; display: grid; gap: 6px; z-index: 2; background: rgba(16,20,26,.82); border: 1px solid var(--line); border-radius: var(--r); }
+#rec .rec-zoomhud b { font: 600 32px/1 var(--display); color: var(--amber); }
+#rec .rec-zoomhud span { font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+#rec .rec-zoomhud p { margin: 0; font-size: 12.5px; line-height: 1.4; color: var(--ink); }

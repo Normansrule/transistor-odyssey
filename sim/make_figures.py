@@ -28,6 +28,7 @@ sys.path.insert(0, str(HERE))
 from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, layout, dopants, steep, process  # noqa: E402
 from transistor_sim.physics import carriers, junction, moscap, tunnel, poisson2d, montecarlo, crystal  # noqa: E402
 from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho, hetero, inverter, ballistic, interconnect  # noqa: E402
+from transistor_sim.physics import logic, sram, flash  # noqa: E402
 from transistor_sim import bandatlas  # noqa: E402
 
 FIG = ROOT / "figures"
@@ -562,9 +563,103 @@ def export_physics_json():
         "litho": {"conv100": litho.contrast(litho.aerial_image(100, 193, 1.35, sigma=0.9)[1]),
                   "dip80": litho.contrast(litho.aerial_image(80, 193, 1.35, kind="dipole", sigma_c=0.89, sigma_w=0.05)[1]),
                   "def120": litho.contrast(litho.aerial_image(120, 193, 1.35, sigma=0.7, defocus_nm=80)[1])},
+        "logic": {"effort": {k: logic.effort(k) for k in logic.GATES},
+                  "truth": {k: [y for _, y in logic.truth(k)] for k in logic.GATES},
+                  "adder": [{"case": c, **{kk: logic.ripple_add(*c, n=8)[kk] for kk in ("settle", "transitions", "sum")}}
+                            for c in [(0, 0, 255, 1), (0, 0, 100, 27), (255, 0, 255, 1), (170, 85, 85, 170)]],
+                  "ks": {n: logic.kogge_stone_delay(n) for n in (8, 64)}, "ksn": logic.kogge_stone_count(32), "rcn": logic.ripple_count(32)},
+        "sram": [{"case": [k, cr, dvt], **{kk: sram.cell(mosfet.preset(k), cr=cr, beta=sram.BETA[k], dvt=dvt)[kk]
+                                            for kk in ("hold_snm", "read_snm", "v_read", "i_read_uA", "t_sense_ps")}}
+                 for k, cr, dvt in [("1999_180nm", 2.0, 0.0), ("2011_22nm_finfet", 1.2, 0.0), ("2025_2nm_gaa", 2.0, 0.1)]],
+        "flash": {"B": flash.fn_coeffs()[1], "J1e9": float(flash.fn_current(1e9)), "rate": flash.rate(-2.0, 17.0),
+                  "pulse": flash.pulse(-2.0, 18.0, 1e-5)[0], "ispp": [float(v) for v in flash.ispp(3.0, step_v=0.5)["vt"]],
+                  "levels": {b: {kk: flash.levels(b, step_v=st)[kk] for kk in ("spacing", "width", "margin")} for b, st in ((1, 0.5), (3, 0.15))}},
     }
     (ROOT / "data" / "physics_reference.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
     print("data/physics_reference.json")
+
+
+def fig_logic():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.5, 5.0), gridspec_kw=dict(wspace=0.3))
+    keys = ["inv", "nand2", "nor2", "nand3", "nor3", "aoi21", "oai21", "aoi22", "xor2", "maj"]
+    names = ["INV", "NAND2", "NOR2", "NAND3", "NOR3", "AOI21", "OAI21", "AOI22", "XOR2", "Carry"]
+    E = [logic.effort(k) for k in keys]
+    g = [max(e["g"].values()) for e in E]; pp = [e["p"] for e in E]
+    x = np.arange(len(keys))
+    a1.bar(x, pp, color="#2b3a52", label="parasitic delay p")
+    a1.bar(x, [4 * gi for gi in g], bottom=pp, color=SERIES[0], label="effort delay 4g (fan-out of 4)")
+    for i, (gi, pi, e) in enumerate(zip(g, pp, E)):
+        a1.text(i, 4 * gi + pi + 0.4, f"{4 * gi + pi:.1f}", ha="center", color=INK2, fontsize=8.5)
+        a1.text(i, -2.4, f"{e['n']}T", ha="center", color=MUTED, fontsize=8)
+    a1.set_xticks(x); a1.set_xticklabels(names, rotation=35, ha="right", fontsize=9); a1.set_ylim(-3.5, 30)
+    a1.set_ylabel("delay d = g h + p  (τ)"); a1.set_title("Logical effort of static CMOS gates")
+    subtitle(a1, "from the transistor netlists (γ = 2); below: transistor count"); a1.legend(fontsize=9, loc="upper left")
+    tau = inverter.metrics(mosfet.preset("2025_2nm_gaa"), beta=0.9)["tp_ps"] / 5
+    Ns = [4, 8, 16, 32, 64]
+    a2.plot(Ns, [logic.ripple_worst(n) * tau for n in Ns], "o-", color=SERIES[3], label="ripple-carry (event-driven sim worst case)")
+    a2.plot(Ns, [logic.kogge_stone_delay(n) * tau for n in Ns], "o-", color=SERIES[0], label="Kogge–Stone parallel prefix")
+    a2.set_xscale("log", base=2); a2.set_xticks(Ns); a2.set_xticklabels([str(n) for n in Ns])
+    a2.set_xlabel("word width (bits)"); a2.set_ylabel("worst-case delay (ps)"); a2.set_title("Adders: linear versus logarithmic")
+    subtitle(a2, f"2 nm-class nanosheet model, τ = {tau:.2f} ps"); a2.legend(fontsize=9, loc="upper left")
+    save(fig, "logic_adders")
+
+
+def fig_sram():
+    import json as _json
+    fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(16, 5.0), gridspec_kw=dict(wspace=0.32, width_ratios=[1, 1, 1.25]))
+    p = mosfet.preset("2011_22nm_finfet")
+    for read, col, lab in [(False, MUTED, "hold"), (True, SERIES[0], "read")]:
+        vin, vout = sram.vtc(p, p.VDD, 2.0, 1.0, 0.8, read)
+        a1.plot(vin, vout, color=col, lw=2 if read else 1.2, ls="-" if read else "--", label=f"{lab}: SNM {sram.snm(vin, vout)[0] * 1000:.0f} mV")
+        a1.plot(vout, vin, color=SERIES[1] if read else MUTED, lw=2 if read else 1.2, ls="-" if read else "--")
+    a1.set_xlim(0, p.VDD); a1.set_ylim(0, p.VDD)
+    a1.set_xlabel("V(Q̄) (V)"); a1.set_ylabel("V(Q) (V)"); a1.set_title("Butterfly curves (22 nm FinFET)")
+    subtitle(a1, "cell ratio 2, pull-up ratio 1"); a1.legend(fontsize=9, loc="upper right")
+    vs = np.linspace(0.2, 1.0, 17)
+    for dvt, ls in [(0.0, "-"), (0.1, "--")]:
+        h, r = sram.snm_vs_vdd(p, vs, beta=0.8) if dvt == 0 else (np.array([sram.cell(p, v, beta=0.8, dvt=dvt)["hold_snm"] for v in vs]), np.array([sram.cell(p, v, beta=0.8, dvt=dvt)["read_snm"] for v in vs]))
+        a2.plot(vs, h * 1000, color=MUTED, ls=ls, label=f"hold{'' if dvt == 0 else ', 100 mV mismatch'}")
+        a2.plot(vs, r * 1000, color=SERIES[3], ls=ls, label=f"read{'' if dvt == 0 else ', 100 mV mismatch'}")
+    a2.set_xlabel("supply V_DD (V)"); a2.set_ylabel("static noise margin (mV)"); a2.set_title("Noise margin vs supply")
+    subtitle(a2, "Seevinck largest square; dashed: 100 mV mismatch"); a2.legend(fontsize=8.5)
+    mem = _json.loads((ROOT / "data" / "memory.json").read_text(encoding="utf-8"))["sram"]
+    for maker, col in [("Intel", SERIES[0]), ("TSMC", SERIES[3])]:
+        rows = [r for r in mem if r["maker"] == maker]
+        a3.plot([r["year"] for r in rows], [r["area_um2"] for r in rows], "o-", color=col, label=maker)
+        for r in rows:
+            a3.annotate(r["node"], (r["year"], r["area_um2"]), xytext=(5, 5 if r["node"] != "N3B" else -12), textcoords="offset points", color=INK2, fontsize=8.5)
+    a3.plot([2003, 2017.5], [1.0, 0.5 ** 7.25], color=MUTED, ls=":", label="0.5× every two years")
+    a3.set_yscale("log"); a3.set_ylim(0.01, 1.5); a3.set_xlabel("year of volume production"); a3.set_ylabel("six-transistor bitcell area (µm²)")
+    a3.set_title("Bitcell area: stalled at 5–3 nm"); subtitle(a3, "published high-density cells (see REFERENCES.md)"); a3.legend(fontsize=9)
+    save(fig, "sram_cell")
+
+
+def fig_flash():
+    import json as _json
+    fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(16, 5.0), gridspec_kw=dict(wspace=0.32, width_ratios=[1, 1.1, 1]))
+    for i, st in enumerate([0.5, 0.3, 0.15]):
+        r = flash.ispp(4.0, step_v=st)
+        a1.plot(np.arange(0, r["pulses"] + 1), np.concatenate([[-2.0], r["vt"]]), "o-", ms=3, color=SERIES[i], label=f"step {st * 1000:.0f} mV: {r['pulses']} pulses")
+    a1.axhline(4.0, color=SERIES[2], ls="--", lw=1); a1.text(0.5, 4.15, "verify level", color=SERIES[2], fontsize=9)
+    a1.set_xlabel("program pulse"); a1.set_ylabel("threshold voltage V_T (V)"); a1.set_title("Incremental step pulse programming")
+    subtitle(a1, "Fowler–Nordheim tunnelling, 8 nm oxide, α_G = 0.6, start 14 V"); a1.legend(fontsize=9, loc="lower right")
+    x = np.linspace(-4.2, 5.6, 900)
+    L = flash.levels(3, step_v=0.15)
+    cols = ["#8a94a3", "#5aa2ff", "#3cc0b4", "#f2b84b", "#ff8a55", "#d55181", "#9a80dc", "#7fe0c8"]
+    for i, c in enumerate(L["centres"]):
+        y = flash.distribution(x, c, 0.15, 0.04, i == 0)
+        a2.fill_between(x, y, color=cols[i], alpha=0.25); a2.plot(x, y, color=cols[i], lw=1.4)
+    for rv in L["reads"]:
+        a2.axvline(rv, color=INK2, ls=":", lw=0.8)
+    a2.set_yticks([]); a2.set_xlabel("threshold voltage V_T (V)"); a2.set_title("TLC: eight levels in one cell")
+    subtitle(a2, f"ISPP step 150 mV, σ = 40 mV → margin {L['margin'] * 1000:.0f} mV")
+    nand = [r for r in _json.loads((ROOT / "data" / "memory.json").read_text(encoding="utf-8"))["nand"] if r["layers"] > 1]
+    a3.plot([r["year"] for r in nand], [r["layers"] for r in nand], "o-", color=SERIES[3])
+    for r in nand:
+        a3.annotate(str(r["layers"]), (r["year"], r["layers"]), xytext=(-6, 6), textcoords="offset points", ha="right", color=INK2, fontsize=8.5)
+    a3.set_xlabel("year"); a3.set_ylabel("stacked word-line layers"); a3.set_title("3D NAND: 24 to 321 layers")
+    subtitle(a3, "highest layer count in volume production"); a3.set_ylim(0, 360)
+    save(fig, "flash_memory")
 
 
 # ---------------------------------------------------------------------------
@@ -791,7 +886,7 @@ if __name__ == "__main__":
               fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo,
               fig_kronig_penney, fig_2deg, fig_chargesheet, fig_thermal, fig_litho,
               fig_band_atlas, fig_band_alignment, fig_device_bands, fig_heterojunction,
-              fig_inverter, fig_ballistic, fig_interconnect):
+              fig_inverter, fig_ballistic, fig_interconnect, fig_logic, fig_sram, fig_flash):
         f()
     export_model_json()
     export_physics_json()

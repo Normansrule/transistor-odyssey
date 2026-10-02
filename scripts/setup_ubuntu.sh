@@ -30,13 +30,27 @@ echo "==> running tests"
 command -v node >/dev/null || echo "    (Node.js not found: the JS-vs-Python parity test will be skipped; 'sudo apt install nodejs' to enable it)"
 make test PY=python
 
-# The zip ships with its own .git; make sure we are in *this* repo, never a parent one
+# Release zips ship without .git. Start a repo here (never reuse a parent one) and, when GitHub
+# already has the project, build this version on top of its history so the log stays linear.
+FRESH=0
 if [ "$(git rev-parse --show-toplevel 2>/dev/null || true)" != "$ROOT" ]; then
   git init -q -b main
+  FRESH=1
+fi
+VERSION="$(sed -n 's/^version: *//p' CITATION.cff | head -1)"
+TITLE="$(sed -n 's/^## v[0-9.]* — //p' CHANGELOG.md 2>/dev/null | head -1)"
+MSG="v${VERSION%.0}: ${TITLE:-update}"
+if [ "$FRESH" = "1" ] && [ "${SKIP_GITHUB:-0}" != "1" ]; then
+  git remote add origin "git@$SSH_HOST:$OWNER/$REPO.git" 2>/dev/null || true
+  if git fetch -q origin main 2>/dev/null; then
+    git reset -q --soft origin/main
+    echo "==> building on GitHub's history ($(git rev-parse --short origin/main))"
+  fi
 fi
 git add -A
 git -c user.name="${GIT_NAME:-Aleksander Norman}" -c user.email="${GIT_EMAIL:-aleksanderjnorman@gmail.com}" \
-  commit -q -m "Regenerate figures and site data" || echo "==> nothing new to commit"
+  commit -q -m "$MSG" || echo "==> nothing new to commit"
+echo "==> committed: $MSG"
 
 if [ "${SKIP_GITHUB:-0}" = "1" ]; then
   echo "==> SKIP_GITHUB=1, stopping before GitHub steps. Preview with: make serve"

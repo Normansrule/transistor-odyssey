@@ -5,7 +5,7 @@ authors:
   - family-names: Norman
     given-names: Aleksander
 date-released: 2026-10-02
-version: 1.7.0
+version: 1.8.0
 license: MIT
 repository-code: "https://github.com/Normansrule/transistor-odyssey"
 url: "https://normansrule.github.io/transistor-odyssey/"

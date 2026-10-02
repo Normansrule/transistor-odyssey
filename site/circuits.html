@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Circuit Lab · Transistor Odyssey</title>
+<meta name="description" content="From transistor to computer: a powers-of-ten zoom from a 300 mm wafer to silicon atoms, a transistor-level logic gate builder with switch-level simulation and logical effort, an 8-bit ripple-carry adder with an animated carry wave, a six-transistor SRAM cell with butterfly curves and noise margins, and a floating-gate flash cell with Fowler–Nordheim programming and multi-level storage.">
+<meta property="og:title" content="Circuit Lab — from transistor to computer">
+<meta property="og:description" content="Logic gates, an adder, SRAM and flash, built from the same transistor model and simulated live in your browser.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/physics.css">
+<link rel="stylesheet" href="css/circuits.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="physics circuits">
+
+<div class="pl-progress" aria-hidden="true"><i></i></div>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Transistor Odyssey home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="15" width="20" height="6" rx="1.5" fill="#4b596d"/><rect x="3" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="15" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="9" y="12.2" width="6" height="1.2" fill="#9a80dc"/><rect x="9" y="5" width="6" height="7.2" rx="1" fill="#f2b84b"/></svg>
+      Transistor Odyssey
+    </a>
+    <span class="nav-crumb">/ Circuit Lab</span>
+    <div class="nav-links">
+      <a href="index.html#timeline">Timeline</a>
+      <a href="index.html#explorer">3D explorer</a>
+      <a href="devices.html">Device Atlas</a>
+      <a href="physics.html">Physics Lab</a>
+      <a class="active" href="circuits.html">Circuit Lab</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Source
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO: powers of ten ============ -->
+<header class="cz-hero" id="zoom" aria-labelledby="zoom-h">
+  <canvas id="czCanvas" aria-label="Animated zoom from a 300 mm silicon wafer down to individual silicon atoms"></canvas>
+  <div class="cz-shade" aria-hidden="true"></div>
+  <div class="wrap cz-inner">
+    <div class="cz-copy">
+      <span class="eyebrow">Transistor Odyssey · Circuit Lab</span>
+      <h1 id="zoom-h">From transistor <span class="sheen">to computer</span></h1>
+      <p class="lead">A modern processor puts tens of billions of transistors on a sliver of silicon. Zoom through nine powers of ten, from the wafer to the atoms of a single channel, then build the circuits in between: logic gates, an adder, the SRAM cell that holds your cache and the flash cell that keeps your photos.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#gates">Build a gate</a>
+        <a class="btn" href="#adder">Watch a carry ripple</a>
+        <a class="btn" href="physics.html">Physics Lab</a>
+      </div>
+    </div>
+    <div class="cz-hud card" aria-live="polite">
+      <div class="cz-hud-top"><span class="cz-scale" id="czScale">450 mm</span><span class="cz-level" id="czLevel">Wafer</span></div>
+      <p class="cz-desc" id="czDesc"></p>
+      <div class="cz-bar"><i id="czBar"></i><span id="czBarLabel">100 mm</span></div>
+      <div class="cz-ctl">
+        <button class="btn sm" type="button" id="czPlay" aria-pressed="true">Pause</button>
+        <input type="range" id="czRange" min="0" max="9" step="0.001" value="0" aria-label="Zoom level (powers of ten)">
+      </div>
+      <ol class="cz-chips" id="czChips" aria-label="Jump to a scale"></ol>
+    </div>
+  </div>
+</header>
+
+<div class="pl-layout wrap">
+  <nav class="pl-toc" aria-label="Labs">
+    <p class="pl-toc-h">Circuit Lab</p>
+    <ol>
+      <li class="pl-toc-part">Scale</li>
+      <li><a href="#zoom"><span>00</span>Powers of ten</a></li>
+      <li class="pl-toc-part">Logic</li>
+      <li><a href="#gates"><span>01</span>Gate builder</a></li>
+      <li><a href="#adder"><span>02</span>Ripple-carry adder</a></li>
+      <li class="pl-toc-part">Memory</li>
+      <li><a href="#sram"><span>03</span>SRAM cell</a></li>
+      <li><a href="#flash"><span>04</span>Flash cell</a></li>
+      <li><a href="#cl-sources"><span>§</span>Sources</a></li>
+    </ol>
+  </nav>
+  <main class="pl-main">
+
+  <div class="pl-part" id="part-logic"><span class="pl-part-n">Part I</span><h2>Logic</h2><p>Transistors as switches, switches as Boolean algebra, algebra as arithmetic.</p></div>
+
+  <!-- ============ 01 GATES ============ -->
+  <section class="lab-sec" id="gates" aria-labelledby="gates-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">01</span>
+      <div>
+        <span class="eyebrow">Static CMOS logic</span>
+        <h2 id="gates-h">Build a logic gate from switches</h2>
+        <p class="lead">Every static CMOS gate is two networks of switches: nFETs that pull the output to ground and pFETs that pull it to the supply, arranged so that exactly one of them conducts. Series nFETs make an AND, parallel ones an OR, and the pFETs are always the mirror image. Toggle the inputs: the simulator below finds which transistors conduct, which nodes are driven and where the current flows, just as a switch-level simulator in a chip company does for billions of transistors.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Gate builder controls">
+        <div class="pl-extra">
+          <div class="pl-subhead">Inputs</div>
+          <div class="cg-inputs" id="cgInputs" role="group" aria-label="Gate inputs"></div>
+          <p class="small">Click an input to toggle it, or press the keys A, B, C, D.</p>
+        </div>
+      </aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas cg-stage" data-role="gate" style="--h:460px"><canvas aria-label="Transistor-level schematic of the selected gate; conducting transistors light up and charge flows toward the output or ground"></canvas></div>
+        <div class="plots">
+          <div class="card plot cg-truth-card"><h4>Truth table</h4><p class="sub">The highlighted row is the present input. Y is computed by the switch-level simulator, not looked up.</p><div class="cg-truth" id="cgTruth"></div></div>
+          <div class="card plot" data-role="effort"><h4>Logical effort: what each gate costs</h4><p class="sub">Delay d = g·h + p in units of τ (an ideal inverter) when driving four copies of itself (h = 4). Dark base: parasitic p; bright part: effort 4g. Click a bar to load that gate.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The rules</h3>
+        <div class="eq" data-tex="Y=\overline{f(A,B,\dots)},\qquad \text{pull-up}=\text{dual of pull-down}"></div>
+        <div class="eq" data-tex="g_x=\frac{C_{in,x}}{C_{in,\,inv}}=\frac{W_{n,x}+W_{p,x}}{3},\qquad p=\frac{\sum W_{\text{on output}}}{3}"></div>
+        <div class="eq" data-tex="d = g\,h + p\quad[\tau],\qquad h=\frac{C_{out}}{C_{in}}"></div>
+        <p class="small">Sizing rule: every series path has the resistance of one unit nFET; pFETs are twice as wide for the same resistance (γ = 2). With it, the code reproduces Sutherland's textbook values (NAND2 g = 4/3, NOR2 g = 5/3, AOI21 p = 7/3), and the tests check every gate's truth table against its Boolean formula.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Series transistors are why NAND beats NOR in CMOS: stacked nFETs are cheap, stacked pFETs were slow, so designers built everything from NAND and inverting gates. FinFETs and nanosheets made pFETs nearly as strong as nFETs, but each extra input still adds a transistor to a stack, which is why real libraries stop at three or four inputs.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/logic.py" rel="noopener"><code>sim/transistor_sim/physics/logic.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="sutherland1999 bryant1984 weste2010"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 ADDER ============ -->
+  <section class="lab-sec" id="adder" aria-labelledby="adder-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">02</span>
+      <div>
+        <span class="eyebrow">Arithmetic</span>
+        <h2 id="adder-h">Add two numbers, one carry at a time</h2>
+        <p class="lead">Chain eight full adders and you can add two bytes. Each stage needs the carry from the stage before it, so in the worst case the answer ripples across the word one gate delay at a time, and the sum bits flicker through wrong values on the way (glitches, each one a wasted C·V²). This event-driven simulation uses gate delays from logical effort and the transistor model of the era you pick.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Adder controls">
+        <div class="pl-extra">
+          <div class="pl-subhead">Operands</div>
+          <div class="ca-bits" id="caBits"></div>
+          <div class="pl-btns">
+            <button class="btn sm" type="button" id="caGo">Add (play)</button>
+            <button class="btn sm" type="button" id="caRand">Random</button>
+          </div>
+        </div>
+      </aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="adder" style="--h:440px"><canvas aria-label="Eight full adders in a row with the carry signal rippling from right to left, and logic-analyser traces of every sum and carry"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="scaling"><h4>Ripple versus parallel prefix</h4><p class="sub">Worst-case delay against word width. Kogge–Stone (1973) computes all carries in log₂N levels.</p></div>
+          <div class="card plot" data-role="count"><h4>…and what the speed costs</h4><p class="sub">Transistors for the whole adder (static CMOS, approximate).</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The logic</h3>
+        <div class="eq" data-tex="P_i=A_i\oplus B_i,\qquad S_i=P_i\oplus C_i"></div>
+        <div class="eq" data-tex="C_{i+1}=\mathrm{MAJ}(A_i,B_i,C_i)=A_iB_i + C_i(A_i+B_i)"></div>
+        <div class="eq" data-tex="t_{ripple}\approx (N-1)\,t_{carry}+t_{sum}"></div>
+        <div class="eq" data-tex="t_{KS}\approx t_{pg}+\lceil\log_2 N\rceil\,t_{prefix}+t_{sum}"></div>
+        <p class="small">Gates switch with transport delays (every input change that changes the output propagates, so glitches are kept). Delays: XOR2 into one gate (h = 1), carry gate into the next carry and one XOR (h = 2), sum into four gates (h = 4). Tests check every 4-bit sum and that the worst case equals the formula.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>The Intel 4004 (1971) added 4-bit numbers with about 2,300 transistors in total; a modern core has dozens of 64-bit adders, each built as a parallel-prefix tree that spends thousands of transistors to save tens of picoseconds. Cheap transistors are what made trading area for speed the right call, and glitch energy is one reason low-power designs still use simpler adders.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/logic.py" rel="noopener"><code>logic.py</code></a> (<code>ripple_add</code>, <code>kogge_stone_delay</code>).</p>
+        <div class="refchips" data-refs="koggestone1973 sutherland1999 rabaey2003"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pl-part" id="part-memory"><span class="pl-part-n">Part II</span><h2>Memory</h2><p>Holding a bit while powered, and keeping it with the power off.</p></div>
+
+  <!-- ============ 03 SRAM ============ -->
+  <section class="lab-sec" id="sram" aria-labelledby="sram-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">03</span>
+      <div>
+        <span class="eyebrow">Six-transistor SRAM</span>
+        <h2 id="sram-h">Store a bit with six transistors</h2>
+        <p class="lead">Two inverters feeding each other hold a 0 or a 1 for as long as the power is on; two access transistors let the bitlines read or overwrite it. Reading is the dangerous moment: the bitline pushes current into the node that holds 0 and lifts it. Plot one inverter against the mirror image of the other and you get the "butterfly"; the largest square that fits in its smaller wing is the noise the cell can survive.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="SRAM cell controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="cell" style="--h:340px"><canvas aria-label="Animated six-transistor SRAM cell performing a read: word line rises, the bitline on the zero side discharges"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="butterfly"><h4>Butterfly curve</h4><p class="sub">Both inverter curves, one mirrored. The squares are the static noise margins of the two wings; the smaller one counts.</p></div>
+          <div class="card plot" data-role="snmv"><h4>Margin versus supply</h4><p class="sub">Hold and read noise margin as V<sub>DD</sub> is lowered. The open ring is your setting.</p></div>
+        </div>
+        <div class="card plot" data-role="area"><h4>Sixty times smaller, then stuck</h4><p class="sub">Published high-density six-transistor bitcell area by year. It fell about 2× per node until 5 nm, then barely moved until nanosheets (N2).</p></div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="CR\,I_n(V_{in},V_{out}) = \beta\,PR\,I_p(\cdot) + I_{ax}"></div>
+        <div class="eq" data-tex="I_{ax}=I_n(V_{DD}-V_{out},\,V_{DD}-V_{out})\ \ \text{(read only)}"></div>
+        <div class="eq" data-tex="\mathrm{SNM}=\min_{\text{wings}}\ \max_u \frac{|v_1(u)-v_2(u)|}{\sqrt2}"></div>
+        <div class="eq" data-tex="u=\tfrac{x-y}{\sqrt2},\qquad v=\tfrac{x+y}{\sqrt2}"></div>
+        <p class="small">CR: pull-down width over access width (cell ratio); PR: pull-up over access; β: pFET strength per width for the era. Rotating the plot by 45° turns "largest square" into "largest vertical gap" (Seevinck, 1987). Bitline: 256 cells, about 4 fF per µm of access width each; time shown is to develop 100 mV for the sense amplifier.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Caches take a large share of a processor's area, and the SRAM cell is the smallest thing a foundry can print reliably. Its six transistors must also be matched: random threshold mismatch, which grows as transistors shrink, eats the margin from one side. That is why bitcells stopped shrinking at 5 and 3 nm, and why cache-heavy chips are moving SRAM onto separate dies.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/sram.py" rel="noopener"><code>sim/transistor_sim/physics/sram.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="seevinck1987 wikichip_sram2022 tsmc_n2_sram natarajan2014"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 FLASH ============ -->
+  <section class="lab-sec" id="flash" aria-labelledby="flash-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">04</span>
+      <div>
+        <span class="eyebrow">Floating-gate flash</span>
+        <h2 id="flash-h">Keep a bit with the power off</h2>
+        <p class="lead">Bury a conductor inside the gate oxide, fully insulated, and any electrons you put on it stay for years. Getting them there takes a field of about 10 MV/cm across a few nanometres of oxide, enough for electrons to tunnel straight through (Fowler–Nordheim). The stored charge shifts the transistor's threshold, and reading the threshold reads the bit. Pack 2, 4, 8 or 16 threshold levels into the same window and one cell holds 1 to 4 bits.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Flash cell controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="fgcell" style="--h:340px"><canvas aria-label="Cross-section of a floating-gate flash cell; electrons tunnel through the oxide onto the floating gate during each program pulse"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="ispp"><h4>Incremental step pulse programming</h4><p class="sub">Each pulse is a little higher; after a few pulses the threshold climbs by one step per pulse until it passes the target.</p></div>
+          <div class="card plot" data-role="dist"><h4>Threshold levels in one cell</h4><p class="sub">Each level is about one ISPP step wide plus noise. Dashed: read voltages. Red: overlap that a read cannot resolve.</p></div>
+        </div>
+        <div class="card plot" data-role="layers"><h4>From one layer to 321</h4><p class="sub">When planar cells could not shrink further (a 20 nm cell stores only a few dozen electrons), NAND went vertical. Highest layer count in volume production, by year.</p></div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="V_{FG}=\alpha_G\,(V_{CG}-\Delta V_T),\qquad E_{ox}=V_{FG}/t_{ox}"></div>
+        <div class="eq" data-tex="J_{FN}=A\,E_{ox}^2\exp\!\left(-\frac{B}{E_{ox}}\right),\quad B=\frac{8\pi\sqrt{2m_{ox}}\,(q\phi_B)^{3/2}}{3qh}\approx 240\ \text{MV/cm}"></div>
+        <div class="eq" data-tex="\frac{d\,\Delta V_T}{dt}=\frac{J_{FN}\,t_{ox}(1-\alpha_G)}{\alpha_G\,\varepsilon_{ox}}"></div>
+        <p class="small">Si/SiO₂ barrier φ<sub>B</sub> = 3.1 eV, tunnelling mass 0.42 m₀ (Lenzlinger & Snow, 1969). Integrating in threshold rather than time keeps the solver stable across eleven decades of current. Tests check the FN slope, the one-step-per-pulse ISPP limit and that every extra bit shrinks the margin and lengthens the write.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Flash is a transistor that remembers. Kahng and Sze proposed the floating gate in 1967, Toshiba's Masuoka strung cells into NAND in 1987, and Samsung stacked 24 layers in 2013. Today's 3D NAND uses a charge-trapping nitride instead of a conductor, but the physics in this lab is the same, and so is the trade: more bits per cell means smaller margins, slower writes and fewer rewrite cycles.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/flash.py" rel="noopener"><code>sim/transistor_sim/physics/flash.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="kahng1967 fowler1928 lenzlinger1969 suh1995 masuoka1987 park2015vnand skhynix321"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-sec" id="cl-sources" aria-labelledby="src-h">
+    <header class="lab-head"><span class="lab-num" aria-hidden="true">§</span><div><span class="eyebrow">Sources</span><h2 id="src-h">Where the numbers come from</h2>
+    <p class="lead">Textbooks, original papers and the published bitcell and layer-count data. The full bibliography is in <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/REFERENCES.md">REFERENCES.md</a>; Chapter 21 of the docs walks through each lab.</p></div></header>
+    <ol class="card pl-refs" id="plRefs"></ol>
+  </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Transistor Odyssey · Circuit Lab. Code MIT, text and figures CC BY 4.0. Circuit models are teaching-grade: gate delays come from logical effort and the compact transistor model, not from a foundry library.</p>
+    <p><a href="index.html">← Back to the transistor history</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/circuitlab/main.js"></script>
+</body>
+</html>
