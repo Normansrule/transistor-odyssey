@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+sim/spice/*.csv
+site/assets/photos/
+.DS_Store

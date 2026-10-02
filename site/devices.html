@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Device Atlas · Transistor Odyssey</title>
+<meta name="description" content="How each transistor works: nineteen devices from the 1947 point contact to the stacked complementary FET, each with an animated cross-section, live energy band diagrams along the current path and through the gate, and a band-alignment chart for every material.">
+<meta property="og:title" content="Device Atlas — how every transistor works">
+<meta property="og:description" content="Nineteen animated transistors with live energy band diagrams and a heterojunction builder.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/physics.css">
+<link rel="stylesheet" href="css/devices.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="physics devices">
+
+<div class="pl-progress" aria-hidden="true"><i></i></div>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Transistor Odyssey home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="15" width="20" height="6" rx="1.5" fill="#4b596d"/><rect x="3" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="15" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="9" y="12.2" width="6" height="1.2" fill="#9a80dc"/><rect x="9" y="5" width="6" height="7.2" rx="1" fill="#f2b84b"/></svg>
+      Transistor Odyssey
+    </a>
+    <span class="nav-crumb">/ Device Atlas</span>
+    <div class="nav-links">
+      <a href="#primer">Primer</a>
+      <a href="#atlas">Atlas</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#compare">Compare</a>
+      <a href="#align">Materials</a>
+      <a href="#hetero">Heterojunctions</a>
+      <a href="#quiz">Quiz</a>
+      <a class="active" href="devices.html">Device Atlas</a>
+      <a href="physics.html">Physics Lab</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Source
+    </a>
+  </div>
+</nav>
+
+<header class="hero dv-hero" id="top">
+  <canvas id="dvHero" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">Transistor Odyssey · Device Atlas</span>
+    <h1>How <span class="sheen">every transistor</span> works</h1>
+    <p class="lead">Nineteen devices, from the 1947 germanium point contact to the stacked complementary FET (CFET). Each one is drawn as an animated cross-section with its carriers moving, next to two live energy band diagrams: one along the path the current takes and one down through the gate. Move the gate and drain voltages and watch the barrier that decides the current rise and fall.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#atlas">Open the atlas</a>
+      <a class="btn" href="#primer">How to read a band diagram</a>
+      <a class="btn" href="#gallery">All 19 band diagrams</a>
+    </div>
+    <div class="stats dv-stats">
+      <div class="stat"><span class="v">19</span><span class="l">devices, 1947 → 2026</span></div>
+      <div class="stat"><span class="v">38</span><span class="l">live band diagrams (2 per device)</span></div>
+      <div class="stat"><span class="v">21</span><span class="l">materials on one energy scale</span></div>
+      <div class="stat"><span class="v">1:1</span><span class="l">every diagram has a tested Python twin</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ PRIMER ============ -->
+<section class="sec dv-sec" id="primer">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Primer · 60 seconds</span>
+      <h2>How to read an energy band diagram</h2>
+      <p class="lead">A band diagram plots the energy an electron would need at each point in a device. Four rules are enough to read every diagram on this page.</p>
+    </div>
+    <div class="dv-primer">
+      <article class="card pl-card">
+        <svg viewBox="0 0 220 110" aria-hidden="true"><rect x="10" y="8" width="200" height="30" fill="#3987e5" opacity=".14"/><rect x="10" y="72" width="200" height="30" fill="#d95926" opacity=".14"/><line x1="10" y1="38" x2="210" y2="38" stroke="#3987e5" stroke-width="2.5"/><line x1="10" y1="72" x2="210" y2="72" stroke="#d95926" stroke-width="2.5"/><text x="18" y="55" fill="#aab3c0" font-size="11" font-family="IBM Plex Mono, monospace">band gap Eg: no states</text><circle cx="70" cy="31" r="4" fill="#5aa2ff"/><circle cx="130" cy="29" r="4" fill="#5aa2ff"/><circle cx="100" cy="80" r="4" fill="none" stroke="#ff8a55" stroke-width="1.8"/><text x="200" y="33" fill="#86b6ef" font-size="11" text-anchor="end" font-family="IBM Plex Mono, monospace">Ec</text><text x="200" y="88" fill="#ff9c73" font-size="11" text-anchor="end" font-family="IBM Plex Mono, monospace">Ev</text></svg>
+        <h3>1 · Two edges and a gap</h3>
+        <p>Free electrons live at or just above the conduction-band edge E<sub>c</sub> (blue, filled dots). Missing electrons, called holes, live at or just below the valence-band edge E<sub>v</sub> (orange, open dots). In between is the band gap, where an electron cannot sit: 1.12 eV in silicon, 3.4 eV in gallium nitride (GaN), 5.47 eV in diamond.</p>
+      </article>
+      <article class="card pl-card">
+        <svg viewBox="0 0 220 110" aria-hidden="true"><line x1="10" y1="30" x2="210" y2="30" stroke="#3987e5" stroke-width="2.5"/><line x1="10" y1="90" x2="210" y2="90" stroke="#d95926" stroke-width="2.5"/><line x1="10" y1="44" x2="100" y2="44" stroke="#f2b84b" stroke-width="1.6" stroke-dasharray="6 5"/><line x1="120" y1="64" x2="210" y2="64" stroke="#f2b84b" stroke-width="1.6" stroke-dasharray="6 5"/><path d="M110 46 L110 62" stroke="#e8ecf1" stroke-width="1.2" marker-end="url(#ah)"/><defs><marker id="ah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#e8ecf1"/></marker></defs><text x="116" y="58" fill="#e8ecf1" font-size="11" font-family="IBM Plex Mono, monospace">qV</text><text x="16" y="40" fill="#f2b84b" font-size="11" font-family="IBM Plex Mono, monospace">EF</text></svg>
+        <h3>2 · The Fermi level is the water line</h3>
+        <p>The dashed amber line, the Fermi level E<sub>F</sub>, marks how full the states are. Where E<sub>c</sub> comes close to E<sub>F</sub> there are many electrons; where E<sub>v</sub> comes close there are many holes. With no bias it is flat everywhere. Applying a voltage V splits it by qV between the two contacts, and that split is what drives a current.</p>
+      </article>
+      <article class="card pl-card">
+        <svg viewBox="0 0 220 110" aria-hidden="true"><path d="M10 24 L70 24 C110 24 120 80 160 80 L210 80" fill="none" stroke="#3987e5" stroke-width="2.5"/><path d="M10 64 L70 64 C110 64 120 104 160 104 L210 104" fill="none" stroke="#d95926" stroke-width="2.5" opacity=".7"/><circle cx="96" cy="36" r="4" fill="#5aa2ff"/><path d="M104 40 q10 8 16 20" fill="none" stroke="#5aa2ff" stroke-dasharray="3 3"/><circle cx="130" cy="96" r="4" fill="none" stroke="#ff8a55" stroke-width="1.8"/><path d="M122 94 q-10 -8 -16 -20" fill="none" stroke="#ff8a55" stroke-dasharray="3 3"/><text x="160" y="50" fill="#aab3c0" font-size="11" font-family="IBM Plex Mono, monospace">slope = field</text></svg>
+        <h3>3 · Electrons roll down, holes float up</h3>
+        <p>A slope in the bands is an electric field. Electrons slide downhill on E<sub>c</sub> like marbles, and holes rise on E<sub>v</sub> like bubbles. Energy increases upward for electrons, so a hole must be pushed down to gain energy. Every animation below moves its carriers by these rules.</p>
+      </article>
+      <article class="card pl-card">
+        <svg viewBox="0 0 220 110" aria-hidden="true"><path d="M10 70 L60 70 C80 70 80 30 100 30 L130 30 C150 30 160 90 210 96" fill="none" stroke="#3987e5" stroke-width="2.5" opacity=".35" stroke-dasharray="5 4"/><path d="M10 70 L60 70 C80 70 80 56 100 56 L130 56 C150 56 160 90 210 96" fill="none" stroke="#3987e5" stroke-width="2.5"/><line x1="115" y1="32" x2="115" y2="54" stroke="#f2b84b" stroke-width="1.4" marker-end="url(#ah2)"/><defs><marker id="ah2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#f2b84b"/></marker></defs><text x="122" y="46" fill="#f2b84b" font-size="11" font-family="IBM Plex Mono, monospace">gate</text><circle cx="40" cy="64" r="4" fill="#5aa2ff"/><circle cx="52" cy="62" r="4" fill="#5aa2ff"/><text x="12" y="104" fill="#aab3c0" font-size="11" font-family="IBM Plex Mono, monospace">source</text><text x="208" y="86" fill="#aab3c0" font-size="11" text-anchor="end" font-family="IBM Plex Mono, monospace">drain</text></svg>
+        <h3>4 · A transistor is a barrier the gate can move</h3>
+        <p>Almost every device here works the same way: carriers must climb a barrier between source and drain, and the fraction that make it falls by e (about 2.7×) for every kT, or 26 meV at room temperature, of height. The gate lowers the barrier; this gives the famous 60 mV-per-decade limit. The tunnel FET and Schottky-barrier nanotube FET cheat by tunnelling through instead.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ATLAS ============ -->
+<section class="sec dv-sec" id="atlas">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Atlas · 19 devices</span>
+      <h2>Pick a transistor, then drive it</h2>
+      <p class="lead">The cross-section is drawn to be read, not to scale. The two band diagrams beside it come from the same model: the barrier, the depletion widths, the metal-oxide-semiconductor (MOS) band bending and the high-electron-mobility transistor (HEMT) quantum well are all computed as you move the sliders.</p>
+    </div>
+    <div class="dv-picker" id="dvPicker" role="tablist" aria-label="Devices"></div>
+    <select class="dv-select" id="dvSelect" aria-label="Choose a device"></select>
+
+    <div class="dv-head" id="dvHead" aria-live="polite"></div>
+
+    <div class="dv-grid">
+      <div class="dv-left">
+        <figure class="card dv-stage">
+          <canvas id="dvXsec" aria-label="Animated cross-section of the selected transistor"></canvas>
+          <div class="dv-legend" aria-hidden="true"><span><i class="e"></i>electron</span><span><i class="h"></i>hole</span><span><i class="ch"></i>conducting channel</span><span><i class="dep"></i>depletion</span></div>
+        </figure>
+        <div class="card panel dv-ctl">
+          <div class="dv-sliders" id="dvSliders"></div>
+          <div class="dv-btns">
+            <button type="button" class="btn sm" id="dvPlay" aria-pressed="false">▶ Sweep the gate</button>
+            <div class="seg" id="dvSpeed" role="group" aria-label="Animation speed">
+              <button type="button" data-v="0.4">0.4×</button><button type="button" data-v="1" aria-pressed="true">1×</button><button type="button" data-v="2">2×</button>
+            </div>
+            <label class="switch"><input type="checkbox" id="dvLabels" checked> <span>Labels</span></label>
+            <span class="dv-flash" id="dvFlash" hidden>
+              <button type="button" class="btn sm" id="dvProg">Program</button>
+              <button type="button" class="btn sm" id="dvErase">Erase</button>
+            </span>
+          </div>
+        </div>
+        <div class="dv-tiles" id="dvTiles"></div>
+        <figure class="card dv-transfer">
+          <figcaption><h4>Transfer curve</h4><span class="dv-kind">model</span></figcaption>
+          <canvas id="dvTf" aria-label="Log current versus gate voltage"></canvas>
+        </figure>
+      </div>
+      <div class="dv-right">
+        <figure class="card dv-band">
+          <figcaption><h4 id="dvLatH">Along the current path</h4><span class="dv-kind" id="dvLatKind"></span></figcaption>
+          <canvas id="dvLat" aria-label="Energy band diagram along the current path"></canvas>
+          <p class="sub" id="dvLatCap"></p>
+        </figure>
+        <figure class="card dv-band">
+          <figcaption><h4 id="dvVerH">Down through the gate</h4><span class="dv-kind" id="dvVerKind"></span></figcaption>
+          <canvas id="dvVer" aria-label="Energy band diagram through the gate stack"></canvas>
+          <p class="sub" id="dvVerCap"></p>
+        </figure>
+      </div>
+    </div>
+
+    <h3 class="dv-sub">How it works, step by step <span>click a step to set the voltages</span></h3>
+    <ol class="dv-steps" id="dvSteps"></ol>
+
+    <div class="dv-detail">
+      <article class="card pl-card" id="dvAbout"></article>
+      <article class="card pl-card" id="dvFacts"></article>
+      <article class="card pl-card" id="dvStack"></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="sec dv-sec" id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Small multiples</span>
+      <h2>All nineteen band diagrams, off and on</h2>
+      <p class="lead">Each panel shows the band edges along the current path with the gate off (grey, dashed) and on (colour). Read across the families: the metal-oxide-semiconductor field-effect transistors (MOSFETs) differ only in how far the drain pulls the barrier down when off; the bipolar devices open a junction instead; the tunnel FET opens a window. Click a panel to load it into the atlas.</p>
+    </div>
+    <div class="dv-gallery" id="dvGallery"></div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="sec dv-sec" id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Compare · same drive, different device</span>
+      <h2>Put transistors side by side</h2>
+      <p class="lead">Pick up to three devices and drive them together. The gate slider moves each one from its own "off" voltage to its own "on" voltage, and the drain slider sets each to the same fraction of its rated drain voltage, so the band diagrams line up even though the volts differ.</p>
+    </div>
+    <div class="cmp" id="cmp">
+      <div class="card panel cmp-ctl">
+        <div class="pl-label">Guided comparisons</div>
+        <div class="seg" id="cmpPresets"></div>
+        <p class="cmp-note" id="cmpNote" aria-live="polite"></p>
+        <div class="cmp-sl">
+          <div class="ctl"><label for="cmpG"><span>Gate drive (off → on)</span><output id="cmpGo"></output></label><input type="range" id="cmpG" min="0" max="1" step="0.01"></div>
+          <div class="ctl"><label for="cmpD"><span>Drain bias (share of rated)</span><output id="cmpDo"></output></label><input type="range" id="cmpD" min="0" max="1" step="0.01"></div>
+        </div>
+        <div class="pl-label">Devices (choose up to three)</div>
+        <div class="seg cmp-chips" id="cmpChips"></div>
+      </div>
+      <div class="cmp-cards" id="cmpCards"></div>
+      <div class="card cmp-table" id="cmpTable"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALIGNMENT ============ -->
+<section class="sec dv-sec" id="align">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Materials · one energy scale</span>
+      <h2>Where every material's bands sit</h2>
+      <p class="lead">Each bar runs from the valence-band edge (bottom) to the conduction-band edge (top), measured from the vacuum level at 0 eV using the electron affinity χ and band gap E<sub>g</sub>. Hover a bar for values; click two bars to send them to the heterojunction builder below.</p>
+    </div>
+    <div class="card dv-align-card">
+      <p class="dv-scroll-hint">Scroll sideways to see all 21 materials →</p>
+      <div class="dv-align-scroll"><svg id="dvAlign" role="img" aria-label="Band alignment chart for 21 materials"></svg></div>
+      <div class="stage-tip dv-tip" id="dvAlignTip" hidden></div>
+      <p class="small dv-note" id="dvAlignNote"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HETEROJUNCTION ============ -->
+<section class="sec dv-sec" id="hetero">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Builder · Anderson's rule + Poisson solver</span>
+      <h2>Put two materials together</h2>
+      <p class="lead">When two semiconductors meet, the step in the conduction band (ΔE<sub>c</sub>) and in the valence band (ΔE<sub>v</sub>) decides where electrons and holes collect. That step is why an aluminium gallium nitride / gallium nitride (AlGaN/GaN) stack traps a sheet of electrons, why a silicon-germanium (SiGe) base speeds up a bipolar transistor, and why hafnium oxide leaks more than silicon dioxide.</p>
+    </div>
+    <div class="dv-hj">
+      <div class="card panel dv-hj-ctl">
+        <label class="ctl"><span class="pl-label">Material A (left)</span><select id="hjA" class="dv-sel"></select></label>
+        <label class="ctl"><span class="pl-label">Material B (right)</span><select id="hjB" class="dv-sel"></select></label>
+        <div class="pl-label">Classic pairs</div>
+        <div class="seg" id="hjPresets"></div>
+        <div class="pl-subhead">Doping and bias (solved diagram)</div>
+        <div class="dv-dop" id="hjDopA">
+          <div class="pl-label">Material A doping</div>
+          <div class="seg" role="group" aria-label="Material A doping type"><button type="button" data-v="n">n-type</button><button type="button" data-v="i">undoped</button><button type="button" data-v="p">p-type</button></div>
+          <div class="ctl"><label for="hjNA"><span>Concentration</span><output></output></label><input type="range" id="hjNA" min="14" max="19" step="0.1" value="17"></div>
+        </div>
+        <div class="dv-dop" id="hjDopB">
+          <div class="pl-label">Material B doping</div>
+          <div class="seg" role="group" aria-label="Material B doping type"><button type="button" data-v="n">n-type</button><button type="button" data-v="i">undoped</button><button type="button" data-v="p">p-type</button></div>
+          <div class="ctl"><label for="hjNB"><span>Concentration</span><output></output></label><input type="range" id="hjNB" min="14" max="19" step="0.1" value="17"></div>
+        </div>
+        <div class="ctl"><label for="hjV"><span>Bias on A relative to B</span><output id="hjVo">0.00 V</output></label><input type="range" id="hjV" min="-2" max="0.8" step="0.01" value="0"></div>
+      </div>
+      <div class="dv-hj-figs">
+        <figure class="card dv-hj-fig">
+          <figcaption><h4>Before contact: where the bands sit</h4><span class="dv-kind">Anderson's rule · flat bands</span></figcaption>
+          <div class="dv-hj-scroll"><svg id="hjSvg" role="img" aria-label="Heterojunction band alignment"></svg></div>
+        </figure>
+        <figure class="card dv-hj-eq">
+          <figcaption><h4>In contact: charge moves until the Fermi level is flat</h4><span class="dv-kind solved">solved · Poisson</span></figcaption>
+          <div class="dv-hj-zoom"><span class="pl-label">Window</span><div class="seg" id="hjZoom" role="group" aria-label="Zoom"><button type="button" data-v="auto" aria-pressed="true">auto</button><button type="button" data-v="50">±50 nm</button><button type="button" data-v="500">±500 nm</button><button type="button" data-v="5000">±5 µm</button></div></div>
+          <canvas id="hjEq" aria-label="Solved heterojunction band diagram with carriers"></canvas>
+          <canvas id="hjDens" aria-label="Electron and hole densities on a log scale"></canvas>
+          <div id="hjEqTiles"></div>
+          <p class="sub">Solved from Poisson's equation with Boltzmann statistics and Anderson's rule, in <code>sim/transistor_sim/physics/hetero.py</code> and its browser twin. The amber band marks the space-charge region; dots are electrons and holes placed where the solved densities are. Not included: interface dipoles and traps, GaN polarization (see Physics Lab 08), quantization and degeneracy.</p>
+        </figure>
+      </div>
+    </div>
+    <div class="card dv-hj-explain" id="hjOut" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="sec dv-sec" id="quiz">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Test yourself · 8 questions</span>
+      <h2>Can you read a band diagram?</h2>
+      <p class="lead">Every question is drawn fresh from the same models as the atlas: is the transistor on or off, which device made this diagram, what kind of heterojunction is this, and which device leaks more. Each answer comes with the reason.</p>
+    </div>
+    <div class="card qz">
+      <div class="qz-top"><span id="quizScore"></span><div class="qz-bar" id="quizBar"><i></i></div></div>
+      <div id="quizView" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="sec dv-sec" id="dv-sources">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Sources</span>
+      <h2>Where the devices and numbers come from</h2>
+      <p class="lead">The original papers for each device and the measured band parameters. The full bibliography is in <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/REFERENCES.md">REFERENCES.md</a>, and <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/docs/20-how-transistors-work.md">Chapter 20</a> of the docs walks through every device in text.</p>
+    </div>
+    <ol class="card pl-refs" id="dvRefs"></ol>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Transistor Odyssey · Device Atlas. Code MIT, text and figures CC BY 4.0. The metal-oxide-semiconductor and HEMT band diagrams are solved; the others are schematic models tuned to published behaviour. Python reference: <code>sim/transistor_sim/bandatlas.py</code>.</p>
+    <p><a href="index.html">← Back to the history</a> · <a href="physics.html">Physics Lab →</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/devices/main.js"></script>
+</body>
+</html>

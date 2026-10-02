@@ -1,0 +1,19 @@
+{
+  "_about": "Physical photographs used by the README and site, all from Wikimedia Commons under free licenses. The site loads them from Commons at view time; scripts/fetch_images.py mirrors them into site/assets/photos/ and refreshes author/license from the Commons API (writes CREDITS.md). Where 'author' is 'see source', the fetch script fills it in.",
+  "images": [
+    {"file": "Replica-of-first-transistor.jpg", "subject": "Replica of the 1947 Bell Labs point-contact transistor", "year": 1947, "license": "Public domain (U.S. government work)", "author": "see source", "era": "point-contact"},
+    {"file": "A_replica_of_the_first_working_transistor_02.jpg", "subject": "Point-contact transistor replica, close-up of the germanium and gold-foil contacts", "year": 1947, "license": "CC BY-SA 4.0", "author": "Mister rf", "era": "point-contact"},
+    {"file": "Early_Transistor.jpg", "subject": "Early packaged junction transistor", "year": 1955, "license": "CC BY 2.0", "author": "see source", "era": "bjt"},
+    {"file": "Intel_C4004.jpg", "subject": "Intel C4004 microprocessor in ceramic package (1971, 10 µm, 2,300 transistors)", "year": 1971, "license": "CC BY-SA 4.0", "author": "see source", "era": "silicon-gate"},
+    {"file": "Intel_4004_Chip_Layout_(29983532570).jpg", "subject": "Intel 4004 hand-drawn chip layout from the development phase", "year": 1971, "license": "see source", "author": "see source", "era": "silicon-gate", "kind": "layout"},
+    {"file": "MOS_6502_die.jpg", "subject": "MOS 6502 die (1975, 8 µm nMOS)", "year": 1975, "license": "CC BY 3.0", "author": "Pauli Rautakorpi", "era": "dennard"},
+    {"file": "Intel_80386_DX_die.JPG", "subject": "Intel 80386 DX die (1.5 µm CMOS, 275,000 transistors)", "year": 1985, "license": "CC BY 3.0", "author": "Pauli Rautakorpi", "era": "vlsi"},
+    {"file": "Intel_80486_DX2_die.JPG", "subject": "Intel 80486 DX2 die (first x86 above one million transistors)", "year": 1992, "license": "CC BY 3.0", "author": "Pauli Rautakorpi", "era": "vlsi"},
+    {"file": "Intel_Pentium_P54C_die.jpg", "subject": "Intel Pentium P54C die (BiCMOS)", "year": 1994, "license": "see source", "author": "see source", "era": "deep-submicron"},
+    {"file": "Intel-pentium-ii-dixon-die-shot-high-resolution-stitched.jpg", "subject": "Intel Pentium II (Dixon) die, stitched high-resolution shot", "year": 1999, "license": "see source", "author": "see source", "era": "deep-submicron"},
+    {"file": "Zen2_Matisse_Ryzen_7nm_Core_Die_shot.jpg", "subject": "AMD Zen 2 7 nm core complex die (TSMC N7 FinFET)", "year": 2019, "license": "CC0", "author": "Fritzchens Fritz", "era": "euv"},
+    {"file": "AMD@4nmCCD(6nmIOD)@Zen5@Granite_Ridge@Ryzen_5_9600X@100-000001405_BY_2429SUY_9AEQ579S40073_DSCx14_CCD_poly@5xExt.jpg", "subject": "AMD Zen 5 CCD at polysilicon level (TSMC N4P FinFET)", "year": 2024, "license": "CC0", "author": "Fritzchens Fritz", "era": "gaa"},
+    {"file": "Wafer_2_Zoll_bis_8_Zoll.jpg", "subject": "Silicon wafers from 2 inch to 8 inch", "year": 2008, "license": "see source", "author": "see source", "era": "planar"},
+    {"file": "Doublegate_FinFET-en.svg", "subject": "Double-gate FinFET schematic", "year": 2000, "license": "see source", "author": "see source", "era": "finfet", "kind": "diagram"}
+  ]
+}

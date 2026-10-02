@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Gate-all-around nanosheets (3–2 nm class, 2022–2025)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Gate-all-around nanosheets (3–2 nm class, 2022–2025)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Along the channel: 3 stacked Si sheets, gate between and around each.</text>
+<rect x="30.0" y="330.0" width="470.0" height="60.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="30.0" y="318.0" width="470.0" height="12.0" rx="0" fill="#6fa9b3" fill-opacity="1.0"/>
+<polygon points="40.0,318.0 170.0,318.0 170.0,150.0 40.0,150.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<polygon points="360.0,318.0 490.0,318.0 490.0,150.0 360.0,150.0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="170.0" y="150.0" width="190.0" height="168.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="170.0" y="170.0" width="190.0" height="18.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="170.0" y="165.0" width="190.0" height="5.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="170.0" y="188.0" width="190.0" height="5.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="170.0" y="193.0" width="14.0" height="29.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="346.0" y="193.0" width="14.0" height="29.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="170.0" y="222.0" width="190.0" height="18.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="170.0" y="217.0" width="190.0" height="5.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="170.0" y="240.0" width="190.0" height="5.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="170.0" y="245.0" width="14.0" height="29.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="346.0" y="245.0" width="14.0" height="29.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="170.0" y="274.0" width="190.0" height="18.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="170.0" y="269.0" width="190.0" height="5.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="170.0" y="292.0" width="190.0" height="5.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="170.0" y="297.0" width="14.0" height="29.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="346.0" y="297.0" width="14.0" height="29.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="150.0" y="110.0" width="20.0" height="208.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="360.0" y="110.0" width="20.0" height="208.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="170.0" y="110.0" width="190.0" height="40.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<polyline points="265.0,167.5 522.0,167.5 540.0,167.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="167.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="171.5" fill="#e8ecf1" font-size="12.5">High-k all around</text>
+<polyline points="265.0,179.0 522.0,197.5 540.0,197.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="179.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="201.5" fill="#e8ecf1" font-size="12.5">Si nanosheet (~5 nm)</text>
+<polyline points="177.0,207.5 522.0,227.5 540.0,227.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="177.0" cy="207.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="231.5" fill="#e8ecf1" font-size="12.5">Inner spacer</text>
+<polyline points="160.0,214.0 522.0,257.5 540.0,257.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="160.0" cy="214.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="261.5" fill="#e8ecf1" font-size="12.5">Gate spacer</text>
+<polyline points="105.0,234.0 522.0,287.5 540.0,287.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="105.0" cy="234.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="291.5" fill="#e8ecf1" font-size="12.5">Epitaxial S/D (Si:P)</text>
+<polyline points="265.0,234.0 522.0,317.5 540.0,317.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="234.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="321.5" fill="#e8ecf1" font-size="12.5">Metal gate fills between sheets</text>
+<polyline points="265.0,324.0 522.0,347.5 540.0,347.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="324.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="351.5" fill="#e8ecf1" font-size="12.5">Bottom dielectric isolation</text>
+<polyline points="265.0,360.0 522.0,377.5 540.0,377.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="360.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="381.5" fill="#e8ecf1" font-size="12.5">Substrate</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Lg ≈ 12–15 nm, sheet width tunable per cell</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Step 14 of 14 · Optional: backside power">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Step 14 of 14 · Optional: backside power</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Wafer bonding, thinning, backside litho. Along-channel view of one GAA transistor (not to scale).</text>
+<rect x="40.0" y="330.0" width="460.0" height="64.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="40.0" y="374.0" width="460.0" height="20.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="192.0" y="298.0" width="156.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="192.0" y="266.0" width="156.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="192.0" y="234.0" width="156.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="192.0" y="164.0" width="18.0" height="70.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="330.0" y="164.0" width="18.0" height="70.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="192.0" y="314.0" width="18.0" height="16.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="330.0" y="314.0" width="18.0" height="16.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="192.0" y="282.0" width="18.0" height="16.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="330.0" y="282.0" width="18.0" height="16.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="192.0" y="250.0" width="18.0" height="16.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="330.0" y="250.0" width="18.0" height="16.0" rx="0" fill="#cfd6e0" fill-opacity="1.0"/>
+<rect x="50.0" y="224.0" width="142.0" height="106.0" rx="0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="348.0" y="224.0" width="142.0" height="106.0" rx="0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="40.0" y="164.0" width="152.0" height="60.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="348.0" y="164.0" width="152.0" height="60.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<rect x="210.0" y="164.0" width="120.0" height="166.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="210.0" y="295.0" width="120.0" height="3.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="210.0" y="314.0" width="120.0" height="3.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="210.0" y="298.0" width="120.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="210.0" y="263.0" width="120.0" height="3.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="210.0" y="282.0" width="120.0" height="3.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="210.0" y="266.0" width="120.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="210.0" y="231.0" width="120.0" height="3.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="210.0" y="250.0" width="120.0" height="3.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="210.0" y="234.0" width="120.0" height="16.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="80.0" y="138.0" width="60.0" height="86.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="400.0" y="138.0" width="60.0" height="86.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="40.0" y="112.0" width="460.0" height="9.0" rx="0" fill="#d9825b" fill-opacity="0.8"/>
+<rect x="40.0" y="121.0" width="460.0" height="13.0" rx="0" fill="#8fcfd4" fill-opacity="0.35"/>
+<rect x="40.0" y="90.0" width="460.0" height="9.0" rx="0" fill="#d9825b" fill-opacity="0.8"/>
+<rect x="40.0" y="99.0" width="460.0" height="13.0" rx="0" fill="#8fcfd4" fill-opacity="0.35"/>
+<rect x="40.0" y="68.0" width="460.0" height="9.0" rx="0" fill="#d9825b" fill-opacity="0.8"/>
+<rect x="40.0" y="77.0" width="460.0" height="13.0" rx="0" fill="#8fcfd4" fill-opacity="0.35"/>
+<rect x="80.0" y="330.0" width="60.0" height="44.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<polyline points="270.0,116.5 522.0,80.5 540.0,80.5" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="116.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="84.5" fill="#e8ecf1" font-size="12.5">Copper wiring (BEOL)</text>
+<polyline points="270.0,127.5 522.0,102.9 540.0,102.9" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="127.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="106.9" fill="#e8ecf1" font-size="12.5">Low-k dielectric</text>
+<polyline points="110.0,181.0 522.0,145.0 540.0,145.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="110.0" cy="181.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="149.0" fill="#e8ecf1" font-size="12.5">Trench contact</text>
+<polyline points="116.0,194.0 522.0,167.4 540.0,167.4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="116.0" cy="194.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="171.4" fill="#e8ecf1" font-size="12.5">Inter-layer dielectric</text>
+<polyline points="201.0,199.0 522.0,189.9 540.0,189.9" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="201.0" cy="199.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="193.9" fill="#e8ecf1" font-size="12.5">Gate spacer</text>
+<polyline points="270.0,247.0 522.0,212.3 540.0,212.3" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="247.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="216.3" fill="#e8ecf1" font-size="12.5">Metal gate (all around)</text>
+<polyline points="121.0,277.0 522.0,241.0 540.0,241.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="121.0" cy="277.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="245.0" fill="#e8ecf1" font-size="12.5">Epitaxial source (Si:P)</text>
+<polyline points="419.0,277.0 522.0,263.4 540.0,263.4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="419.0" cy="277.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="267.4" fill="#e8ecf1" font-size="12.5">Epitaxial drain</text>
+<polyline points="270.0,296.5 522.0,285.9 540.0,285.9" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="296.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="289.9" fill="#e8ecf1" font-size="12.5">High-k HfO₂</text>
+<polyline points="270.0,306.0 522.0,308.3 540.0,308.3" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="306.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="312.3" fill="#e8ecf1" font-size="12.5">Si channel sheet (~5 nm)</text>
+<polyline points="201.0,322.0 522.0,330.7 540.0,330.7" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="201.0" cy="322.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="334.7" fill="#e8ecf1" font-size="12.5">Inner spacer</text>
+<polyline points="110.0,352.0 522.0,353.1 540.0,353.1" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="110.0" cy="352.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="357.1" fill="#e8ecf1" font-size="12.5">Backside contact</text>
+<polyline points="270.0,362.0 522.0,375.6 540.0,375.6" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="362.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="379.6" fill="#e8ecf1" font-size="12.5">Silicon wafer (p-type, 300 mm)</text>
+<polyline points="270.0,384.0 522.0,398.0 540.0,398.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="270.0" cy="384.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="402.0" fill="#e8ecf1" font-size="12.5">Backside power rail</text>
+</svg>

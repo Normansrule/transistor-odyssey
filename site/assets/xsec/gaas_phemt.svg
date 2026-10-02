@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="GaAs pHEMT (1980 → RF front-ends)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">GaAs pHEMT (1980 → RF front-ends)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Mimura's selectively doped heterojunction: electrons fall from AlGaAs into undoped GaAs.</text>
+<rect x="30.0" y="340.0" width="470.0" height="54.0" rx="0" fill="#5aa6a0" fill-opacity="1.0"/>
+<rect x="30.0" y="258.0" width="470.0" height="82.0" rx="0" fill="#5aa6a0" fill-opacity="1.0"/>
+<rect x="30.0" y="250.0" width="470.0" height="10.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="30.0" y="248.0" width="470.0" height="3.0" rx="0" fill="#ffe066" fill-opacity="1.0"/>
+<rect x="30.0" y="214.0" width="470.0" height="34.0" rx="0" fill="#9fd1c9" fill-opacity="1.0"/>
+<rect x="60.0" y="188.0" width="90.0" height="26.0" rx="0" fill="#e8c45c" fill-opacity="1.0"/>
+<rect x="380.0" y="188.0" width="90.0" height="26.0" rx="0" fill="#e8c45c" fill-opacity="1.0"/>
+<polygon points="250.0,214.0 262.0,214.0 262.0,190.0 285.0,176.0 227.0,176.0 250.0,190.0" fill="#e2b650" fill-opacity="1.0"/>
+<polyline points="256.0,193.3 522.0,193.3 540.0,193.3" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="256.0" cy="193.3" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="197.3" fill="#e8ecf1" font-size="12.5">T-gate (Lg ≈ 0.1–0.25 µm)</text>
+<polyline points="105.0,201.0 522.0,223.3 540.0,223.3" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="105.0" cy="201.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="227.3" fill="#e8ecf1" font-size="12.5">Ohmic contacts</text>
+<polyline points="265.0,231.0 522.0,253.3 540.0,253.3" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="231.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="257.3" fill="#e8ecf1" font-size="12.5">n-AlGaAs donor / barrier</text>
+<polyline points="265.0,249.5 522.0,283.3 540.0,283.3" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="249.5" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="287.3" fill="#e8ecf1" font-size="12.5">2DEG</text>
+<polyline points="265.0,255.0 522.0,313.3 540.0,313.3" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="255.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="317.3" fill="#e8ecf1" font-size="12.5">InGaAs channel (pseudomorphic)</text>
+<polyline points="265.0,367.0 522.0,367.0 540.0,367.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="367.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="371.0" fill="#e8ecf1" font-size="12.5">Semi-insulating GaAs substrate</text>
+</svg>

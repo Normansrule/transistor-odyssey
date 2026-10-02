@@ -1,0 +1,325 @@
+{
+ "_about": "Electron affinity χ (vacuum to conduction band, eV) and band gap E_g (eV) near 300 K. Band edges: E_c = −χ, E_v = −χ − E_g relative to vacuum. Literature values scatter by ±0.1–0.3 eV; Anderson's rule (ΔE_c = χ₁ − χ₂) ignores interface dipoles, so measured offsets can differ. eps is the static relative permittivity; Nc and Nv are the 300 K effective densities of states (cm⁻³) used by the equilibrium heterojunction solver. Entries marked approx are interpolated or rough (alloys, 2D and amorphous materials); insulators carry placeholder Nc/Nv because they hold essentially no free carriers.",
+ "materials": [
+  {
+   "id": "Si",
+   "name": "Silicon",
+   "chi": 4.05,
+   "Eg": 1.12,
+   "kind": "semi",
+   "refs": [
+    "sze2006",
+    "ioffe_nsm"
+   ],
+   "note": "",
+   "eps": 11.7,
+   "Nc": 3.2e+19,
+   "Nv": 1.8e+19
+  },
+  {
+   "id": "Ge",
+   "name": "Germanium",
+   "chi": 4.0,
+   "Eg": 0.66,
+   "kind": "semi",
+   "refs": [
+    "sze2006",
+    "ioffe_nsm"
+   ],
+   "note": "",
+   "eps": 16.0,
+   "Nc": 1.04e+19,
+   "Nv": 6e+18
+  },
+  {
+   "id": "SiGe",
+   "name": "Si₀.₇Ge₀.₃ (strained on Si)",
+   "chi": 4.05,
+   "Eg": 0.93,
+   "kind": "semi",
+   "refs": [
+    "sze2006",
+    "ioffe_nsm"
+   ],
+   "note": "Most of the gap reduction appears in the valence band (type-I-like on Si).",
+   "eps": 13.0,
+   "Nc": 2.4e+19,
+   "Nv": 1.2e+19,
+   "approx": true
+  },
+  {
+   "id": "GaAs",
+   "name": "Gallium arsenide",
+   "chi": 4.07,
+   "Eg": 1.42,
+   "kind": "semi",
+   "refs": [
+    "sze2006",
+    "vurgaftman2001",
+    "ioffe_nsm"
+   ],
+   "note": "",
+   "eps": 12.9,
+   "Nc": 4.7e+17,
+   "Nv": 9e+18
+  },
+  {
+   "id": "AlGaAs",
+   "name": "Al₀.₃Ga₀.₇As",
+   "chi": 3.85,
+   "Eg": 1.8,
+   "kind": "semi",
+   "refs": [
+    "vurgaftman2001",
+    "ioffe_nsm"
+   ],
+   "note": "Conduction-band offset to GaAs ≈ 60% of the gap difference.",
+   "eps": 12.0,
+   "Nc": 7e+17,
+   "Nv": 1.1e+19,
+   "approx": true
+  },
+  {
+   "id": "InP",
+   "name": "Indium phosphide",
+   "chi": 4.38,
+   "Eg": 1.34,
+   "kind": "semi",
+   "refs": [
+    "ioffe_nsm"
+   ],
+   "note": "",
+   "eps": 12.5,
+   "Nc": 5.7e+17,
+   "Nv": 1.1e+19
+  },
+  {
+   "id": "InGaAs",
+   "name": "In₀.₅₃Ga₀.₄₇As (on InP)",
+   "chi": 4.5,
+   "Eg": 0.74,
+   "kind": "semi",
+   "refs": [
+    "ioffe_nsm",
+    "vurgaftman2001"
+   ],
+   "note": "",
+   "eps": 13.9,
+   "Nc": 2.1e+17,
+   "Nv": 7.7e+18
+  },
+  {
+   "id": "InAs",
+   "name": "Indium arsenide",
+   "chi": 4.9,
+   "Eg": 0.35,
+   "kind": "semi",
+   "refs": [
+    "ioffe_nsm"
+   ],
+   "note": "",
+   "eps": 15.15,
+   "Nc": 8.7e+16,
+   "Nv": 6.6e+18
+  },
+  {
+   "id": "GaN",
+   "name": "Gallium nitride",
+   "chi": 4.1,
+   "Eg": 3.4,
+   "kind": "semi",
+   "refs": [
+    "ioffe_nsm",
+    "ambacher2000"
+   ],
+   "note": "",
+   "eps": 8.9,
+   "Nc": 2.3e+18,
+   "Nv": 4.6e+19
+  },
+  {
+   "id": "AlGaN",
+   "name": "Al₀.₂₅Ga₀.₇₅N",
+   "chi": 3.74,
+   "Eg": 3.91,
+   "kind": "semi",
+   "refs": [
+    "ambacher2000",
+    "ioffe_nsm"
+   ],
+   "note": "ΔE_c = 0.7 ΔE_g, as in hemt.py.",
+   "eps": 8.8,
+   "Nc": 2.7e+18,
+   "Nv": 4.8e+19,
+   "approx": true
+  },
+  {
+   "id": "4H-SiC",
+   "name": "4H silicon carbide",
+   "chi": 3.6,
+   "Eg": 3.26,
+   "kind": "semi",
+   "refs": [
+    "kimoto2014",
+    "ioffe_nsm"
+   ],
+   "note": "Reported electron affinities range ~3.1–3.8 eV; 3.6 eV matches the ~2.7 eV SiO₂/4H-SiC conduction-band offset.",
+   "eps": 9.7,
+   "Nc": 1.7e+19,
+   "Nv": 2.5e+19
+  },
+  {
+   "id": "Ga2O3",
+   "name": "β-gallium oxide",
+   "chi": 4.0,
+   "Eg": 4.8,
+   "kind": "semi",
+   "refs": [
+    "higashiwaki2012",
+    "tsao2018",
+    "ioffe_nsm"
+   ],
+   "note": "",
+   "eps": 10.0,
+   "Nc": 3.7e+18,
+   "Nv": 5e+19,
+   "approx": true
+  },
+  {
+   "id": "C-H",
+   "name": "Diamond, H-terminated surface",
+   "chi": -1.3,
+   "Eg": 5.47,
+   "kind": "semi",
+   "refs": [
+    "maier2001",
+    "maier2000",
+    "ioffe_nsm"
+   ],
+   "note": "Negative electron affinity: the conduction band sits above the vacuum level at a hydrogenated surface.",
+   "eps": 5.7,
+   "Nc": 1e+20,
+   "Nv": 1.8e+19
+  },
+  {
+   "id": "C-O",
+   "name": "Diamond, O-terminated surface",
+   "chi": 1.7,
+   "Eg": 5.47,
+   "kind": "semi",
+   "refs": [
+    "maier2001",
+    "ioffe_nsm"
+   ],
+   "note": "",
+   "eps": 5.7,
+   "Nc": 1e+20,
+   "Nv": 1.8e+19
+  },
+  {
+   "id": "MoS2",
+   "name": "MoS₂ monolayer",
+   "chi": 4.2,
+   "Eg": 1.8,
+   "kind": "semi",
+   "refs": [
+    "radisavljevic2011",
+    "chhowalla2016",
+    "ioffe_nsm"
+   ],
+   "note": "Optical gap; the electronic (quasiparticle) gap is ~2.2–2.4 eV. Affinities of 4.0–4.3 eV are reported.",
+   "eps": 7.1,
+   "Nc": 7.5e+18,
+   "Nv": 1.05e+19,
+   "approx": true
+  },
+  {
+   "id": "CNT",
+   "name": "Carbon nanotube (d ≈ 1.4 nm)",
+   "chi": 4.6,
+   "Eg": 0.6,
+   "kind": "semi",
+   "refs": [
+    "franklin2012",
+    "ioffe_nsm"
+   ],
+   "note": "Gap ≈ 0.8 eV / d (nm); affinity approximate.",
+   "eps": 4.0,
+   "Nc": 1e+19,
+   "Nv": 1e+19,
+   "approx": true
+  },
+  {
+   "id": "IGZO",
+   "name": "Amorphous InGaZnO",
+   "chi": 4.3,
+   "Eg": 3.1,
+   "kind": "semi",
+   "refs": [
+    "nomura2004",
+    "ioffe_nsm"
+   ],
+   "note": "Approximate; varies with composition and anneal.",
+   "eps": 16.0,
+   "Nc": 5e+18,
+   "Nv": 5e+19,
+   "approx": true
+  },
+  {
+   "id": "SiO2",
+   "name": "Silicon dioxide",
+   "chi": 0.95,
+   "Eg": 9.0,
+   "kind": "insulator",
+   "refs": [
+    "robertson2006"
+   ],
+   "note": "Conduction-band offset to Si 3.1 eV (as in the tunnelling lab).",
+   "eps": 3.9,
+   "Nc": 2.5e+19,
+   "Nv": 2.5e+19
+  },
+  {
+   "id": "Si3N4",
+   "name": "Silicon nitride",
+   "chi": 1.95,
+   "Eg": 5.3,
+   "kind": "insulator",
+   "refs": [
+    "robertson2006"
+   ],
+   "note": "",
+   "eps": 7.5,
+   "Nc": 2.5e+19,
+   "Nv": 2.5e+19
+  },
+  {
+   "id": "Al2O3",
+   "name": "Aluminium oxide",
+   "chi": 1.25,
+   "Eg": 8.8,
+   "kind": "insulator",
+   "refs": [
+    "robertson2006"
+   ],
+   "note": "",
+   "eps": 9.0,
+   "Nc": 2.5e+19,
+   "Nv": 2.5e+19
+  },
+  {
+   "id": "HfO2",
+   "name": "Hafnium oxide",
+   "chi": 2.55,
+   "Eg": 5.8,
+   "kind": "insulator",
+   "refs": [
+    "robertson2006"
+   ],
+   "note": "Conduction-band offset to Si ~1.5 eV.",
+   "eps": 22.0,
+   "Nc": 2.5e+19,
+   "Nv": 2.5e+19
+  }
+ ]
+}

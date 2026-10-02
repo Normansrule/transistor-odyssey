@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="2D MoS₂ FET with 0.42 nm AlOx interface (NYCU + TSMC, 2026)">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">2D MoS₂ FET with 0.42 nm AlOx interface (NYCU + TSMC, 2026)</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">Top gate on a one-molecule-thick channel. 0.42 nm is this buffer layer, not a node name.</text>
+<rect x="30.0" y="320.0" width="470.0" height="70.0" rx="0" fill="#6d7f99" fill-opacity="1.0"/>
+<rect x="60.0" y="300.0" width="410.0" height="8.0" rx="0" fill="#e25fa6" fill-opacity="1.0"/>
+<rect x="60.0" y="292.0" width="90.0" height="10.0" rx="0" fill="#e8c45c" fill-opacity="1.0"/>
+<rect x="380.0" y="292.0" width="90.0" height="10.0" rx="0" fill="#e8c45c" fill-opacity="1.0"/>
+<rect x="60.0" y="250.0" width="90.0" height="42.0" rx="0" fill="#e8c45c" fill-opacity="1.0"/>
+<rect x="380.0" y="250.0" width="90.0" height="42.0" rx="0" fill="#e8c45c" fill-opacity="1.0"/>
+<rect x="150.0" y="296.0" width="230.0" height="4.0" rx="0" fill="#f4ea9c" fill-opacity="1.0"/>
+<rect x="150.0" y="280.0" width="230.0" height="16.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="170.0" y="200.0" width="190.0" height="80.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="60.0" y="90.0" width="200.0" height="96.0" rx="8" fill="#1a2029" fill-opacity="1.0"/>
+<rect x="76.0" y="104.0" width="168.0" height="30.0" rx="0" fill="#9a80dc" fill-opacity="1.0"/>
+<rect x="76.0" y="134.0" width="168.0" height="12.0" rx="0" fill="#f4ea9c" fill-opacity="1.0"/>
+<rect x="76.0" y="146.0" width="168.0" height="22.0" rx="0" fill="#e25fa6" fill-opacity="1.0"/>
+<line x1="160.0" y1="186.0" x2="265.0" y2="296.0" stroke="#8a94a3" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 3"/>
+<polyline points="265.0,240.0 522.0,230.0 540.0,230.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="240.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="234.0" fill="#e8ecf1" font-size="12.5">Top gate, channel ≈ 100 nm</text>
+<polyline points="265.0,288.0 522.0,278.0 540.0,278.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="288.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="282.0" fill="#e8ecf1" font-size="12.5">HfO₂ gate dielectric (EOT ≈ 1 nm total)</text>
+<polyline points="105.0,297.0 522.0,308.0 540.0,308.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="105.0" cy="297.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="312.0" fill="#e8ecf1" font-size="12.5">Semimetal / Au contact</text>
+<polyline points="265.0,298.0 522.0,338.0 540.0,338.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="298.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="342.0" fill="#e8ecf1" font-size="12.5">AlOx interface (0.42 nm)</text>
+<polyline points="265.0,304.0 522.0,368.0 540.0,368.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="304.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="372.0" fill="#e8ecf1" font-size="12.5">MoS₂ monolayer (0.7 nm)</text>
+<polyline points="265.0,355.0 522.0,398.0 540.0,398.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="355.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="402.0" fill="#e8ecf1" font-size="12.5">Substrate</text>
+<text x="160" y="124" fill="#10141a" font-size="11" text-anchor="middle">HfO₂</text>
+<text x="160" y="144" fill="#10141a" font-size="10" text-anchor="middle">AlOx 0.42 nm</text>
+<text x="160" y="162" fill="#10141a" font-size="10" text-anchor="middle">MoS₂ 0.7 nm (S–Mo–S)</text>
+</svg>

@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this material, please cite it as below."
+title: "Transistor Odyssey: an open, simulated history of transistor structure and materials, 1947-2026"
+authors:
+  - family-names: Norman
+    given-names: Aleksander
+date-released: 2026-10-02
+version: 1.7.0
+license: MIT
+repository-code: "https://github.com/Normansrule/transistor-odyssey"
+url: "https://normansrule.github.io/transistor-odyssey/"
+keywords: [transistor, semiconductor, MOSFET, FinFET, gate-all-around, MoS2, GaN, GaAs, diamond, history, education]

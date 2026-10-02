@@ -1,0 +1,18 @@
+* CMOS inverter, 180 nm-class, SPICE Level 3 with velocity saturation (vmax)
+* Educational parameters (tox = 4 nm, VDD = 1.8 V). For real 130/180 nm work use
+* the SKY130 or GF180MCU open PDK BSIM4 models.
+.model nch nmos level=3 vto=0.45 tox=4n uo=400 vmax=1e5 theta=0.2 eta=0.04 kappa=0.1 nsub=4e17
+.model pch pmos level=3 vto=-0.45 tox=4n uo=110 vmax=8e4 theta=0.2 eta=0.04 kappa=0.1 nsub=4e17
+VDD vdd 0 1.8
+VIN in 0 pulse(0 1.8 100p 20p 20p 480p 1n)
+MP out in vdd vdd pch W=0.9u L=0.18u
+MN out in 0   0   nch W=0.45u L=0.18u
+CL out 0 2f
+.control
+  dc VIN 0 1.8 0.005
+  wrdata vtc_180nm.csv v(out)
+  tran 1p 2n
+  meas tran tphl trig v(in) val=0.9 rise=1 targ v(out) val=0.9 fall=1
+  meas tran tplh trig v(in) val=0.9 fall=1 targ v(out) val=0.9 rise=1
+.endc
+.end

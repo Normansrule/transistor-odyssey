@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 420" width="840" height="420" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif" role="img" aria-label="Complementary FET (CFET) — roadmap">
+<rect width="840" height="420" rx="14" fill="#10141a"/>
+<text x="24" y="36" fill="#e8ecf1" font-size="19" font-weight="600">Complementary FET (CFET) — roadmap</text>
+<text x="24" y="58" fill="#8a94a3" font-size="12.5">pFET sheets directly on top of nFET sheets, sharing one gate. imec / IRDS beyond 1 nm.</text>
+<rect x="30.0" y="360.0" width="470.0" height="34.0" rx="0" fill="#4b596d" fill-opacity="1.0"/>
+<rect x="30.0" y="348.0" width="470.0" height="12.0" rx="0" fill="#d9825b" fill-opacity="1.0"/>
+<rect x="60.0" y="240.0" width="320.0" height="100.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="100.0" y="252.0" width="240.0" height="14.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="100.0" y="282.0" width="240.0" height="14.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="100.0" y="312.0" width="240.0" height="14.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="30.0" y="240.0" width="40.0" height="100.0" rx="0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="370.0" y="240.0" width="40.0" height="100.0" rx="0" fill="#3f7fe0" fill-opacity="1.0"/>
+<rect x="140.0" y="120.0" width="320.0" height="100.0" rx="0" fill="#e2b650" fill-opacity="1.0"/>
+<rect x="180.0" y="132.0" width="240.0" height="14.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="180.0" y="162.0" width="240.0" height="14.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="180.0" y="192.0" width="240.0" height="14.0" rx="0" fill="#7b8ca5" fill-opacity="1.0"/>
+<rect x="110.0" y="120.0" width="40.0" height="100.0" rx="0" fill="#e07f3f" fill-opacity="1.0"/>
+<rect x="450.0" y="120.0" width="40.0" height="100.0" rx="0" fill="#e07f3f" fill-opacity="1.0"/>
+<rect x="30.0" y="222.0" width="470.0" height="16.0" rx="0" fill="#8fcfd4" fill-opacity="1.0"/>
+<polyline points="300.0,139.0 522.0,139.0 540.0,139.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="300.0" cy="139.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="143.0" fill="#e8ecf1" font-size="12.5">Upper tier sheets (pFET), staggered</text>
+<polyline points="130.0,170.0 522.0,170.0 540.0,170.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="130.0" cy="170.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="174.0" fill="#e8ecf1" font-size="12.5">p⁺ S/D (upper)</text>
+<polyline points="265.0,230.0 522.0,230.0 540.0,230.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="230.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="234.0" fill="#e8ecf1" font-size="12.5">Ultra-thin bonding dielectric</text>
+<polyline points="220.0,259.0 522.0,260.0 540.0,260.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="220.0" cy="259.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="264.0" fill="#e8ecf1" font-size="12.5">Lower tier sheets (nFET)</text>
+<polyline points="220.0,290.0 522.0,290.0 540.0,290.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="220.0" cy="290.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="294.0" fill="#e8ecf1" font-size="12.5">Shared / split gate</text>
+<polyline points="50.0,290.0 522.0,320.0 540.0,320.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="50.0" cy="290.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="324.0" fill="#e8ecf1" font-size="12.5">n⁺ S/D (lower)</text>
+<polyline points="265.0,354.0 522.0,354.0 540.0,354.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="354.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="358.0" fill="#e8ecf1" font-size="12.5">Backside bitlines / power</text>
+<polyline points="265.0,377.0 522.0,384.0 540.0,384.0" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<circle cx="265.0" cy="377.0" r="2.6" fill="#e8ecf1" stroke="#10141a" stroke-width="1.5"/>
+<text x="548" y="388.0" fill="#e8ecf1" font-size="12.5">Substrate / bonded carrier</text>
+<text x="265" y="408" fill="#8a94a3" font-size="11" text-anchor="middle">Stacking n over p roughly halves the cell footprint</text>
+</svg>

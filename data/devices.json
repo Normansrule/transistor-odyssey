@@ -1,0 +1,1515 @@
+{
+ "_about": "Device atlas: one entry per transistor type, used by site/devices.html (animations + band diagrams), sim/transistor_sim/bandatlas.py and docs/20-how-transistors-work.md. Band-model parameters are schematic but physically ordered; see bandatlas.py.",
+ "devices": [
+  {
+   "id": "point_contact",
+   "name": "Point-contact transistor",
+   "short": "Point contact",
+   "family": "Bipolar",
+   "year": 1947,
+   "who": "J. Bardeen, W. Brattain (Bell Labs)",
+   "material": "Ge",
+   "carrier": "h",
+   "model": {
+    "lateral": "bjt",
+    "vertical": "none",
+    "pol": -1,
+    "Eg": 0.66,
+    "vg": [
+     0,
+     0.4
+    ],
+    "vt": 0.2,
+    "vd": [
+     0,
+     2
+    ],
+    "gl": "V_EB",
+    "dl": "V_CB",
+    "vbi": 0.4
+   },
+   "labels": {
+    "s": "Emitter point",
+    "g": "Base (Ge block)",
+    "d": "Collector point"
+   },
+   "summary": "Two gold contacts 50 \u00b5m apart press on n-type germanium. Forward-biasing the emitter injects holes into a thin surface layer; the reverse-biased collector sweeps them up, and a small emitter current controls a larger collector voltage swing.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Emitter unbiased: the barrier between emitter and germanium blocks hole injection; only a tiny leakage reaches the collector."
+    },
+    {
+     "when": "sub",
+     "text": "Forward-bias the emitter a little: holes start to spill over the lowered barrier into the n-type surface layer."
+    },
+    {
+     "when": "on",
+     "text": "Holes drift and diffuse ~50 \u00b5m to the collector point, whose reverse bias pulls them in: collector current follows emitter current."
+    },
+    {
+     "when": "sat",
+     "text": "Because the collector sits at a much higher voltage, the same current delivers more power there than the emitter consumed: gain."
+    }
+   ],
+   "facts": [
+    [
+     "Material",
+     "n-type germanium (Eg 0.66 eV)"
+    ],
+    [
+     "Contact spacing",
+     "~50 \u00b5m"
+    ],
+    [
+     "Carrier",
+     "Holes (minority carriers)"
+    ],
+    [
+     "First demonstrated",
+     "16 Dec 1947"
+    ]
+   ],
+   "where": "Museums: replaced within a decade by junction transistors, which were far more reproducible.",
+   "xsec": "point_contact",
+   "docs": "01-origins.md",
+   "lab": "pn",
+   "refs": [
+    "bardeen1948",
+    "riordan1997",
+    "nobel1956"
+   ]
+  },
+  {
+   "id": "bjt",
+   "name": "Bipolar junction transistor (npn)",
+   "short": "BJT",
+   "family": "Bipolar",
+   "year": 1951,
+   "who": "W. Shockley (Bell Labs)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "bjt",
+    "vertical": "none",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     0.85
+    ],
+    "vt": 0.62,
+    "vd": [
+     0,
+     3
+    ],
+    "gl": "V_BE",
+    "dl": "V_CE",
+    "vbi": 0.9
+   },
+   "labels": {
+    "s": "Emitter (n\u207a)",
+    "g": "Base (p)",
+    "d": "Collector (n)"
+   },
+   "summary": "A thin p-type base sits between an n\u207a emitter and an n collector. The base\u2013emitter voltage lowers the barrier for electrons exponentially; almost all injected electrons cross the thin base and fall into the collector.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "V_BE = 0: the emitter\u2013base junction is at equilibrium and its built-in barrier (~0.9 eV) keeps electrons in the emitter."
+    },
+    {
+     "when": "sub",
+     "text": "Raise V_BE: the barrier drops by qV_BE and electron injection grows tenfold every 60 mV \u2014 the Boltzmann factor."
+    },
+    {
+     "when": "on",
+     "text": "Injected electrons diffuse across the thin base faster than they recombine, then drop down the collector junction's field."
+    },
+    {
+     "when": "sat",
+     "text": "Base current (holes back-injected into the emitter) is ~100\u00d7 smaller than collector current: current gain \u03b2 \u2248 100."
+    }
+   ],
+   "facts": [
+    [
+     "Base width",
+     "0.05\u20131 \u00b5m"
+    ],
+    [
+     "Current gain \u03b2",
+     "50\u2013500"
+    ],
+    [
+     "Law",
+     "I_C = I_S e^{qV_BE/kT}"
+    ],
+    [
+     "Invented",
+     "1948 (theory), 1951 (grown junction)"
+    ]
+   ],
+   "where": "Analog and RF circuits, bandgap references, power amplifiers; the core of 1960s\u201380s logic (TTL, ECL).",
+   "xsec": "bjt",
+   "docs": "01-origins.md",
+   "lab": "pn",
+   "refs": [
+    "shockley1949",
+    "shockley1951",
+    "sze2006"
+   ]
+  },
+  {
+   "id": "hbt",
+   "name": "Heterojunction bipolar transistor (SiGe / InP)",
+   "short": "HBT",
+   "family": "Bipolar",
+   "year": 1987,
+   "who": "Concept: H. Kroemer (1957); SiGe HBTs: IBM (late 1980s)",
+   "material": "SiGe",
+   "carrier": "e",
+   "model": {
+    "lateral": "bjt",
+    "vertical": "none",
+    "pol": 1,
+    "Eg": 1.12,
+    "hetero": 0.15,
+    "vg": [
+     0,
+     0.85
+    ],
+    "vt": 0.6,
+    "vd": [
+     0,
+     3
+    ],
+    "gl": "V_BE",
+    "dl": "V_CE",
+    "vbi": 0.9
+   },
+   "labels": {
+    "s": "Emitter (Si, n\u207a)",
+    "g": "Base (SiGe, p\u207a)",
+    "d": "Collector (n)"
+   },
+   "summary": "A narrower-gap base (SiGe, or InGaAs in InP HBTs) creates a valence-band step that blocks holes from flowing back into the emitter. The base can then be heavily doped and very thin, reaching hundreds of GHz.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the emitter\u2013base barrier holds electrons back, exactly as in a BJT."
+    },
+    {
+     "when": "sub",
+     "text": "Forward bias injects electrons into the base; the extra valence-band step \u0394E_v blocks holes from going the other way."
+    },
+    {
+     "when": "on",
+     "text": "Because back-injection is suppressed by e^{\u0394E_v/kT}, the base can be doped 100\u00d7 harder and made only ~10\u201320 nm thick."
+    },
+    {
+     "when": "sat",
+     "text": "A thin, low-resistance base means transit times of picoseconds: f_T and f_max of 300\u2013700 GHz in modern SiGe and InP HBTs."
+    }
+   ],
+   "facts": [
+    [
+     "Base",
+     "SiGe (Ge graded 10\u201330%)"
+    ],
+    [
+     "Valence-band step",
+     "~0.1\u20130.2 eV"
+    ],
+    [
+     "f_T / f_max",
+     "up to ~500 / 700 GHz"
+    ],
+    [
+     "Nobel",
+     "Kroemer 2000"
+    ]
+   ],
+   "where": "5G and satellite radios, automotive radar, 100G+ optical-fibre drivers.",
+   "xsec": "planar_bjt",
+   "docs": "10-compound-semiconductors.md",
+   "lab": "bands",
+   "refs": [
+    "kroemer1957",
+    "nobel2000",
+    "sze2006"
+   ]
+  },
+  {
+   "id": "jfet",
+   "name": "Junction field-effect transistor",
+   "short": "JFET",
+   "family": "Early field-effect",
+   "year": 1953,
+   "who": "W. Shockley (theory 1952); G. Dacey, I. Ross (1953)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "jfet",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     -3,
+     0.3
+    ],
+    "vt": -1.8,
+    "vd": [
+     0,
+     3
+    ],
+    "n": 1.8,
+    "eta": 0.02,
+    "depletion": true
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Gate (p\u207a)",
+    "d": "Drain"
+   },
+   "summary": "Current flows through an n-type channel between two p\u207a gate junctions. Reverse-biasing the gate widens the depletion regions until they meet and pinch the channel off. It is normally on.",
+   "steps": [
+    {
+     "when": "on",
+     "text": "V_GS = 0: the channel is wide open and electrons flow freely from source to drain."
+    },
+    {
+     "when": "sub",
+     "text": "Make the gate negative: the reverse-biased junctions grow their depletion regions into the channel, narrowing it."
+    },
+    {
+     "when": "off",
+     "text": "At the pinch-off voltage the depletion regions meet and the channel closes."
+    },
+    {
+     "when": "sat",
+     "text": "With drain voltage the channel pinches near the drain first, so the current saturates, like a MOSFET."
+    }
+   ],
+   "facts": [
+    [
+     "Mode",
+     "Depletion (normally on)"
+    ],
+    [
+     "Gate input",
+     "Reverse-biased pn junction: ~pA"
+    ],
+    [
+     "Noise",
+     "Very low (no oxide traps)"
+    ],
+    [
+     "Pinch-off",
+     "\u22120.5 to \u22126 V typical"
+    ]
+   ],
+   "where": "Low-noise audio and instrument front ends, ultra-high-impedance inputs; SiC JFETs in power switching.",
+   "xsec": "jfet",
+   "docs": "14-niche-and-forgotten.md",
+   "lab": "pn",
+   "refs": [
+    "shockley1952",
+    "sze2006"
+   ]
+  },
+  {
+   "id": "mesfet",
+   "name": "GaAs MESFET",
+   "short": "MESFET",
+   "family": "Compound & wide-gap",
+   "year": 1966,
+   "who": "C. Mead (Caltech, 1966); first GaAs MESFET: W. Hooper, W. Lehrer (1967)",
+   "material": "GaAs",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "mesfet",
+    "pol": 1,
+    "Eg": 1.42,
+    "vg": [
+     -2.5,
+     0.4
+    ],
+    "vt": -1.2,
+    "vd": [
+     0,
+     3
+    ],
+    "n": 1.5,
+    "eta": 0.05,
+    "depletion": true
+   },
+   "labels": {
+    "s": "Source (ohmic)",
+    "g": "Schottky gate",
+    "d": "Drain (ohmic)"
+   },
+   "summary": "GaAs has no good native oxide, so the gate is a metal Schottky contact directly on a thin n-type channel. The Schottky depletion region replaces the JFET's p-n junction; GaAs's light electrons make it fast.",
+   "steps": [
+    {
+     "when": "on",
+     "text": "V_GS \u2248 0: a thin depletion region under the Schottky gate leaves most of the n-GaAs channel open."
+    },
+    {
+     "when": "sub",
+     "text": "Negative gate voltage deepens the depletion region into the channel."
+    },
+    {
+     "when": "off",
+     "text": "When depletion reaches the semi-insulating substrate the channel is cut off."
+    },
+    {
+     "when": "sat",
+     "text": "Electrons (m* = 0.067 m\u2080) cross sub-micron gates in picoseconds: the first microwave transistors for satellites and radar."
+    }
+   ],
+   "facts": [
+    [
+     "Electron mobility",
+     "~8500 cm\u00b2/V\u00b7s (bulk GaAs)"
+    ],
+    [
+     "Gate",
+     "Schottky metal (Ti/Pt/Au)"
+    ],
+    [
+     "Substrate",
+     "Semi-insulating GaAs"
+    ],
+    [
+     "Era",
+     "1970s\u201390s microwave"
+    ]
+   ],
+   "where": "Early cell-phone and satellite amplifiers; mostly replaced by HEMTs and HBTs.",
+   "xsec": "gaas_phemt",
+   "docs": "10-compound-semiconductors.md",
+   "lab": "bands",
+   "refs": [
+    "mead1966",
+    "hooper1967",
+    "sze2006"
+   ]
+  },
+  {
+   "id": "planar_mosfet",
+   "name": "Planar MOSFET (bulk silicon)",
+   "short": "Planar MOSFET",
+   "family": "Silicon MOSFET",
+   "year": 1960,
+   "who": "D. Kahng, M. Atalla (Bell Labs)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "mos",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     1.2
+    ],
+    "vt": 0.45,
+    "vd": [
+     0,
+     1.2
+    ],
+    "n": 1.4,
+    "eta": 0.1,
+    "Na": 3e+17,
+    "tox": 2.0
+   },
+   "labels": {
+    "s": "Source (n\u207a)",
+    "g": "Gate",
+    "d": "Drain (n\u207a)"
+   },
+   "summary": "A gate on thin oxide pulls electrons to the surface of p-type silicon, forming an inversion layer that connects source and drain. From 1970 to 2011 this flat design, shrunk from 10 \u00b5m to 32 nm, built the digital world.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Gate below V_T: a potential barrier between source and channel keeps the source's electrons out."
+    },
+    {
+     "when": "sub",
+     "text": "Near threshold the barrier drops as the gate bends the bands; current rises one decade per ~85 mV (n \u2248 1.4)."
+    },
+    {
+     "when": "on",
+     "text": "Above V_T the surface inverts: an electron sheet connects source to drain and current flows by drift."
+    },
+    {
+     "when": "sat",
+     "text": "At high drain voltage the channel pinches off near the drain and the drain also lowers the source barrier (DIBL), the weakness that ended planar scaling."
+    }
+   ],
+   "facts": [
+    [
+     "Gate lengths",
+     "10 \u00b5m (1971) \u2192 ~30 nm (2011)"
+    ],
+    [
+     "Oxide",
+     "SiO\u2082, then HfO\u2082 from 2007"
+    ],
+    [
+     "Swing",
+     "~80\u2013100 mV/dec at short L"
+    ],
+    [
+     "DIBL",
+     "~100 mV/V at 32 nm"
+    ]
+   ],
+   "where": "Everything digital from the 4004 to 32 nm CPUs; still in analog, sensors and power management.",
+   "xsec": "planar_hkmg",
+   "docs": "03-mosfet-and-cmos.md",
+   "lab": "mosfet",
+   "refs": [
+    "kahng1960",
+    "lilienfeld_patent",
+    "taur2013"
+   ]
+  },
+  {
+   "id": "fdsoi",
+   "name": "Fully depleted SOI MOSFET",
+   "short": "FD-SOI",
+   "family": "Silicon MOSFET",
+   "year": 2012,
+   "who": "Research: J.-P. Colinge and others; production: STMicroelectronics, GlobalFoundries (28/22 nm)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "dg",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     1.0
+    ],
+    "vt": 0.4,
+    "vd": [
+     0,
+     1.0
+    ],
+    "n": 1.15,
+    "eta": 0.07,
+    "tsi": 7,
+    "single": true
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Gate",
+    "d": "Drain"
+   },
+   "summary": "The channel is an ultra-thin silicon film (~7 nm) on a buried oxide. There is no deep silicon below for the drain's field to leak through, and the substrate can act as a second 'back gate' to tune the threshold.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the whole thin film is depleted and its barrier is held up by the gate from above and the buried oxide below."
+    },
+    {
+     "when": "sub",
+     "text": "Because no deep depletion region soaks up gate charge, the swing is steeper (~65\u201370 mV/dec)."
+    },
+    {
+     "when": "on",
+     "text": "Above threshold electrons fill the film; the undoped channel avoids random-dopant variation."
+    },
+    {
+     "when": "sat",
+     "text": "A back-gate bias on the substrate shifts V_T by ~80 mV/V, trading speed against leakage on the fly."
+    }
+   ],
+   "facts": [
+    [
+     "Silicon film",
+     "5\u20138 nm"
+    ],
+    [
+     "Buried oxide",
+     "~20\u201325 nm"
+    ],
+    [
+     "Swing",
+     "~65\u201370 mV/dec"
+    ],
+    [
+     "Nodes",
+     "28 nm, 22 nm, 18 nm FD-SOI"
+    ]
+   ],
+   "where": "Low-power IoT, automotive radar, RF SoCs (GlobalFoundries 22FDX, ST 28/18 nm).",
+   "xsec": "planar_hkmg",
+   "docs": "14-niche-and-forgotten.md",
+   "lab": "short",
+   "refs": [
+    "colinge_soi",
+    "colinge2008",
+    "frank2001"
+   ]
+  },
+  {
+   "id": "finfet",
+   "name": "FinFET (tri-gate)",
+   "short": "FinFET",
+   "family": "Silicon MOSFET",
+   "year": 2011,
+   "who": "D. Hisamoto, C. Hu et al. (1998\u20132000); first in production: Intel 22 nm (2011)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "dg",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     1.0
+    ],
+    "vt": 0.35,
+    "vd": [
+     0,
+     1.0
+    ],
+    "n": 1.08,
+    "eta": 0.04,
+    "tsi": 7
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Gate (wraps 3 sides)",
+    "d": "Drain"
+   },
+   "summary": "The channel stands up as a thin fin and the gate wraps its top and both sides. Gating from three sides shrinks the electrostatic natural length, so the gate keeps control at ~20 nm lengths where planar devices leaked.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: gates on both sides hold the whole fin's barrier high; the drain barely reaches the source."
+    },
+    {
+     "when": "sub",
+     "text": "The fin is fully depleted and gated from both sides, so the swing is close to the 60 mV/dec limit (~65\u201370 mV/dec)."
+    },
+    {
+     "when": "on",
+     "text": "Above threshold electrons fill the fin volume; several fins in parallel make one wider transistor."
+    },
+    {
+     "when": "sat",
+     "text": "DIBL stays near 30\u201350 mV/V, about three times better than planar at the same gate length."
+    }
+   ],
+   "facts": [
+    [
+     "Fin width",
+     "~5\u20138 nm"
+    ],
+    [
+     "Fin height",
+     "42\u201350 nm (later nodes)"
+    ],
+    [
+     "Swing",
+     "~65\u201370 mV/dec"
+    ],
+    [
+     "Nodes",
+     "22 nm (2011) \u2192 3 nm (2022)"
+    ]
+   ],
+   "where": "Every leading CPU, GPU and phone chip from 2011 to 2024.",
+   "xsec": "finfet",
+   "docs": "06-finfet.md",
+   "lab": "short",
+   "refs": [
+    "hisamoto2000",
+    "auth2012",
+    "hu2010"
+   ]
+  },
+  {
+   "id": "gaa",
+   "name": "Gate-all-around nanosheet",
+   "short": "GAA nanosheet",
+   "family": "Silicon MOSFET",
+   "year": 2022,
+   "who": "Research: IBM, imec (2017); production: Samsung 3 nm (2022), TSMC N2 and Intel 18A (2025)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "dg",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     0.9
+    ],
+    "vt": 0.3,
+    "vd": [
+     0,
+     0.9
+    ],
+    "n": 1.04,
+    "eta": 0.025,
+    "tsi": 5
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Gate (wraps all 4 sides)",
+    "d": "Drain"
+   },
+   "summary": "Three or four horizontal silicon sheets, each ~5 nm thick, are stacked and completely surrounded by the gate. Four-sided control is the best electrostatics silicon can get, and the sheet width can be tuned per transistor.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the gate surrounds each sheet, so its barrier is controlled from every side; leakage paths through the body are gone."
+    },
+    {
+     "when": "sub",
+     "text": "Swing \u2248 62\u201365 mV/dec, within a few percent of the thermal limit."
+    },
+    {
+     "when": "on",
+     "text": "Electrons flow through all stacked sheets in parallel; wider sheets give more current per footprint than fins."
+    },
+    {
+     "when": "sat",
+     "text": "DIBL ~20\u201330 mV/V, so gates of ~12\u201315 nm hold off the drain. Quantum confinement in 5 nm sheets shifts V_T (Lab 08)."
+    }
+   ],
+   "facts": [
+    [
+     "Sheets",
+     "3\u20134 per device, ~5 nm thick"
+    ],
+    [
+     "Sheet width",
+     "~15\u201350 nm (tunable)"
+    ],
+    [
+     "Gate length",
+     "~12\u201315 nm"
+    ],
+    [
+     "Nodes",
+     "Samsung SF3, TSMC N2, Intel 18A"
+    ]
+   ],
+   "where": "2 nm-class chips from late 2025; the base for CFET and IBM's 0.7 nm nanostack.",
+   "xsec": "gaa",
+   "docs": "08-gaa-and-angstrom-era.md",
+   "lab": "qw",
+   "refs": [
+    "loubet2017",
+    "tsmc_n2",
+    "intel_18a"
+   ]
+  },
+  {
+   "id": "cfet",
+   "name": "Complementary FET (stacked nFET/pFET)",
+   "short": "CFET",
+   "family": "Silicon MOSFET",
+   "year": 2026,
+   "who": "imec (roadmap, 2018); research demos by IBM, Intel, TSMC",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "dg",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     0.8
+    ],
+    "vt": 0.28,
+    "vd": [
+     0,
+     0.8
+    ],
+    "n": 1.05,
+    "eta": 0.03,
+    "tsi": 5
+   },
+   "labels": {
+    "s": "Shared source/drain stack",
+    "g": "Common gate",
+    "d": "Output"
+   },
+   "summary": "The pFET nanosheets are stacked directly on top of the nFET nanosheets under one gate, so a CMOS inverter uses the footprint of one transistor. The band diagram shows the nFET tier; the pFET above mirrors it with holes.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Input low: the bottom nFET's barrier is high (off) while the top pFET is on, pulling the output high."
+    },
+    {
+     "when": "sub",
+     "text": "As the shared gate rises the nFET barrier falls and the pFET barrier rises: the inverter switches."
+    },
+    {
+     "when": "on",
+     "text": "Input high: nFET on, pFET off \u2014 the output is pulled to ground through the bottom tier."
+    },
+    {
+     "when": "sat",
+     "text": "Stacking halves the cell area of a logic gate; the price is harder processing and heat trapped in the stack."
+    }
+   ],
+   "facts": [
+    [
+     "Stack",
+     "nFET sheets below, pFET above"
+    ],
+    [
+     "Area gain",
+     "~40\u201350% for logic cells"
+    ],
+    [
+     "Status",
+     "Research; expected ~2030s"
+    ],
+    [
+     "Related",
+     "IBM 0.7 nm nanostack (2026)"
+    ]
+   ],
+   "where": "Future logic nodes beyond ~1 nm-class naming.",
+   "xsec": "cfet",
+   "docs": "08-gaa-and-angstrom-era.md",
+   "lab": "short",
+   "refs": [
+    "ryckaert2018",
+    "ibm2026",
+    "irds2023"
+   ]
+  },
+  {
+   "id": "gan_hemt",
+   "name": "AlGaN/GaN HEMT",
+   "short": "GaN HEMT",
+   "family": "Compound & wide-gap",
+   "year": 1993,
+   "who": "Concept: T. Mimura (GaAs, 1980); first AlGaN/GaN HEMT: M. A. Khan et al. (1993)",
+   "material": "GaN",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "hemt",
+    "pol": 1,
+    "Eg": 3.4,
+    "vg": [
+     -5,
+     1
+    ],
+    "vt": -3.3,
+    "vd": [
+     0,
+     10
+    ],
+    "n": 1.6,
+    "eta": 0.01,
+    "depletion": true,
+    "x": 0.25,
+    "d": 20
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Schottky gate",
+    "d": "Drain"
+   },
+   "summary": "Polarization charge at the AlGaN/GaN interface creates a sheet of ~10\u00b9\u00b3 electrons/cm\u00b2 with no doping \u2014 a two-dimensional electron gas with high mobility. A negative gate voltage lifts the triangular well above the Fermi level to switch it off.",
+   "steps": [
+    {
+     "when": "on",
+     "text": "V_GS = 0: the polarization-induced well dips below E_F and fills with a 2DEG; the transistor is normally on."
+    },
+    {
+     "when": "sub",
+     "text": "A negative gate lifts the AlGaN and the well; subbands rise toward E_F and the sheet density falls."
+    },
+    {
+     "when": "off",
+     "text": "Past the pinch-off voltage (~\u22123 to \u22124 V) the ground subband is above E_F: channel empty."
+    },
+    {
+     "when": "sat",
+     "text": "The wide 3.4 eV gap lets the drain hold hundreds of volts; high density \u00d7 mobility gives high current. Heat is the limit (Lab 11)."
+    }
+   ],
+   "facts": [
+    [
+     "2DEG density",
+     "~1\u00d710\u00b9\u00b3 cm\u207b\u00b2"
+    ],
+    [
+     "Mobility",
+     "~1500\u20132000 cm\u00b2/V\u00b7s"
+    ],
+    [
+     "Breakdown field",
+     "~3.3 MV/cm (10\u00d7 Si)"
+    ],
+    [
+     "Mode",
+     "Depletion; p-GaN gate for normally-off"
+    ]
+   ],
+   "where": "5G base stations, radar, phone and laptop fast chargers, data-centre power supplies.",
+   "xsec": "gan_hemt",
+   "docs": "10-compound-semiconductors.md",
+   "lab": "qw",
+   "refs": [
+    "khan1993",
+    "mishra2002",
+    "ambacher1999",
+    "mimura1980"
+   ]
+  },
+  {
+   "id": "sic_mosfet",
+   "name": "SiC power MOSFET (vertical)",
+   "short": "SiC MOSFET",
+   "family": "Power",
+   "year": 2011,
+   "who": "Cree/Wolfspeed first commercial (2011); B. J. Baliga's figure of merit (1982)",
+   "material": "4H-SiC",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "mos",
+    "pol": 1,
+    "Eg": 3.26,
+    "vg": [
+     0,
+     18
+    ],
+    "vt": 4.5,
+    "vd": [
+     0,
+     20
+    ],
+    "n": 2.0,
+    "eta": 0.002,
+    "Na": 1e+17,
+    "tox": 50,
+    "vscale": 10
+   },
+   "labels": {
+    "s": "Source (top)",
+    "g": "Gate",
+    "d": "Drain (bottom, backside)"
+   },
+   "summary": "Current flows through a short MOS channel at the surface of the p-body, then vertically down a thick, lightly doped n\u207b drift layer to the drain on the back. SiC's 10\u00d7 higher breakdown field lets the drift layer be 10\u00d7 thinner than silicon's for the same voltage.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the p-body blocks electrons; the drain voltage is held by the depleted n\u207b drift layer below."
+    },
+    {
+     "when": "sub",
+     "text": "Gate voltage inverts the p-body surface; SiC's rough SiC/SiO\u2082 interface makes this channel less mobile than silicon's."
+    },
+    {
+     "when": "on",
+     "text": "Electrons cross the channel, turn downward and cross ~10 \u00b5m of drift layer to the backside drain."
+    },
+    {
+     "when": "sat",
+     "text": "The blocking layer is thin and doped 100\u00d7 more than a silicon device of the same rating, so on-resistance is far lower at 650\u20133300 V."
+    }
+   ],
+   "facts": [
+    [
+     "Breakdown field",
+     "~2.5\u20133 MV/cm"
+    ],
+    [
+     "Ratings",
+     "650 V \u2013 3.3 kV"
+    ],
+    [
+     "Gate drive",
+     "+15 to +20 V"
+    ],
+    [
+     "Drift layer",
+     "~5\u201330 \u00b5m"
+    ]
+   ],
+   "where": "Electric-vehicle traction inverters and chargers, solar inverters, rail.",
+   "xsec": "sic_mosfet",
+   "docs": "10-compound-semiconductors.md",
+   "lab": "heat",
+   "refs": [
+    "kimoto2014",
+    "baliga1982",
+    "baliga1989"
+   ]
+  },
+  {
+   "id": "igbt",
+   "name": "Insulated-gate bipolar transistor",
+   "short": "IGBT",
+   "family": "Power",
+   "year": 1982,
+   "who": "B. J. Baliga (GE, 1982)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "mos",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     15
+    ],
+    "vt": 5.5,
+    "vd": [
+     0,
+     15
+    ],
+    "n": 2.2,
+    "eta": 0.002,
+    "Na": 1e+17,
+    "tox": 80,
+    "vscale": 10,
+    "igbt": true
+   },
+   "labels": {
+    "s": "Emitter",
+    "g": "Gate",
+    "d": "Collector (p\u207a backside)"
+   },
+   "summary": "A MOSFET on top, a bipolar p\u207a layer at the bottom. When the MOS channel turns on, electrons flow down and trigger hole injection from the p\u207a collector; the drift region floods with both carriers (conductivity modulation), so it conducts far better than a MOSFET's.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Gate off: no MOS channel, so no electron flow; the thick drift region holds the voltage."
+    },
+    {
+     "when": "sub",
+     "text": "Gate above V_T: electrons enter the drift region through the channel."
+    },
+    {
+     "when": "on",
+     "text": "Those electrons forward-bias the bottom p\u207a/n junction, which injects holes: the drift region fills with electron\u2013hole plasma."
+    },
+    {
+     "when": "sat",
+     "text": "Low on-voltage at high current; the stored holes must be removed at turn-off, which limits switching speed (the 'tail current')."
+    }
+   ],
+   "facts": [
+    [
+     "Voltage",
+     "600 V \u2013 6.5 kV"
+    ],
+    [
+     "Current",
+     "up to kA per module"
+    ],
+    [
+     "On-voltage",
+     "~1.5\u20132 V"
+    ],
+    [
+     "Switching",
+     "~1\u201350 kHz"
+    ]
+   ],
+   "where": "Trains, industrial drives, wind turbines, many EV inverters, induction cooktops.",
+   "xsec": "sic_mosfet",
+   "docs": "14-niche-and-forgotten.md",
+   "lab": "pn",
+   "refs": [
+    "baliga1982igt",
+    "baliga1982"
+   ]
+  },
+  {
+   "id": "diamond_fet",
+   "name": "Hydrogen-terminated diamond FET",
+   "short": "Diamond FET",
+   "family": "Compound & wide-gap",
+   "year": 1994,
+   "who": "H. Kawarada et al. (Waseda, 1994); transfer doping: F. Maier et al. (2000)",
+   "material": "C-H",
+   "carrier": "h",
+   "model": {
+    "lateral": "fet",
+    "vertical": "diamond",
+    "pol": -1,
+    "Eg": 5.47,
+    "vg": [
+     -4,
+     2
+    ],
+    "vt": -0.5,
+    "vd": [
+     0,
+     5
+    ],
+    "n": 1.8,
+    "eta": 0.01,
+    "depletion": true
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Gate (on Al\u2082O\u2083)",
+    "d": "Drain"
+   },
+   "summary": "Diamond is nearly impossible to dope usefully, but a hydrogen-terminated surface under air or Al\u2082O\u2083 loses electrons to acceptors outside the crystal. A 2D hole gas ~1 nm deep forms: a p-channel with no dopants in the diamond at all.",
+   "steps": [
+    {
+     "when": "on",
+     "text": "V_GS = 0: surface transfer doping has bent the valence band above E_F at the surface \u2014 a 2D hole gas conducts."
+    },
+    {
+     "when": "sub",
+     "text": "Positive gate voltage pushes the valence band back down and depletes the holes."
+    },
+    {
+     "when": "off",
+     "text": "When the surface valence band sits below E_F the hole gas is gone: off (hole devices switch the opposite way)."
+    },
+    {
+     "when": "sat",
+     "text": "Diamond's 10 MV/cm breakdown field and 2000 W/m\u00b7K conductivity promise extreme voltage and heat tolerance."
+    }
+   ],
+   "facts": [
+    [
+     "Channel",
+     "2D hole gas, ~10\u00b9\u00b3 cm\u207b\u00b2"
+    ],
+    [
+     "Carrier",
+     "Holes (p-channel)"
+    ],
+    [
+     "Band gap",
+     "5.47 eV"
+    ],
+    [
+     "Record",
+     ">2 kV, >1 A devices (2020s)"
+    ]
+   ],
+   "where": "Research and early commercial power/RF parts (Japanese start-ups, 2025).",
+   "xsec": "diamond_fet",
+   "docs": "13-diamond-electronics.md",
+   "lab": "crystal",
+   "refs": [
+    "kawarada1994",
+    "maier2000",
+    "strobel2004",
+    "kawarada2017"
+   ]
+  },
+  {
+   "id": "mos2_fet",
+   "name": "Monolayer MoS\u2082 FET",
+   "short": "MoS\u2082 2D FET",
+   "family": "Emerging & 2D",
+   "year": 2011,
+   "who": "B. Radisavljevic, A. Kis et al. (EPFL, 2011); 0.42 nm AlOx interface: NYCU + TSMC (2026)",
+   "material": "MoS2",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "dg",
+    "pol": 1,
+    "Eg": 1.8,
+    "vg": [
+     -1,
+     1.5
+    ],
+    "vt": 0.4,
+    "vd": [
+     0,
+     1
+    ],
+    "n": 1.1,
+    "eta": 0.02,
+    "tsi": 0.65,
+    "single": true
+   },
+   "labels": {
+    "s": "Source contact",
+    "g": "Gate (HfO\u2082 / AlOx)",
+    "d": "Drain contact"
+   },
+   "summary": "The channel is a single molecular layer of MoS\u2082, 0.65 nm thick, with no dangling bonds. The gate controls every atom of the channel, so short-channel effects are tiny; the challenges are contacts, interfaces and wafer-scale growth.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the 1.8 eV gap and atomically thin body keep leakage very low."
+    },
+    {
+     "when": "sub",
+     "text": "The body is thinner than any silicon sheet, so the natural length \u03bb is tiny and the swing stays near 60\u201370 mV/dec."
+    },
+    {
+     "when": "on",
+     "text": "Electrons accumulate in the sheet; mobility (~50\u2013200 cm\u00b2/V\u00b7s) is lower than silicon's but degrades less with thinness."
+    },
+    {
+     "when": "sat",
+     "text": "Engineering the gate interface (the 0.42 nm AlOx layer) and metal contacts decides whether 2D channels beat silicon."
+    }
+   ],
+   "facts": [
+    [
+     "Thickness",
+     "0.65 nm (one layer)"
+    ],
+    [
+     "Band gap",
+     "~1.8 eV (direct, monolayer)"
+    ],
+    [
+     "Record circuit",
+     "5,900-transistor RISC-V (2025)"
+    ],
+    [
+     "Interface",
+     "0.42 nm AlOx (NYCU/TSMC 2026)"
+    ]
+   ],
+   "where": "Research; candidate channel beyond silicon nanosheets (IRDS roadmap, 2030s).",
+   "xsec": "mos2",
+   "docs": "09-2d-materials.md",
+   "lab": "crystal",
+   "refs": [
+    "radisavljevic2011",
+    "ao2025",
+    "nycu2026",
+    "desai2016"
+   ]
+  },
+  {
+   "id": "cnt_fet",
+   "name": "Carbon-nanotube FET",
+   "short": "CNT FET",
+   "family": "Emerging & 2D",
+   "year": 1998,
+   "who": "S. Tans, A. Verschueren, C. Dekker (Delft, 1998); RV16X-NANO CPU: MIT (2019)",
+   "material": "CNT",
+   "carrier": "e",
+   "model": {
+    "lateral": "sbfet",
+    "vertical": "dg",
+    "pol": 1,
+    "Eg": 0.6,
+    "vg": [
+     -0.5,
+     1.2
+    ],
+    "vt": 0.35,
+    "vd": [
+     0,
+     0.8
+    ],
+    "n": 1.2,
+    "tsi": 1.4
+   },
+   "labels": {
+    "s": "Metal contact",
+    "g": "Gate",
+    "d": "Metal contact"
+   },
+   "summary": "A single semiconducting nanotube ~1.5 nm across bridges two metal contacts. Where metal meets tube a Schottky barrier forms; the gate thins that barrier until electrons tunnel through, so a CNT FET switches at the contacts, not in the middle.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the tube's bands sit high; electrons from the metal face a tall, thick Schottky barrier."
+    },
+    {
+     "when": "sub",
+     "text": "The gate pushes the tube's bands down; the barrier at each contact becomes a thin spike."
+    },
+    {
+     "when": "on",
+     "text": "Electrons tunnel through the thin spike and cross the nearly ballistic tube (mean free path ~100s of nm)."
+    },
+    {
+     "when": "sat",
+     "text": "Promise: ballistic transport and ~3\u00d7 energy efficiency; problems: purity (metallic tubes), placement and contacts."
+    }
+   ],
+   "facts": [
+    [
+     "Diameter",
+     "~1\u20132 nm"
+    ],
+    [
+     "Band gap",
+     "~0.8 eV/d(nm)"
+    ],
+    [
+     "Transport",
+     "Near-ballistic"
+    ],
+    [
+     "Largest CPU",
+     "RV16X-NANO, 14,000 CNFETs (2019)"
+    ]
+   ],
+   "where": "Research; monolithic 3D chips and flexible electronics.",
+   "xsec": "cnt_fet",
+   "docs": "11-diamond-and-beyond.md",
+   "lab": "tunnel",
+   "refs": [
+    "tans1998",
+    "franklin2012",
+    "hills2019"
+   ]
+  },
+  {
+   "id": "tfet",
+   "name": "Tunnel FET",
+   "short": "Tunnel FET",
+   "family": "Emerging & 2D",
+   "year": 2004,
+   "who": "Band-to-band tunnelling: L. Esaki (1958); TFET review: A. Ionescu, H. Riel (2011)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "tfet",
+    "vertical": "mos",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     0,
+     1.0
+    ],
+    "vt": 0.5,
+    "vd": [
+     0,
+     0.8
+    ],
+    "n": 0.7,
+    "tox": 1.0,
+    "Na": 1e+17
+   },
+   "labels": {
+    "s": "Source (p\u207a)",
+    "g": "Gate",
+    "d": "Drain (n\u207a)"
+   },
+   "summary": "Instead of lifting electrons over a barrier (which can't switch faster than 60 mV/decade), the gate pulls the channel's conduction band below the source's valence band so electrons tunnel straight through the gap. The turn-on can be steeper than the thermal limit.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the channel conduction band sits above the source valence band \u2014 no empty states at the same energy, so no tunnelling."
+    },
+    {
+     "when": "sub",
+     "text": "Raising the gate lowers the channel bands; an energy window opens between source E_v and channel E_c."
+    },
+    {
+     "when": "on",
+     "text": "Electrons tunnel horizontally from the source valence band into the channel conduction band and flow to the drain."
+    },
+    {
+     "when": "sat",
+     "text": "Because the window opens abruptly, swing can beat 60 mV/dec \u2014 but tunnelling currents are small (Chapter 15)."
+    }
+   ],
+   "facts": [
+    [
+     "Swing",
+     "<60 mV/dec over a few decades"
+    ],
+    [
+     "On-current",
+     "Low (tunnelling-limited)"
+    ],
+    [
+     "Materials",
+     "Si, SiGe, InAs/GaSb heterojunctions"
+    ],
+    [
+     "Status",
+     "Research"
+    ]
+   ],
+   "where": "Research into ultra-low-voltage logic (<0.3 V).",
+   "xsec": "planar_mosfet_sti",
+   "docs": "15-steep-slope-and-exotic.md",
+   "lab": "tunnel",
+   "refs": [
+    "ionescu2011",
+    "esaki1958",
+    "kane1961"
+   ]
+  },
+  {
+   "id": "igzo_tft",
+   "name": "IGZO thin-film transistor",
+   "short": "IGZO TFT",
+   "family": "Memory & displays",
+   "year": 2004,
+   "who": "K. Nomura, H. Hosono et al. (Tokyo Tech, 2004)",
+   "material": "IGZO",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "tft",
+    "pol": 1,
+    "Eg": 3.1,
+    "vg": [
+     -5,
+     15
+    ],
+    "vt": 2.0,
+    "vd": [
+     0,
+     10
+    ],
+    "n": 3.5,
+    "eta": 0.003,
+    "vscale": 10
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Gate (bottom)",
+    "d": "Drain"
+   },
+   "summary": "An amorphous indium\u2013gallium\u2013zinc oxide film deposited at low temperature on glass or plastic, gated from below. Its wide gap gives extremely low leakage, and its mobility (~10 cm\u00b2/V\u00b7s) beats amorphous silicon's by 10\u00d7.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Off: the wide-gap oxide film is depleted; leakage is below 10\u207b\u00b9\u2079 A/\u00b5m, so a pixel holds its charge for seconds."
+    },
+    {
+     "when": "sub",
+     "text": "The bottom gate draws electrons into the film next to the gate insulator (accumulation, not inversion)."
+    },
+    {
+     "when": "on",
+     "text": "Electrons move through overlapping metal s-orbitals, which stay conductive even in an amorphous film."
+    },
+    {
+     "when": "sat",
+     "text": "Low-temperature processing on large glass panels makes IGZO the switch behind OLED and high-refresh LCD pixels."
+    }
+   ],
+   "facts": [
+    [
+     "Mobility",
+     "~10\u201330 cm\u00b2/V\u00b7s"
+    ],
+    [
+     "Band gap",
+     "~3.1 eV"
+    ],
+    [
+     "Off-current",
+     "<10\u207b\u00b9\u2079 A/\u00b5m"
+    ],
+    [
+     "Process",
+     "Sputtered, <400 \u00b0C"
+    ]
+   ],
+   "where": "Displays (phones, TVs, laptops); research into oxide DRAM and back-end-of-line logic.",
+   "xsec": "igzo_tft",
+   "docs": "14-niche-and-forgotten.md",
+   "lab": "mosfet",
+   "refs": [
+    "nomura2004"
+   ]
+  },
+  {
+   "id": "flash",
+   "name": "Floating-gate flash memory cell",
+   "short": "Flash cell",
+   "family": "Memory & displays",
+   "year": 1967,
+   "who": "D. Kahng, S. M. Sze (Bell Labs, 1967); flash: F. Masuoka (Toshiba, 1980s)",
+   "material": "Si",
+   "carrier": "e",
+   "model": {
+    "lateral": "fet",
+    "vertical": "flash",
+    "pol": 1,
+    "Eg": 1.12,
+    "vg": [
+     -2,
+     6
+    ],
+    "vt": 1.5,
+    "vd": [
+     0,
+     1
+    ],
+    "n": 1.5,
+    "eta": 0.05,
+    "vscale": 4,
+    "flash": true
+   },
+   "labels": {
+    "s": "Source",
+    "g": "Control gate",
+    "d": "Drain (bit line)"
+   },
+   "summary": "A MOSFET with an extra, electrically isolated floating gate buried in its oxide. Electrons pushed onto the floating gate by tunnelling raise the threshold voltage; reading checks whether the cell turns on at a reference gate voltage.",
+   "steps": [
+    {
+     "when": "off",
+     "text": "Erased cell, low gate: behaves like an ordinary MOSFET below threshold."
+    },
+    {
+     "when": "sub",
+     "text": "Programming: a high control-gate voltage pulls electrons through the thin tunnel oxide (Fowler\u2013Nordheim) onto the floating gate."
+    },
+    {
+     "when": "on",
+     "text": "The trapped electrons stay for 10+ years; their charge raises V_T by several volts."
+    },
+    {
+     "when": "sat",
+     "text": "Read: at a middle gate voltage an erased cell conducts (1) and a programmed one does not (0). Multi-level cells store 3\u20134 bits per cell."
+    }
+   ],
+   "facts": [
+    [
+     "Tunnel oxide",
+     "~7\u20139 nm"
+    ],
+    [
+     "V_T shift",
+     "several volts"
+    ],
+    [
+     "Retention",
+     "~10 years"
+    ],
+    [
+     "3D NAND",
+     "200\u2013300+ layers (charge-trap)"
+    ]
+   ],
+   "where": "Every SSD, phone, memory card and microcontroller program memory.",
+   "xsec": "planar_mosfet_poly",
+   "docs": "14-niche-and-forgotten.md",
+   "lab": "tunnel",
+   "refs": [
+    "kahng1967",
+    "lo1997"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 392 697.2307692307692" font-family="IBM Plex Sans, Segoe UI, system-ui, sans-serif">
+<rect width="100%" height="100%" rx="12" fill="#10141a"/>
+<text x="16" y="28" fill="#e8ecf1" font-size="15" font-weight="600">10 µm (1971)</text>
+<rect x="16.00" y="48.00" width="360.00" height="304.62" fill="#5a5f7a" fill-opacity="0.45" stroke="#5a5f7a" stroke-width="1"/>
+<rect x="43.69" y="103.38" width="304.62" height="193.85" fill="#e07f3f" fill-opacity="0.25" stroke="#e07f3f" stroke-width="1"/>
+<rect x="43.69" y="435.69" width="304.62" height="166.15" fill="#3f7fe0" fill-opacity="0.25" stroke="#3f7fe0" stroke-width="1"/>
+<rect x="85.23" y="144.92" width="221.54" height="110.77" fill="#3aa66e" fill-opacity="0.85" stroke="#3aa66e" stroke-width="1"/>
+<rect x="85.23" y="477.23" width="221.54" height="83.08" fill="#3aa66e" fill-opacity="0.85" stroke="#3aa66e" stroke-width="1"/>
+<rect x="182.15" y="89.54" width="27.69" height="526.15" fill="#c95c50" fill-opacity="0.9" stroke="#c95c50" stroke-width="1"/>
+<rect x="99.08" y="338.77" width="110.77" height="55.38" fill="#c95c50" fill-opacity="0.9" stroke="#c95c50" stroke-width="1"/>
+<rect x="16.00" y="48.00" width="360.00" height="55.38" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="16.00" y="601.85" width="360.00" height="55.38" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="99.08" y="48.00" width="55.38" height="180.00" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="99.08" y="491.08" width="55.38" height="166.15" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="237.54" y="172.62" width="55.38" height="373.85" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="99.08" y="338.77" width="69.23" height="55.38" fill="#8fb6e0" fill-opacity="0.55" stroke="#8fb6e0" stroke-width="1"/>
+<rect x="112.92" y="186.46" width="27.69" height="27.69" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<rect x="251.38" y="186.46" width="27.69" height="27.69" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<rect x="112.92" y="504.92" width="27.69" height="27.69" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<rect x="251.38" y="504.92" width="27.69" height="27.69" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<rect x="126.77" y="352.62" width="27.69" height="27.69" fill="#f2f4f7" fill-opacity="0.92" stroke="#f2f4f7" stroke-width="1"/>
+<text x="16" y="683" fill="#8a94a3" font-size="12">cell 130.00 µm × 220.00 µm · λ rules, CMOS-equivalent</text>
+</svg>
