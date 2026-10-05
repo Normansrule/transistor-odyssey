@@ -1,0 +1,5 @@
+/* Process Lab — hero tweaks on top of circuits.css */
+.pz-hero { background: radial-gradient(120% 90% at 70% 30%, #111925 0%, #07090c 70%); }
+.pz-chips { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pz-chips button { cursor: pointer; }
+.process .cz-desc { min-height: 5.6em; }

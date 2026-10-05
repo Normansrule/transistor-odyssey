@@ -29,6 +29,7 @@ from transistor_sim import mosfet, hemt, materials, scaling, bjt, crosssection, 
 from transistor_sim.physics import carriers, junction, moscap, tunnel, poisson2d, montecarlo, crystal  # noqa: E402
 from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho, hetero, inverter, ballistic, interconnect  # noqa: E402
 from transistor_sim.physics import logic, sram, flash  # noqa: E402
+from transistor_sim.physics import oxidation, implant, yieldcost, electromigration  # noqa: E402
 from transistor_sim import bandatlas  # noqa: E402
 
 FIG = ROOT / "figures"
@@ -574,6 +575,20 @@ def export_physics_json():
         "flash": {"B": flash.fn_coeffs()[1], "J1e9": float(flash.fn_current(1e9)), "rate": flash.rate(-2.0, 17.0),
                   "pulse": flash.pulse(-2.0, 18.0, 1e-5)[0], "ispp": [float(v) for v in flash.ispp(3.0, step_v=0.5)["vt"]],
                   "levels": {b: {kk: flash.levels(b, step_v=st)[kk] for kk in ("spacing", "width", "margin")} for b, st in ((1, 0.5), (3, 0.15))}},
+        "oxidation": {f"{a}_{T}_{t}_{o}": float(oxidation.thickness(a, T, t, o)) for a in ("dry", "wet") for T in (900, 1100) for t in (0.1, 3.0) for o in ("100", "111")},
+        "implant": {"ranges": {f"{i}_{E}": implant.range_stats(i, E) for i in implant.IONS for E in (5, 30, 200)},
+                    "cross": {i: implant.crossover_keV(i) for i in implant.IONS},
+                    "junction": [{"case": c, **{k: v for k, v in implant.junction(*c).items()}} for c in
+                                 [("B", 10, 1e15, 1e17, None, 0.0), ("As", 30, 5e15, 1e17, 1000, 10.0), ("P", 100, 1e13, 1e15, 950, 1800.0)]]},
+        "yield": {"dpw": {s: yieldcost.dies_per_wafer(s) for s in (25, 100, 600)},
+                  "models": {f"{m}_{A}_{D}": yieldcost.yield_model(A, D, m, 2.0) for m in ("poisson", "murphy", "negbin") for A in (50, 400) for D in (0.1, 1.0)},
+                  "grid": {f"{w}x{h}": len(yieldcost.die_grid(w, h)) for w, h in ((5, 5), (12, 9), (26, 33))},
+                  "rand": [yieldcost.mulberry32(42)() for _ in range(1)] + (lambda r: [r() for _ in range(5)])(yieldcost.mulberry32(7)),
+                  "mc": {f"{s}": (lambda w: {"good": w["good"], "defects": sum(w["defects"])})(yieldcost.simulate_wafer(10, 10, 0.5, 3, seed=s)) for s in (1, 2, 3)}},
+        "em": {"blech": electromigration.blech_product(105), "kappa300": electromigration.kappa(300), "G": electromigration.G(2, 300),
+               "tlong": electromigration.t_nucleation_long(2, 300),
+               "ttf": {f"{L}": electromigration.time_to_fail(L, 2, 300) for L in (20, 100, 1000)},
+               "line": (lambda l: (l.step(l.L ** 2 / l.k / 200, 40), [float(v) for v in l.sigma[::10]])[1])(electromigration.Line(50, 2, 300, 81))},
     }
     (ROOT / "data" / "physics_reference.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
     print("data/physics_reference.json")
@@ -660,6 +675,79 @@ def fig_flash():
     a3.set_xlabel("year"); a3.set_ylabel("stacked word-line layers"); a3.set_title("3D NAND: 24 to 321 layers")
     subtitle(a3, "highest layer count in volume production"); a3.set_ylim(0, 360)
     save(fig, "flash_memory")
+
+
+def fig_oxidation():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.5, 5.0), gridspec_kw=dict(wspace=0.3))
+    t = np.geomspace(1 / 60, 30, 120)
+    for i, T in enumerate([900, 1000, 1100, 1200]):
+        a1.plot(t, oxidation.thickness("wet", T, t), color=SERIES[i], label=f"wet, {T} °C")
+        a1.plot(t, oxidation.thickness("dry", T, t), color=SERIES[i], ls="--", lw=1.2)
+    a1.set_xscale("log"); a1.set_yscale("log"); a1.set_xlabel("time (h)"); a1.set_ylabel("oxide thickness (µm)")
+    a1.set_title("Deal–Grove oxide growth on (100) Si"); subtitle(a1, "solid: steam · dashed: dry O₂ (starting from 25 nm)"); a1.legend(fontsize=9, loc="lower right")
+    Ts = np.linspace(800, 1200, 50); inv = 1000 / (Ts + 273.15)
+    for amb, col in (("wet", SERIES[2]), ("dry", SERIES[1])):
+        B = [oxidation.rate_constants(amb, T)[0] for T in Ts]; BA = [oxidation.rate_constants(amb, T)[1] for T in Ts]
+        a2.plot(inv, B, color=col, label=f"B, {amb} ({oxidation.AMBIENTS[amb]['E1']} eV)")
+        a2.plot(inv, BA, color=col, ls="--", label=f"B/A, {amb} ({oxidation.AMBIENTS[amb]['E2']} eV)")
+    a2.set_yscale("log"); a2.set_xlabel("1000 / T (1/K)"); a2.set_ylabel("B (µm²/h), B/A (µm/h)")
+    a2.set_title("Rate constants are Arrhenius"); subtitle(a2, "after Deal & Grove (1965); (100) divides B/A by 1.68"); a2.legend(fontsize=8.5)
+    save(fig, "process_oxidation")
+
+
+def fig_implant():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.5, 5.0), gridspec_kw=dict(wspace=0.3))
+    Es = np.geomspace(1, 1000, 60)
+    cols = {"B": SERIES[1], "P": SERIES[0], "As": SERIES[2], "Sb": SERIES[4]}
+    for ion in implant.IONS:
+        a1.plot(Es, [implant.range_stats(ion, E, 400)["Rp"] for E in Es], color=cols[ion], label=implant.IONS[ion]["name"])
+        Ec = implant.crossover_keV(ion)
+        if Ec <= 1000:
+            a1.plot([Ec], [implant.range_stats(ion, Ec, 400)["Rp"]], "o", mfc="none", color=cols[ion], ms=8)
+    for E, rp in ((80, 240), (100, 300)):
+        a1.plot([E], [rp], "x", color=INK2, ms=8)
+    a1.plot([100], [120], "x", color=INK2, ms=8, label="tabulated (Tuttle)")
+    a1.set_xscale("log"); a1.set_yscale("log"); a1.set_xlabel("implant energy (keV)"); a1.set_ylabel("projected range R_p (nm)")
+    a1.set_title("LSS ranges in silicon"); subtitle(a1, "circles: electronic stopping overtakes nuclear"); a1.legend(fontsize=9)
+    x = np.linspace(0, 220, 600)
+    a2.plot(x, implant.profile(x, "As", 30, 2e15), color=MUTED, ls="--", label="As 30 keV, as implanted")
+    for (T, t, col) in ((1000, 10, SERIES[2]), (1000, 600, SERIES[3]), (1100, 1800, SERIES[1])):
+        a2.plot(x, implant.profile(x, "As", 30, 2e15, T, t), color=col, label=f"{T} °C, {t:g} s: x_j = {implant.junction('As', 30, 2e15, 1e17, T, t)['xj']:.0f} nm")
+    a2.axhline(1e17, color=INK2, lw=1); a2.text(150, 1.3e17, "background 10¹⁷ cm⁻³", color=INK2, fontsize=9)
+    a2.set_yscale("log"); a2.set_ylim(1e15, 1e22); a2.set_xlabel("depth (nm)"); a2.set_ylabel("arsenic (cm⁻³)")
+    a2.set_title("The anneal sets the junction"); subtitle(a2, "Gaussian implant, intrinsic diffusion √(2Dt) broadening"); a2.legend(fontsize=8.5)
+    save(fig, "process_implant")
+
+
+def fig_yield_em():
+    import json as _json
+    fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(16.5, 5.0), gridspec_kw=dict(wspace=0.5))
+    A = np.geomspace(10, 1000, 80)
+    for m, col, lab in (("poisson", SERIES[1], "Poisson"), ("murphy", SERIES[3], "Murphy"), ("negbin", SERIES[2], "neg. binomial, α = 3")):
+        a1.plot(A, [yieldcost.yield_model(a, 0.1, m, 3) for a in A], color=col, label=lab)
+    mc = [yieldcost.simulate_wafer(np.sqrt(a * 1.25), a / np.sqrt(a * 1.25), 0.1, 3, seed=3)["yield_"] for a in (50, 150, 400, 800)]
+    a1.plot([50, 150, 400, 800], mc, "o", color=INK2, label="Monte Carlo wafers")
+    a1.set_xscale("log"); a1.set_ylim(0, 1.02); a1.set_xlabel("die area (mm²)"); a1.set_ylabel("yield"); a1.set_title("Yield falls with die area")
+    subtitle(a1, "D₀ = 0.1 defects/cm²"); a1.legend(fontsize=9)
+    fab = _json.loads((ROOT / "data" / "fab_economics.json").read_text(encoding="utf-8"))["wafers"]
+    rows = [r for r in fab if "chips_per_wafer" in r]
+    x = np.arange(len(rows))
+    a2.bar(x, [r["wafer_usd"] / r["chips_per_wafer"] for r in rows], color=SERIES[0])
+    a2.set_yscale("log"); a2.set_xticks(x); a2.set_xticklabels([r["node"] for r in rows], rotation=35, ha="right", fontsize=9)
+    a2.set_ylabel("cost of the same chip ($)"); a2.set_title("Cost per transistor stopped falling")
+    subtitle(a2, "CSET (2020): one 90.7-billion-transistor chip at each node")
+    tw = a2.twinx(); tw.plot(x, [r["wafer_usd"] for r in rows], "o-", color=SERIES[4]); tw.set_yscale("log"); tw.set_ylabel("wafer price ($)", color=SERIES[4])
+    tw.tick_params(colors=MUTED); tw.spines[:].set_visible(False); tw.grid(False)
+    tw.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"${v / 1000:g}k"))
+    tw.yaxis.set_minor_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"${v / 1000:g}k" if v in (2000, 5000) else ""))
+    a2.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"${v:,.0f}"))
+    Ls = np.geomspace(5, 1000, 50)
+    for i, (j, T) in enumerate(((1, 300), (2, 300), (4, 300))):
+        tt = [electromigration.time_to_fail(L, j, T) for L in Ls]
+        a3.plot([L for L, t_ in zip(Ls, tt) if np.isfinite(t_)], [t_ / 3600 for t_ in tt if np.isfinite(t_)], color=SERIES[i], label=f"{j} MA/cm², {T} °C (Blech {electromigration.blech_length_um(j, T):.0f} µm)")
+    a3.set_xscale("log"); a3.set_yscale("log"); a3.set_xlabel("line length (µm)"); a3.set_ylabel("time to void (h)")
+    a3.set_title("Electromigration: short lines are immortal"); subtitle(a3, "Korhonen stress model; long-line lifetime ∝ j⁻²"); a3.legend(fontsize=8.5)
+    save(fig, "process_yield_em")
 
 
 # ---------------------------------------------------------------------------
@@ -886,7 +974,7 @@ if __name__ == "__main__":
               fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo,
               fig_kronig_penney, fig_2deg, fig_chargesheet, fig_thermal, fig_litho,
               fig_band_atlas, fig_band_alignment, fig_device_bands, fig_heterojunction,
-              fig_inverter, fig_ballistic, fig_interconnect, fig_logic, fig_sram, fig_flash):
+              fig_inverter, fig_ballistic, fig_interconnect, fig_logic, fig_sram, fig_flash, fig_oxidation, fig_implant, fig_yield_em):
         f()
     export_model_json()
     export_physics_json()

@@ -22,5 +22,9 @@ litho      Fourier-optics aerial image of a line/space mask (Abbe imaging).
 logic      Static CMOS gates, switch-level simulation, logical effort, ripple and prefix adders.
 sram       Six-transistor SRAM: butterfly curves, static noise margin, read disturb.
 flash      Floating-gate flash: Fowler-Nordheim programming, ISPP, multi-level cells.
+oxidation  Deal-Grove thermal oxidation of silicon.
+implant    LSS ion ranges, Gaussian implant profiles, diffusion anneals, sheet resistance.
+yieldcost  Dies per wafer, yield models, Monte Carlo wafer maps, cost per die.
+electromigration  Korhonen stress model, Blech length, Black's law.
 """
 

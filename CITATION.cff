@@ -4,8 +4,8 @@ title: "Transistor Odyssey: an open, simulated history of transistor structure a
 authors:
   - family-names: Norman
     given-names: Aleksander
-date-released: 2026-10-02
-version: 1.8.0
+date-released: 2026-10-04
+version: 1.9.0
 license: MIT
 repository-code: "https://github.com/Normansrule/transistor-odyssey"
 url: "https://normansrule.github.io/transistor-odyssey/"

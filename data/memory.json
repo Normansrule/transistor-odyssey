@@ -1,5 +1,5 @@
 {
- "_about": "Memory scaling data used by the Circuit Lab. SRAM: smallest published high-density six-transistor (6T) bitcell per node, by year of volume production. NAND: highest layer count reaching volume production each year. 'approx' marks rounded or press-release figures.",
+ "_about": "Memory scaling data used by the Circuit Lab. SRAM: smallest published high-density six-transistor (6T) bitcell per node, by year of volume production. NAND: highest layer count reaching volume production each year. 'approx' marks rounded or press-release figures. dram_refresh: DDR3 refresh-cycle time tRFC by device density (tREFI = 7.8 µs at 0–85 °C), from Bhati et al. 2015 [bhati2015].",
  "sram": [
   {
    "node": "90 nm",
@@ -215,6 +215,24 @@
    "refs": [
     "skhynix321"
    ]
+  }
+ ],
+ "dram_refresh": [
+  {
+   "density": "1 Gb",
+   "trfc_ns": 110
+  },
+  {
+   "density": "2 Gb",
+   "trfc_ns": 160
+  },
+  {
+   "density": "4 Gb",
+   "trfc_ns": 300
+  },
+  {
+   "density": "8 Gb",
+   "trfc_ns": 350
   }
  ]
 }

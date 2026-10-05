@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Process Lab · Transistor Odyssey</title>
+<meta name="description" content="How manufacturing physics shapes every transistor: Deal–Grove thermal oxidation, ion implantation ranges and dopant diffusion, wafer yield and the cost per transistor, and electromigration in copper wires, each simulated live with a tested Python twin.">
+<meta property="og:title" content="Process Lab — the physics of making chips">
+<meta property="og:description" content="Oxidation, implantation, yield and reliability: four live simulations of how chips are made and why they fail.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/physics.css">
+<link rel="stylesheet" href="css/circuits.css">
+<link rel="stylesheet" href="css/process.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="physics circuits process">
+
+<div class="pl-progress" aria-hidden="true"><i></i></div>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Transistor Odyssey home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="15" width="20" height="6" rx="1.5" fill="#4b596d"/><rect x="3" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="15" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="9" y="12.2" width="6" height="1.2" fill="#9a80dc"/><rect x="9" y="5" width="6" height="7.2" rx="1" fill="#f2b84b"/></svg>
+      Transistor Odyssey
+    </a>
+    <span class="nav-crumb">/ Process Lab</span>
+    <div class="nav-links">
+      <a href="index.html#timeline">Timeline</a>
+      <a href="devices.html">Device Atlas</a>
+      <a href="physics.html">Physics Lab</a>
+      <a href="circuits.html">Circuit Lab</a>
+      <a class="active" href="process.html">Process Lab</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Source
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="cz-hero pz-hero" id="top" aria-labelledby="top-h">
+  <canvas id="pzCanvas" aria-label="A wafer cross-section being built layer by layer: oxide, implant, gate, contacts and copper wiring"></canvas>
+  <div class="cz-shade" aria-hidden="true"></div>
+  <div class="wrap cz-inner">
+    <div class="cz-copy">
+      <span class="eyebrow">Transistor Odyssey · Process Lab</span>
+      <h1 id="top-h">The physics of <span class="sheen">making chips</span></h1>
+      <p class="lead">A transistor is only as good as the steps that build it. Grow an oxide one nanometre at a time, fire dopant ions into the crystal and bake them into place, count how many dies survive the defects on a wafer, and watch a copper wire tear itself apart under its own current. Four live simulations, each with a tested Python twin.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#oxide">Grow an oxide</a>
+        <a class="btn" href="#yield">Count the good dies</a>
+        <a class="btn" href="circuits.html">Circuit Lab</a>
+      </div>
+    </div>
+    <div class="cz-hud card" aria-live="polite">
+      <div class="cz-hud-top"><span class="cz-scale" id="pzStep">Step 1</span><span class="cz-level" id="pzName">Oxidation</span></div>
+      <p class="cz-desc" id="pzDesc"></p>
+      <ol class="cz-chips pz-chips" id="pzChips" aria-label="Process steps"></ol>
+    </div>
+  </div>
+</header>
+
+<div class="pl-layout wrap">
+  <nav class="pl-toc" aria-label="Labs">
+    <p class="pl-toc-h">Process Lab</p>
+    <ol>
+      <li class="pl-toc-part">Front end</li>
+      <li><a href="#oxide"><span>01</span>Thermal oxidation</a></li>
+      <li><a href="#implant"><span>02</span>Implant &amp; diffuse</a></li>
+      <li class="pl-toc-part">The fab as a business</li>
+      <li><a href="#yield"><span>03</span>Yield &amp; cost</a></li>
+      <li class="pl-toc-part">Back end</li>
+      <li><a href="#em"><span>04</span>Electromigration</a></li>
+      <li><a href="#pr-sources"><span>§</span>Sources</a></li>
+    </ol>
+  </nav>
+  <main class="pl-main">
+
+  <div class="pl-part" id="part-fe"><span class="pl-part-n">Part I</span><h2>Front end</h2><p>Building the transistor itself: oxides and doped regions in the silicon.</p></div>
+
+  <section class="lab-sec" id="oxide" aria-labelledby="oxide-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">01</span>
+      <div>
+        <span class="eyebrow">Thermal oxidation</span>
+        <h2 id="oxide-h">Grow an oxide, one nanometre at a time</h2>
+        <p class="lead">Heat silicon in oxygen or steam and it grows the near-perfect insulator that made the MOSFET possible. Oxygen has to diffuse through the oxide already there before it can react, so growth starts fast (limited by the reaction at the interface) and then slows down (limited by diffusion). The Deal–Grove model from 1965 captures both regimes in one quadratic, and it is still the starting point of every process simulator.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Thermal oxidation controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="ox" style="--h:330px"><canvas aria-label="Cross-section of silicon being oxidised: oxygen molecules diffuse through the growing oxide and react at the interface, which moves down into the silicon"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="growth"><h4>Thickness versus time</h4><p class="sub">Log–log: slope 1 is reaction-limited (linear), slope ½ is diffusion-limited (parabolic). The dot is your setting.</p></div>
+          <div class="card plot" data-role="arrh"><h4>Arrhenius plot of the rate constants</h4><p class="sub">B (parabolic) and B/A (linear) for both ambients against 1000/T; the slopes are the activation energies.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="x_{ox}^2 + A\,x_{ox} = B\,(t+\tau)"></div>
+        <div class="eq" data-tex="B = C_1 e^{-E_1/kT},\qquad B/A = C_2 e^{-E_2/kT}"></div>
+        <div class="eq" data-tex="x_{Si} = 0.44\,x_{ox}"></div>
+        <p class="small">Rate constants for (111) silicon at 1 atm (Deal and Grove, tabulated by Hollauer); (100) silicon divides B/A by 1.68. Both scale linearly with pressure. Dry oxidation starts from a τ equivalent to 25 nm, because the first few tens of nanometres grow faster than the model predicts. Tests check the linear and parabolic limits and recover the 1.23 eV activation energy.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Silicon owes its dominance to this oxide. Gate oxides fell from 120 nm in 1971 to 1.2 nm in 2005, grown in seconds at the bottom of the linear regime, until tunnelling forced the switch to hafnium oxide (Physics Lab 07). Thick wet oxides still isolate devices and protect surfaces in power and analog chips.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/oxidation.py" rel="noopener"><code>sim/transistor_sim/physics/oxidation.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="dealgrove1965 hollauer_dg plummer2000"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-sec" id="implant" aria-labelledby="implant-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">02</span>
+      <div>
+        <span class="eyebrow">Ion implantation and diffusion</span>
+        <h2 id="implant-h">Fire dopants into the crystal, then bake them in</h2>
+        <p class="lead">Every source, drain and well is made by accelerating ionised boron, phosphorus or arsenic to tens of kiloelectronvolts and firing them into the wafer. Each ion zig-zags through the lattice, losing energy to atomic nuclei and to the electron cloud, and stops at a depth set by its mass and energy. An anneal then repairs the damage and lets the dopants diffuse, which sets the junction depth.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Ion implantation and diffusion controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="imp" style="--h:330px"><canvas aria-label="Ions entering the silicon crystal, scattering off atoms and stopping at a range of depths that build up a Gaussian profile"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="prof"><h4>Dopant profile</h4><p class="sub">Concentration versus depth: dashed as implanted, solid after the anneal. The flat line is the background doping and the marker is the junction.</p></div>
+          <div class="card plot" data-role="range"><h4>Projected range versus energy</h4><p class="sub">LSS theory for four dopants in silicon. Circles mark where electronic stopping overtakes nuclear stopping.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="R=\int_0^{E}\frac{dE}{N\,[S_n(E)+S_e(E)]}"></div>
+        <div class="eq" data-tex="R_p\approx\frac{R}{1+M_2/3M_1},\qquad \Delta R_p\approx\frac{2}{3}R_p\frac{\sqrt{M_1M_2}}{M_1+M_2}"></div>
+        <div class="eq" data-tex="N(x)=\frac{Q}{\sqrt{2\pi}\,\Delta R_p}\exp\!\left[-\frac{(x-R_p)^2}{2\Delta R_p^2}\right]"></div>
+        <div class="eq" data-tex="\Delta R_p^2\rightarrow\Delta R_p^2+2Dt,\qquad D=D_0e^{-E_a/kT}"></div>
+        <p class="small">Nuclear stopping uses the ZBL universal curve and electronic stopping the Lindhard k√E law. The ranges land within about 20 % of tabulated values (B at 80 keV: 255 nm against 240 nm). Diffusivities are intrinsic values from the Illinois table; transient-enhanced and concentration-dependent diffusion are left out. Sheet resistance integrates Caughey–Thomas mobility over the layer.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Scaling shrank junctions as fast as gates: from micrometres in the 1970s to about 10 nm today, made with sub-keV implants and millisecond laser or flash anneals so the dopants barely move. In nanosheet transistors the source and drain are now grown already doped (in-situ epitaxy), but implantation still makes the wells, the threshold adjustment and the halo pockets that fight short-channel effects.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/implant.py" rel="noopener"><code>sim/transistor_sim/physics/implant.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="lindhard1963 zbl1985 uiuc_diffusivity caughey1967 tuttle_implant"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pl-part" id="part-biz"><span class="pl-part-n">Part II</span><h2>The fab as a business</h2><p>Why the cost of a transistor stopped falling.</p></div>
+
+  <section class="lab-sec" id="yield" aria-labelledby="yield-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">03</span>
+      <div>
+        <span class="eyebrow">Die yield and cost</span>
+        <h2 id="yield-h">Count the dies that survive</h2>
+        <p class="lead">A 300 mm wafer goes through about a thousand steps, and a single particle in the wrong place kills a die. Bigger dies catch more defects, so yield falls with area, and defects cluster, which helps. Multiply by the wafer price of each node and you get the cost of a working chip, and the reason the cost per transistor stopped falling around 28 nm.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Die yield and cost controls"><div class="pl-extra"><div class="pl-btns"><button class="btn sm" type="button" id="ycSeed">New wafer</button></div></div></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="wafer" style="--h:440px"><canvas aria-label="A 300 mm wafer map: dies are drawn on a grid, defects fall on them, and dies hit by a defect turn red"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="ycurve"><h4>Yield versus die area</h4><p class="sub">Poisson, Murphy and negative binomial at your defect density. The dot is your die; the open ring is this wafer’s Monte Carlo yield.</p></div>
+          <div class="card plot" data-role="cost"><h4>Cost of the same chip, node by node</h4><p class="sub">CSET (2020) model of one 90.7-billion-transistor chip built at each node, perfect yield. Bars: dollars per chip; line: wafer price.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="\mathrm{DPW}=\frac{\pi (d/2)^2}{S}-\frac{\pi d}{\sqrt{2S}}"></div>
+        <div class="eq" data-tex="Y_{\text{Poisson}}=e^{-AD_0},\quad Y_{\text{NB}}=\left(1+\frac{AD_0}{\alpha}\right)^{-\alpha}"></div>
+        <div class="eq" data-tex="\text{cost per good die}=\frac{\text{wafer cost}}{\mathrm{DPW}\cdot Y}"></div>
+        <p class="small">The wafer map keeps only dies fully inside a 3 mm edge exclusion. Defects are a Poisson process whose rate on each die is gamma-distributed (shape α), which reproduces the negative-binomial yield on average; a test checks the Monte Carlo against the formula. Wafer prices for N3 and N2 are press reports.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>From 90 nm to 28 nm the same chip got about 7 times cheaper. From 7 nm to 5 nm it got no cheaper at all, because wafer prices rose as fast as density. That is why chiplets exist: four 150 mm² dies yield far better than one 600 mm² die, and only the logic that needs the newest node pays for it.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/yieldcost.py" rel="noopener"><code>sim/transistor_sim/physics/yieldcost.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="murphy1964 stapper1973 cset2020 tsmc_n2_wafer"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pl-part" id="part-be"><span class="pl-part-n">Part III</span><h2>Back end</h2><p>The copper wiring above the transistors, and how it wears out.</p></div>
+
+  <section class="lab-sec" id="em" aria-labelledby="em-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">04</span>
+      <div>
+        <span class="eyebrow">Electromigration</span>
+        <h2 id="em-h">Watch a wire tear itself apart</h2>
+        <p class="lead">At a million amperes per square centimetre, the stream of electrons in a copper line pushes on the metal atoms hard enough to move them. Atoms leave the cathode end and pile up at the anode, building stress until a void opens and the wire fails. A short wire can hold the stress back and never fail; a long one always fails, eventually. This lab solves the stress equation along the wire.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Electromigration controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="line" style="--h:360px"><canvas aria-label="A copper line with electrons flowing through it; colour shows mechanical stress building up, and a void grows at the cathode end"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="ttf"><h4>Lifetime versus line length</h4><p class="sub">Simulated time to a void at your current and temperature. Below the Blech length the wire is immortal.</p></div>
+          <div class="card plot" data-role="black"><h4>Black’s law</h4><p class="sub">Lifetime of a long line versus current density at four temperatures: slope −2 on a log–log plot.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="\frac{\partial\sigma}{\partial t}=\frac{\partial}{\partial x}\left[\kappa\left(\frac{\partial\sigma}{\partial x}+G\right)\right],\quad G=\frac{eZ^*\rho j}{\Omega}"></div>
+        <div class="eq" data-tex="\sigma_{max}=\frac{GL}{2}<\sigma_{crit}\ \Leftrightarrow\ jL<(jL)_{crit}"></div>
+        <div class="eq" data-tex="\mathrm{MTTF}=A\,j^{-2}\,e^{E_a/kT}"></div>
+        <p class="small">Korhonen’s equation with blocked ends, solved implicitly on an adaptive grid. Teaching parameters for copper with a dielectric cap: Eₐ = 0.9 eV, Z* = 5 and σ_crit = 300 MPa, giving (jL)_crit ≈ 3,900 A/cm. Tests check the linear steady state, the Blech threshold, and that the solver reproduces Black’s exponent n = 2.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Wires shrink with transistors but current does not shrink as fast, so current density keeps rising. Electromigration has set the maximum current in every design rule since the aluminium era, drove the switch to copper in 1997, and is one reason the newest nodes look at ruthenium and cobalt (Physics Lab 15) and at short, Blech-immortal wire segments.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/electromigration.py" rel="noopener"><code>sim/transistor_sim/physics/electromigration.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="black1969 blech1976 korhonen1993"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-sec" id="pr-sources" aria-labelledby="src-h">
+    <header class="lab-head"><span class="lab-num" aria-hidden="true">§</span><div><span class="eyebrow">Sources</span><h2 id="src-h">Where the numbers come from</h2>
+    <p class="lead">Original papers, process textbooks and published wafer-cost data. The full bibliography is in <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/REFERENCES.md">REFERENCES.md</a>; Chapter 22 of the docs walks through each lab.</p></div></header>
+    <ol class="card pl-refs" id="plRefs"></ol>
+  </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Transistor Odyssey · Process Lab. Code MIT, text and figures CC BY 4.0. Process models are teaching-grade: each is checked against a closed form or a published number, but none replaces a TCAD process simulator.</p>
+    <p><a href="index.html">← Back to the transistor history</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/processlab/main.js"></script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 # References
 
-282 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
+302 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
 
-**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab) · [Circuit lab](#circuit-lab)
+**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab) · [Circuit lab](#circuit-lab) · [Process lab](#process-lab)
 
 ## History
 
@@ -345,3 +345,26 @@
 280. `intel22_pres` — Intel, "Silicon Technology Leadership for the Mobility Era" (22 nm: 0.092 µm² and 0.108 µm² SRAM cells) (2012). [link](https://www.intel.com/content/dam/www/public/us/en/documents/presentation/silicon-technology-leadership-presentation.pdf)
 281. `intel10_iedm2017` — Semiconductor Digest (TechInsights), "IEDM 2017: Intel's 10nm Platform Process" (0.0312 µm² high-density SRAM cell) (2017). [link](https://sst.semiconductor-digest.com/chipworks_real_chips_blog/2017/12/18/iedm-2017-intels-10nm-platform-process/)
 282. `wu2016_n7` — S.-Y. Wu et al., "A 7nm CMOS Platform Technology Featuring 4th Generation FinFET Transistors with a 0.027 µm² High Density 6-T SRAM Cell for Mobile SoC Applications," IEDM Tech. Dig. (2016). [link](https://www.semanticscholar.org/paper/985acfee298f91e10443efe918388e2adee0325f)
+283. `dennard1968` — R. H. Dennard, "Field-Effect Transistor Memory," U.S. Patent 3,387,286 (granted June 4, 1968; the one-transistor, one-capacitor DRAM cell). [link](https://patents.google.com/patent/US3387286A)
+284. `chaney1973` — T. J. Chaney, C. E. Molnar, "Anomalous Behavior of Synchronizer and Arbiter Circuits," IEEE Trans. Computers C-22, 421 (1973). [link](https://scholar.google.com/scholar?q=%22Anomalous+Behavior+of+Synchronizer+and+Arbiter+Circuits%22)
+285. `veendrick1980` — H. J. M. Veendrick, "The Behavior of Flip-Flops Used as Synchronizers and Prediction of Their Failure Rate," IEEE J. Solid-State Circuits 15, 169 (1980). [link](https://scholar.google.com/scholar?q=%22The+Behavior+of+Flip-Flops+Used+as+Synchronizers+and+Prediction+of+Their+Failure+Rate%22)
+286. `ginosar2011` — R. Ginosar, "Metastability and Synchronizers: A Tutorial," IEEE Design & Test of Computers 28(5) (2011). [link](https://webee.technion.ac.il/~ran/papers/MetastabilitySynchronizersTutorialIEEEDT2011.pdf)
+287. `bhati2015` — I. Bhati, M.-T. Chang, Z. Chishti, S.-L. Lu, B. Jacob, "DRAM Refresh Mechanisms, Penalties, and Trade-Offs," IEEE Trans. Computers 64 (2015). [link](https://user.eng.umd.edu/~blj/papers/ieeetc65-1.pdf)
+288. `liu2012raidr` — J. Liu, B. Jaiyen, R. Veras, O. Mutlu, "RAIDR: Retention-Aware Intelligent DRAM Refresh," Proc. ISCA (2012). [link](https://www.semanticscholar.org/paper/2913004da8f897d20f31c047b46c8cfdcd0eb7d3)
+289. `techinsights_dram` — TechInsights, "DRAM Scaling Trend and Beyond" (cell capacitance below 10 fF at D1z/D1a; 6F² cell) (2023). [link](https://www.techinsights.com/blog/dram-scaling-trend-and-beyond)
+
+## Process lab
+
+290. `dealgrove1965` — B. E. Deal, A. S. Grove, "General Relationship for the Thermal Oxidation of Silicon," J. Appl. Phys. 36, 3770 (1965). [doi:10.1063/1.1713945](https://doi.org/10.1063/1.1713945)
+291. `hollauer_dg` — C. Hollauer, "Modeling of Thermal Oxidation and Stress Effects," PhD thesis, TU Wien, Sec. 2.6: The Deal-Grove Model (Arrhenius parameters for dry and wet oxidation) (2007). [link](https://www.iue.tuwien.ac.at/phd/hollauer/node16.html)
+292. `uiuc_diffusivity` — University of Illinois Holonyak Micro & Nanotechnology Lab, "Silicon Diffusivity Data" (D₀ and Eₐ/k for B, P, As, Sb in Si). [link](https://fabweb.ece.illinois.edu/gt/gt/gt10.aspx)
+293. `lindhard1963` — J. Lindhard, M. Scharff, H. E. Schiøtt, "Range Concepts and Heavy Ion Ranges," Mat. Fys. Medd. Dan. Vid. Selsk. 33, no. 14 (1963).
+294. `zbl1985` — J. F. Ziegler, J. P. Biersack, U. Littmark, "The Stopping and Range of Ions in Solids," Pergamon (1985); universal nuclear stopping. [link](http://www.srim.org/)
+295. `tuttle_implant` — G. Tuttle, "EE 432/532 Ion implantation examples," Iowa State University (B 80 keV: Rp ≈ 0.24 µm; P 100 keV: Rp ≈ 0.12 µm). [link](https://gtuttle.net/fabrication/topics/ion_implantation_examples.pdf)
+296. `murphy1964` — B. T. Murphy, "Cost-Size Optima of Monolithic Integrated Circuits," Proc. IEEE 52, 1537 (1964). [doi:10.1109/PROC.1964.3442](https://doi.org/10.1109/PROC.1964.3442)
+297. `stapper1973` — C. H. Stapper, "Defect Density Distribution for LSI Yield Calculations," IEEE Trans. Electron Devices 20, 655 (1973). [doi:10.1109/T-ED.1973.17715](https://doi.org/10.1109/T-ED.1973.17715)
+298. `cset2020` — S. M. Khan, A. Mann, "AI Chips: What They Are and Why They Matter," Center for Security and Emerging Technology, Appendix D, Table 9 (2020). [link](https://cset.georgetown.edu/wp-content/uploads/AI-Chips%E2%80%94What-They-Are-and-Why-They-Matter-1.pdf)
+299. `tsmc_n2_wafer` — Tom's Hardware, "TSMC's 2nm process will reportedly get another price hike: $30,000 per wafer" (N3 ≈ $18,500, reported) (Oct. 2024). [link](https://www.tomshardware.com/tech-industry/tsmcs-2nm-will-reportedly-receive-a-price-hike-once-again-usd30-000-per-wafer)
+300. `black1969` — J. R. Black, "Electromigration: A Brief Survey and Some Recent Results," IEEE Trans. Electron Devices 16, 338 (1969). [doi:10.1109/T-ED.1969.16754](https://doi.org/10.1109/T-ED.1969.16754)
+301. `blech1976` — I. A. Blech, "Electromigration in Thin Aluminum Films on Titanium Nitride," J. Appl. Phys. 47, 1203 (1976). [doi:10.1063/1.322842](https://doi.org/10.1063/1.322842)
+302. `korhonen1993` — M. A. Korhonen, P. Børgesen, K. N. Tu, C.-Y. Li, "Stress Evolution due to Electromigration in Confined Metal Lines," J. Appl. Phys. 73, 3790 (1993). [doi:10.1063/1.354073](https://doi.org/10.1063/1.354073)

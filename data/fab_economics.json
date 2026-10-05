@@ -1,0 +1,105 @@
+{
+ "_about": "Wafer economics used by the Process Lab. CSET (2020) modelled the TSMC foundry sale price per 300 mm wafer and how many copies of one hypothetical chip (90.7 billion transistors; 610 mm² at 5 nm) fit on a wafer at each node, assuming perfect yield. N3 and N2 prices are press reports ('approx').",
+ "chip_transistors_billion": 90.7,
+ "wafers": [
+  {
+   "node": "90 nm",
+   "year": 2004,
+   "wafer_usd": 1650,
+   "chips_per_wafer": 0.7,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "65 nm",
+   "year": 2006,
+   "wafer_usd": 1937,
+   "chips_per_wafer": 1.4,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "40 nm",
+   "year": 2008,
+   "wafer_usd": 2274,
+   "chips_per_wafer": 3.2,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "28 nm",
+   "year": 2011,
+   "wafer_usd": 2891,
+   "chips_per_wafer": 6.4,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "20 nm",
+   "year": 2014,
+   "wafer_usd": 3677,
+   "chips_per_wafer": 9.2,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "16/12 nm",
+   "year": 2015,
+   "wafer_usd": 3984,
+   "chips_per_wafer": 12.0,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "10 nm",
+   "year": 2017,
+   "wafer_usd": 5992,
+   "chips_per_wafer": 21.9,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "7 nm",
+   "year": 2018,
+   "wafer_usd": 9346,
+   "chips_per_wafer": 40.1,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "5 nm",
+   "year": 2020,
+   "wafer_usd": 16988,
+   "chips_per_wafer": 71.4,
+   "refs": [
+    "cset2020"
+   ]
+  },
+  {
+   "node": "N3",
+   "year": 2022,
+   "wafer_usd": 18500,
+   "approx": true,
+   "refs": [
+    "tsmc_n2_wafer"
+   ]
+  },
+  {
+   "node": "N2",
+   "year": 2025,
+   "wafer_usd": 30000,
+   "approx": true,
+   "refs": [
+    "tsmc_n2_wafer"
+   ]
+  }
+ ]
+}

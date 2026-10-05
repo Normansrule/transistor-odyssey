@@ -20,6 +20,10 @@ import * as WR from '../site/js/physics/interconnect.js';
 import * as LG from '../site/js/physics/logic.js';
 import * as SR from '../site/js/physics/sram.js';
 import * as FL from '../site/js/physics/flash.js';
+import * as OX from '../site/js/physics/oxidation.js';
+import * as IM from '../site/js/physics/implant.js';
+import * as YC from '../site/js/physics/yieldcost.js';
+import * as EM from '../site/js/physics/electromigration.js';
 
 const ref = JSON.parse(readFileSync(new URL('../data/physics_reference.json', import.meta.url)));
 let fails = 0;
@@ -119,6 +123,22 @@ for (const [b, L] of Object.entries(ref.flash.levels)) {
   const st = b === '1' ? 0.5 : 0.15, j = FL.levels(+b, { step: st });
   for (const q of ['spacing', 'width', 'margin']) check(`levels ${b} bit ${q}`, j[q], L[q], 1e-12);
 }
+for (const [k, v] of Object.entries(ref.oxidation)) { const [a, T, t, o] = k.split('_'); check(`oxide ${k}`, OX.thickness(a, +T, +t, o), v, 1e-12); }
+for (const [k, v] of Object.entries(ref.implant.ranges)) { const [i, E] = k.split('_'), r = IM.rangeStats(i, +E); for (const q of ['R', 'Rp', 'dRp']) check(`range ${k} ${q}`, r[q], v[q], 1e-9); }
+for (const [i, v] of Object.entries(ref.implant.cross)) check(`crossover ${i}`, IM.crossoverKeV(i), v, 1e-6);
+for (const r of ref.implant.junction) { const j = IM.junction(...r.case); for (const q of ['xj', 'peak', 'Rs', 'sigma_nm']) check(`junction ${r.case.slice(0, 3).join(' ')} ${q}`, j[q], r[q], 1e-9); }
+for (const [s2, v] of Object.entries(ref.yield.dpw)) check(`DPW ${s2} mm²`, YC.diesPerWafer(+s2), v, 1e-12);
+for (const [k, v] of Object.entries(ref.yield.models)) { const [m, A, D] = k.split('_'); check(`yield ${k}`, YC.yieldModel(+A, +D, m, 2), v, 1e-12); }
+for (const [k, v] of Object.entries(ref.yield.grid)) { const [w, h] = k.split('x'); check(`die grid ${k}`, YC.dieGrid(+w, +h).length, v, 0); }
+{ const r1 = YC.mulberry32(42), r2 = YC.mulberry32(7); const got = [r1(), r2(), r2(), r2(), r2(), r2()];
+  got.forEach((g, i) => check(`mulberry32 #${i}`, g, ref.yield.rand[i], 0)); }
+for (const [s3, v] of Object.entries(ref.yield.mc)) { const w = YC.simulateWafer(10, 10, 0.5, 3, +s3); check(`MC wafer seed ${s3} good dies`, w.good, v.good, 0); check(`MC wafer seed ${s3} defects`, w.defects.reduce((a, b) => a + b, 0), v.defects, 0); }
+check('Blech jL', EM.blechProduct(105), ref.em.blech, 1e-12); check('EM kappa', EM.kappa(300), ref.em.kappa300, 1e-12);
+check('EM G', EM.G(2, 300), ref.em.G, 1e-12); check('EM t_nuc long', EM.tNucleationLong(2, 300), ref.em.tlong, 1e-12);
+for (const [L, v] of Object.entries(ref.em.ttf)) check(`EM time to fail L=${L}`, EM.timeToFail(+L, 2, 300), v, 1e-9);
+{ const l = new EM.Line(50, 2, 300, 81); l.step(l.L ** 2 / l.k / 200, 40); let worst = 0;
+  ref.em.line.forEach((v, i) => { worst = Math.max(worst, Math.abs(l.sigma[i * 10] - v) / 1e6); });
+  if (worst > 1e-6) fails++; console.log(`${worst > 1e-6 ? 'FAIL' : 'ok  '} Korhonen line stress (max diff ${worst.toExponential(1)} MPa)`); }
 const v = MC.simulate(1e5, { n: 1000, tPs: 3 });
 check('MC v(1e5 V/cm) within 25% of 1.07e7', v, 1.07e7, 0.25);
 if (fails) { console.error(`${fails} parity check(s) failed`); process.exit(1); }
