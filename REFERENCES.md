@@ -1,8 +1,8 @@
 # References
 
-302 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
+316 sources, grouped by topic. Each entry carries its citation key in `code`; the key is what `data/*.json`, `docs/*.md` (as `[@key]`) and the website use. Generated from `data/references.json` by `scripts/build_data.py`; edit the JSON, not this file.
 
-**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab) · [Circuit lab](#circuit-lab) · [Process lab](#process-lab)
+**Contents:** [History](#history) · [Simulation](#simulation) · [Scaling](#scaling) · [Design](#design) · [Device physics](#device-physics) · [Process](#process) · [Lithography](#lithography) · [2020s nodes](#2020s-nodes) · [2D & 1D channels](#2d-1d-channels) · [Compound semiconductors](#compound-semiconductors) · [Diamond](#diamond) · [Beyond CMOS](#beyond-cmos) · [Chip data](#chip-data) · [Image sources](#image-sources) · [Design inspiration](#design-inspiration) · [Niche devices](#niche-devices) · [Steep-slope & exotic](#steep-slope-exotic) · [Packaging](#packaging) · [Physics lab](#physics-lab) · [Circuit lab](#circuit-lab) · [Process lab](#process-lab) · [Analog & RF lab](#analog-rf-lab)
 
 ## History
 
@@ -368,3 +368,20 @@
 300. `black1969` — J. R. Black, "Electromigration: A Brief Survey and Some Recent Results," IEEE Trans. Electron Devices 16, 338 (1969). [doi:10.1109/T-ED.1969.16754](https://doi.org/10.1109/T-ED.1969.16754)
 301. `blech1976` — I. A. Blech, "Electromigration in Thin Aluminum Films on Titanium Nitride," J. Appl. Phys. 47, 1203 (1976). [doi:10.1063/1.322842](https://doi.org/10.1063/1.322842)
 302. `korhonen1993` — M. A. Korhonen, P. Børgesen, K. N. Tu, C.-Y. Li, "Stress Evolution due to Electromigration in Confined Metal Lines," J. Appl. Phys. 73, 3790 (1993). [doi:10.1063/1.354073](https://doi.org/10.1063/1.354073)
+
+## Analog & RF lab
+
+303. `silveira1996` — F. Silveira, D. Flandre, P. G. A. Jespers, "A gm/ID Based Methodology for the Design of CMOS Analog Circuits and Its Application to the Synthesis of a Silicon-on-Insulator Micropower OTA," IEEE J. Solid-State Circuits 31, 1314 (1996). [doi:10.1109/4.535416](https://doi.org/10.1109/4.535416)
+304. `razavi2017` — B. Razavi, "Design of Analog CMOS Integrated Circuits," 2nd ed., McGraw-Hill (2017): common-source stage, Miller effect, noise.
+305. `miller1920` — J. M. Miller, "Dependence of the Input Impedance of a Three-Electrode Vacuum Tube upon the Load in the Plate Circuit," Scientific Papers of the Bureau of Standards 15, 367 (1920).
+306. `vanderziel1986` — A. van der Ziel, "Noise in Solid State Devices and Circuits," Wiley (1986): channel thermal noise, γ = 2/3.
+307. `mcwhorter1957` — A. L. McWhorter, "1/f Noise and Germanium Surface Properties," in Semiconductor Surface Physics, Univ. of Pennsylvania Press, 207 (1957).
+308. `mei2015` — X. Mei et al., "First Demonstration of Amplification at 1 THz Using 25-nm InP High Electron Mobility Transistor Process," IEEE Electron Device Lett. 36, 327 (2015). [link](https://ieeexplore.ieee.org/document/7047678/)
+309. `deal_estf2015` — W. R. Deal et al., "THz InP HEMT Technology for Sub-Millimeter Wave Atmospheric Sensing," NASA Earth Science Technology Forum (2015): fMAX as high as 1.5 THz. [link](https://esto.nasa.gov/forum/estf2015/abstracts/deal.htm)
+310. `urteaga2016` — M. Urteaga et al., "THz Bandwidth InP HBT Technologies and Heterogeneous Integration with Si CMOS," IEEE BCTM (2016): 130 nm InP HBT with fT/fmax = 521 GHz / 1.15 THz. [link](https://web.ece.ucsb.edu/Faculty/rodwell/publications_and_presentations/publications/2016_9_BCTM_Urteaga_digest.pdf)
+311. `hafez_phbt` — W. Hafez, M. Feng, "Pseudomorphic InP/InGaAs Heterojunction Bipolar Transistors (PHBTs) Experimentally Demonstrating fT = 765 GHz at 25°C Increasing to fT = 845 GHz at −55°C," IEDM Tech. Dig. (2006). [link](https://www.researchgate.net/publication/224697599)
+312. `heinemann2016` — B. Heinemann et al., "SiGe HBT with fT/fmax of 505 GHz/720 GHz," IEDM Tech. Dig., 3.1.1 (2016). [link](https://www.semanticscholar.org/paper/8c587860adf01a876a7d6df0acded7582c721e8d)
+313. `tang2015` — Y. Tang et al., "Ultrahigh-Speed GaN High-Electron-Mobility Transistors With fT/fmax of 454/444 GHz," IEEE Electron Device Lett. 36, 549 (2015). [link](https://ieeexplore.ieee.org/document/7086311/)
+314. `ong2018` — S. N. Ong et al., "A 22nm FDSOI Technology Optimized for RF/mmWave Applications," IEEE RFIC Symp. (2018): nFET fT/fmax = 347/371 GHz. [doi:10.1109/RFIC.2018.8429035](https://doi.org/10.1109/RFIC.2018.8429035)
+315. `cryo22fdx` — "Cryogenic RF CMOS on 22nm FDSOI Platform with Record fT = 495 GHz and fMAX = 497 GHz," VLSI Symp. (2021). [link](https://ieeexplore.ieee.org/abstract/document/9508705/)
+316. `chm_consumer1952` — Computer History Museum, "1952: Transistorized Consumer Products Appear," The Silicon Engine: the Sonotone hearing aid (1952) and the Regency TR-1 radio (October 1954, four germanium junction transistors). [link](https://www.computerhistory.org/siliconengine/transistorized-consumer-products-appear/)

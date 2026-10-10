@@ -26,5 +26,6 @@ oxidation  Deal-Grove thermal oxidation of silicon.
 implant    LSS ion ranges, Gaussian implant profiles, diffusion anneals, sheet resistance.
 yieldcost  Dies per wafer, yield models, Monte Carlo wafer maps, cost per die.
 electromigration  Korhonen stress model, Blech length, Black's law.
+analog     Small-signal parameters, common-source amplifier, distortion, Bode response, noise.
 """
 

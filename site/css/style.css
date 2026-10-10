@@ -437,3 +437,5 @@ footer a:hover { color: var(--amber-2); }
   .nav-gh svg { width: 16px; height: 16px; }
   .nav-lab { padding: 5px 10px; font-size: 12px; }
 }
+/* sub-pages: drop the links back into the history page first when the bar gets tight */
+@media (max-width: 1500px) { .nav-links a[href^="index.html#"] { display: none; } }

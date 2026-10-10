@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Analog &amp; RF Lab · Transistor Odyssey</title>
+<meta name="description" content="The transistor as an amplifier: a common-source stage with live distortion, transconductance efficiency and intrinsic gain across eight generations, frequency response with the Miller effect, record fT and fmax for CMOS, SiGe, GaN and InP, and thermal and 1/f noise.">
+<meta property="og:title" content="Analog &amp; RF Lab — the transistor as an amplifier">
+<meta property="og:description" content="Gain, bandwidth, distortion and noise, simulated live from the same transistor model.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/physics.css">
+<link rel="stylesheet" href="css/circuits.css">
+<link rel="stylesheet" href="css/process.css">
+<link rel="stylesheet" href="css/analog.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="physics circuits process analog">
+
+<div class="pl-progress" aria-hidden="true"><i></i></div>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Transistor Odyssey home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="15" width="20" height="6" rx="1.5" fill="#4b596d"/><rect x="3" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="15" y="13" width="6" height="3" fill="#3f7fe0"/><rect x="9" y="12.2" width="6" height="1.2" fill="#9a80dc"/><rect x="9" y="5" width="6" height="7.2" rx="1" fill="#f2b84b"/></svg>
+      Transistor Odyssey
+    </a>
+    <span class="nav-crumb">/ Analog &amp; RF Lab</span>
+    <div class="nav-links">
+      <a href="devices.html">Device Atlas</a>
+      <a href="physics.html">Physics Lab</a>
+      <a href="circuits.html">Circuit Lab</a>
+      <a href="process.html">Process Lab</a>
+      <a class="active" href="analog.html">Analog &amp; RF</a>
+    </div>
+    <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Source
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="cz-hero az-hero" id="top" aria-labelledby="top-h">
+  <canvas id="azCanvas" aria-label="The radio spectrum from audio to one terahertz, with signals travelling at each band and the transistor technologies that can amplify them"></canvas>
+  <div class="cz-shade" aria-hidden="true"></div>
+  <div class="wrap cz-inner">
+    <div class="cz-copy">
+      <span class="eyebrow">Transistor Odyssey · Analog &amp; RF Lab</span>
+      <h1 id="top-h">The transistor <span class="sheen">as an amplifier</span></h1>
+      <p class="lead">Before transistors computed, they amplified: the first transistorized consumer product in the US was a hearing aid, and the first hit was a pocket radio. Every phone, radar and Wi-Fi chip still depends on transistors turning a faint signal into a strong one. Explore gain, distortion, speed and noise, from audio to a terahertz, with the same transistor model as the rest of the site.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#amp">Build an amplifier</a>
+        <a class="btn" href="#bode">How fast can it go?</a>
+        <a class="btn" href="process.html">Process Lab</a>
+      </div>
+    </div>
+    <div class="cz-hud card" aria-live="polite">
+      <div class="cz-hud-top"><span class="cz-scale" id="azFreq">1 kHz</span><span class="cz-level" id="azName">Audio</span></div>
+      <p class="cz-desc" id="azDesc"></p>
+      <div class="cz-ctl"><button class="btn sm" type="button" id="azPlay" aria-pressed="true">Pause</button><input type="range" id="azRange" min="0" max="1" step="0.001" value="0" aria-label="Frequency (log scale)"></div>
+    </div>
+  </div>
+</header>
+
+<div class="pl-layout wrap">
+  <nav class="pl-toc" aria-label="Labs">
+    <p class="pl-toc-h">Analog &amp; RF Lab</p>
+    <ol>
+      <li class="pl-toc-part">Gain</li>
+      <li><a href="#amp"><span>01</span>Common-source amplifier</a></li>
+      <li><a href="#gain"><span>02</span>Gain versus scaling</a></li>
+      <li class="pl-toc-part">Speed and noise</li>
+      <li><a href="#bode"><span>03</span>Frequency response</a></li>
+      <li><a href="#noise"><span>04</span>Noise</a></li>
+      <li><a href="#an-sources"><span>§</span>Sources</a></li>
+    </ol>
+  </nav>
+  <main class="pl-main">
+
+  <div class="pl-part" id="part-gain"><span class="pl-part-n">Part I</span><h2>Gain</h2><p>A small change at the gate, a large change at the drain.</p></div>
+
+  <section class="lab-sec" id="amp" aria-labelledby="amp-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">01</span>
+      <div>
+        <span class="eyebrow">Common-source amplifier</span>
+        <h2 id="amp-h">Turn a small signal into a big one</h2>
+        <p class="lead">Bias a transistor halfway on, hang a resistor from its drain to the supply, and wiggle the gate. The drain current follows the gate, the resistor turns that current into a voltage, and a millivolt in becomes many millivolts out, inverted. Push too hard and the output clips against the supply or ground: the curved transfer characteristic adds harmonics that were not in the input.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Common-source amplifier controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="amp" style="--h:360px"><canvas aria-label="A resistor-loaded transistor amplifier with an input sine wave, the amplified output on an oscilloscope, and the harmonics it creates"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="vtc"><h4>Transfer curve</h4><p class="sub">Output voltage against input voltage. The dot is the bias point, the dashed line its slope (the gain), and the shaded bands the input and output swings.</p></div>
+          <div class="card plot" data-role="thd"><h4>Distortion versus input amplitude</h4><p class="sub">Total harmonic distortion, harmonics 2–9. It rises with amplitude, then explodes when the output clips.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="I_D(V_{in},V_{out})=\frac{V_{DD}-V_{out}}{R_L}"></div>
+        <div class="eq" data-tex="A_v=-g_m\,(r_o\parallel R_L),\qquad g_m=\frac{\partial I_D}{\partial V_{GS}}"></div>
+        <div class="eq" data-tex="\mathrm{THD}=\frac{\sqrt{\sum_{k\ge 2}V_k^2}}{V_1}"></div>
+        <p class="small">The output is the exact large-signal solution of the compact transistor model against the load line, not a linear approximation; the harmonics come from a discrete Fourier transform of one period. Tests check that the slope of the transfer curve equals −gm(r_o∥R_L) and that second-order distortion grows in proportion to amplitude.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>The Regency TR-1, the first transistor radio sold in the US (1954), used four germanium junction transistors as amplifiers like this one. Today every radio receiver starts with such a stage, the low-noise amplifier, and every transmitter ends with one, the power amplifier, where linearity decides how much spectrum a signal pollutes.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/analog.py" rel="noopener"><code>sim/transistor_sim/physics/analog.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="razavi2017 chm_consumer1952"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-sec" id="gain" aria-labelledby="gain-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">02</span>
+      <div>
+        <span class="eyebrow">Gain versus scaling</span>
+        <h2 id="gain-h">Why analog got harder as transistors shrank</h2>
+        <p class="lead">A transistor’s intrinsic gain, gm·r_o, is the most voltage gain it can ever give. Long transistors have a large output resistance; short ones let the drain reach through and pull on the channel (drain-induced barrier lowering), so their output resistance and gain collapse. Transconductance efficiency gm/I_D says how much gain you buy per microampere: the analog designer’s exchange rate.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Gain versus scaling controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="iv" style="--h:330px"><canvas aria-label="Output characteristics of the chosen transistor with the operating point; the tangent lines show the output conductance that limits gain"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="gmid"><h4>Transconductance efficiency</h4><p class="sub">gm/I_D against current density for each generation: about 1/(nφ_t) in weak inversion, falling in strong inversion.</p></div>
+          <div class="card plot" data-role="a0"><h4>Intrinsic gain by generation</h4><p class="sub">gm·r_o for every generation at the chosen current density and drain voltage.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="A_0=g_m r_o=\frac{g_m}{g_{ds}}"></div>
+        <div class="eq" data-tex="\frac{g_m}{I_D}\le\frac{1}{n\,\phi_t}\approx 25\text{–}38\ \mathrm{V^{-1}}"></div>
+        <div class="eq" data-tex="g_{ds}\approx g_m\,\eta_{DIBL}+\lambda I_D"></div>
+        <p class="small">gm and g_ds are numerical derivatives of the compact model at the chosen bias. In this model drain-induced barrier lowering (η) and channel-length modulation (λ) set g_ds. Tests check the weak-inversion limit of gm/I_D and that intrinsic gain drops from 180 nm to 45 nm planar and recovers with FinFETs.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Digital circuits only need a switch, but analog circuits need gain. As planar transistors shrank, intrinsic gain fell toward 10, and analog designers answered with longer channels, cascodes and digital calibration. FinFETs and nanosheets improved the gate’s grip on the channel and brought much of the gain back.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/analog.py" rel="noopener"><code>sim/transistor_sim/physics/analog.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="silveira1996 razavi2017 taur2013"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pl-part" id="part-speed"><span class="pl-part-n">Part II</span><h2>Speed and noise</h2><p>How fast a transistor can amplify, and the faintest signal it can hear.</p></div>
+
+  <section class="lab-sec" id="bode" aria-labelledby="bode-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">03</span>
+      <div>
+        <span class="eyebrow">Frequency response</span>
+        <h2 id="bode-h">How fast can it amplify?</h2>
+        <p class="lead">Every transistor has capacitance, and every amplifier must charge it. The gate-to-drain capacitance is the worst: the stage’s own gain multiplies it at the input (the Miller effect), so a fast transistor can still make a slow amplifier. The transit frequency f_T, where the current gain falls to one, is the speed limit of the device itself.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Frequency response controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="scope" style="--h:330px"><canvas aria-label="An input sine wave and the amplifier output at the chosen frequency: as frequency rises the output shrinks and lags"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="bodeplot"><h4>Bode plot</h4><p class="sub">Gain and phase of the common-source stage, including the Miller-multiplied input capacitance and the right-half-plane zero.</p></div>
+          <div class="card plot" data-role="records"><h4>The fastest transistors</h4><p class="sub">Record f_T and f_max by technology (room temperature unless marked), and this model’s intrinsic peak f_T by CMOS generation.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="A_v(s)=\frac{-g_m R_{out}\,(1-sC_{gd}/g_m)}{1+as+bs^2}"></div>
+        <div class="eq" data-tex="C_{Miller}=C_{gd}\,(1+g_m R_{out})"></div>
+        <div class="eq" data-tex="f_T=\frac{g_m}{2\pi\,(C_{gs}+C_{gd})}"></div>
+        <p class="small">Two-pole model of the common-source stage with a source resistance R_S and a load capacitance C_L. C_gs = ⅔C_oxWL plus overlap; C_gd is the overlap and fringe capacitance (0.25 fF/µm). f_T is intrinsic: wiring adds more capacitance in a real layout. Tests check the Miller capacitance and that the input or output pole dominates in the right limits.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>In 1954 the TR-1 amplified AM broadcasts below 2 MHz. Today silicon CMOS amplifies near 80 GHz in car radars, and indium phosphide transistors amplify at 1 THz. Every step up in frequency opened a new use: FM, television, mobile phones, satellite links, Wi-Fi, 5G millimetre wave and sub-terahertz 6G research.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/analog.py" rel="noopener"><code>sim/transistor_sim/physics/analog.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="miller1920 ong2018 heinemann2016 tang2015 urteaga2016 mei2015 deal_estf2015 hafez_phbt cryo22fdx"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-sec" id="noise" aria-labelledby="noise-h">
+    <header class="lab-head">
+      <span class="lab-num" aria-hidden="true">04</span>
+      <div>
+        <span class="eyebrow">Noise</span>
+        <h2 id="noise-h">The floor under every signal</h2>
+        <p class="lead">Electrons jiggle with heat, so every transistor adds a little random voltage of its own. Thermal noise is flat across frequency and falls as you spend more current on gm. At low frequency a second kind rises as 1/f, from charges trapped and released at the oxide interface, and it is worse in small transistors. Below the noise floor a signal is lost.</p>
+      </div>
+    </header>
+    <div class="lab-grid">
+      <aside class="card panel lab-ctl" aria-label="Noise controls"></aside>
+      <div class="lab-view">
+        <div class="lab-tiles"></div>
+        <div class="card pl-canvas" data-role="noisecv" style="--h:330px"><canvas aria-label="A small sine wave buried in transistor noise, with the noise split into its thermal and flicker parts"></canvas></div>
+        <div class="plots">
+          <div class="card plot" data-role="psd"><h4>Noise spectrum</h4><p class="sub">Input-referred noise density. Thermal noise is flat; flicker noise rises as 1/f; the corner is where they cross.</p></div>
+          <div class="card plot" data-role="area"><h4>Bigger transistors are quieter</h4><p class="sub">Integrated noise from 10 Hz to the chosen bandwidth against device width, at fixed gm.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-learn">
+      <div class="card pl-card pl-try"><h3>Try this</h3><div class="lab-exp"></div></div>
+      <div class="card pl-card pl-eqs"><h3>The physics</h3>
+        <div class="eq" data-tex="\overline{v_n^2}/\Delta f=\frac{4kT\gamma}{g_m}+\frac{K_f}{C_{ox}WLf}"></div>
+        <div class="eq" data-tex="f_c=\frac{K_f\,g_m}{4kT\gamma\,C_{ox}WL}"></div>
+        <div class="eq" data-tex="v_{n,rms}=\sqrt{\int_{f_1}^{f_2}S_v(f)\,df}"></div>
+        <p class="small">γ = 2/3 is the long-channel value (short channels are higher); K_f = 10⁻²⁵ V²F is a teaching value of the right order for silicon CMOS. Tests check that the two terms are equal at the corner, that the closed-form rms matches numerical integration, and that four times the area gives a four-times lower corner.</p>
+      </div>
+      <div class="card pl-card pl-real"><h3>Why it matters for transistors</h3><p>Noise sets the range of every radio, the resolution of every sensor and the energy of every analog-to-digital converter. Low-noise amplifiers for radio astronomy and quantum computers use indium phosphide HEMTs cooled to a few kelvin, because thermal noise falls with temperature.</p>
+        <p class="small">Python reference: <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/sim/transistor_sim/physics/analog.py" rel="noopener"><code>sim/transistor_sim/physics/analog.py</code></a> · browser twin checked against it in CI.</p>
+        <div class="refchips" data-refs="vanderziel1986 mcwhorter1957 razavi2017"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-sec" id="an-sources" aria-labelledby="src-h">
+    <header class="lab-head"><span class="lab-num" aria-hidden="true">§</span><div><span class="eyebrow">Sources</span><h2 id="src-h">Where the numbers come from</h2>
+    <p class="lead">Textbooks, original papers and the published speed records. The full bibliography is in <a href="https://github.com/Normansrule/transistor-odyssey/blob/main/REFERENCES.md">REFERENCES.md</a>; Chapter 23 of the docs walks through each lab.</p></div></header>
+    <ol class="card pl-refs" id="plRefs"></ol>
+  </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Transistor Odyssey · Analog &amp; RF Lab. Code MIT, text and figures CC BY 4.0. Amplifier models are teaching-grade: they use the compact transistor model and simple capacitance and noise estimates, not a foundry PDK.</p>
+    <p><a href="index.html">← Back to the transistor history</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/analoglab/main.js"></script>
+</body>
+</html>

@@ -24,6 +24,7 @@ import * as OX from '../site/js/physics/oxidation.js';
 import * as IM from '../site/js/physics/implant.js';
 import * as YC from '../site/js/physics/yieldcost.js';
 import * as EM from '../site/js/physics/electromigration.js';
+import * as AN from '../site/js/physics/analog.js';
 
 const ref = JSON.parse(readFileSync(new URL('../data/physics_reference.json', import.meta.url)));
 let fails = 0;
@@ -139,6 +140,17 @@ for (const [L, v] of Object.entries(ref.em.ttf)) check(`EM time to fail L=${L}`,
 { const l = new EM.Line(50, 2, 300, 81); l.step(l.L ** 2 / l.k / 200, 40); let worst = 0;
   ref.em.line.forEach((v, i) => { worst = Math.max(worst, Math.abs(l.sigma[i * 10] - v) / 1e6); });
   if (worst > 1e-6) fails++; console.log(`${worst > 1e-6 ? 'FAIL' : 'ok  '} Korhonen line stress (max diff ${worst.toExponential(1)} MPa)`); }
+for (const r of ref.analog.ss) { const [k, vg, vd] = r.case, s = AN.smallSignal(presets[k], vg, vd, 2); for (const q of ['I', 'gm', 'gds', 'gm_id', 'A0', 'fT']) check(`analog ${k} ${q}`, s[q], r[q], 1e-6); }
+check('analog vgs for 10 µA/µm', AN.vgsForCurrent(presets['2007_45nm_hkmg'], 10, 0.5), ref.analog.vgsI, 1e-9);
+{ const p = presets['1999_180nm'], c = ref.analog.cs, vb = AN.biasForMidrail(p, 1.8, 20); check('CS bias', vb, c.vb, 1e-9);
+  const st = AN.csStage(p, 1.8, 20, vb); for (const q of ['vout', 'gain', 'rout']) check(`CS ${q}`, st[q], c[q], 1e-6);
+  check('CS THD', AN.sineResponse(p, 1.8, 20, vb, 0.05).thd, c.thd, 1e-6);
+  const b = AN.bode(p, 1.8, 20, vb, 2, 10); for (const q of ['A0_dB', 'f3dB', 'GBW', 'C_miller']) check(`Bode ${q}`, b[q], c['bode_' + q], 1e-6);
+  let worst = 0; c.bode_mag.forEach((v, i) => { worst = Math.max(worst, Math.abs(b.mag[i * 40] - v)); });
+  if (worst > 1e-6) fails++; console.log(`${worst > 1e-6 ? 'FAIL' : 'ok  '} Bode magnitude (max diff ${worst.toExponential(1)} dB)`); }
+check('noise corner', AN.noiseCorner(presets['1999_180nm'], 1e-3, 10), ref.analog.noise.corner, 1e-9);
+check('noise rms', AN.noiseRms(presets['2011_22nm_finfet'], 5e-4, 4, 10, 1e7), ref.analog.noise.rms, 1e-9);
+check('noise psd', AN.noisePsd(presets['2025_2nm_gaa'], 2e-4, 1, 1e3), ref.analog.noise.psd, 1e-9);
 const v = MC.simulate(1e5, { n: 1000, tPs: 3 });
 check('MC v(1e5 V/cm) within 25% of 1.07e7', v, 1.07e7, 0.25);
 if (fails) { console.error(`${fails} parity check(s) failed`); process.exit(1); }

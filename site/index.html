@@ -6,7 +6,7 @@
 <title>Transistor Odyssey</title>
 <meta name="description" content="An interactive history of the transistor from the 1947 point-contact device to 2 nm gate-all-around, IBM's 0.7 nm nanostack and 2D MoS₂ with a 0.42 nm interface, plus GaN, GaAs, SiC, diamond and nanotube alternatives.">
 <meta property="og:title" content="Transistor Odyssey — 1947 to the ångström era">
-<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, nineteen animated devices, fifteen live physics labs, a circuit lab from gates to flash memory, a process lab and 302 references.">
+<meta property="og:description" content="Structure, materials and simulations of the transistor across 79 years, nineteen animated devices, fifteen live physics labs, a circuit lab from gates to flash memory, a process lab, an analog &amp; RF lab and 315 references.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
@@ -40,6 +40,7 @@
     <a class="nav-lab nav-lab2" href="physics.html">Physics Lab</a>
     <a class="nav-lab nav-lab2 nav-lab3" href="circuits.html">Circuit Lab</a>
     <a class="nav-lab nav-lab2 nav-lab3" href="process.html">Process Lab</a>
+    <a class="nav-lab nav-lab2 nav-lab3" href="analog.html">Analog &amp; RF</a>
     <a class="nav-gh" href="https://github.com/Normansrule/transistor-odyssey" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       Source
@@ -62,6 +63,7 @@
       <a class="btn" href="physics.html">Physics Lab: 15 live simulations →</a>
       <a class="btn" href="circuits.html">Circuit Lab: gates, adders and memory →</a>
       <a class="btn" href="process.html">Process Lab: how chips are made →</a>
+      <a class="btn" href="analog.html">Analog &amp; RF Lab: the transistor as an amplifier →</a>
     </div>
     <p class="hint">Drag across the background to stir the fluid.</p>
     <div class="stats" aria-label="Key numbers">
@@ -300,7 +302,7 @@
 <section class="sec" id="process-teaser">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">New · Process Lab</span>
+      <span class="eyebrow">Process Lab</span>
       <h2>The physics of making chips</h2>
       <p class="lead">How the factory shapes the transistor. Grow an oxide with the Deal–Grove model, fire dopant ions into silicon and anneal them into a junction, count the dies that survive the defects on a 300 mm wafer and see why the cost per transistor stopped falling, then watch a copper wire fail by electromigration.</p>
     </div>
@@ -309,6 +311,23 @@
       <a class="card glow" href="process.html#implant"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="4" y="14" width="112" height="40" fill="#1d242e"/><path d="M20 2 L22 30 L18 36 M50 2 L52 26 L56 34 M80 2 L78 28 L82 38 M104 2 L106 30" fill="none" stroke="#3cc0b4"/><circle cx="18" cy="36" r="2.4" fill="#3cc0b4"/><circle cx="56" cy="34" r="2.4" fill="#3cc0b4"/><circle cx="82" cy="38" r="2.4" fill="#3cc0b4"/><circle cx="106" cy="30" r="2.4" fill="#3cc0b4"/></svg><b>02</b><h3>Implant and diffuse</h3><p>LSS ion ranges for B, P, As and Sb, Gaussian profiles, anneals and junction depth.</p><span class="go">Open lab →</span></a>
       <a class="card glow" href="process.html#yield"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><circle cx="30" cy="27" r="24" fill="#3a4a64"/><rect x="14" y="13" width="8" height="8" fill="#3cc0b4"/><rect x="24" y="13" width="8" height="8" fill="#d95926"/><rect x="34" y="13" width="8" height="8" fill="#3cc0b4"/><rect x="14" y="23" width="8" height="8" fill="#3cc0b4"/><rect x="24" y="23" width="8" height="8" fill="#3cc0b4"/><rect x="34" y="23" width="8" height="8" fill="#3cc0b4"/><rect x="14" y="33" width="8" height="8" fill="#d95926"/><rect x="24" y="33" width="8" height="8" fill="#3cc0b4"/><rect x="34" y="33" width="8" height="8" fill="#3cc0b4"/><rect x="66" y="10" width="8" height="40" fill="#3987e5"/><rect x="78" y="24" width="8" height="26" fill="#3987e5"/><rect x="90" y="38" width="8" height="12" fill="#3987e5"/><rect x="102" y="39" width="8" height="11" fill="#f2b84b"/></svg><b>03</b><h3>Count the dies that survive</h3><p>Monte Carlo wafer maps, three yield models and the cost of the same chip from 90 nm to 5 nm.</p><span class="go">Open lab →</span></a>
       <a class="card glow" href="process.html#em"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="4" y="18" width="112" height="16" fill="#5f6f8f"/><rect x="4" y="18" width="40" height="16" fill="#b0705a"/><ellipse cx="10" cy="22" rx="9" ry="5" fill="#0a0d11"/><path d="M96 18 Q106 8 116 18" fill="#d9825b"/><circle cx="30" cy="26" r="1.8" fill="#bcd8ff"/><circle cx="60" cy="26" r="1.8" fill="#bcd8ff"/><circle cx="90" cy="26" r="1.8" fill="#bcd8ff"/></svg><b>04</b><h3>Watch a wire tear itself apart</h3><p>Electromigration: Korhonen stress, the Blech length and Black's law.</p><span class="go">Open lab →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANALOG & RF LAB TEASER ============ -->
+<section class="sec" id="analog-teaser">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">New · Analog &amp; RF Lab</span>
+      <h2>The transistor as an amplifier</h2>
+      <p class="lead">Before transistors computed, they amplified. Build a one-transistor amplifier and push it into distortion, see why intrinsic gain collapsed with planar scaling and came back with FinFETs, watch the Miller effect eat bandwidth next to the record f<sub>T</sub> and f<sub>max</sub> of CMOS, SiGe, GaN and InP, and dig a faint signal out of thermal and 1/f noise.</p>
+    </div>
+    <div class="pl-teaser">
+      <a class="card glow" href="analog.html#amp"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M4 27 Q11 20 18 27 T32 27" fill="none" stroke="#3cc0b4" stroke-width="2"/><path d="M38 14 L58 27 L38 40 Z" fill="none" stroke="#8a94a3" stroke-width="2"/><path d="M64 27 C70 4 76 4 82 27 S94 50 100 27" fill="none" stroke="#f2b84b" stroke-width="2.4"/><rect x="104" y="20" width="4" height="14" fill="#f2b84b"/><rect x="110" y="28" width="4" height="6" fill="#ff8a55"/></svg><b>01</b><h3>Build an amplifier</h3><p>A common-source stage: gain, the transfer curve, clipping and harmonic distortion.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="analog.html#gain"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><rect x="10" y="10" width="12" height="40" fill="#5598e7"/><rect x="30" y="38" width="12" height="12" fill="#3cc0b4"/><rect x="50" y="22" width="12" height="28" fill="#f2b84b"/><rect x="70" y="16" width="12" height="34" fill="#ff8a55"/><path d="M90 46 C96 20 104 12 116 8" fill="none" stroke="#9a80dc" stroke-width="2"/></svg><b>02</b><h3>Gain versus scaling</h3><p>gm/I<sub>D</sub> and intrinsic gain across six generations, from 1.5 µm to 2 nm and MoS₂.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="analog.html#bode"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M4 14 H62 C72 14 76 20 86 34 L116 50" fill="none" stroke="#f2b84b" stroke-width="2.4"/><path d="M4 30 H58 C70 30 76 40 88 46 L116 50" fill="none" stroke="#9a80dc" stroke-width="1.6" opacity=".8"/><line x1="72" y1="4" x2="72" y2="52" stroke="#3cc0b4" stroke-dasharray="3 3"/><path d="M104 6 l4 4 -4 4 -4 -4z" fill="#f2b84b"/></svg><b>03</b><h3>How fast can it go?</h3><p>Bode plots, the Miller effect, f<sub>T</sub> and speed records up to 1.5 THz.</p><span class="go">Open lab →</span></a>
+      <a class="card glow" href="analog.html#noise"><svg viewBox="0 0 120 54" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><path d="M4 27 l4 -6 3 9 4 -12 3 14 4 -8 3 5 4 -10 3 12 4 -7 3 3 4 -9 3 11 4 -6 3 4 4 -8 3 10 4 -5 3 3 4 -7 3 8 4 -4 3 5 4 -9 3 6 4 -3 3 4 4 -6" fill="none" stroke="#a0bee6" stroke-width="1.2"/><path d="M4 27 Q19 12 34 27 T64 27 T94 27 T124 27" fill="none" stroke="#f2b84b" stroke-width="2"/></svg><b>04</b><h3>Hear through the noise</h3><p>Thermal and 1/f noise, the corner frequency and why bigger transistors are quieter.</p><span class="go">Open lab →</span></a>
     </div>
   </div>
 </section>

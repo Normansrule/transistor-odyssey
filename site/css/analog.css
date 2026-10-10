@@ -1,0 +1,7 @@
+/* Analog & RF Lab — hero tweaks on top of circuits.css */
+.az-hero { background: radial-gradient(120% 90% at 75% 25%, #131a26 0%, #07090c 70%); }
+.analog .cz-desc { min-height: 6.2em; }
+.analog .cz-scale { min-width: 5ch; }
+.analog .cz-copy h1 { max-width: 15ch; }
+.az-hero .cz-shade { background: linear-gradient(0deg, rgba(7,9,12,.94) 0%, rgba(7,9,12,.72) 34%, rgba(7,9,12,0) 50%); }
+@media (max-width: 640px) { .analog .pl-canvas[data-role=amp] { height: 470px; } }

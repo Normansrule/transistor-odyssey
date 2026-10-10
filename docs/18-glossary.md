@@ -23,23 +23,28 @@
 | **FD-SOI** | Fully depleted silicon-on-insulator: a thin silicon film over buried oxide. |
 | **FeFET / NC-FET** | Transistors with a ferroelectric gate layer, used for memory (FeFET) or voltage amplification (negative capacitance). |
 | **FinFET** | Transistor whose channel is a vertical fin gated on three sides. |
+| **Flicker (1/f) noise** | Low-frequency noise whose power falls as 1/f, from charges trapped and released at the oxide interface; smaller in larger transistors. |
 | **Fowler–Nordheim tunnelling** | Field emission of electrons through a triangular oxide barrier, J = A·E²·exp(−B/E); how flash cells are programmed and erased. |
+| **f_T / f_max** | Transit frequency, where a transistor's current gain falls to one, g_m/2π(C_gs + C_gd); and maximum oscillation frequency, where its power gain falls to one. Records: 765 GHz f_T (InP HBT), 1.5 THz f_max (InP HEMT). |
+| **gₘ** | Transconductance, ∂I_D/∂V_GS. |
 | **GAA** | Gate-all-around: gate surrounds the channel (nanosheet, nanowire). |
 | **Glitch** | A transient wrong value on a logic signal before it settles; it costs switching energy without doing work. |
-| **gₘ** | Transconductance, ∂I_D/∂V_GS. |
+| **g_m/I_D** | Transconductance efficiency: transconductance per unit of drain current, at most 1/(nφ_t) ≈ 25–38 V⁻¹ in weak inversion; a standard analog design variable. |
 | **HBM** | High-bandwidth memory: stacked DRAM connected by through-silicon vias. |
 | **HEMT** | High-electron-mobility transistor: a heterojunction FET using a 2DEG channel. |
 | **HKMG** | High-k dielectric with metal gate. |
 | **HVM** | High-volume manufacturing. |
 | **Hybrid bonding** | Direct copper-to-copper and oxide-to-oxide bonding of two dies without solder. |
-| **I_on / I_off** | Drive current at full gate voltage / leakage with gate off. |
 | **IGBT** | Insulated-gate bipolar transistor: MOS-gated, bipolar-conducting power switch. |
 | **IGZO** | Amorphous indium–gallium–zinc oxide, a thin-film transistor semiconductor for displays and flexible circuits. |
 | **Inner spacer** | Dielectric plug between gate and source/drain in a nanosheet stack. |
+| **Intrinsic gain** | g_m·r_o, the most voltage gain one transistor can give; it fell with planar scaling and recovered with FinFETs. |
+| **I_on / I_off** | Drive current at full gate voltage / leakage with gate off. |
 | **Ionization energy (dopant)** | Energy to free a carrier from a dopant; 0.045 eV for B in Si, 0.37 eV for B in diamond. |
 | **ISPP** | Incremental step pulse programming: raising a flash cell's gate voltage by a fixed step each pulse, with a verify read in between. |
 | **Logical effort** | How much more input capacitance a gate needs than an inverter to deliver the same output current; delay d = g·h + p. |
 | **MESFET** | Metal-semiconductor (Schottky-gate) FET, common in GaAs. |
+| **Miller effect** | A capacitance from input to output of an inverting amplifier appears at the input multiplied by (1 + gain), limiting bandwidth. |
 | **MMP** | Minimum metal pitch. |
 | **MOSFET** | Metal-oxide-semiconductor field-effect transistor. |
 | **NA** | Numerical aperture of the lithography lens. |
@@ -59,6 +64,8 @@
 | **TCAD** | Technology computer-aided design: process and device physics simulation. |
 | **TFET** | Tunnel FET: switches by band-to-band tunnelling and can beat 60 mV/decade. |
 | **TFT** | Thin-film transistor: deposited semiconductor on glass or plastic. |
+| **THD** | Total harmonic distortion: the rms of the harmonics a non-linear amplifier adds, relative to the fundamental. |
+| **Thermal noise** | Random voltage from the thermal motion of carriers, flat in frequency; for a MOSFET 4kTγ/g_m at the gate. |
 | **TSV** | Through-silicon via: a vertical copper connection through a thinned die. |
 | **V_T** | Threshold voltage. |
 | **Yield** | The fraction of dies on a wafer that work. |

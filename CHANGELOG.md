@@ -2,6 +2,16 @@
 
 All notable changes to Transistor Odyssey. Versions follow the `version` field in [CITATION.cff](CITATION.cff); `scripts/setup_ubuntu.sh` uses the newest entry as the commit message.
 
+## v1.10 — Analog & RF Lab: the transistor as an amplifier
+
+- New page, [`analog.html`](site/analog.html), opening on the radio spectrum from 10 Hz to 2 THz drawn as a chirp, with the bands from audio to terahertz and the record f_max of CMOS, GaN, SiGe and InP.
+- **Common-source amplifier:** exact large-signal solution against the load line, an animated schematic and oscilloscope, harmonics from a discrete Fourier transform, transfer curve and distortion versus amplitude for five generations.
+- **Gain versus scaling:** g_m/I_D against current density and intrinsic gain g_m·r_o for six generations, on an animated output-characteristics view with the g_ds tangent.
+- **Frequency response:** two-pole model with the Miller-multiplied gate–drain capacitance and the right-half-plane zero, a phasor read-out, Bode plot, and room-temperature speed records beside the model's peak f_T by CMOS generation.
+- **Noise:** thermal (4kTγ/g_m) and flicker (K_f/C_ox·W·L·f) noise, the corner frequency, integrated rms noise and signal-to-noise ratio, with a live noisy trace.
+- Python model `analog.py` with a JavaScript twin; 8 new tests (182 in total) and new parity checks.
+- Three new charts (39 in total), five new animations (25 in total), Chapter 23, 14 new references (316 in total), `data/rf_records.json`, seven glossary terms, and a shorter navigation bar on narrow desktop screens.
+
 ## v1.9 — Process Lab: the physics of making chips
 
 - New page, [`process.html`](site/process.html), opening on an animated cross-section built step by step (oxidation, lithography, implant, anneal, gate, contacts, copper).

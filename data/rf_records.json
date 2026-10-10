@@ -1,0 +1,75 @@
+{
+ "_about": "Room-temperature speed records used by the Analog & RF Lab: unity-current-gain frequency fT and maximum oscillation frequency fmax (GHz). Missing values were not reported in the cited source.",
+ "records": [
+  {
+   "device": "Si CMOS (22 nm FD-SOI)",
+   "family": "CMOS",
+   "year": 2018,
+   "fT": 347,
+   "fmax": 371,
+   "refs": [
+    "ong2018"
+   ]
+  },
+  {
+   "device": "Si CMOS, cryogenic",
+   "family": "CMOS",
+   "year": 2021,
+   "fT": 495,
+   "fmax": 497,
+   "cryo": true,
+   "refs": [
+    "cryo22fdx"
+   ]
+  },
+  {
+   "device": "GaN HEMT",
+   "family": "GaN",
+   "year": 2015,
+   "fT": 454,
+   "fmax": 444,
+   "refs": [
+    "tang2015"
+   ]
+  },
+  {
+   "device": "SiGe HBT",
+   "family": "SiGe",
+   "year": 2016,
+   "fT": 505,
+   "fmax": 720,
+   "refs": [
+    "heinemann2016"
+   ]
+  },
+  {
+   "device": "InP pseudomorphic HBT",
+   "family": "InP",
+   "year": 2006,
+   "fT": 765,
+   "refs": [
+    "hafez_phbt"
+   ]
+  },
+  {
+   "device": "InP HBT (130 nm)",
+   "family": "InP",
+   "year": 2011,
+   "fT": 521,
+   "fmax": 1150,
+   "refs": [
+    "urteaga2016"
+   ]
+  },
+  {
+   "device": "InP HEMT (25 nm)",
+   "family": "InP",
+   "year": 2015,
+   "fmax": 1500,
+   "refs": [
+    "mei2015",
+    "deal_estf2015"
+   ]
+  }
+ ]
+}

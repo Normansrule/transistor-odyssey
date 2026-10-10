@@ -1799,6 +1799,86 @@
    "cat": "Process lab",
    "cite": "M. A. Korhonen, P. Børgesen, K. N. Tu, C.-Y. Li, \"Stress Evolution due to Electromigration in Confined Metal Lines,\" J. Appl. Phys. 73, 3790 (1993).",
    "doi": "10.1063/1.354073"
+  },
+  {
+   "id": "silveira1996",
+   "cat": "Analog & RF lab",
+   "cite": "F. Silveira, D. Flandre, P. G. A. Jespers, \"A gm/ID Based Methodology for the Design of CMOS Analog Circuits and Its Application to the Synthesis of a Silicon-on-Insulator Micropower OTA,\" IEEE J. Solid-State Circuits 31, 1314 (1996).",
+   "doi": "10.1109/4.535416"
+  },
+  {
+   "id": "razavi2017",
+   "cat": "Analog & RF lab",
+   "cite": "B. Razavi, \"Design of Analog CMOS Integrated Circuits,\" 2nd ed., McGraw-Hill (2017): common-source stage, Miller effect, noise."
+  },
+  {
+   "id": "miller1920",
+   "cat": "Analog & RF lab",
+   "cite": "J. M. Miller, \"Dependence of the Input Impedance of a Three-Electrode Vacuum Tube upon the Load in the Plate Circuit,\" Scientific Papers of the Bureau of Standards 15, 367 (1920)."
+  },
+  {
+   "id": "vanderziel1986",
+   "cat": "Analog & RF lab",
+   "cite": "A. van der Ziel, \"Noise in Solid State Devices and Circuits,\" Wiley (1986): channel thermal noise, γ = 2/3."
+  },
+  {
+   "id": "mcwhorter1957",
+   "cat": "Analog & RF lab",
+   "cite": "A. L. McWhorter, \"1/f Noise and Germanium Surface Properties,\" in Semiconductor Surface Physics, Univ. of Pennsylvania Press, 207 (1957)."
+  },
+  {
+   "id": "mei2015",
+   "cat": "Analog & RF lab",
+   "cite": "X. Mei et al., \"First Demonstration of Amplification at 1 THz Using 25-nm InP High Electron Mobility Transistor Process,\" IEEE Electron Device Lett. 36, 327 (2015).",
+   "url": "https://ieeexplore.ieee.org/document/7047678/"
+  },
+  {
+   "id": "deal_estf2015",
+   "cat": "Analog & RF lab",
+   "cite": "W. R. Deal et al., \"THz InP HEMT Technology for Sub-Millimeter Wave Atmospheric Sensing,\" NASA Earth Science Technology Forum (2015): fMAX as high as 1.5 THz.",
+   "url": "https://esto.nasa.gov/forum/estf2015/abstracts/deal.htm"
+  },
+  {
+   "id": "urteaga2016",
+   "cat": "Analog & RF lab",
+   "cite": "M. Urteaga et al., \"THz Bandwidth InP HBT Technologies and Heterogeneous Integration with Si CMOS,\" IEEE BCTM (2016): 130 nm InP HBT with fT/fmax = 521 GHz / 1.15 THz.",
+   "url": "https://web.ece.ucsb.edu/Faculty/rodwell/publications_and_presentations/publications/2016_9_BCTM_Urteaga_digest.pdf"
+  },
+  {
+   "id": "hafez_phbt",
+   "cat": "Analog & RF lab",
+   "cite": "W. Hafez, M. Feng, \"Pseudomorphic InP/InGaAs Heterojunction Bipolar Transistors (PHBTs) Experimentally Demonstrating fT = 765 GHz at 25°C Increasing to fT = 845 GHz at −55°C,\" IEDM Tech. Dig. (2006).",
+   "url": "https://www.researchgate.net/publication/224697599"
+  },
+  {
+   "id": "heinemann2016",
+   "cat": "Analog & RF lab",
+   "cite": "B. Heinemann et al., \"SiGe HBT with fT/fmax of 505 GHz/720 GHz,\" IEDM Tech. Dig., 3.1.1 (2016).",
+   "url": "https://www.semanticscholar.org/paper/8c587860adf01a876a7d6df0acded7582c721e8d"
+  },
+  {
+   "id": "tang2015",
+   "cat": "Analog & RF lab",
+   "cite": "Y. Tang et al., \"Ultrahigh-Speed GaN High-Electron-Mobility Transistors With fT/fmax of 454/444 GHz,\" IEEE Electron Device Lett. 36, 549 (2015).",
+   "url": "https://ieeexplore.ieee.org/document/7086311/"
+  },
+  {
+   "id": "ong2018",
+   "cat": "Analog & RF lab",
+   "cite": "S. N. Ong et al., \"A 22nm FDSOI Technology Optimized for RF/mmWave Applications,\" IEEE RFIC Symp. (2018): nFET fT/fmax = 347/371 GHz.",
+   "doi": "10.1109/RFIC.2018.8429035"
+  },
+  {
+   "id": "cryo22fdx",
+   "cat": "Analog & RF lab",
+   "cite": "\"Cryogenic RF CMOS on 22nm FDSOI Platform with Record fT = 495 GHz and fMAX = 497 GHz,\" VLSI Symp. (2021).",
+   "url": "https://ieeexplore.ieee.org/abstract/document/9508705/"
+  },
+  {
+   "id": "chm_consumer1952",
+   "cat": "Analog & RF lab",
+   "cite": "Computer History Museum, \"1952: Transistorized Consumer Products Appear,\" The Silicon Engine: the Sonotone hearing aid (1952) and the Regency TR-1 radio (October 1954, four germanium junction transistors).",
+   "url": "https://www.computerhistory.org/siliconengine/transistorized-consumer-products-appear/"
   }
  ]
 }

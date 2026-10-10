@@ -30,6 +30,7 @@ from transistor_sim.physics import carriers, junction, moscap, tunnel, poisson2d
 from transistor_sim.physics import bandstructure, qwell, chargesheet, thermal, litho, hetero, inverter, ballistic, interconnect  # noqa: E402
 from transistor_sim.physics import logic, sram, flash  # noqa: E402
 from transistor_sim.physics import oxidation, implant, yieldcost, electromigration  # noqa: E402
+from transistor_sim.physics import analog  # noqa: E402
 from transistor_sim import bandatlas  # noqa: E402
 
 FIG = ROOT / "figures"
@@ -589,6 +590,15 @@ def export_physics_json():
                "tlong": electromigration.t_nucleation_long(2, 300),
                "ttf": {f"{L}": electromigration.time_to_fail(L, 2, 300) for L in (20, 100, 1000)},
                "line": (lambda l: (l.step(l.L ** 2 / l.k / 200, 40), [float(v) for v in l.sigma[::10]])[1])(electromigration.Line(50, 2, 300, 81))},
+        "analog": {"ss": [{"case": [k, vg, vd], **{q: analog.small_signal(mosfet.preset(k), vg, vd, 2.0)[q] for q in ("I", "gm", "gds", "gm_id", "A0", "fT")}}
+                          for k, vg, vd in (("1999_180nm", 0.6, 0.9), ("2011_22nm_finfet", 0.35, 0.4), ("2025_2nm_gaa", 0.2, 0.7))],
+                   "vgsI": analog.vgs_for_current(mosfet.preset("2007_45nm_hkmg"), 10, 0.5),
+                   "cs": (lambda p: (lambda vb: {"vb": vb, **{q: analog.cs_stage(p, 1.8, 20, vb)[q] for q in ("vout", "gain", "rout")},
+                                                 "thd": analog.sine_response(p, 1.8, 20, vb, 0.05)[2],
+                                                 **{f"bode_{q}": analog.bode(p, 1.8, 20, vb, 2.0, 10.0)[q] for q in ("A0_dB", "f3dB", "GBW", "C_miller")},
+                                                 "bode_mag": [float(v) for v in analog.bode(p, 1.8, 20, vb, 2.0, 10.0)["mag"][::40]]})(analog.bias_for_midrail(p, 1.8, 20)))(mosfet.preset("1999_180nm")),
+                   "noise": {"corner": analog.noise_corner(mosfet.preset("1999_180nm"), 1e-3, 10), "rms": analog.noise_rms(mosfet.preset("2011_22nm_finfet"), 5e-4, 4, 10, 1e7),
+                             "psd": analog.noise_psd(mosfet.preset("2025_2nm_gaa"), 2e-4, 1, [1e3])[0].item()}},
     }
     (ROOT / "data" / "physics_reference.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
     print("data/physics_reference.json")
@@ -748,6 +758,105 @@ def fig_yield_em():
     a3.set_xscale("log"); a3.set_yscale("log"); a3.set_xlabel("line length (µm)"); a3.set_ylabel("time to void (h)")
     a3.set_title("Electromigration: short lines are immortal"); subtitle(a3, "Korhonen stress model; long-line lifetime ∝ j⁻²"); a3.legend(fontsize=8.5)
     save(fig, "process_yield_em")
+
+
+# ---------------------------------------------------------------------------
+# Analog & RF Lab: amplifier, gain and speed, noise.
+def _hz(f):
+    for v, u in ((1e9, "GHz"), (1e6, "MHz"), (1e3, "kHz")):
+        if f >= v:
+            return f"{f / v:.3g} {u}"
+    return f"{f:.3g} Hz"
+
+
+AN_ERAS = [("1985_1p5um_cmos", "1.5 µm"), ("1999_180nm", "180 nm"), ("2007_45nm_hkmg", "45 nm"), ("2011_22nm_finfet", "22 nm FinFET"), ("2025_2nm_gaa", "2 nm GAA")]
+
+
+def fig_analog_amplifier():
+    fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(16.5, 5.0), gridspec_kw=dict(wspace=0.32))
+    p, W, RL = mosfet.preset("1999_180nm"), 10, 10
+    vb = analog.bias_for_midrail(p, 1.8, RL, W)
+    vin = np.linspace(0, 1.8, 241)
+    a1.plot(vin, analog.cs_output(p, vin, 1.8, RL, W), color=SERIES[3])
+    st = analog.cs_stage(p, 1.8, RL, vb, W)
+    a1.plot([vb], [st["vout"]], "o", color=INK, ms=7)
+    dv = 0.06
+    a1.plot([vb - dv, vb + dv], [st["vout"] - st["gain"] * dv, st["vout"] + st["gain"] * dv], "--", color=INK2, lw=1.2)
+    a1.text(vb + 0.05, st["vout"] + 0.05, f"slope {st['gain']:.1f}", color=INK)
+    a1.set_xlabel("V_in (V)"); a1.set_ylabel("V_out (V)"); a1.set_title("Common-source transfer curve")
+    subtitle(a1, f"180 nm, W = {W} µm, R_L = {RL} kΩ, biased at mid-rail")
+    for i, (k, lab) in enumerate(AN_ERAS):
+        q = mosfet.preset(k); vbk = analog.bias_for_midrail(q, q.VDD, RL, W)
+        amps = np.geomspace(1e-3, 0.5, 30)
+        a2.plot(amps * 1e3, [100 * analog.sine_response(q, q.VDD, RL, vbk, a, W, 64)[2] for a in amps], color=SERIES[i], label=lab)
+    a2.set_xscale("log"); a2.set_yscale("log"); a2.set_ylim(0.01, 100); a2.set_xlabel("input amplitude (mV)"); a2.set_ylabel("THD (%)")
+    a2.set_title("Distortion rises with amplitude"); subtitle(a2, "harmonics 2–9; low supply voltages clip sooner"); a2.legend(fontsize=9)
+    f = np.logspace(4, 13, 400)
+    for i, RS in enumerate((0.01, 1, 10, 50)):
+        b = analog.bode(p, 1.8, RL, vb, RS_kohm=RS, CL_fF=10, W=W, f=f)
+        a3.plot(f, b["mag"], color=SERIES[i], label=f"R_S = {RS * 1000:g} Ω: −3 dB at {_hz(b['f3dB'])}" if RS < 1 else f"R_S = {RS:g} kΩ: −3 dB at {_hz(b['f3dB'])}")
+    a3.set_xscale("log"); a3.set_ylim(-40, 30); a3.set_xlabel("frequency (Hz)"); a3.set_ylabel("gain (dB)")
+    a3.set_title("The Miller effect sets the bandwidth"); subtitle(a3, "C_gd·(1 + g_m R_out) at the input; C_L = 10 fF"); a3.legend(fontsize=8.5, loc="lower left")
+    save(fig, "analog_amplifier")
+
+
+def fig_analog_gain_ft():
+    fig, (a1, a2, a3) = plt.subplots(1, 3, figsize=(16.5, 5.0), gridspec_kw=dict(wspace=0.32))
+    eras = AN_ERAS + [("2026_mos2_2d", "MoS₂ 2D")]
+    for i, (k, lab) in enumerate(eras):
+        p = mosfet.preset(k); rows = []
+        for v in np.linspace(-0.4, p.VDD * 1.2, 90):
+            s = analog.small_signal(p, v, p.VDD / 2)
+            if 1e-3 < s["I"] * 1e6 < 1000:
+                rows.append((s["I"] * 1e6, s["gm_id"]))
+        a1.plot(*zip(*rows), color=SERIES[i], label=lab)
+    a1.set_xscale("log"); a1.set_xlabel("I_D (µA/µm)"); a1.set_ylabel("g_m/I_D (1/V)"); a1.set_title("Transconductance efficiency")
+    subtitle(a1, "ceiling 1/(nφt) in weak inversion"); a1.legend(fontsize=8.5)
+    A0 = []
+    for k, lab in eras:
+        p = mosfet.preset(k); A0.append(analog.small_signal(p, analog.vgs_for_current(p, 10, p.VDD / 2), p.VDD / 2)["A0"])
+    x = np.arange(len(eras))
+    a2.bar(x, A0, color=[SERIES[i] for i in range(len(eras))])
+    for xi, a in zip(x, A0):
+        a2.text(xi, a + 1.2, f"{a:.0f}" if a >= 10 else f"{a:.1f}", ha="center", color=INK, fontsize=9.5)
+    a2.set_axisbelow(True); a2.grid(axis="x", visible=False)
+    a2.set_ylim(0, max(A0) * 1.15); a2.set_xticks(x); a2.set_xticklabels([e[1] for e in eras], rotation=30, ha="right", fontsize=9)
+    a2.set_ylabel("intrinsic gain g_m r_o"); a2.set_title("Gain fell with planar scaling"); subtitle(a2, "10 µA/µm, V_DS = V_DD/2")
+    rf = json.loads((ROOT / "data" / "rf_records.json").read_text(encoding="utf-8"))["records"]
+    fam = {"CMOS": SERIES[0], "SiGe": SERIES[2], "GaN": SERIES[6], "InP": SERIES[3]}
+    seen = set()
+    for r in rf:
+        c = fam[r["family"]]; lab = r["family"] if r["family"] not in seen else None; seen.add(r["family"])
+        if r.get("fT"):
+            a3.plot(r["year"], r["fT"], "o", mfc="none", mec=c, mew=2, ms=8, alpha=0.6 if r.get("cryo") else 1, label=lab)
+        if r.get("fmax"):
+            a3.plot(r["year"], r["fmax"], "D", color=c, ms=7, alpha=0.6 if r.get("cryo") else 1)
+    best = max(rf, key=lambda r: r.get("fmax", 0))
+    a3.annotate(f"{best['device']}: f_max {best['fmax'] / 1000:g} THz", (best["year"], best["fmax"]), (1972, 1700), color=INK2, fontsize=9, arrowprops=dict(arrowstyle="-", color=MUTED))
+    cmos = sorted((mosfet.preset(k) for k in mosfet.PRESETS if "mos2" not in k), key=lambda q: q.year)
+    model = [(q.year, max(analog.small_signal(q, v, q.VDD)["fT"] for v in np.linspace(0, q.VDD, 40)) / 1e9) for q in cmos]
+    a3.plot(*zip(*model), "s--", color=INK2, ms=5, lw=1.2, label="this model: CMOS peak f_T")
+    a3.set_yscale("log"); a3.set_xlim(1968, 2030); a3.set_xlabel("year"); a3.set_ylabel("frequency (GHz)")
+    a3.set_title("How fast can a transistor amplify?"); subtitle(a3, "records: ○ f_T, ◆ f_max (room temperature unless faded)"); a3.legend(fontsize=8.5, loc="lower right")
+    save(fig, "analog_gain_ft")
+
+
+def fig_analog_noise():
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.5, 5.0), gridspec_kw=dict(wspace=0.3))
+    p, gm = mosfet.preset("1999_180nm"), 1e-3
+    f = np.logspace(0, 10, 300)
+    for i, W in enumerate((1, 10, 100, 1000)):
+        a1.plot(f, np.sqrt(analog.noise_psd(p, gm, W, f)) * 1e9, color=SERIES[i], label=f"W = {W} µm: corner {_hz(analog.noise_corner(p, gm, W))}")
+    a1.axhline(np.sqrt(4 * analog.KB * 300 * 2 / 3 / gm) * 1e9, color=INK2, ls="--", lw=1)
+    a1.set_xscale("log"); a1.set_yscale("log"); a1.set_xlabel("frequency (Hz)"); a1.set_ylabel("input noise (nV/√Hz)")
+    a1.set_title("Thermal floor and 1/f rise"); subtitle(a1, "180 nm, g_m = 1 mS; dashed: thermal 4kTγ/g_m"); a1.legend(fontsize=8.5)
+    Ws = np.geomspace(0.1, 1000, 60)
+    for i, BW in enumerate((2e4, 1e6, 1e8)):
+        a2.plot(Ws, [analog.noise_rms(p, gm, w, 10, BW) * 1e6 for w in Ws], color=SERIES[i], label=f"10 Hz – {_hz(BW)}")
+        a2.axhline(np.sqrt(4 * analog.KB * 300 * 2 / 3 / gm * (BW - 10)) * 1e6, color=SERIES[i], ls="--", lw=1)
+    a2.set_xscale("log"); a2.set_yscale("log"); a2.set_xlabel("transistor width W (µm)"); a2.set_ylabel("rms input noise (µV)")
+    a2.set_title("Bigger transistors are quieter, at low frequency"); subtitle(a2, "180 nm, g_m = 1 mS; dashed: thermal part of each band"); a2.legend(fontsize=9)
+    save(fig, "analog_noise")
 
 
 # ---------------------------------------------------------------------------
@@ -974,7 +1083,8 @@ if __name__ == "__main__":
               fig_intrinsic, fig_pn, fig_cv, fig_leakage, fig_dibl, fig_montecarlo,
               fig_kronig_penney, fig_2deg, fig_chargesheet, fig_thermal, fig_litho,
               fig_band_atlas, fig_band_alignment, fig_device_bands, fig_heterojunction,
-              fig_inverter, fig_ballistic, fig_interconnect, fig_logic, fig_sram, fig_flash, fig_oxidation, fig_implant, fig_yield_em):
+              fig_inverter, fig_ballistic, fig_interconnect, fig_logic, fig_sram, fig_flash, fig_oxidation, fig_implant, fig_yield_em,
+              fig_analog_amplifier, fig_analog_gain_ft, fig_analog_noise):
         f()
     export_model_json()
     export_physics_json()

@@ -13,6 +13,7 @@
   <a href="https://normansrule.github.io/transistor-odyssey/physics.html"><b>Physics Lab</b></a> &nbsp;·&nbsp;
   <a href="https://normansrule.github.io/transistor-odyssey/circuits.html"><b>Circuit Lab</b></a> &nbsp;·&nbsp;
   <a href="https://normansrule.github.io/transistor-odyssey/process.html"><b>Process Lab</b></a> &nbsp;·&nbsp;
+  <a href="https://normansrule.github.io/transistor-odyssey/analog.html"><b>Analog &amp; RF Lab</b></a> &nbsp;·&nbsp;
   <a href="docs/README.md"><b>Chapters</b></a> &nbsp;·&nbsp;
   <a href="#quick-start"><b>Quick start</b></a>
 </p>
@@ -20,8 +21,8 @@
 <p align="center">
   <a href="https://normansrule.github.io/transistor-odyssey/"><img alt="Live site" src="https://img.shields.io/badge/live%20site-GitHub%20Pages-f2b84b?style=flat-square&labelColor=10141a"></a>
   <a href=".github/workflows/ci.yml"><img alt="Tests" src="https://img.shields.io/github/actions/workflow/status/Normansrule/transistor-odyssey/ci.yml?style=flat-square&labelColor=10141a&label=tests"></a>
-  <a href="REFERENCES.md"><img alt="302 references" src="https://img.shields.io/badge/references-302-b58fd6?style=flat-square&labelColor=10141a"></a>
-  <a href="docs/README.md"><img alt="22 chapters" src="https://img.shields.io/badge/chapters-22-7fd3d0?style=flat-square&labelColor=10141a"></a>
+  <a href="REFERENCES.md"><img alt="316 references" src="https://img.shields.io/badge/references-316-b58fd6?style=flat-square&labelColor=10141a"></a>
+  <a href="docs/README.md"><img alt="23 chapters" src="https://img.shields.io/badge/chapters-23-7fd3d0?style=flat-square&labelColor=10141a"></a>
   <a href="LICENSE"><img alt="MIT and CC BY 4.0" src="https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY%204.0-d9825b?style=flat-square&labelColor=10141a"></a>
 </p>
 
@@ -37,9 +38,9 @@ Transistor Odyssey follows the transistor from a 50 µm gold contact on germaniu
 
 | | |
 |---|---|
-| **A website** | An animated history, a [Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html) of 19 transistors with live energy band diagrams, a [Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html) of 15 simulations, and a [Circuit Lab](https://normansrule.github.io/transistor-odyssey/circuits.html) that zooms from wafer to atom and builds gates, an adder, SRAM and flash, and a [Process Lab](https://normansrule.github.io/transistor-odyssey/process.html) on oxidation, implantation, yield and electromigration. Everything runs in the browser; nothing is pre-rendered. |
-| **A textbook** | [22 chapters](docs/README.md), from the point contact to packaging, memory and manufacturing, with 302 cited sources. Every number traces to a reference. |
-| **A simulation package** | Python models in [`sim/transistor_sim`](sim/transistor_sim) that draw every figure here, each with a browser twin checked against it by 174 tests in continuous integration. |
+| **A website** | An animated history, a [Device Atlas](https://normansrule.github.io/transistor-odyssey/devices.html) of 19 transistors with live energy band diagrams, a [Physics Lab](https://normansrule.github.io/transistor-odyssey/physics.html) of 15 simulations, and a [Circuit Lab](https://normansrule.github.io/transistor-odyssey/circuits.html) that zooms from wafer to atom and builds gates, an adder, SRAM and flash, a [Process Lab](https://normansrule.github.io/transistor-odyssey/process.html) on oxidation, implantation, yield and electromigration, and an [Analog & RF Lab](https://normansrule.github.io/transistor-odyssey/analog.html) on gain, bandwidth, distortion and noise. Everything runs in the browser; nothing is pre-rendered. |
+| **A textbook** | [23 chapters](docs/README.md), from the point contact to packaging, memory, manufacturing and amplifiers, with 316 cited sources. Every number traces to a reference. |
+| **A simulation package** | Python models in [`sim/transistor_sim`](sim/transistor_sim) that draw every figure here, each with a browser twin checked against it by 182 tests in continuous integration. |
 
 > [!IMPORTANT]
 > **About "0.42 nm".** No foundry manufactures a 0.42 nm (or 0.7 nm) process. As of September 2026 the most advanced production nodes are 2 nm-class (TSMC N2 and Intel 18A, both in volume since Q4 2025), with TSMC A16 ramping. **0.7 nm** is IBM's *research* node announced on 25 June 2026. **0.42 nm** is the measured thickness of an aluminium-oxide interface layer in a 2026 NYCU + TSMC monolayer-MoS₂ transistor whose channel is ~100 nm long. This repository explains all three and why node names stopped being lengths. See [Chapter 8](docs/08-gaa-and-angstrom-era.md) and [Chapter 9](docs/09-2d-materials.md).
@@ -50,7 +51,7 @@ Transistor Odyssey follows the transistor from a 50 µm gold contact on germaniu
 |---|---|
 | **New to semiconductors** | [How to read a band diagram](https://normansrule.github.io/transistor-odyssey/devices.html#primer) → the [planar MOSFET](https://normansrule.github.io/transistor-odyssey/devices.html#planar_mosfet) and [bipolar transistor](https://normansrule.github.io/transistor-odyssey/devices.html#bjt) in the atlas → Physics Lab parts [I](https://normansrule.github.io/transistor-odyssey/physics.html#crystal) and [II](https://normansrule.github.io/transistor-odyssey/physics.html#pn) → the [self-test quiz](https://normansrule.github.io/transistor-odyssey/devices.html#quiz) |
 | **An engineer asking why FinFET and GAA** | [Physics Lab 09: 2D electrostatics](https://normansrule.github.io/transistor-odyssey/physics.html#short) → [the side-by-side comparison](https://normansrule.github.io/transistor-odyssey/devices.html#compare) → [Labs 13–15: inverter, ballistic limit, wires](https://normansrule.github.io/transistor-odyssey/physics.html#part-vi) → [Chapter 6](docs/06-finfet.md), [Chapter 8](docs/08-gaa-and-angstrom-era.md) and [the process flow](docs/16-process-flow.md) |
-| **Working in power or radio frequency** | [Materials chart](https://normansrule.github.io/transistor-odyssey/devices.html#align) → [GaN HEMT](https://normansrule.github.io/transistor-odyssey/devices.html#gan_hemt) → [heterojunction builder](https://normansrule.github.io/transistor-odyssey/devices.html#hetero) → [self-heating lab](https://normansrule.github.io/transistor-odyssey/physics.html#heat) → [Chapters 10](docs/10-compound-semiconductors.md) and [13](docs/13-diamond-electronics.md) |
+| **Working in power or radio frequency** | [Analog & RF Lab: gain, Miller effect and speed records](https://normansrule.github.io/transistor-odyssey/analog.html#bode) → [materials chart](https://normansrule.github.io/transistor-odyssey/devices.html#align) → [GaN HEMT](https://normansrule.github.io/transistor-odyssey/devices.html#gan_hemt) → [heterojunction builder](https://normansrule.github.io/transistor-odyssey/devices.html#hetero) → [self-heating lab](https://normansrule.github.io/transistor-odyssey/physics.html#heat) → [Chapters 10](docs/10-compound-semiconductors.md), [13](docs/13-diamond-electronics.md) and [23](docs/23-analog-rf-lab.md) |
 | **Curious how a computer is built from them** | [The powers-of-ten zoom](https://normansrule.github.io/transistor-odyssey/circuits.html#zoom) → [gate builder](https://normansrule.github.io/transistor-odyssey/circuits.html#gates) → [8-bit adder](https://normansrule.github.io/transistor-odyssey/circuits.html#adder) → [SRAM](https://normansrule.github.io/transistor-odyssey/circuits.html#sram) and [flash](https://normansrule.github.io/transistor-odyssey/circuits.html#flash) cells → [Chapter 21](docs/21-circuit-lab.md) |
 | **Interested in how chips are manufactured** | [Process flow animation](https://normansrule.github.io/transistor-odyssey/process.html) → [oxidation](https://normansrule.github.io/transistor-odyssey/process.html#oxide) → [implant and anneal](https://normansrule.github.io/transistor-odyssey/process.html#implant) → [yield and cost](https://normansrule.github.io/transistor-odyssey/process.html#yield) → [electromigration](https://normansrule.github.io/transistor-odyssey/process.html#em) → [Chapters 16](docs/16-process-flow.md) and [22](docs/22-process-lab.md) |
 | **Teaching** | Every figure is CC BY 4.0 and regenerated by `python sim/make_figures.py`; the atlas deep-links to any device (`devices.html#finfet`), and the quiz draws new questions each round. |
@@ -63,11 +64,12 @@ Transistor Odyssey follows the transistor from a 50 µm gold contact on germaniu
 4. [The Physics Lab](#the-physics-lab)
 5. [From transistor to computer: the Circuit Lab](#from-transistor-to-computer-the-circuit-lab)
 6. [The physics of making chips: the Process Lab](#the-physics-of-making-chips-the-process-lab)
-7. [A history in cross-sections](#a-history-in-cross-sections)
-8. [The data](#the-data)
-9. [Chapters](#chapters)
-10. [Quick start](#quick-start)
-11. [Repository layout](#repository-layout) · [Accuracy](#accuracy-policy) · [Credits](#credits-and-inspiration) · [License](#license) · [Cite](#cite)
+7. [The transistor as an amplifier: the Analog & RF Lab](#the-transistor-as-an-amplifier-the-analog--rf-lab)
+8. [A history in cross-sections](#a-history-in-cross-sections)
+9. [The data](#the-data)
+10. [Chapters](#chapters)
+11. [Quick start](#quick-start)
+12. [Repository layout](#repository-layout) · [Accuracy](#accuracy-policy) · [Credits](#credits-and-inspiration) · [License](#license) · [Cite](#cite)
 
 ## How each transistor works
 
@@ -159,6 +161,7 @@ Surface transfer doping gives diamond a sheet of holes with no dopant atoms; the
 | [**Physics Lab**](https://normansrule.github.io/transistor-odyssey/physics.html) | 15 simulations in six parts, from crystal lattices to lithography optics, CMOS logic, ballistic transport and on-chip wires, each with guided experiments and typeset equations |
 | [**Circuit Lab**](https://normansrule.github.io/transistor-odyssey/circuits.html) | A powers-of-ten zoom from a 300 mm wafer to one silicon bond, a switch-level gate builder with logical effort, an event-driven 8-bit adder, a six-transistor SRAM cell with butterfly curves, and a floating-gate flash cell with Fowler–Nordheim programming |
 | [**Process Lab**](https://normansrule.github.io/transistor-odyssey/process.html) | An animated process flow, Deal–Grove oxidation, LSS ion implantation with diffusion anneals, a Monte Carlo wafer map with yield models and the cost per chip by node, and an electromigration stress solver with the Blech length and Black's law |
+| [**Analog & RF Lab**](https://normansrule.github.io/transistor-odyssey/analog.html) | The radio spectrum from audio to 2 THz, a common-source amplifier with live distortion, g_m/I_D and intrinsic gain across six generations, Bode plots with the Miller effect beside record f_T and f_max, and thermal and 1/f noise |
 
 <p align="center"><a href="https://normansrule.github.io/transistor-odyssey/devices.html#gan_hemt"><img src="figures/screens/atlas.jpg" width="100%" alt="Device Atlas showing the GaN HEMT"></a></p>
 <p align="center"><sub>Device Atlas: the GaN HEMT, with the solved quantum well in the lower band diagram.</sub></p>
@@ -253,6 +256,25 @@ The [Process Lab](https://normansrule.github.io/transistor-odyssey/process.html)
 <p align="center"><img src="figures/process_oxidation.png" width="100%" alt="Deal–Grove oxide growth and Arrhenius rate constants"></p>
 <p align="center"><img src="figures/process_implant.png" width="100%" alt="LSS implant ranges and annealed arsenic profiles"></p>
 <p align="center"><img src="figures/process_yield_em.png" width="100%" alt="Yield versus die area, cost of the same chip by node, and electromigration lifetime versus line length"></p>
+
+## The transistor as an amplifier: the Analog & RF Lab
+
+The [Analog & RF Lab](https://normansrule.github.io/transistor-odyssey/analog.html) treats the transistor as an amplifier rather than a switch. It opens on the radio spectrum from audio to 2 THz, drawn as a chirp, with the bands each generation of transistors made usable and the fastest devices on record. [Chapter 23](docs/23-analog-rf-lab.md) explains each model.
+
+<table>
+<tr>
+<td width="50%"><a href="https://normansrule.github.io/transistor-odyssey/analog.html#amp"><img src="figures/anim/analog_amp.gif" alt="A common-source amplifier driven into clipping"></a><br><sub><b>Common-source amplifier.</b> A 180 nm transistor and a 10 kΩ resistor give a gain of about 10; as the input grows the output clips against the rails and the harmonics rise.</sub></td>
+<td width="50%"><a href="https://normansrule.github.io/transistor-odyssey/analog.html#gain"><img src="figures/anim/analog_gain.gif" alt="Output characteristics across generations"></a><br><sub><b>Intrinsic gain.</b> The tangent to the output curve is g_ds = 1/r_o. Gain g_m·r_o falls from 24 at 180 nm to 8 at 45 nm, then recovers to 22 with FinFETs.</sub></td>
+</tr>
+<tr>
+<td><a href="https://normansrule.github.io/transistor-odyssey/analog.html#bode"><img src="figures/anim/analog_bode.gif" alt="Output shrinking and lagging as frequency rises"></a><br><sub><b>Frequency response.</b> Past the bandwidth set by the Miller-multiplied gate–drain capacitance, the output shrinks and lags behind its low-frequency self.</sub></td>
+<td><a href="https://normansrule.github.io/transistor-odyssey/analog.html#noise"><img src="figures/anim/analog_noise.gif" alt="A faint sine emerging from noise"></a><br><sub><b>Noise.</b> A 10 µV signal over the audio band: as the transistor gets wider its 1/f noise falls and the signal emerges.</sub></td>
+</tr>
+</table>
+
+<p align="center"><img src="figures/analog_amplifier.png" width="100%" alt="Transfer curve, distortion versus amplitude, and Bode plots for four source resistances"></p>
+<p align="center"><img src="figures/analog_gain_ft.png" width="100%" alt="gm/ID by generation, intrinsic gain, and record fT and fmax by year"></p>
+<p align="center"><img src="figures/analog_noise.png" width="100%" alt="Noise spectra for four widths and rms noise versus width"></p>
 
 ## A history in cross-sections
 
@@ -365,7 +387,7 @@ The [Process Lab](https://normansrule.github.io/transistor-odyssey/process.html)
 ## Chapters
 
 <details open>
-<summary><b>All 22 chapters</b>. Citations are written <code>[@key]</code>; each key resolves to <a href="REFERENCES.md">REFERENCES.md</a>.</summary>
+<summary><b>All 23 chapters</b>. Citations are written <code>[@key]</code>; each key resolves to <a href="REFERENCES.md">REFERENCES.md</a>.</summary>
 
 1. [Origins: the point contact and the junction](docs/01-origins.md) — 1947–1954
 2. [Oxide, the planar process and the integrated circuit](docs/02-planar-and-ic.md) — 1957–1961
@@ -389,6 +411,7 @@ The [Process Lab](https://normansrule.github.io/transistor-odyssey/process.html)
 20. [How each transistor works: cross-sections and energy band diagrams](docs/20-how-transistors-work.md) — all 19 devices of the Device Atlas, with animations, band diagrams and heterojunctions
 21. [From transistor to computer: the Circuit Lab](docs/21-circuit-lab.md) — powers of ten, switch-level gates, logical effort, adders, SRAM noise margins, flash and 3D NAND
 22. [The physics of making chips: the Process Lab](docs/22-process-lab.md) — Deal–Grove oxidation, LSS implantation and diffusion, yield and cost per transistor, electromigration
+23. [The transistor as an amplifier: the Analog & RF Lab](docs/23-analog-rf-lab.md) — common-source gain and distortion, g_m/I_D and intrinsic gain, the Miller effect, f_T and f_max records, thermal and 1/f noise
 
 </details>
 
@@ -421,26 +444,27 @@ Open a generated layout in KLayout: `klayout figures/layout/inverter_22_nm_FinFE
 
 ```
 transistor-odyssey/
-├── site/                  GitHub Pages website: index.html (history) · devices.html (Device Atlas) · physics.html (Physics Lab) · circuits.html (Circuit Lab) · process.html (Process Lab), css/, js/, vendor/ (three.js, GSAP, KaTeX, fonts)
+├── site/                  GitHub Pages website: index.html (history) · devices.html (Device Atlas) · physics.html (Physics Lab) · circuits.html (Circuit Lab) · process.html (Process Lab) · analog.html (Analog & RF Lab), css/, js/, vendor/ (three.js, GSAP, KaTeX, fonts)
 │   ├── js/physics/        browser twins of the Python physics, checked by tests/js_parity.mjs
 │   ├── js/devices/        Device Atlas: band models, scenes, animated renderers, comparison, quiz, junction builder
 │   ├── js/circuitlab/     Circuit Lab: powers-of-ten zoom, gate builder, adder, SRAM and flash labs
-│   └── js/processlab/     Process Lab: process-flow hero, oxidation, implantation, yield and electromigration labs
-├── docs/                  22 chapters, citations as [@key]
+│   ├── js/processlab/     Process Lab: process-flow hero, oxidation, implantation, yield and electromigration labs
+│   └── js/analoglab/      Analog & RF Lab: spectrum hero, amplifier, gain, frequency-response and noise labs
+├── docs/                  23 chapters, citations as [@key]
 ├── sim/
 │   ├── transistor_sim/    mosfet · hemt · bjt · dopants · steep · process · materials · scaling · crosssection · layout · bandatlas
-│   │   └── physics/       carriers · bandstructure · junction · hetero · moscap · chargesheet · tunnel · qwell · poisson2d · montecarlo · thermal · litho · crystal · inverter · ballistic · interconnect · logic · sram · flash · oxidation · implant · yieldcost · electromigration
+│   │   └── physics/       carriers · bandstructure · junction · hetero · moscap · chargesheet · tunnel · qwell · poisson2d · montecarlo · thermal · litho · crystal · inverter · ballistic · interconnect · logic · sram · flash · oxidation · implant · yieldcost · electromigration · analog
 │   ├── spice/             ngspice netlists
 │   └── make_figures.py    renders everything in figures/
 ├── figures/               generated charts, bands/ (per-device band diagrams), anim/ (GIFs), screens/, cross_sections/, layout/ (SVG + GDS)
-├── data/                  devices · band_alignment · memory · fab_economics · chips · nodes · materials · timeline · niche · diamond · dopants · process · images · references
+├── data/                  devices · band_alignment · memory · fab_economics · rf_records · chips · nodes · materials · timeline · niche · diamond · dopants · process · images · references
 ├── scripts/               setup_ubuntu.sh · build_data.py (site bundle, REFERENCES.md, CREDITS.md) · fetch_images.py · banner.html + render_banner.py
 ├── tests/                 pytest suite
-├── REFERENCES.md          302 sources, generated
+├── REFERENCES.md          316 sources, generated
 └── CREDITS.md             photo attribution, generated
 ```
 
-**What is in it:** 19 devices and 21 band alignments · 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 31 niche devices · 16 diamond milestones · 9 dopants · 12 SRAM bitcells · 11 NAND milestones · 11 wafer prices · 14 process steps · 7 crystal structures ([data/](data)) · 43 labelled cross-sections, 14 process-flow drawings, 6 GDS mask layouts, 36 charts, 19 band-diagram figures and 20 animations ([figures/](figures)) · ngspice netlists ([sim/spice](sim/spice)) · 174 tests ([tests/](tests)).
+**What is in it:** 19 devices and 21 band alignments · 33 landmark chips · 25 process nodes · 12 semiconductors · 20 structural eras · 31 niche devices · 16 diamond milestones · 9 dopants · 12 SRAM bitcells · 11 NAND milestones · 11 wafer prices · 7 speed records · 14 process steps · 7 crystal structures ([data/](data)) · 43 labelled cross-sections, 14 process-flow drawings, 6 GDS mask layouts, 39 charts, 19 band-diagram figures and 25 animations ([figures/](figures)) · ngspice netlists ([sim/spice](sim/spice)) · 182 tests ([tests/](tests)).
 
 ## Accuracy policy
 
